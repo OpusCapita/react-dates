@@ -15,7 +15,7 @@ module.exports = {
     library: 'demopage',
     libraryTarget: 'umd'
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval',
   watch: true,
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
@@ -67,7 +67,7 @@ module.exports = {
             }
           },
           { loader: 'postcss-loader' },
-          { loader: 'less', options: { sourceMap: true } }
+          { loader: 'less-loader', options: { sourceMap: true } }
         ],
         include: /\.module\.(css|less)$/
       },

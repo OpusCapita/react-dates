@@ -33,7 +33,7 @@ acorn@^3.0.4:
   version "3.3.0"
   resolved "http://leon.scand:4873/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
 
-acorn@^4.0.3, acorn@^4.0.4:
+acorn@^4.0.11, acorn@^4.0.3, acorn@^4.0.4:
   version "4.0.11"
   resolved "http://leon.scand:4873/acorn/-/acorn-4.0.11.tgz#edcda3bd937e7556410d42ed5860f67399c794c0"
 
@@ -1188,6 +1188,10 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
+classnames@^2.2.5:
+  version "2.2.5"
+  resolved "http://leon.scand:4873/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 cli-cursor@^1.0.1:
   version "1.0.2"
   resolved "http://leon.scand:4873/cli-cursor/-/cli-cursor-1.0.2.tgz#64da3f7d56a54412e59794bd62dc35295e8f2987"
@@ -1278,7 +1282,7 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^2.8.1:
+commander@^2.8.1, commander@^2.9.0:
   version "2.9.0"
   resolved "http://leon.scand:4873/commander/-/commander-2.9.0.tgz#9c99094176e12240cb22d6c5146098400fe0f7d4"
   dependencies:
@@ -1634,7 +1638,7 @@ domain-browser@^1.1.1:
   version "1.1.7"
   resolved "http://leon.scand:4873/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
 
-duplexer@~0.1.1:
+duplexer@^0.1.1, duplexer@~0.1.1:
   version "0.1.1"
   resolved "http://leon.scand:4873/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
 
@@ -1656,6 +1660,10 @@ ecc-jsbn@~0.1.1:
 ee-first@1.1.1:
   version "1.1.1"
   resolved "http://leon.scand:4873/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
+
+ejs@^2.5.5:
+  version "2.5.6"
+  resolved "http://leon.scand:4873/ejs/-/ejs-2.5.6.tgz#479636bfa3fe3b1debd52087f0acb204b4f19c88"
 
 electron-to-chromium@^1.2.5:
   version "1.2.5"
@@ -1934,7 +1942,7 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-express@^4.15.1:
+express@^4.14.1, express@^4.15.1:
   version "4.15.1"
   resolved "http://leon.scand:4873/express/-/express-4.15.1.tgz#e32897816d94cc477e45f0149a8966bc938a329b"
   dependencies:
@@ -2013,7 +2021,7 @@ filename-regex@^2.0.0:
   version "2.0.0"
   resolved "http://leon.scand:4873/filename-regex/-/filename-regex-2.0.0.tgz#996e3e80479b98b9897f15a8a58b3d084e926775"
 
-filesize@^3.2.1:
+filesize@^3.2.1, filesize@^3.5.4:
   version "3.5.5"
   resolved "http://leon.scand:4873/filesize/-/filesize-3.5.5.tgz#3c2a5c14463919a218434721472b63cc30748992"
 
@@ -2251,6 +2259,12 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.4, graceful-fs@^4.1.6,
 "graceful-readlink@>= 1.0.0":
   version "1.0.1"
   resolved "http://leon.scand:4873/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
+
+gzip-size@^3.0.0:
+  version "3.0.0"
+  resolved "http://leon.scand:4873/gzip-size/-/gzip-size-3.0.0.tgz#546188e9bdc337f673772f81660464b389dce520"
+  dependencies:
+    duplexer "^0.1.1"
 
 har-schema@^1.0.5:
   version "1.0.5"
@@ -2888,7 +2902,7 @@ lodash.uniq@^4.3.0:
   version "4.5.0"
   resolved "http://leon.scand:4873/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@4.17.4, lodash@^4.0.0, lodash@^4.14.0, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.5.1:
+lodash@4.17.4, lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.5.1:
   version "4.17.4"
   resolved "http://leon.scand:4873/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3021,7 +3035,7 @@ minimist@^1.2.0:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.11.2:
+moment@^2.11.2, moment@^2.17.1:
   version "2.17.1"
   resolved "http://leon.scand:4873/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
@@ -3223,6 +3237,10 @@ once@~1.3.0, once@~1.3.3:
 onetime@^1.0.0:
   version "1.1.0"
   resolved "http://leon.scand:4873/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
+
+opener@^1.4.2:
+  version "1.4.3"
+  resolved "http://leon.scand:4873/opener/-/opener-1.4.3.tgz#5c6da2c5d7e5831e8ffa3964950f8d6674ac90b8"
 
 optionator@^0.8.2:
   version "0.8.2"
@@ -3819,6 +3837,23 @@ rc@^1.0.1, rc@~1.1.6:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-datepicker@^0.41.1:
+  version "0.41.1"
+  resolved "http://leon.scand:4873/react-datepicker/-/react-datepicker-0.41.1.tgz#21c26cc3821bee01eb6deb650880fa98f44588ec"
+  dependencies:
+    classnames "^2.2.5"
+    moment "^2.17.1"
+    react-onclickoutside "^5.9.0"
+    tether "^1.4.0"
+
+react-day-picker@^5.2.0:
+  version "5.2.0"
+  resolved "http://leon.scand:4873/react-day-picker/-/react-day-picker-5.2.0.tgz#984965bc7d8e880c89d5c6897249e56b93bf8bd3"
+
+react-onclickoutside@^5.9.0:
+  version "5.9.0"
+  resolved "http://leon.scand:4873/react-onclickoutside/-/react-onclickoutside-5.9.0.tgz#c47bb506384adc98d686d134b34412ed17b97437"
 
 read-all-stream@^3.0.0:
   version "3.1.0"
@@ -4441,6 +4476,10 @@ tar@~2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
+tether@^1.4.0:
+  version "1.4.0"
+  resolved "http://leon.scand:4873/tether/-/tether-1.4.0.tgz#0f9fa171f75bf58485d8149e94799d7ae74d1c1a"
+
 text-table@~0.2.0:
   version "0.2.0"
   resolved "http://leon.scand:4873/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
@@ -4704,6 +4743,21 @@ watchpack@^1.2.0:
     async "^2.1.2"
     chokidar "^1.4.3"
     graceful-fs "^4.1.2"
+
+webpack-bundle-analyzer@^2.3.1:
+  version "2.3.1"
+  resolved "http://leon.scand:4873/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.3.1.tgz#d97f8aadbcce68fc865c5787741d8549359a25cd"
+  dependencies:
+    acorn "^4.0.11"
+    chalk "^1.1.3"
+    commander "^2.9.0"
+    ejs "^2.5.5"
+    express "^4.14.1"
+    filesize "^3.5.4"
+    gzip-size "^3.0.0"
+    lodash "^4.17.4"
+    mkdirp "^0.5.1"
+    opener "^1.4.2"
 
 webpack-dev-middleware@^1.10.1:
   version "1.10.1"
