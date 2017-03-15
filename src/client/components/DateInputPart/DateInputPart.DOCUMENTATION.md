@@ -7,14 +7,14 @@ DateInputPart is
 
 ```
 <DateInputPart
-  onChange={_scope.handleChange.bind(_scope)}
-  onError={err => console.log(err)}
-  values={{
-    'dec': 'December',
-    'jan': 'January',
-    'feb': 'February',
-    'mrc': 'March'
-  }}
+  maskPlaceholder="yyyy"
+  min={1980}
+  max={1994}
+  onChange={newValue => console.log(newValue)}
+  onPressLeft={() => console.log('onLeftSide!')}
+  onPressRight={() => console.log('onRightSide!')}
+  onPressUp={() => console.log('pressUp')}
+  onPressDown={() => console.log('pressDown')}
 />
 ```
 

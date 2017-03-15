@@ -37,21 +37,24 @@ class DateInput extends Component {
 
     return (
       <div className={s.dateInput}>
-        <input
+        <DateInputPart
           onChange={() => {}}
-          value={this.getDatePartValue(locale, datePartsOrder[0], date)}
+          maskPlaceholder={this.getDatePartValue(locale, datePartsOrder[0], date)}
+          minSize={2}
         />
         <span>{datePartsOrder[1].value}</span>
 
-        <input
+        <DateInputPart
           onChange={() => {}}
-          value={this.getDatePartValue(locale, datePartsOrder[2], date)}
+          maskPlaceholder={this.getDatePartValue(locale, datePartsOrder[2], date)}
+          minSize={2}
         />
         <span>{datePartsOrder[3].value}</span>
 
-        <input
+        <DateInputPart
           onChange={() => {}}
-          value={this.getDatePartValue(locale, datePartsOrder[4], date)}
+          maskPlaceholder={this.getDatePartValue(locale, datePartsOrder[4], date)}
+          minSize={4}
         />
         <span>{datePartsOrder[5].value}</span>
       </div>
@@ -62,7 +65,9 @@ class DateInput extends Component {
 DateInput.propTypes = {
   ISODate: PropTypes.string,
   locale: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  maxYear: PropTypes.number,
+  minYear: PropTypes.number
 };
 DateInput.defaultProps = {
   ISODate: new Date().toISOString(),

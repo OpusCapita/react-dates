@@ -11,6 +11,7 @@ DateInput is
   onChange={date => console.log(date)}
   onClear={() => console.log('clear')}
   ISODate="2017-04-03T14:48:00.000Z"
+  
 />
 ```
 
