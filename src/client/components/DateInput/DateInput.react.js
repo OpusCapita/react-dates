@@ -6,32 +6,32 @@ import DateInputPart from '../DateInputPart';
 export default
 class DateInput extends Component {
   componentWillMount() {
-    this.setDatePartsOrder(this.props.locale);
+    this.setDatePartsOrder(this.props.dateFormat);
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.locale !== nextProps.locale) {
-      this.setDatePartsOrder(nextProps.locale);
+    if(this.props.dateFormat !== nextProps.dateFormat) {
+      this.setDatePartsOrder(nextProps.dateFormat);
     }
   }
 
-  setDatePartsOrder(locale) {
-    let datePartsOrder = getDatePartsOrder(locale);
+  setDatePartsOrder(dateFormat) {
+    let datePartsOrder = getDatePartsOrder(dateFormat);
     this.setState({ datePartsOrder: datePartsOrder });
   }
 
-  getDatePartValue(locale, part, date) {
+  getDatePartValue(part, date) {
     let partValue;
     switch(part.type) {
-      case 'y': (partValue = date.toLocaleDateString(locale, { year: part.representation })); break;
-      case 'M': (partValue = date.toLocaleDateString(locale, { month: part.representation })); break;
-      case 'd': (partValue = date.toLocaleDateString(locale, { day: part.representation })); break;
+      case 'y': (partValue = date.getFullYear()); break;
+      case 'M': (partValue = date.getMonth()); break;
+      case 'd': (partValue = date.getDate()); break;
     }
     return partValue;
   };
 
   render() {
-    let { ISODate, locale } = this.props;
+    let { ISODate, dateFormat } = this.props;
     let { datePartsOrder } = this.state;
     let date = new Date(Date.parse(ISODate));
 
@@ -39,21 +39,21 @@ class DateInput extends Component {
       <div className={s.dateInput}>
         <DateInputPart
           onChange={() => {}}
-          maskPlaceholder={this.getDatePartValue(locale, datePartsOrder[0], date)}
+          maskPlaceholder={this.getDatePartValue(datePartsOrder[0], date)}
           minSize={2}
         />
         <span>{datePartsOrder[1].value}</span>
 
         <DateInputPart
           onChange={() => {}}
-          maskPlaceholder={this.getDatePartValue(locale, datePartsOrder[2], date)}
+          maskPlaceholder={this.getDatePartValue(datePartsOrder[2], date)}
           minSize={2}
         />
         <span>{datePartsOrder[3].value}</span>
 
         <DateInputPart
           onChange={() => {}}
-          maskPlaceholder={this.getDatePartValue(locale, datePartsOrder[4], date)}
+          maskPlaceholder={this.getDatePartValue(datePartsOrder[4], date)}
           minSize={4}
         />
         <span>{datePartsOrder[5].value}</span>
@@ -63,14 +63,16 @@ class DateInput extends Component {
 }
 
 DateInput.propTypes = {
+  dateFormat: PropTypes.string,
   ISODate: PropTypes.string,
-  locale: PropTypes.string,
   onChange: PropTypes.func,
   maxYear: PropTypes.number,
   minYear: PropTypes.number
 };
 DateInput.defaultProps = {
+  dateFormat: 'dd.MM.yyyy',
   ISODate: new Date().toISOString(),
-  locale: 'en-US',
-  onChange: () => {}
+  onChange: () => {},
+  minYear: 1970,
+  maxYear: 2200
 };
