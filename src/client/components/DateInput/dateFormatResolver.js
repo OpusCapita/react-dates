@@ -1,80 +1,83 @@
+const YEAR_MIN = 1920;
+const YEAR_MAX = 2120;
+
 export
 const resolverDefinitions = {
   'yyyy': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { year: 'numeric' }),
-    getKeys: (date, locale, minYear, maxYear) => getRange(minYear, maxYear)
+    getKeys: (min = YEAR_MIN, max = YEAR_MAX) => getYearsKeys(min, max)
   },
   'yy': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { year: '2-digit' }),
-    getKeys: (date, locale, minYear, maxYear) => getRange(minYear, maxYear)
+    getKeys: (min = YEAR_MIN, max = YEAR_MAX) => getYearsKeys(min, max)
   },
   'M': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { month: '2-digit' }),
-    getAll: (date, locale) => getRange(0, 11)
+    getKeys: () => getMonthsKeys()
   },
   'MM': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { month: '2-digit' }),
-    getAll: (date, locale) => getMonths(0, 11)
+    getKeys: (date, locale) => getMonthsKeys()
   },
   'MMM': {
     resolve: (date, locale) => date.toLocaleDateString(locale, { month: 'short' }),
-    getAll: (date, locale) => getMonths(locale, 'short')
+    getKeys: (date, locale) => getMonthsKeys()
   },
   'MMMM': {
     resolve: (date, locale) => date.toLocaleDateString(locale, { month: 'long' }),
-    getAll: (date, locale) => getMonths(locale, 'long')
+    getKeys: (date, locale) => getMonthsKeys()
   },
   'd': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { day: '2-digit' }),
-    getAll: (date, locale) => getDaysInMonth(date)
+    getKeys: (date, locale) => getDatesKeys(date)
   },
   'dd': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { day: '2-digit' }),
-    getAll: (date, locale) => getDaysInMonth(date)
+    getKeys: (date, locale) => getDatesKeys(date)
   },
   'E': {
     resolve: (date, locale) => date.toLocaleDateString(locale, { weekday: 'narrow' }),
-    getAll: (date, locale) => getWeekDays(locale, 'narrow')
+    getKeys: (date, locale) => getDaysKeys()
   },
   'EE': {
     resolve: (date, locale) => date.toLocaleDateString(locale, { weekday: 'short' }),
-    getAll: (date, locale) => getWeekDays(locale, 'narrow')
+    getKeys: (date, locale) => getDaysKeys()
   },
   'EEE': {
     resolve: (date, locale) => date.toLocaleDateString(locale, { weekday: 'long' }),
-    getAll: (date, locale) => getWeekDays(locale, 'narrow')
+    getKeys: (date, locale) => getDaysKeys()
   },
   'H': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { hour: '2-digit' }),
-    getAll: (date, locale) => getRange(0, 23)
+    getMap: (date, locale) => getHoursKeys()
   },
   'HH': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { hour: '2-digit' }),
-    getAll: (date, locale) => getHours(0, 23)
+    getMap: (date, locale) => getHoursKeys()
   },
   'm': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { minute: '2-digit' }),
-    getAll: (date, locale) => getRange(0, 59)
+    getMap: (date, locale) => getMinutes('en-US', '2-digit')
   },
   'mm': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { minute: '2-digit' }),
-    getAll: (date, locale) => getRange(0, 59)
+    getMap: (date, locale) => getMinutes('en-US', '2-digit')
   },
   's': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { second: '2-digit' }),
-    getAll: (date, locale) => getRange(0, 59)
+    getMap: (date, locale) => getSeconds('en-US', '2-digit')
   },
   'ss': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { second: '2-digit' }),
-    getAll: (date, locale) => getRange(0, 59)
+    getMap: (date, locale) => getSeconds('en-US', '2-digit')
   },
   'S': {
     resolve: (date, locale) => date.getMilliseconds(),
-    getAll: (date, locale) => getRange(0, 999)
+    getMap: (date, locale) => getMilliseconds()
   },
   'SS': {
     resolve: (date, locale) => date.getMilliseconds(),
-    getAll: (date, locale) => getRange(0, 999)
+    getMap: (date, locale) => getMilliseconds()
   }
 };
 
@@ -87,7 +90,7 @@ function getDateFormatResolvers(dateFormat = 'dd.MM.yyyy', resolverDefinitions) 
     if(indexOfFormat == -1) {
       return format;
     }
-    return { exec: resolverDefinitions[format], type: format };
+    return { ...resolverDefinitions[format], type: format };
   });
 }
 
@@ -96,45 +99,13 @@ function resolveDateFormat(resolver, date, locale) {
   if (typeof resolver === 'string') {
     return resolver;
   }
-  return resolver.exec(date, locale);
+  return resolver.resolve(date, locale);
 }
 
-// export
-// function isLeapYear (year) {
-//   return (( year % 4 === 0 ) && ( year % 100 !== 0 )) || ( year % 400 === 0 );
-// };
-
-// export
-// function getDaysInMonth(date, formatter = (day) => day) {
-//   let month = date.getMonth();
-//   let febDaysCount = isLeapYear(date.getFullYear()) ? 29 : 28;
-//   let daysCount = [ 31, febDaysCount, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ][ month ];
-//   let days = {};
-//   for(let i = 1; i <= daysCount; i++) {
-//     days[i] = formatter(i.toString());
-//   }
-//   return days;
-// };
-
-// export
-// function getWeekdays(locale, representation) {
-//   let weekdays = {};
-//   for(let i = 0; i < 7; i++) {
-//     let date = new Date(1970, i, 1);
-//     let weekdayName = date.toLocaleString(locale, { weekday: representation });
-//     weekdays[i] = weekdayName;
-//   }
-//   return weekdays;
-// }
-
-// export
-// function getMonths() {
-//   let months = [];
-//   for(let i = 0; i < 12; i++) {
-//     months[i] = monthName;
-//   }
-//   return months;
-// }
+export
+function isLeapYear (year) {
+  return (( year % 4 === 0 ) && ( year % 100 !== 0 )) || ( year % 400 === 0 );
+};
 
 export
 function getRange(min, max) {
@@ -145,4 +116,58 @@ function getRange(min, max) {
   return list;
 }
 
-console.log(getRange(0, 12));
+export
+function getYearsKeys(min, max) {
+  return getRange(min, max);
+}
+
+export
+function getMonthsKeys() {
+  return getRange(0, 11);
+}
+
+export
+function getDatesKeys(date) {
+  let month = date.getMonth();
+  let febDaysCount = isLeapYear(date.getFullYear()) ? 29 : 28;
+  let daysCount = [ 31, febDaysCount, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ][ month ];
+  return getRange(1, daysCount);
+};
+
+export
+function getDaysKeys() {
+  return getRange(0, 6);
+}
+
+export
+function getHoursKeys() {
+  return getRange(0, 59);
+}
+
+export
+function getMinutesKeys() {
+  return getRange(0, 59);
+}
+
+export
+function getSecondsKeys() {
+  return getRange(0, 59);
+}
+
+export
+function getMillisecondsKeys() {
+  return getRange(0, 999);
+}
+
+let before = Date.now();
+let result = null;
+let date = new Date();
+for(let i = 0; i < 1000; i++) {
+  result = getYearsKeys(1920, 2120);
+
+}
+console.log(result);
+
+let after = Date.now();
+let time = after - before;
+console.log(time);
