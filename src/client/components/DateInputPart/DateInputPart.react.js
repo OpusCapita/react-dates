@@ -8,7 +8,6 @@ class DateInputPart extends Component {
     this.state = {
       value: typeof props.value === 'undefined' ? props.maskPlaceholder : props.value
     };
-    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   componentDidMount() {
@@ -19,16 +18,7 @@ class DateInputPart extends Component {
     if(this.selectTimeout) {
       clearTimeout(this.selectTimeout);
     }
-    this.removeKeysListeners();
     this.props.onUnmount(this);
-  }
-
-  addKeysListeners() {
-    document.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  removeKeysListeners() {
-    document.removeEventListener('keydown', this.handleKeyDown);
   }
 
   handleKeyDown(event) {
@@ -47,11 +37,10 @@ class DateInputPart extends Component {
   }
 
   selectText() {
-    console.log('st');
     if(!this.props.autoSelectText) {
       return false;
     }
-    this.selectTimeout = setTimeout(() => { // Timeout is a fix for EDGE and IE
+    return this.selectTimeout = setTimeout(() => { // Timeout is a fix for EDGE and IE
       this.inputRef.select();
     }, 0);
   }
@@ -68,13 +57,11 @@ class DateInputPart extends Component {
   }
 
   handleFocus() {
-    this.addKeysListeners();
     this.props.onFocus && this.props.onFocus();
     this.selectText();
   }
 
   handleBlur() {
-    this.removeKeysListeners();
     this.props.onBlur && this.props.onBlur();
   }
 
@@ -143,6 +130,7 @@ class DateInputPart extends Component {
           onBlur={this.handleBlur.bind(this)}
           onFocus={this.handleFocus.bind(this)}
           onChange={this.handleChange.bind(this)}
+          onKeyDown={this.handleKeyDown.bind(this)}
           style={{ width: width }}
           values={values}
           valueKey={value}
