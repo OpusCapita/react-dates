@@ -6,7 +6,8 @@ class DateInputPart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: typeof props.value === 'undefined' ? props.maskPlaceholder : props.value
+      value: typeof props.value === 'undefined' ? props.maskPlaceholder : props.value,
+      isSelected: false
     };
   }
 
@@ -15,7 +16,7 @@ class DateInputPart extends Component {
   }
 
   componentWillUnmount() {
-    if(this.selectTimeout) {
+    if(typeof this.selectTimeout !== 'undefined') {
       clearTimeout(this.selectTimeout);
     }
     this.props.onUnmount(this);
@@ -58,11 +59,14 @@ class DateInputPart extends Component {
 
   handleFocus() {
     this.props.onFocus && this.props.onFocus();
+
     this.selectText();
+    this.setState({ isSelected: true });
   }
 
   handleBlur() {
     this.props.onBlur && this.props.onBlur();
+    this.setState({ isSelected: false });
   }
 
   handleChange() {
