@@ -1,75 +1,76 @@
 const YEAR_MIN = 1920;
 const YEAR_MAX = 2120;
+const FIXED_LOCALE = 'en-GB';
 export const SEPARATOR = 'separator';
 
 export
 const resolverDefinitions = {
   'yyyy': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { year: 'numeric' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { year: 'numeric' }),
     getKeys: (min = YEAR_MIN, max = YEAR_MAX) => getYearsKeys(min, max)
   },
   'yy': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { year: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { year: '2-digit' }),
     getKeys: (min = YEAR_MIN, max = YEAR_MAX) => getYearsKeys(min, max)
   },
   'M': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { month: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { month: 'numeric' }),
     getKeys: () => getMonthsKeys()
   },
   'MM': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { month: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { month: '2-digit' }),
     getKeys: (date, locale) => getMonthsKeys()
   },
   'MMM': {
-    resolve: (date, locale) => date.toLocaleDateString(locale, { month: 'short' }),
+    resolve: (date, locale) => date.toLocaleString(locale, { month: 'short' }),
     getKeys: (date, locale) => getMonthsKeys()
   },
   'MMMM': {
-    resolve: (date, locale) => date.toLocaleDateString(locale, { month: 'long' }),
+    resolve: (date, locale) => date.toLocaleString(locale, { month: 'long' }),
     getKeys: (date, locale) => getMonthsKeys()
   },
   'd': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { day: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { day: 'numeric' }),
     getKeys: (date, locale) => getDatesKeys(date)
   },
   'dd': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { day: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { day: '2-digit' }),
     getKeys: (date, locale) => getDatesKeys(date)
   },
   'E': {
-    resolve: (date, locale) => date.toLocaleDateString(locale, { weekday: 'narrow' }),
+    resolve: (date, locale) => date.toLocaleString(locale, { weekday: 'narrow' }),
     getKeys: (date, locale) => getDaysKeys()
   },
   'EE': {
-    resolve: (date, locale) => date.toLocaleDateString(locale, { weekday: 'short' }),
+    resolve: (date, locale) => date.toLocaleString(locale, { weekday: 'short' }),
     getKeys: (date, locale) => getDaysKeys()
   },
   'EEE': {
-    resolve: (date, locale) => date.toLocaleDateString(locale, { weekday: 'long' }),
+    resolve: (date, locale) => date.toLocaleString(locale, { weekday: 'long' }),
     getKeys: (date, locale) => getDaysKeys()
   },
   'H': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { hour: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { hour: 'numeric' }),
     getKeys: (date, locale) => getHoursKeys()
   },
   'HH': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { hour: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { hour: '2-digit' }),
     getKeys: (date, locale) => getHoursKeys()
   },
   'm': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { minute: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { minute: 'numeric' }),
     getKeys: (date, locale) => getMinutes('en-US', '2-digit')
   },
   'mm': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { minute: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { minute: '2-digit' }),
     getKeys: (date, locale) => getMinutes('en-US', '2-digit')
   },
   's': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { second: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { second: 'numeric' }),
     getKeys: (date, locale) => getSeconds('en-US', '2-digit')
   },
   'ss': {
-    resolve: (date, locale) => date.toLocaleDateString('en-US', { second: '2-digit' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { second: '2-digit' }),
     getKeys: (date, locale) => getSeconds('en-US', '2-digit')
   },
   'S': {

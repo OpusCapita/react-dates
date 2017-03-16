@@ -7,11 +7,36 @@ DateInput is
 
 ```
 <DateInput
-  dateFormat="yyyy.dd.MM"
+  className="form-control"
+  dateFormat="yyyy/dd/M - EEE - HH:mm:ss"
   onChange={date => console.log(date)}
   onClear={() => console.log('clear')}
-  ISODate="2017-04-03T14:48:00.000Z"
-  
+  value={new Date()}
+  locale="de-DE"
+/>
+
+<DateInput
+  dateFormat="yy/d/M EEE H:m:s"
+  onChange={date => console.log(date)}
+  onClear={() => console.log('clear')}
+  value={new Date()}
+  locale="fi-FI"
+/>
+
+<DateInput
+  dateFormat="yy/d/M - EEE - H:m:s"
+  onChange={date => console.log(date)}
+  onClear={() => console.log('clear')}
+  value={new Date()}
+  locale="hu-HU"
+/>
+
+<DateInput
+  dateFormat="yy/d/M - EEE - H:m:s"
+  onChange={date => console.log(date)}
+  onClear={() => console.log('clear')}
+  value={new Date()}
+  locale="ru-RU"
 />
 ```
 

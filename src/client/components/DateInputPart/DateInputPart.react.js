@@ -11,11 +11,16 @@ class DateInputPart extends Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
+  componentDidMount() {
+    this.props.onMount(this);
+  }
+
   componentWillUnmount() {
     if(this.selectTimeout) {
       clearTimeout(this.selectTimeout);
     }
     this.removeKeysListeners();
+    this.props.onUnmount(this);
   }
 
   addKeysListeners() {
@@ -30,8 +35,8 @@ class DateInputPart extends Component {
     switch(event.which) {
       case 40: this.handlePrev(); this.selectText(); break; // Arrow Down
       case 38: this.handleNext(); this.selectText(); break; // Arrow Up
-      case 39: this.props.onPressLeft(); break; // Arrow Left
-      case 37: this.props.onPressRight(); break; // Arrow Right
+      case 37: this.props.onPressLeft(this); break; // Arrow Left
+      case 39: this.props.onPressRight(this); break; // Arrow Right
       case 8: this.handleDelete(); // Backspace
       case 46: this.handleDelete(); // Delete
     }
@@ -42,6 +47,7 @@ class DateInputPart extends Component {
   }
 
   selectText() {
+    console.log('st');
     if(!this.props.autoSelectText) {
       return false;
     }
@@ -54,6 +60,11 @@ class DateInputPart extends Component {
     this.setState({ value: newValue });
     this.props.onChange(newValue);
     return newValue;
+  }
+
+  focus() {
+    this.inputRef.focus();
+    this.handleFocus();
   }
 
   handleFocus() {
@@ -111,6 +122,8 @@ class DateInputPart extends Component {
       maskPlaceholder,
       className,
       width,
+      onFocus,
+      onBlur,
       onPressLeft,
       onPressDown,
       onPressUp,
@@ -122,11 +135,11 @@ class DateInputPart extends Component {
     let { value } = this.state;
 
     return (
-      <div className={s.container || ''}>
+      <div className={`${s.container || ''} ${className}`}>
         <input
           ref={inputRef => (this.inputRef = inputRef)}
           type="text"
-          className={`${s.input || ''} ${className}`}
+          className={`${s.input || ''}`}
           onBlur={this.handleBlur.bind(this)}
           onFocus={this.handleFocus.bind(this)}
           onChange={this.handleChange.bind(this)}
@@ -141,16 +154,20 @@ class DateInputPart extends Component {
 }
 
 DateInputPart.propTypes = {
+  onMount: PropTypes.func,
+  onUnmount: PropTypes.func,
   autoSelectText: PropTypes.bool,
   className: PropTypes.string,
   maskPlaceholder: PropTypes.string,
-  width: PropTypes.number,
+  width: PropTypes.string,
   onPressLeft: PropTypes.func,
   onPressRight: PropTypes.func,
   valueKey: PropTypes.string,
   values: PropTypes.object
 };
 DateInputPart.defaultProps = {
+  onMount: () => {},
+  onUnmount: () => {},
   autoSelectText: true,
   className: '',
   maskPlaceholder: '',
