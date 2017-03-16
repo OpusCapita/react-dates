@@ -66,10 +66,6 @@ class DateInput extends Component {
     this.partsRefs = leftPart.concat(rightPart);
   }
 
-  handlePartFocus(inputIndex) {
-    this.setState({ selectedInputIndex: inputIndex });
-  }
-
   render() {
     let {
       dateFormat,
@@ -102,7 +98,6 @@ class DateInput extends Component {
             onMount={partRef => this.handlePartMount(partRef)}
             onUnmount={partRef => this.handlePartUnmount(partRef)}
             onChange={() => {}}
-            onFocus={() => this.handlePartFocus.call(this, index)}
             onPressRight={partRef => this.focusNextPart.call(this, partRef)}
             onPressLeft={partRef => this.focusPrevPart.call(this, partRef)}
             maskPlaceholder={formatResolver.type}
