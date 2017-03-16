@@ -1,62 +1,86 @@
 import React, { Component, PropTypes } from 'react';
 import s from './DateInput.module.less';
-import getDatePartsOrder from './getDatePartsOrder';
 import DateInputPart from '../DateInputPart';
+import {
+  getDateFormatResolvers,
+  resolveDateFormat,
+  resolverDefinitions,
+  isLeapYear,
+  daysInMonth
+} from './dateFormatResolver';
 
 export default
 class DateInput extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { dateFormatResolvers: [] };
+  }
+
   componentWillMount() {
-    this.setDatePartsOrder(this.props.dateFormat);
+    this.setDateFormatResolvers(this.props.dateFormat);
   }
 
   componentWillReceiveProps(nextProps) {
     if(this.props.dateFormat !== nextProps.dateFormat) {
-      this.setDatePartsOrder(nextProps.dateFormat);
+      this.setDateFormatResolvers(nextProps.dateFormat);
     }
   }
 
-  setDatePartsOrder(dateFormat) {
-    let datePartsOrder = getDatePartsOrder(dateFormat);
-    this.setState({ datePartsOrder: datePartsOrder });
+  setDateFormatResolvers(dateFormat) {
+    let dateFormatResolvers = getDateFormatResolvers(dateFormat, resolverDefinitions);
+    this.setState({ dateFormatResolvers });
   }
 
-  getDatePartValue(part, date) {
-    let partValue;
-    switch(part.type) {
-      case 'y': (partValue = date.getFullYear()); break;
-      case 'M': (partValue = date.getMonth()); break;
-      case 'd': (partValue = date.getDate()); break;
+  getYears(min, max) {
+    let years = {};
+    for(let i = min; i < max; i++) {
+      years = Object.assign({}, years, { [i]: i });
     }
-    return partValue;
-  };
+    return years;
+  }
+
+  getMonths(date) {
+    return daysInMonth(date);
+  }
+
+  getInputValues(formatType) {
+    console.log('ft', formatType);
+    if(formatType.indexOf('y') >= 0) {
+      return this.getYears(this.props.minYear, this.props.maxYear);
+    }
+    return { a: 'b' };
+  }
+
+  getInputValue() {
+
+  }
 
   render() {
-    let { ISODate, dateFormat } = this.props;
-    let { datePartsOrder } = this.state;
-    let date = new Date(Date.parse(ISODate));
+    let { value, locale } = this.props;
+    let { dateFormatResolvers } = this.state;
+
+    let dateInputParts = dateFormatResolvers.map(
+      (dateFormatResolver, index) => {
+        if (typeof dateFormatResolver === 'string') {
+          return (<span key={index}>{dateFormatResolver}</span>);
+        }
+        let inputValue = resolveDateFormat(dateFormatResolver, value, locale);
+        return (
+          <DateInputPart
+            key={index}
+            onChange={() => {}}
+            maskPlaceholder={dateFormatResolver.type}
+            values={dateFormatResolver.type}
+            value={inputValue}
+            width={`${inputValue.length / 1.6}em`}
+          />
+        );
+      }
+    );
 
     return (
       <div className={s.dateInput}>
-        <DateInputPart
-          onChange={() => {}}
-          maskPlaceholder={this.getDatePartValue(datePartsOrder[0], date)}
-          minSize={2}
-        />
-        <span>{datePartsOrder[1].value}</span>
-
-        <DateInputPart
-          onChange={() => {}}
-          maskPlaceholder={this.getDatePartValue(datePartsOrder[2], date)}
-          minSize={2}
-        />
-        <span>{datePartsOrder[3].value}</span>
-
-        <DateInputPart
-          onChange={() => {}}
-          maskPlaceholder={this.getDatePartValue(datePartsOrder[4], date)}
-          minSize={4}
-        />
-        <span>{datePartsOrder[5].value}</span>
+        {dateInputParts}
       </div>
     );
   }
@@ -64,15 +88,15 @@ class DateInput extends Component {
 
 DateInput.propTypes = {
   dateFormat: PropTypes.string,
-  ISODate: PropTypes.string,
+  value: PropTypes.object,
   onChange: PropTypes.func,
   maxYear: PropTypes.number,
   minYear: PropTypes.number
 };
 DateInput.defaultProps = {
   dateFormat: 'dd.MM.yyyy',
-  ISODate: new Date().toISOString(),
-  onChange: () => {},
+  value: new Date(),
+  onChange: newValue => console.log(newValue),
   minYear: 1970,
   maxYear: 2200
 };

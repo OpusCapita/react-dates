@@ -5,7 +5,9 @@ export default
 class DateInputPart extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: props.maskPlaceholder };
+    this.state = {
+      value: typeof props.value === 'undefined' ? props.maskPlaceholder : props.value
+    };
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
@@ -33,6 +35,10 @@ class DateInputPart extends Component {
       case 8: this.handleDelete(); // Backspace
       case 46: this.handleDelete(); // Delete
     }
+  }
+
+  getValuesForInput() {
+
   }
 
   selectText() {
@@ -66,10 +72,11 @@ class DateInputPart extends Component {
   }
 
   handleNext() {
+    return 'next';
     let { value } = this.state;
-    let { maskPlaceholder, min, max } = this.props;
+    let { maskPlaceholder } = this.props;
 
-    if(value === maskPlaceholder) {
+    if (value === maskPlaceholder) {
       let newValue = max;
       return this.updateValue(newValue);
     }
@@ -79,6 +86,7 @@ class DateInputPart extends Component {
   }
 
   handlePrev() {
+    return 'prev';
     let { value } = this.state;
     let { maskPlaceholder, min, max } = this.props;
 
@@ -102,30 +110,32 @@ class DateInputPart extends Component {
       autoSelectText,
       maskPlaceholder,
       className,
-      minSize,
+      width,
       onPressLeft,
       onPressDown,
       onPressUp,
       onPressRight,
+      values,
       ...restProps
     } = this.props;
 
     let { value } = this.state;
 
-    let inputSize = value.toString().length > minSize ? value.toString().length : minSize;
-
     return (
-      <input
-        ref={inputRef => (this.inputRef = inputRef)}
-        type="text"
-        className={`${s.dateInputPart || ''} ${className}`}
-        onBlur={this.handleBlur.bind(this)}
-        onFocus={this.handleFocus.bind(this)}
-        onChange={this.handleChange.bind(this)}
-        size={inputSize}
-        value={value}
-        { ...restProps }
-      />
+      <div className={s.container || ''}>
+        <input
+          ref={inputRef => (this.inputRef = inputRef)}
+          type="text"
+          className={`${s.input || ''} ${className}`}
+          onBlur={this.handleBlur.bind(this)}
+          onFocus={this.handleFocus.bind(this)}
+          onChange={this.handleChange.bind(this)}
+          style={{ width: width }}
+          values={values}
+          valueKey={value}
+          { ...restProps }
+        />
+      </div>
     );
   }
 }
@@ -134,19 +144,19 @@ DateInputPart.propTypes = {
   autoSelectText: PropTypes.bool,
   className: PropTypes.string,
   maskPlaceholder: PropTypes.string,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  minSize: PropTypes.number,
+  width: PropTypes.number,
   onPressLeft: PropTypes.func,
-  onPressRight: PropTypes.func
+  onPressRight: PropTypes.func,
+  valueKey: PropTypes.string,
+  values: PropTypes.object
 };
 DateInputPart.defaultProps = {
   autoSelectText: true,
   className: '',
   maskPlaceholder: '',
-  minSize: 2,
-  min: 0,
-  max: 0,
+  width: 4,
   onPressLeft: () => {},
-  onPressRight: () => {}
+  onPressRight: () => {},
+  values: {},
+  valueKey: ''
 };
