@@ -1,5 +1,6 @@
 const YEAR_MIN = 1920;
 const YEAR_MAX = 2120;
+export const SEPARATOR = 'separator';
 
 export
 const resolverDefinitions = {
@@ -49,57 +50,61 @@ const resolverDefinitions = {
   },
   'H': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { hour: '2-digit' }),
-    getMap: (date, locale) => getHoursKeys()
+    getKeys: (date, locale) => getHoursKeys()
   },
   'HH': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { hour: '2-digit' }),
-    getMap: (date, locale) => getHoursKeys()
+    getKeys: (date, locale) => getHoursKeys()
   },
   'm': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { minute: '2-digit' }),
-    getMap: (date, locale) => getMinutes('en-US', '2-digit')
+    getKeys: (date, locale) => getMinutes('en-US', '2-digit')
   },
   'mm': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { minute: '2-digit' }),
-    getMap: (date, locale) => getMinutes('en-US', '2-digit')
+    getKeys: (date, locale) => getMinutes('en-US', '2-digit')
   },
   's': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { second: '2-digit' }),
-    getMap: (date, locale) => getSeconds('en-US', '2-digit')
+    getKeys: (date, locale) => getSeconds('en-US', '2-digit')
   },
   'ss': {
     resolve: (date, locale) => date.toLocaleDateString('en-US', { second: '2-digit' }),
-    getMap: (date, locale) => getSeconds('en-US', '2-digit')
+    getKeys: (date, locale) => getSeconds('en-US', '2-digit')
   },
   'S': {
     resolve: (date, locale) => date.getMilliseconds(),
-    getMap: (date, locale) => getMilliseconds()
+    getKeys: (date, locale) => getMilliseconds()
   },
   'SS': {
     resolve: (date, locale) => date.getMilliseconds(),
-    getMap: (date, locale) => getMilliseconds()
+    getKeys: (date, locale) => getMilliseconds()
   }
 };
 
+let getSeparatorResolver = (separator) => ({
+  resolve: () => separator
+});
+
 export
-function getDateFormatResolvers(dateFormat = 'dd.MM.yyyy', resolverDefinitions) {
-  let dateFormatParts = dateFormat.split(/\b\s*/);
+function getFormatResolvers(format = 'dd.MM.yyyy', resolverDefinitions) {
+  let formatParts = format.split(/\b/);
   let supportedFormats = Object.keys(resolverDefinitions);
-  return dateFormatParts.map(format => {
+
+  console.log('fp:', formatParts);
+  return formatParts.map(format => {
     let indexOfFormat = supportedFormats.indexOf(format);
-    if(indexOfFormat == -1) {
-      return format;
-    }
-    return { ...resolverDefinitions[format], type: format };
+    let isSeparator = indexOfFormat === -1;
+
+    return isSeparator ?
+      ({ ...getSeparatorResolver(format), type: SEPARATOR }) :
+      ({ ...resolverDefinitions[format], type: format });
   });
 }
 
 export
-function resolveDateFormat(resolver, date, locale) {
-  if (typeof resolver === 'string') {
-    return resolver;
-  }
-  return resolver.resolve(date, locale);
+function resolveFormat(resolver, date, locale, options) {
+  return resolver.resolve(date, locale, options);
 }
 
 export
@@ -159,15 +164,16 @@ function getMillisecondsKeys() {
   return getRange(0, 999);
 }
 
-let before = Date.now();
-let result = null;
-let date = new Date();
-for(let i = 0; i < 1000; i++) {
-  result = getYearsKeys(1920, 2120);
+// BENCHMARK
+// let before = Date.now();
+// let result = null;
+// let date = new Date();
+// for(let i = 0; i < 1000; i++) {
+//   result = getYearsKeys(1920, 2120);
 
-}
-console.log(result);
+// }
+// console.log(result);
 
-let after = Date.now();
-let time = after - before;
-console.log(time);
+// let after = Date.now();
+// let time = after - before;
+// console.log(time);
