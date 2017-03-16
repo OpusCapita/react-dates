@@ -66,6 +66,9 @@ class DateInputPart extends Component {
 
   handleBlur() {
     this.props.onBlur && this.props.onBlur();
+    if(typeof this.selectTimeout !== 'undefined') {
+      clearTimeout(this.selectTimeout);
+    }
     this.setState({ isSelected: false });
   }
 
