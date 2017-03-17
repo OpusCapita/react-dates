@@ -59,27 +59,27 @@ const resolverDefinitions = {
   },
   'm': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { minute: 'numeric' }),
-    getKeys: (date, locale) => getMinutes('en-US', '2-digit')
+    getKeys: (date, locale) => getMinutesKeys()
   },
   'mm': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { minute: '2-digit' }),
-    getKeys: (date, locale) => getMinutes('en-US', '2-digit')
+    getKeys: (date, locale) => getMinutesKeys()
   },
   's': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { second: 'numeric' }),
-    getKeys: (date, locale) => getSeconds('en-US', '2-digit')
+    getKeys: (date, locale) => getSecondsKeys()
   },
   'ss': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { second: '2-digit' }),
-    getKeys: (date, locale) => getSeconds('en-US', '2-digit')
+    getKeys: (date, locale) => getSecondsKeys()
   },
   'S': {
     resolve: (date, locale) => date.getMilliseconds(),
-    getKeys: (date, locale) => getMilliseconds()
+    getKeys: (date, locale) => getMillisecondsKeys()
   },
   'SS': {
     resolve: (date, locale) => date.getMilliseconds(),
-    getKeys: (date, locale) => getMilliseconds()
+    getKeys: (date, locale) => getMillisecondsKeys()
   }
 };
 
