@@ -8,10 +8,10 @@ DateInput is
 ```
 <DateInput
   className="form-control"
-  dateFormat="yyyy/dd/M - EEE - HH:mm:ss"
+  dateFormat="yyyy/dd/MM - EEE - HH:mm:ss"
   onChange={date => console.log(date)}
   onClear={() => console.log('clear')}
-  value={new Date()}
+  value={new Date(1970, 1, 1, 1, 1)}
   locale="de-DE"
 />
 

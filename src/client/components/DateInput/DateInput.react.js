@@ -10,6 +10,8 @@ import {
   YEAR_MAX
 } from './dateFormatResolver';
 
+let LEFT_TO_RIGHT = '‎'; // IE and EDGE add this special character when format locale string.
+
 export default
 class DateInput extends Component {
   constructor(props) {
@@ -92,6 +94,11 @@ class DateInput extends Component {
 
         let options = ({ minYear, maxYear });
         let inputValue = resolveFormat(formatResolver, value, locale, options);
+
+        /* + XXch -fix FIREFOX and IE 'ch' calculation
+           replace() - FIX - IE adds hidden chars */
+        let inputWidth = `${inputValue.toString().replace(LEFT_TO_RIGHT, '').length + 0.5}ch`;
+
         return (
           <DateInputPart
             key={index}
@@ -103,7 +110,7 @@ class DateInput extends Component {
             maskPlaceholder={formatResolver.type}
             values={formatResolver.type}
             value={inputValue}
-            width={`${inputValue.length + 0.5}ch`}
+            width={inputWidth}
           />
         );
       }

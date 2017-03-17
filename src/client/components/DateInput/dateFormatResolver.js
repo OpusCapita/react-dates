@@ -50,11 +50,11 @@ const resolverDefinitions = {
     getKeys: (date, locale) => getDaysKeys()
   },
   'H': {
-    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { hour: 'numeric' }),
+    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { hour: 'numeric', hour12: false }),
     getKeys: (date, locale) => getHoursKeys()
   },
   'HH': {
-    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { hour: '2-digit' }),
+    resolve: (date, locale) => (date.getHours() < 10 ? '0' : '') + date.getHours(),
     getKeys: (date, locale) => getHoursKeys()
   },
   'm': {
@@ -62,7 +62,7 @@ const resolverDefinitions = {
     getKeys: (date, locale) => getMinutesKeys()
   },
   'mm': {
-    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { minute: '2-digit' }),
+    resolve: (date, locale) => (date.getMinutes() < 10 ? '0' : '') + date.getMinutes(),
     getKeys: (date, locale) => getMinutesKeys()
   },
   's': {
@@ -70,7 +70,7 @@ const resolverDefinitions = {
     getKeys: (date, locale) => getSecondsKeys()
   },
   'ss': {
-    resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { second: '2-digit' }),
+    resolve: (date, locale) => (date.getSeconds() < 10 ? '0' : '') + date.getSeconds(),
     getKeys: (date, locale) => getSecondsKeys()
   },
   'S': {
