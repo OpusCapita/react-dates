@@ -1,85 +1,138 @@
-const YEAR_MIN = 1920;
-const YEAR_MAX = 2120;
+const MIN_YEAR = 1920;
+const MAX_YEAR = 2120;
 const FIXED_LOCALE = 'en-GB';
 export const SEPARATOR = 'separator';
+import padStart from 'lodash/padStart';
 
 export
 const resolverDefinitions = {
   'yyyy': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { year: 'numeric' }),
-    getKeys: (min = YEAR_MIN, max = YEAR_MAX) => getYearsKeys(min, max)
+    getKeys: (date, options = { minYear: MIN_YEAR, maxYear: MAX_YEAR }) => getYearsKeys(options.minYear, options.maxYear),
+    setKey: (date, key) => date.setFullYear(key),
+    setValue: (date, value) => date.setFullYear(padStart(value, 4, 0)),
+    getKey: (date) => date.getFullYear(),
+    getInputSize: () => 4
   },
   'yy': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { year: '2-digit' }),
-    getKeys: (min = YEAR_MIN, max = YEAR_MAX) => getYearsKeys(min, max)
+    getKeys: (date, options = { minYear: MIN_YEAR, maxYear: MAX_YEAR }) => getYearsKeys(options.minYear, options.maxYear),
+    setKey: (date, key) => date.setFullYear(key),
+    setValue: (date, value) => date.setFullYear(value),
+    getKey: (date) => date.getFullYear(),
+    getInputSize: () => 2
   },
   'M': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { month: 'numeric' }),
-    getKeys: () => getMonthsKeys()
+    getKeys: () => getMonthsKeys(),
+    setKey: (date, key) => date.setMonth(key),
+    setValue: (date, value) => date.setMonth(value + 1),
+    getKey: (date) => date.getMonth(),
+    getInputSize: () => 2
   },
   'MM': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { month: '2-digit' }),
-    getKeys: (date, locale) => getMonthsKeys()
+    getKeys: (date) => getMonthsKeys(),
+    setKey: (date, key) => date.setMonth(key),
+    setValue: (date, value) => date.setMonth(value + 1),
+    getKey: (date) => date.getMonth(),
+    getInputSize: () => 2
   },
   'MMM': {
     resolve: (date, locale) => date.toLocaleString(locale, { month: 'short' }),
-    getKeys: (date, locale) => getMonthsKeys()
+    getKeys: (date) => getMonthsKeys(),
+    setKey: (date, key) => date.setMonth(key),
+    setValue: (date, value) => date.setMonth(value + 1),
+    getKey: (date) => date.getMonth(),
+    getInputSize: () => 2
   },
   'MMMM': {
     resolve: (date, locale) => date.toLocaleString(locale, { month: 'long' }),
-    getKeys: (date, locale) => getMonthsKeys()
+    getKeys: (date) => getMonthsKeys(),
+    setKey: (date, key) => date.setMonth(key),
+    setValue: (date, value) => date.setMonth(value + 1),
+    getKey: (date) => date.getMonth(),
+    getInputSize: () => 2
   },
   'd': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { day: 'numeric' }),
-    getKeys: (date, locale) => getDatesKeys(date)
+    getKeys: (date) => getDatesKeys(date),
+    setKey: (date, key) => date.setDate(key),
+    setValue: (date, value) => date.setDate(value),
+    getKey: (date) => date.getDate(),
+    getInputSize: () => 2
   },
   'dd': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { day: '2-digit' }),
-    getKeys: (date, locale) => getDatesKeys(date)
-  },
-  'E': {
-    resolve: (date, locale) => date.toLocaleString(locale, { weekday: 'narrow' }),
-    getKeys: (date, locale) => getDaysKeys()
-  },
-  'EE': {
-    resolve: (date, locale) => date.toLocaleString(locale, { weekday: 'short' }),
-    getKeys: (date, locale) => getDaysKeys()
-  },
-  'EEE': {
-    resolve: (date, locale) => date.toLocaleString(locale, { weekday: 'long' }),
-    getKeys: (date, locale) => getDaysKeys()
+    getKeys: (date) => getDatesKeys(date),
+    setKey: (date, key) => date.setDate(key),
+    setValue: (date, value) => date.setDate(value),
+    getKey: (date) => date.getDate(),
+    getInputSize: () => 2
   },
   'H': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { hour: 'numeric', hour12: false }),
-    getKeys: (date, locale) => getHoursKeys()
+    getKeys: (date) => getHoursKeys(),
+    setKey: (date, key) => date.setHours(key),
+    setValue: (date, value) => date.setHours(value),
+    getKey: (date) => date.getHours(),
+    getInputSize: () => 2
   },
   'HH': {
     resolve: (date, locale) => (date.getHours() < 10 ? '0' : '') + date.getHours(),
-    getKeys: (date, locale) => getHoursKeys()
+    getKeys: (date) => getHoursKeys(),
+    setKey: (date, key) => date.setHours(key),
+    setValue: (date, value) => date.setHours(value),
+    getKey: (date) => date.getHours(),
+    getInputSize: () => 2
   },
   'm': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { minute: 'numeric' }),
-    getKeys: (date, locale) => getMinutesKeys()
+    getKeys: (date) => getMinutesKeys(),
+    setKey: (date, key) => date.setMinutes(key),
+    setValue: (date, value) => date.setMinutes(value),
+    getKey: (date) => date.getMinutes(),
+    getInputSize: () => 2
   },
   'mm': {
     resolve: (date, locale) => (date.getMinutes() < 10 ? '0' : '') + date.getMinutes(),
-    getKeys: (date, locale) => getMinutesKeys()
+    getKeys: (date) => getMinutesKeys(),
+    setKey: (date, key) => date.setMinutes(key),
+    setValue: (date, value) => date.setMinutes(value),
+    getKey: (date) => date.getMinutes(),
+    getInputSize: () => 2
   },
   's': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { second: 'numeric' }),
-    getKeys: (date, locale) => getSecondsKeys()
+    getKeys: (date) => getSecondsKeys(),
+    setKey: (date, key) => date.setSeconds(key),
+    setValue: (date, value) => date.setSeconds(value),
+    getKey: (date) => date.getSeconds(),
+    getInputSize: () => 2
   },
   'ss': {
     resolve: (date, locale) => (date.getSeconds() < 10 ? '0' : '') + date.getSeconds(),
-    getKeys: (date, locale) => getSecondsKeys()
+    getKeys: (date) => getSecondsKeys(),
+    setKey: (date, key) => date.setSeconds(key),
+    setValue: (date, value) => date.setSeconds(value),
+    getKey: (date) => date.getSeconds(),
+    getInputSize: () => 2
   },
   'S': {
     resolve: (date, locale) => date.getMilliseconds(),
-    getKeys: (date, locale) => getMillisecondsKeys()
+    getKeys: (date) => getMillisecondsKeys(),
+    setKey: (date, key) => date.setMilliseconds(key),
+    setValue: (date, value) => date.setMilliseconds(value),
+    getKey: (date) => date.getMilliseconds(),
+    getInputSize: () => 3
   },
   'SS': {
     resolve: (date, locale) => date.getMilliseconds(),
-    getKeys: (date, locale) => getMillisecondsKeys()
+    getKeys: (date) => getMillisecondsKeys(),
+    setKey: (date, key) => date.setMilliseconds(key),
+    setValue: (date, value) => date.setMilliseconds(value),
+    getKey: (date) => date.getMilliseconds(),
+    getInputSize: () => 3
   }
 };
 
@@ -92,7 +145,6 @@ function getFormatResolvers(format = 'dd.MM.yyyy', resolverDefinitions) {
   let formatParts = format.split(/\b/);
   let supportedFormats = Object.keys(resolverDefinitions);
 
-  console.log('fp:', formatParts);
   return formatParts.map(format => {
     let indexOfFormat = supportedFormats.indexOf(format);
     let isSeparator = indexOfFormat === -1;

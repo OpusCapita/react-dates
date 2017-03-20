@@ -55,6 +55,7 @@
     "write-file-webpack-plugin": "^3.4.2"
   },
   "dependencies": {
+    "lodash": "4.17.4",
     "react-datepicker": "^0.41.1",
     "react-day-picker": "^5.2.0",
     "webpack-bundle-analyzer": "^2.3.1"

@@ -1,13 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import s from './DateInputPart.module.less';
+import { resolveFormat } from '../DateInput/dateFormatResolver';
+
+let LEFT_TO_RIGHT = '‎'; // IE and EDGE add this special character when format locale string.
 
 export default
 class DateInputPart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: typeof props.value === 'undefined' ? props.maskPlaceholder : props.value,
-      isSelected: false
+      ...this.getInitialState(props, {})
     };
   }
 
@@ -22,34 +24,57 @@ class DateInputPart extends Component {
     this.props.onUnmount(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.dateValue !== nextProps.dateValue) {
+      let initialState = this.getInitialState(nextProps, this.state);
+      this.setState(initialState);
+    }
+  }
+
+  getInputSize(props) {
+    return props.formatResolver.getInputSize(props.dateValue, props.locale, props.resolverOptions);
+  }
+
+  getKeys(props) {
+    return props.formatResolver.getKeys(props.dateValue, props.resolverOptions);
+  }
+
+  getKey(props) {
+    return props.formatResolver.getKey(props.dateValue);
+  }
+
+  getInitialState(props, oldState) {
+    return ({
+      ...oldState,
+      key: this.getKey(props),
+      keys: this.getKeys(props),
+      inputSize: this.getInputSize(props),
+      inputValue: ''
+    });
+  }
+
   handleKeyDown(event) {
     switch(event.which) {
       case 40: this.handlePrev(); this.selectText(); break; // Arrow Down
       case 38: this.handleNext(); this.selectText(); break; // Arrow Up
-      case 37: this.props.onPressLeft(this); break; // Arrow Left
-      case 39: this.props.onPressRight(this); break; // Arrow Right
-      case 8: this.handleDelete(); // Backspace
-      case 46: this.handleDelete(); // Delete
+      case 37: this.handlePressLeft(); break; // Arrow Left
+      case 39: this.handlePressRight(); break; // Arrow Right
+      case 8: this.handleDelete(event); this.selectText(); break; // Backspace
+      case 46: this.handleDelete(event); this.selectText(); break; // Delete
     }
-  }
-
-  getValuesForInput() {
-
   }
 
   selectText() {
-    if(!this.props.autoSelectText) {
-      return false;
-    }
     return this.selectTimeout = setTimeout(() => { // Timeout is a fix for EDGE and IE
       this.inputRef.select();
     }, 0);
   }
 
-  updateValue(newValue) {
-    this.setState({ value: newValue });
-    this.props.onChange(newValue);
-    return newValue;
+  updateKey(newKey) {
+    let newDate = new Date(this.props.dateValue.toISOString());
+    this.props.formatResolver.setKey(newDate, newKey);
+    this.handleChange(newDate);
+    return newKey;
   }
 
   focus() {
@@ -57,76 +82,90 @@ class DateInputPart extends Component {
     this.handleFocus();
   }
 
+  handlePressRight() {
+    this.props.onPressRight(this);
+  }
+
+  handlePressLeft() {
+    this.props.onPressLeft(this);
+  }
+
   handleFocus() {
     this.props.onFocus && this.props.onFocus();
-
     this.selectText();
-    this.setState({ isSelected: true });
   }
 
   handleBlur() {
+
+
     this.props.onBlur && this.props.onBlur();
     if(typeof this.selectTimeout !== 'undefined') {
       clearTimeout(this.selectTimeout);
     }
-    this.setState({ isSelected: false });
   }
 
-  handleChange() {
-    this.props.onChange(this.state.value);
+  handleInputChange(event) {
+    let inputSize = this.state.inputSize;
+    let oldValue = this.state.inputValue;
+    let { formatResolver, dateValue } = this.props;
+    let inputPlaceholder = formatResolver.type;
+    let newValue = event.target.value;
+
+    if (newValue.length === inputSize) {
+      let newDate = new Date(dateValue.toISOString());
+      formatResolver.setValue(newDate, newValue, this.state.keys);
+      this.handleChange(newDate);
+      return this.props.onPressRight(this);
+    }
+
+    return this.setState({ inputValue: newValue });
+  }
+
+  handleChange(newDate) {
+    this.props.onChange(newDate);
   }
 
   handleNext() {
-    return 'next';
-    let { value } = this.state;
-    let { maskPlaceholder } = this.props;
-
-    if (value === maskPlaceholder) {
-      let newValue = max;
-      return this.updateValue(newValue);
-    }
-
-    let newValue = value === max ? min : value + 1;
-    return this.updateValue(newValue);
+    let indexOfKey = this.state.keys.indexOf(this.state.key);
+    let keys = this.state.keys;
+    let newKey = indexOfKey === keys.length - 1 ? keys[0] : keys[indexOfKey + 1];
+    return this.updateKey(newKey);
   }
 
   handlePrev() {
-    return 'prev';
-    let { value } = this.state;
-    let { maskPlaceholder, min, max } = this.props;
-
-    if(value === maskPlaceholder) {
-      let newValue = max;
-      return this.updateValue(newValue);
-    }
-
-    let newValue = value === min ? max : value - 1;
-    return this.updateValue(newValue);
+    let indexOfKey = this.state.keys.indexOf(this.state.key);
+    let keys = this.state.keys;
+    let newKey = indexOfKey === 0 ? keys[keys.length - 1] : keys[indexOfKey - 1];
+    return this.updateKey(newKey);
   }
 
-  handleDelete() {
-    let newValue = this.props.maskPlaceholder;
-    this.selectText();
-    return this.updateValue(newValue);
+  handleDelete(event) {
+    event.preventDefault();
+    this.setState({ inputValue: this.props.formatResolver.type });
   }
 
   render() {
     let {
-      autoSelectText,
-      maskPlaceholder,
       className,
-      width,
-      onFocus,
+      dateValue,
+      formatResolver,
+      locale,
       onBlur,
+      onChange,
+      onFocus,
+      onMount,
+      onUnmount,
       onPressLeft,
-      onPressDown,
-      onPressUp,
       onPressRight,
-      values,
+      resolverOptions,
       ...restProps
     } = this.props;
 
-    let { value } = this.state;
+    let inputValue = this.state.inputValue || resolveFormat(formatResolver, dateValue, locale, resolverOptions);
+
+    /* + XXch -fix FIREFOX and IE 'ch' calculation
+       replace() - FIX - IE adds hidden chars */
+    let inputWidth = `${inputValue.toString().replace(LEFT_TO_RIGHT, '').length + 0.5}ch`;
 
     return (
       <div className={`${s.container || ''} ${className}`}>
@@ -135,12 +174,11 @@ class DateInputPart extends Component {
           type="text"
           className={`${s.input || ''}`}
           onBlur={this.handleBlur.bind(this)}
+          onChange={this.handleInputChange.bind(this)}
           onFocus={this.handleFocus.bind(this)}
-          onChange={this.handleChange.bind(this)}
           onKeyDown={this.handleKeyDown.bind(this)}
-          style={{ width: width }}
-          values={values}
-          valueKey={value}
+          style={{ width: inputWidth }}
+          value={inputValue}
           { ...restProps }
         />
       </div>
@@ -149,26 +187,26 @@ class DateInputPart extends Component {
 }
 
 DateInputPart.propTypes = {
-  onMount: PropTypes.func,
-  onUnmount: PropTypes.func,
-  autoSelectText: PropTypes.bool,
   className: PropTypes.string,
-  maskPlaceholder: PropTypes.string,
-  width: PropTypes.string,
+  dateValue: PropTypes.object,
+  formatResolver: PropTypes.object,
+  locale: PropTypes.string,
+  onMount: PropTypes.func,
+  onChange: PropTypes.func,
   onPressLeft: PropTypes.func,
   onPressRight: PropTypes.func,
-  valueKey: PropTypes.string,
-  values: PropTypes.object
+  onUnmount: PropTypes.func,
+  resolverOptions: PropTypes.object
 };
 DateInputPart.defaultProps = {
-  onMount: () => {},
-  onUnmount: () => {},
-  autoSelectText: true,
   className: '',
-  maskPlaceholder: '',
-  width: 4,
+  dateValue: new Date(),
+  formatResolver: {},
+  locale: 'en-GB',
+  onChange: () => {},
+  onMount: () => {},
   onPressLeft: () => {},
   onPressRight: () => {},
-  values: {},
-  valueKey: ''
+  onUnmount: () => {},
+  resolverOptions: {}
 };

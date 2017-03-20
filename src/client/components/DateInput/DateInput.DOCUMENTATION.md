@@ -8,35 +8,11 @@ DateInput is
 ```
 <DateInput
   className="form-control"
-  dateFormat="yyyy/dd/MM - EEE - HH:mm:ss"
-  onChange={date => console.log(date)}
+  dateFormat="yyyy/dd/MM - HH:mm:ss"
+  onChange={_scope.handleChange.bind(_scope)}
   onClear={() => console.log('clear')}
-  value={new Date(1970, 1, 1, 1, 1)}
+  value={_scope.state.value}
   locale="de-DE"
-/>
-
-<DateInput
-  dateFormat="yy/d/M EEE H:m:s"
-  onChange={date => console.log(date)}
-  onClear={() => console.log('clear')}
-  value={new Date()}
-  locale="fi-FI"
-/>
-
-<DateInput
-  dateFormat="yy/d/M - EEE - H:m:s"
-  onChange={date => console.log(date)}
-  onClear={() => console.log('clear')}
-  value={new Date()}
-  locale="hu-HU"
-/>
-
-<DateInput
-  dateFormat="yy/d/M - EEE - H:m:s"
-  onChange={date => console.log(date)}
-  onClear={() => console.log('clear')}
-  value={new Date()}
-  locale="ru-RU"
 />
 ```
 

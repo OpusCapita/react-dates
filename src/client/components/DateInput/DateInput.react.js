@@ -5,12 +5,8 @@ import {
   getFormatResolvers,
   resolveFormat,
   resolverDefinitions,
-  SEPARATOR,
-  YEAR_MIN,
-  YEAR_MAX
+  SEPARATOR
 } from './dateFormatResolver';
-
-let LEFT_TO_RIGHT = '‎'; // IE and EDGE add this special character when format locale string.
 
 export default
 class DateInput extends Component {
@@ -68,6 +64,10 @@ class DateInput extends Component {
     this.partsRefs = leftPart.concat(rightPart);
   }
 
+  handleChange(date) {
+    this.props.onChange(date);
+  }
+
   render() {
     let {
       dateFormat,
@@ -76,11 +76,14 @@ class DateInput extends Component {
       minYear,
       maxYear,
       onChange,
+      onClear,
       className,
       ...restProps
     } = this.props;
 
     let { formatResolvers } = this.state;
+    let resolverOptions = ({ minYear, maxYear });
+
     let dateInputParts = formatResolvers.map(
       (formatResolver, index) => {
         if (formatResolver.type === SEPARATOR) {
@@ -92,25 +95,18 @@ class DateInput extends Component {
           );
         }
 
-        let options = ({ minYear, maxYear });
-        let inputValue = resolveFormat(formatResolver, value, locale, options);
-
-        /* + XXch -fix FIREFOX and IE 'ch' calculation
-           replace() - FIX - IE adds hidden chars */
-        let inputWidth = `${inputValue.toString().replace(LEFT_TO_RIGHT, '').length + 0.5}ch`;
-
         return (
           <DateInputPart
             key={index}
             onMount={partRef => this.handlePartMount(partRef)}
             onUnmount={partRef => this.handlePartUnmount(partRef)}
-            onChange={() => {}}
-            onPressRight={partRef => this.focusNextPart.call(this, partRef)}
-            onPressLeft={partRef => this.focusPrevPart.call(this, partRef)}
-            maskPlaceholder={formatResolver.type}
-            values={formatResolver.type}
-            value={inputValue}
-            width={inputWidth}
+            onChange={date => this.handleChange(date)}
+            onPressRight={partRef => this.focusNextPart(partRef)}
+            onPressLeft={partRef => this.focusPrevPart(partRef)}
+            formatResolver={formatResolver}
+            resolverOptions={resolverOptions}
+            locale={locale}
+            dateValue={value}
           />
         );
       }
@@ -136,7 +132,7 @@ DateInput.defaultProps = {
   dateFormat: 'dd.MM.yyyy',
   className: '',
   value: new Date(),
-  minYear: YEAR_MIN,
-  maxYear: YEAR_MAX,
-  onChange: newValue => console.log(newValue)
+  minYear: 1920,
+  maxYear: 2200,
+  onChange: () => {}
 };
