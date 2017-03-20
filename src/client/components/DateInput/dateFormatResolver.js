@@ -4,21 +4,46 @@ const FIXED_LOCALE = 'en-GB';
 export const SEPARATOR = 'separator';
 import padStart from 'lodash/padStart';
 
+let validate = (date, key, keys, errorMessage = 'Date error') => {
+  if (keys.indexOf(Number(key)) === -1) {
+    return errorMessage;
+  }
+  return undefined;
+}
+
 export
 const resolverDefinitions = {
   'yyyy': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { year: 'numeric' }),
-    getKeys: (date, options = { minYear: MIN_YEAR, maxYear: MAX_YEAR }) => getYearsKeys(options.minYear, options.maxYear),
+    getKeys: (date, options) => getYearsKeys(options.minYear, options.maxYear),
     setKey: (date, key) => date.setFullYear(key),
-    setValue: (date, value) => date.setFullYear(padStart(value, 4, 0)),
+    setValue: (date, value, keys, options) => {
+      let key = padStart(value, 4, 0);
+      let validationError = validate(date, key, keys);
+      let newDate = new Date(date.toISOString());
+      if(validationError) {
+        return ({ date, error: validationError });
+      }
+      newDate.setFullYear(key);
+      return ({ date: newDate, error: undefined });
+    },
     getKey: (date) => date.getFullYear(),
     getInputSize: () => 4
   },
   'yy': {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { year: '2-digit' }),
-    getKeys: (date, options = { minYear: MIN_YEAR, maxYear: MAX_YEAR }) => getYearsKeys(options.minYear, options.maxYear),
+    getKeys: (date, options) => getYearsKeys(options.minYear, options.maxYear),
     setKey: (date, key) => date.setFullYear(key),
-    setValue: (date, value) => date.setFullYear(value),
+    setValue: (date, value, keys, options) => {
+      let key = '20' + padStart(value, 4, 0);
+      let newDate = new Date(date.toISOString());
+      let validationError = validate(date, key, keys);
+      if(validationError) {
+        return ({ date, validationError });
+      }
+      newDate.setFullYear(key);
+      return ({ date: newDate, error: undefined });
+    },
     getKey: (date) => date.getFullYear(),
     getInputSize: () => 2
   },
@@ -26,7 +51,11 @@ const resolverDefinitions = {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { month: 'numeric' }),
     getKeys: () => getMonthsKeys(),
     setKey: (date, key) => date.setMonth(key),
-    setValue: (date, value) => date.setMonth(value + 1),
+    setValue: (date, value, keys) => {
+      let key = value[0] === '0' ? value[1] : value;
+      validate(date, key, keys);
+      return date.setMonth(key);
+    },
     getKey: (date) => date.getMonth(),
     getInputSize: () => 2
   },
@@ -34,7 +63,11 @@ const resolverDefinitions = {
     resolve: (date, locale) => date.toLocaleString(FIXED_LOCALE, { month: '2-digit' }),
     getKeys: (date) => getMonthsKeys(),
     setKey: (date, key) => date.setMonth(key),
-    setValue: (date, value) => date.setMonth(value + 1),
+    setValue: (date, value, keys) => {
+      let key = value[0] === '0' ? value[1] : value;
+      validate(date, key, keys);
+      return date.setMonth(key);
+    },
     getKey: (date) => date.getMonth(),
     getInputSize: () => 2
   },
@@ -229,4 +262,4 @@ function getMillisecondsKeys() {
 
 // let after = Date.now();
 // let time = after - before;
-// console.log(time);
+console.log(new Date());

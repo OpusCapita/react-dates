@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import s from './DateInputPart.module.less';
 import { resolveFormat } from '../DateInput/dateFormatResolver';
 
-let LEFT_TO_RIGHT = '‎'; // IE and EDGE add this special character when format locale string.
-
 export default
 class DateInputPart extends Component {
   constructor(props) {
@@ -55,12 +53,12 @@ class DateInputPart extends Component {
 
   handleKeyDown(event) {
     switch(event.which) {
-      case 40: this.handlePrev(); this.selectText(); break; // Arrow Down
-      case 38: this.handleNext(); this.selectText(); break; // Arrow Up
       case 37: this.handlePressLeft(); break; // Arrow Left
+      case 38: this.handleNext(); this.selectText(); break; // Arrow Up
       case 39: this.handlePressRight(); break; // Arrow Right
-      case 8: this.handleDelete(event); this.selectText(); break; // Backspace
+      case 40: this.handlePrev(); this.selectText(); break; // Arrow Down
       case 46: this.handleDelete(event); this.selectText(); break; // Delete
+      case 8: this.handleDelete(event); this.selectText(); break; // Backspace
     }
   }
 
@@ -96,10 +94,8 @@ class DateInputPart extends Component {
   }
 
   handleBlur() {
-
-
     this.props.onBlur && this.props.onBlur();
-    if(typeof this.selectTimeout !== 'undefined') {
+    if (typeof this.selectTimeout !== 'undefined') {
       clearTimeout(this.selectTimeout);
     }
   }
@@ -163,9 +159,7 @@ class DateInputPart extends Component {
 
     let inputValue = this.state.inputValue || resolveFormat(formatResolver, dateValue, locale, resolverOptions);
 
-    /* + XXch -fix FIREFOX and IE 'ch' calculation
-       replace() - FIX - IE adds hidden chars */
-    let inputWidth = `${inputValue.toString().replace(LEFT_TO_RIGHT, '').length + 0.5}ch`;
+    let inputWidth = `${formatResolver.getInputSize() + 0.5}ch`;
 
     return (
       <div className={`${s.container || ''} ${className}`}>
