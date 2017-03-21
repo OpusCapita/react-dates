@@ -57,8 +57,8 @@ class DateInputPart extends Component {
   }
 
   updateKey(newKey) {
-    let newDate = new Date(this.props.date.toISOString());
-    this.props.formatResolver.setKey(newDate, newKey);
+    let { formatResolver, date } = this.props;
+    let newDate = formatResolver.setKey(date, newKey);
     this.handleChange(newDate);
     return newKey;
   }
