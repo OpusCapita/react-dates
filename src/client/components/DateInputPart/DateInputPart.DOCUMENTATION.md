@@ -7,7 +7,7 @@ DateInputPart is
 
 ```
 <DateInputPart
-  maskPlaceholder="yyyy"
+  maskPlaceholder="yyyy MM dd"
   min={1980}
   max={1994}
   onChange={newValue => console.log(newValue)}

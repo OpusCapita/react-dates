@@ -23,30 +23,18 @@ class DateInputPart extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.dateValue !== nextProps.dateValue) {
+    if(this.props.date !== nextProps.date) {
       let initialState = this.getInitialState(nextProps, this.state);
       this.setState(initialState);
     }
   }
 
-  getInputSize(props) {
-    return props.formatResolver.getInputSize(props.dateValue, props.locale, props.resolverOptions);
-  }
-
-  getKeys(props) {
-    return props.formatResolver.getKeys(props.dateValue, props.resolverOptions);
-  }
-
-  getKey(props) {
-    return props.formatResolver.getKey(props.dateValue);
-  }
-
   getInitialState(props, oldState) {
     return ({
       ...oldState,
-      key: this.getKey(props),
-      keys: this.getKeys(props),
-      inputSize: this.getInputSize(props),
+      key: props.formatResolver.getKey(props.date),
+      keys: props.formatResolver.getAllowedKeys(props.date, props.options),
+      inputSize: props.formatResolver.size,
       inputValue: ''
     });
   }
@@ -69,7 +57,7 @@ class DateInputPart extends Component {
   }
 
   updateKey(newKey) {
-    let newDate = new Date(this.props.dateValue.toISOString());
+    let newDate = new Date(this.props.date.toISOString());
     this.props.formatResolver.setKey(newDate, newKey);
     this.handleChange(newDate);
     return newKey;
@@ -101,20 +89,25 @@ class DateInputPart extends Component {
   }
 
   handleInputChange(event) {
-    let inputSize = this.state.inputSize;
-    let oldValue = this.state.inputValue;
-    let { formatResolver, dateValue } = this.props;
+    let { formatResolver, date, onError } = this.props;
+    let { inputSize, inputValue, keys } = this.state;
+    let newInputValue = event.target.value;
     let inputPlaceholder = formatResolver.type;
-    let newValue = event.target.value;
 
-    if (newValue.length === inputSize) {
-      let newDate = new Date(dateValue.toISOString());
-      formatResolver.setValue(newDate, newValue, this.state.keys);
+    if (newInputValue.length === inputSize) {
+      let isValid = formatResolver.validate(date, keys, newInputValue);
+      if(!isValid) {
+        onError();
+        this.setState({ inputValue: '' });
+        this.selectText();
+        return this.handleChange(date);
+      }
+      let newDate = formatResolver.setValue(date, newInputValue, keys);
       this.handleChange(newDate);
       return this.props.onPressRight(this);
     }
 
-    return this.setState({ inputValue: newValue });
+    return this.setState({ inputValue: newInputValue });
   }
 
   handleChange(newDate) {
@@ -143,7 +136,7 @@ class DateInputPart extends Component {
   render() {
     let {
       className,
-      dateValue,
+      date,
       formatResolver,
       locale,
       onBlur,
@@ -153,13 +146,13 @@ class DateInputPart extends Component {
       onUnmount,
       onPressLeft,
       onPressRight,
-      resolverOptions,
+      options,
       ...restProps
     } = this.props;
 
-    let inputValue = this.state.inputValue || resolveFormat(formatResolver, dateValue, locale, resolverOptions);
+    let inputValue = this.state.inputValue || formatResolver.getValue(date, locale, options);
 
-    let inputWidth = `${formatResolver.getInputSize() + 0.5}ch`;
+    let inputWidth = `${formatResolver.size + 0.5}ch`;
 
     return (
       <div className={`${s.container || ''} ${className}`}>
@@ -182,25 +175,27 @@ class DateInputPart extends Component {
 
 DateInputPart.propTypes = {
   className: PropTypes.string,
-  dateValue: PropTypes.object,
+  date: PropTypes.object,
   formatResolver: PropTypes.object,
   locale: PropTypes.string,
   onMount: PropTypes.func,
   onChange: PropTypes.func,
+  onError: PropTypes.func,
   onPressLeft: PropTypes.func,
   onPressRight: PropTypes.func,
   onUnmount: PropTypes.func,
-  resolverOptions: PropTypes.object
+  options: PropTypes.object
 };
 DateInputPart.defaultProps = {
   className: '',
-  dateValue: new Date(),
+  date: new Date(),
   formatResolver: {},
   locale: 'en-GB',
   onChange: () => {},
+  onError: () => {},
   onMount: () => {},
   onPressLeft: () => {},
   onPressRight: () => {},
   onUnmount: () => {},
-  resolverOptions: {}
+  options: {}
 };

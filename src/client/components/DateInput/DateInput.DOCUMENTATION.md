@@ -7,12 +7,12 @@ DateInput is
 
 ```
 <DateInput
-  className="form-control"
-  dateFormat="yyyy/dd/MM - HH:mm:ss"
+  dateFormat="yyyy/MM/dd"
+  locale="de-DE"
   onChange={_scope.handleChange.bind(_scope)}
   onClear={() => console.log('clear')}
   value={_scope.state.value}
-  locale="de-DE"
+  className="form-control"
 />
 ```
 

@@ -82,12 +82,12 @@ class DateInput extends Component {
     } = this.props;
 
     let { formatResolvers } = this.state;
-    let resolverOptions = ({ minYear, maxYear });
+    let options = ({ minYear, maxYear });
 
     let dateInputParts = formatResolvers.map(
       (formatResolver, index) => {
         if (formatResolver.type === SEPARATOR) {
-          let separator = formatResolver.resolve();
+          let separator = formatResolver.getValue();
           return (
             <span key={index}>
               {separator}
@@ -104,9 +104,9 @@ class DateInput extends Component {
             onPressRight={partRef => this.focusNextPart(partRef)}
             onPressLeft={partRef => this.focusPrevPart(partRef)}
             formatResolver={formatResolver}
-            resolverOptions={resolverOptions}
+            options={options}
             locale={locale}
-            dateValue={value}
+            date={value}
           />
         );
       }
