@@ -71,6 +71,7 @@ class DateInput extends Component {
   render() {
     let {
       dateFormat,
+      disabled,
       value,
       locale,
       minYear,
@@ -107,13 +108,18 @@ class DateInput extends Component {
             options={options}
             locale={locale}
             date={value}
+            disabled={disabled}
           />
         );
       }
     );
 
     return (
-      <div className={`${s.dateInput || ''} ${className}`} { ...restProps }>
+      <div
+        className={`${s.dateInput || ''} ${className}`}
+        disabled={disabled}
+        { ...restProps }
+      >
         {dateInputParts}
       </div>
     );
@@ -122,6 +128,7 @@ class DateInput extends Component {
 
 DateInput.propTypes = {
   dateFormat: PropTypes.string,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   value: PropTypes.object,
   maxYear: PropTypes.number,
@@ -130,7 +137,8 @@ DateInput.propTypes = {
 };
 DateInput.defaultProps = {
   dateFormat: 'dd.MM.yyyy',
-  className: '',
+  disabled: false,
+  className: 'form-control',
   value: new Date(),
   minYear: 1920,
   maxYear: 2200,

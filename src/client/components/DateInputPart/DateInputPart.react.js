@@ -137,6 +137,7 @@ class DateInputPart extends Component {
     let {
       className,
       date,
+      disabled,
       formatResolver,
       locale,
       onBlur,
@@ -166,6 +167,7 @@ class DateInputPart extends Component {
           onKeyDown={this.handleKeyDown.bind(this)}
           style={{ width: inputWidth }}
           value={inputValue}
+          disabled={disabled}
           { ...restProps }
         />
       </div>
@@ -176,6 +178,7 @@ class DateInputPart extends Component {
 DateInputPart.propTypes = {
   className: PropTypes.string,
   date: PropTypes.object,
+  disabled: PropTypes.bool,
   formatResolver: PropTypes.object,
   locale: PropTypes.string,
   onMount: PropTypes.func,
@@ -189,6 +192,7 @@ DateInputPart.propTypes = {
 DateInputPart.defaultProps = {
   className: '',
   date: new Date(),
+  disabled: false,
   formatResolver: {},
   locale: 'en-GB',
   onChange: () => {},
