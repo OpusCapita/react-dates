@@ -1,0 +1,6 @@
+* Known issues [0/2]
+- [ ] DateRange - select 30 day of 01 month. 30 day of 08 month will be selected
+- [ ] DateRange - press 'down' or 'up' key on last field of first input
+
+* Appearance [0/3]
+- [ ] Provide possibility to understand whait part of date type. e.g. make 'yyyy', 'MM', etc. visible
