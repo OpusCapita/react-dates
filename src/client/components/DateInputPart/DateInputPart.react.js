@@ -39,6 +39,17 @@ class DateInputPart extends Component {
     });
   }
 
+  focus() {
+    this.inputRef.focus();
+    this.handleFocus();
+  }
+
+  selectText() {
+    return this.selectTimeout = setTimeout(() => { // Timeout is a fix for EDGE and IE
+      this.inputRef.select();
+    }, 0);
+  }
+
   handleKeyDown(event) {
     switch(event.which) {
       case 37: this.handlePressLeft(); break; // Arrow Left
@@ -50,12 +61,6 @@ class DateInputPart extends Component {
     }
   }
 
-  selectText() {
-    return this.selectTimeout = setTimeout(() => { // Timeout is a fix for EDGE and IE
-      this.inputRef.select();
-    }, 0);
-  }
-
   updateKey(newKey) {
     let { formatResolver, date } = this.props;
     let newDate = formatResolver.setKey(date, newKey);
@@ -63,9 +68,8 @@ class DateInputPart extends Component {
     return newKey;
   }
 
-  focus() {
-    this.inputRef.focus();
-    this.handleFocus();
+  handleClick(event) {
+    this.selectText();
   }
 
   handlePressRight() {
@@ -77,12 +81,12 @@ class DateInputPart extends Component {
   }
 
   handleFocus() {
-    this.props.onFocus && this.props.onFocus();
+    this.props.onFocus && this.props.onFocus(this);
     this.selectText();
   }
 
   handleBlur() {
-    this.props.onBlur && this.props.onBlur();
+    this.props.onBlur && this.props.onBlur(this);
     if (typeof this.selectTimeout !== 'undefined') {
       clearTimeout(this.selectTimeout);
     }
@@ -111,7 +115,7 @@ class DateInputPart extends Component {
   }
 
   handleChange(newDate) {
-    this.props.onChange(newDate);
+    this.props.onChange(newDate, this);
   }
 
   handleNext() {
@@ -156,7 +160,7 @@ class DateInputPart extends Component {
     let inputWidth = `${formatResolver.size + 0.5}ch`;
 
     return (
-      <div className={`${s.container || ''} ${className}`}>
+      <div className={`${s.container || ''} ${className}`} title={formatResolver.type}>
         <input
           ref={inputRef => (this.inputRef = inputRef)}
           type="text"
@@ -164,6 +168,7 @@ class DateInputPart extends Component {
           onBlur={this.handleBlur.bind(this)}
           onChange={this.handleInputChange.bind(this)}
           onFocus={this.handleFocus.bind(this)}
+          onClick={this.handleClick.bind(this)}
           onKeyDown={this.handleKeyDown.bind(this)}
           style={{ width: inputWidth }}
           value={inputValue}
@@ -181,9 +186,11 @@ DateInputPart.propTypes = {
   disabled: PropTypes.bool,
   formatResolver: PropTypes.object,
   locale: PropTypes.string,
-  onMount: PropTypes.func,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onError: PropTypes.func,
+  onFocus: PropTypes.func,
+  onMount: PropTypes.func,
   onPressLeft: PropTypes.func,
   onPressRight: PropTypes.func,
   onUnmount: PropTypes.func,
@@ -195,8 +202,10 @@ DateInputPart.defaultProps = {
   disabled: false,
   formatResolver: {},
   locale: 'en-GB',
+  onBlur: () => {},
   onChange: () => {},
   onError: () => {},
+  onFocus: () => {},
   onMount: () => {},
   onPressLeft: () => {},
   onPressRight: () => {},

@@ -7,12 +7,12 @@ class DateInputScope extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: new Date()
+      date: new Date()
     };
   }
 
   handleChange(date) {
-    this.setState({ value: date });
+    this.setState({ date });
   }
 
   render() {

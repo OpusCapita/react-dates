@@ -14,7 +14,7 @@ class DateInput extends Component {
     super(props);
     this.state = {
       formatResolvers: [],
-      selectedInputIndex: undefined
+      currentPartRef: undefined
     };
     this.partsRefs = [];
   }
@@ -23,15 +23,34 @@ class DateInput extends Component {
     this.setFormatResolvers(this.props.dateFormat);
   }
 
+  componentDidMount() {
+    this.props.onMount(this);
+  }
+
   componentWillReceiveProps(nextProps) {
     if(this.props.dateFormat !== nextProps.dateFormat) {
       this.setFormatResolvers(nextProps.dateFormat);
     }
   }
 
+  componentWillUnmount() {
+    this.props.onUnmount(this);
+    this.focusTimeout && clearTimeout(this.focusTimeout);
+  }
+
   setFormatResolvers(dateFormat) {
     let formatResolvers = getFormatResolvers(dateFormat, resolverDefinitions);
     this.setState({ formatResolvers });
+  }
+
+  focusFirstPart() {
+    this.focusTimeout && clearTimeout(this.focusTimeout);
+    this.focusTimeout = setTimeout(() => this.partsRefs[0].focus(), 0);
+  }
+
+  focusLastPart() {
+    this.focusTimeout && clearTimeout(this.focusTimeout);
+    this.focusTimeout = setTimeout(() => this.partsRefs[this.partsRefs.length - 1].focus(), 0);
   }
 
   focusNextPart(partRef) {
@@ -52,6 +71,16 @@ class DateInput extends Component {
     return this.partsRefs[indexOfPartRef - 1].focus();
   }
 
+  handleKeyDown(event) {
+    let { currentPartRef } = this.state;
+    console.log(currentPartRef);
+    let indexOfCurrentPartRef = this.partsRefs.indexOf(currentPartRef);
+    switch(event.which) {
+      case 37: this.props.onPressLeft(this.partsRefs.length, indexOfCurrentPartRef); break; // Arrow Left
+      case 39: this.props.onPressRight(this.partsRefs.length, indexOfCurrentPartRef); break; // Arrow Right
+    }
+  }
+
   handlePartMount(partRef) {
     this.partsRefs = this.partsRefs.concat([ partRef ]);
   }
@@ -64,6 +93,10 @@ class DateInput extends Component {
     this.partsRefs = leftPart.concat(rightPart);
   }
 
+  handlePartFocus(partRef) {
+    this.setState({ currentPartRef: partRef });
+  }
+
   handleChange(date) {
     this.props.onChange(date);
   }
@@ -72,18 +105,24 @@ class DateInput extends Component {
     let {
       dateFormat,
       disabled,
-      value,
+      date,
       locale,
       minYear,
       maxYear,
       onChange,
       onClear,
+      onLast,
+      onMount,
+      onUnmount,
+      onPressLeft,
+      onPressRight,
       className,
       ...restProps
     } = this.props;
 
     let { formatResolvers } = this.state;
     let options = ({ minYear, maxYear });
+    let { partsRefs } = this;
 
     let dateInputParts = formatResolvers.map(
       (formatResolver, index) => {
@@ -101,13 +140,17 @@ class DateInput extends Component {
             key={index}
             onMount={partRef => this.handlePartMount(partRef)}
             onUnmount={partRef => this.handlePartUnmount(partRef)}
-            onChange={date => this.handleChange(date)}
+            onChange={(date, input) => {
+              (input === partsRefs[partsRefs.length - 1]) && onLast();
+              this.handleChange(date);
+            }}
+            onFocus={this.handlePartFocus.bind(this)}
             onPressRight={partRef => this.focusNextPart(partRef)}
             onPressLeft={partRef => this.focusPrevPart(partRef)}
             formatResolver={formatResolver}
             options={options}
             locale={locale}
-            date={value}
+            date={date}
             disabled={disabled}
           />
         );
@@ -118,6 +161,7 @@ class DateInput extends Component {
       <div
         className={`${s.dateInput || ''} ${className}`}
         disabled={disabled}
+        onKeyDown={this.handleKeyDown.bind(this)}
         { ...restProps }
       >
         {dateInputParts}
@@ -130,17 +174,29 @@ DateInput.propTypes = {
   dateFormat: PropTypes.string,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  value: PropTypes.object,
+  date: PropTypes.object,
+  locale: PropTypes.string,
   maxYear: PropTypes.number,
   minYear: PropTypes.number,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  onMount: PropTypes.func,
+  onUnmount: PropTypes.func,
+  onPressLeft: PropTypes.func,
+  onPressRight: PropTypes.func,
+  onLast: PropTypes.func
 };
 DateInput.defaultProps = {
   dateFormat: 'dd.MM.yyyy',
   disabled: false,
-  className: 'form-control',
-  value: new Date(),
+  className: '',
+  date: new Date(),
+  locale: 'en-GB',
   minYear: 1920,
   maxYear: 2200,
-  onChange: () => {}
+  onChange: () => {},
+  onMount: () => {},
+  onPressLeft: () => {},
+  onPressRight: () => {},
+  onUnmount: () => {},
+  onLast: () => {}
 };

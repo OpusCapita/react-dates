@@ -11,7 +11,7 @@ DateInput is
   locale="de-DE"
   onChange={_scope.handleChange.bind(_scope)}
   onClear={() => console.log('clear')}
-  value={_scope.state.value}
+  date={_scope.state.date}
   className="form-control"
 />
 ```

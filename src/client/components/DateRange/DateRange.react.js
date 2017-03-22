@@ -6,7 +6,6 @@ import DateUtils from 'react-day-picker/lib/src/DateUtils';
 import spring from 'react-motion/lib/spring';
 import Motion from 'react-motion/lib/Motion';
 import presets from 'react-motion/lib/presets';
-import Position from 'react-overlays/lib/Position';
 import 'react-day-picker/lib/style.css';
 
 let springPreset = presets.gentle;
