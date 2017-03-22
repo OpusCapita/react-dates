@@ -1,0 +1,33 @@
+.dateRange {
+  position: relative;
+}
+
+.calendarButton {
+  align-items: center;
+  border-bottom: none;
+  border-top: none;
+  display: inline-flex;
+  width: initial;
+}
+
+.datePickerContainer {
+  background: #fff;
+  bottom: -8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  transform: translate(0, 100%);
+  z-index: 10;
+}
+
+.datePickerContainer abbr {
+  border-bottom: none;
+  cursor: default;
+}
+
+.datePickerContainer :global(.DayPicker) {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
