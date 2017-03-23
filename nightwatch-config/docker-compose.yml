@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  hub:
+    image: "selenium/hub:3.0.1"
+    ports:
+      - 4444:4444
+
+  chrome:
+    image: "selenium/node-chrome:2.53.0"
+    depends_on:
+      - hub
+    environment:
+      HUB_PORT_4444_TCP_ADDR: hub
+
+  firefox:
+    image: "selenium/node-firefox:2.53.0"
+    depends_on:
+      - hub
+    environment:
+      HUB_PORT_4444_TCP_ADDR: hub

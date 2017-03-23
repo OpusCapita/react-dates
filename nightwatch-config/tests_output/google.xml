@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="google"
+    errors="1" failures="0" hostname="" id="" package="google" skipped="0"
+    tests="1" time="0.007000" timestamp="Thu, 23 Mar 2017 15:19:47 GMT">
+  
+    <testcase name="Google main page" time="0.007000" assertions="0">
+    </testcase>
+      <system-err>
+          Error while running [Google / Google main page]:
+
+  TypeError: client.window.getSelection is not a function
+    at Object.Google main page (/home/volkovich/vcs/js-react-dates/nightwatch-config/tests/google.js:9:94)
+    at Module.call (/home/volkovich/.nvm/versions/node/v6.9.1/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /home/volkovich/.nvm/versions/node/v6.9.1/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/home/volkovich/.nvm/versions/node/v6.9.1/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/home/volkovich/.nvm/versions/node/v6.9.1/lib/node_modules/nightwatch/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/home/volkovich/.nvm/versions/node/v6.9.1/lib/node_modules/nightwatch/node_modules/q/q.js:796:13)
+    at /home/volkovich/.nvm/versions/node/v6.9.1/lib/node_modules/nightwatch/node_modules/q/q.js:556:49
+    at runSingle (/home/volkovich/.nvm/versions/node/v6.9.1/lib/node_modules/nightwatch/node_modules/q/q.js:137:13)
+    at flush (/home/volkovich/.nvm/versions/node/v6.9.1/lib/node_modules/nightwatch/node_modules/q/q.js:125:13)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+      </system-err>
+  
+  
+  </testsuite>
+</testsuites>
