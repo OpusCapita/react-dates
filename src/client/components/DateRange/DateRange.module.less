@@ -6,6 +6,7 @@
   align-items: center;
   border-bottom: none;
   border-top: none;
+  box-shadow: none;
   display: inline-flex;
   width: initial;
 }
@@ -13,12 +14,12 @@
 .datePickerContainer {
   background: #fff;
   bottom: -8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
   left: 0;
   overflow: hidden;
   position: absolute;
   transform: translate(0, 100%);
-  z-index: 10;
+  z-index: 9999;
 }
 
 .datePickerContainer abbr {
@@ -30,4 +31,23 @@
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  &:focus {
+    outline: none;
+  }
+}
+
+.datePickerContainer :global(.DayPicker-Day) {
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.datePickerContainer :global(.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside)) {
+  background-color: #EC6608;
+}
+
+.datePickerContainer :global(.DayPicker-Day--today) {
+  font-weight: 600;
+  color: #000;
 }

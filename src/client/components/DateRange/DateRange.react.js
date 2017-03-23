@@ -15,14 +15,19 @@ class DateRange extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fromDate: new Date(),
-      toDate: new Date(),
-      isShowDatePicker: false
+      from: new Date(),
+      to: new Date(),
+      isShowDatePicker: false,
+      isSelectingLastDay: false
     };
   }
 
-  toggleShowDatePicker() {
-    this.setState({ isShowDatePicker: !this.state.isShowDatePicker });
+  showDatePicker() {
+    this.setState({ isShowDatePicker: true });
+  }
+
+  hideDatePicker() {
+    this.setState({ isShowDatePicker: false });
   }
 
   handleFromInputMount(element) {
@@ -42,13 +47,13 @@ class DateRange extends Component {
   }
 
   handleFromInputChange(date) {
-    this.setState({ fromDate: date });
-    this.props.onChange(date, this.state.toDate);
+    this.setState({ from: date });
+    this.props.onChange(date, this.state.to);
   }
 
   handleToInputChange(date) {
-    this.setState({ toDate: date });
-    this.props.onChange(this.state.fromDate, date);
+    this.setState({ to: date });
+    this.props.onChange(this.state.from, date);
   }
 
   handleFromInputLast() {
@@ -67,12 +72,52 @@ class DateRange extends Component {
     }
   }
 
+   handleDayClick(day) {
+    const { from, isSelectingLastDay } = this.state;
+    if (!isSelectingLastDay) {
+      this.setState({
+        isSelectingLastDay: true,
+        from: day,
+        to: undefined
+      });
+    }
+    if (isSelectingLastDay && from && day < from) {
+      this.setState({
+        from: day,
+        to: undefined
+      });
+    }
+    if (isSelectingLastDay && DateUtils.isSameDay(day, from)) {
+      this.reset();
+    }
+    if (isSelectingLastDay) {
+      this.setState({ isSelectingLastDay: false });
+    }
+  }
+
+  handleDayMouseEnter(day) {
+    const { isSelectingLastDay, from } = this.state;
+    if (!isSelectingLastDay || (from && day < from) || DateUtils.isSameDay(day, from)) {
+      return;
+    }
+    this.setState({ to: day });
+  }
+
+  reset() {
+    this.setState({
+      from: undefined,
+      to: undefined,
+      isSelectingLastDay: false
+    });
+  }
+
   render() {
-    let { fromDate, toDate, isShowDatePicker } = this.state;
+    let { from, to, isShowDatePicker } = this.state;
     let {
       className,
       dateFormat,
       disabled,
+      locale,
       positionRight,
       positionTop,
       ...restProps
@@ -83,15 +128,26 @@ class DateRange extends Component {
         defaultStyle={{ x: this.state.showSidebar ? 1 : 0 }}
         style={{ x: this.state.isShowDatePicker ? spring(1, springPreset) : spring(0, springPreset) }}
       >{interpolatedStyle =>
-          <div
-              className={s.datePickerContainer}
-              style={{
-                maxHeight: `${interpolatedStyle.x * 640}px`,
-                opacity: interpolatedStyle.x
-              }}
-          >
-            <DayPicker numberOfMonths={ 2 } locale='de-DE' />
-          </div>
+        <div
+          className={s.datePickerContainer}
+          style={{
+            maxHeight: `${interpolatedStyle.x * 640}px`,
+            opacity: interpolatedStyle.x
+          }}
+        >
+          <DayPicker
+            numberOfMonths={ 2 }
+            initialMonth={from ? from : (to ? to : new Date())}
+            selectedDays={ day => DateUtils.isDayInRange(day, { from, to }) }
+            modifiers={{
+              from: day => DateUtils.isSameDay(day, from),
+              to: day => DateUtils.isSameDay(day, to)
+            }}
+            locale={locale}
+            onDayClick={ this.handleDayClick.bind(this) }
+            onDayMouseEnter={ this.handleDayMouseEnter.bind(this) }
+          />
+        </div>
         }
       </Motion>
     );
@@ -104,7 +160,7 @@ class DateRange extends Component {
         { ...restProps }
       >
         <DateInput
-          date={fromDate}
+          date={from}
           dateFormat={dateFormat}
           onChange={this.handleFromInputChange.bind(this)}
           onLast={this.handleFromInputLast.bind(this)}
@@ -113,18 +169,13 @@ class DateRange extends Component {
           onPressRight={this.handleFromInputPressRight.bind(this)}
           disabled={disabled}
         />
-        <button
-          type="button"
-          tabIndex="-1"
-          className={`btn btn-default ${s.calendarButton || ''}`}
-          disabled={disabled}
-          onClick={this.toggleShowDatePicker.bind(this)}
-          title="Show calendar"
+        <div
+          className={`input-group-addon ${s.calendarButton || ''}`}
         >
-          <i className="fa fa-calendar" />
-        </button>
+          <i className="fa fa-arrow-right" />
+        </div>
         <DateInput
-          date={toDate}
+          date={to}
           dateFormat={dateFormat}
           onChange={this.handleToInputChange.bind(this)}
           onMount={this.handleToInputMount.bind(this)}
