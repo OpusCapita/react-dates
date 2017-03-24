@@ -15,8 +15,8 @@ class DateRange extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      from: new Date(),
-      to: new Date(),
+      from: undefined,
+      to: undefined,
       isShowDatePicker: false,
       isSelectingLastDay: false
     };
@@ -170,7 +170,7 @@ class DateRange extends Component {
           disabled={disabled}
         />
         <div
-          className={`input-group-addon ${s.calendarButton || ''}`}
+          className={`input-group-addon ${s.divider || ''}`}
         >
           <i className="fa fa-arrow-right" />
         </div>
@@ -183,6 +183,12 @@ class DateRange extends Component {
           onPressLeft={this.handleToInputPressLeft.bind(this)}
           disabled={disabled}
         />
+        <button
+          className={`btn btn-default input-group-addon ${s.divider || ''} ${s.dividerLast || ''}`}
+          tabIndex="-1"
+        >
+          <i className="fa fa-times" />
+        </button>
         {datePicker}
       </div>
     );
@@ -194,6 +200,8 @@ DateRange.propTypes = {
   dateFormat: PropTypes.string,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   positionRight: PropTypes.bool,
   positionTop: PropTypes.bool

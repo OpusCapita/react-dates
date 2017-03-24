@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import s from './DateInputPart.module.less';
-import { resolveFormat } from '../DateInput/dateFormatResolver';
 
 export default
 class DateInputPart extends Component {
@@ -30,10 +29,11 @@ class DateInputPart extends Component {
   }
 
   getInitialState(props, oldState) {
+    let { date } = props;
     return ({
       ...oldState,
-      key: props.formatResolver.getKey(props.date),
-      keys: props.formatResolver.getAllowedKeys(props.date, props.options),
+      key: date && props.formatResolver.getKey(props.date),
+      keys: date && props.formatResolver.getAllowedKeys(props.date, props.options),
       inputSize: props.formatResolver.size,
       inputValue: ''
     });
@@ -155,8 +155,8 @@ class DateInputPart extends Component {
       ...restProps
     } = this.props;
 
-    let inputValue = this.state.inputValue || formatResolver.getValue(date, locale, options);
-
+    console.log('date:', date);
+    let inputValue = this.state.inputValue || (date && formatResolver.getValue(date, locale, options));
     let inputWidth = `${formatResolver.size + 0.5}ch`;
 
     return (
@@ -198,7 +198,7 @@ DateInputPart.propTypes = {
 };
 DateInputPart.defaultProps = {
   className: '',
-  date: new Date(),
+  date: undefined,
   disabled: false,
   formatResolver: {},
   locale: 'en-GB',

@@ -7,7 +7,7 @@ class DateInputScope extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date()
+      date: undefined
     };
   }
 
