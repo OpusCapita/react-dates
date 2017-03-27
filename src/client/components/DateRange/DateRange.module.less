@@ -25,33 +25,3 @@
   transform: translate(0, 100%);
   z-index: 9999;
 }
-
-.datePickerContainer abbr {
-  border-bottom: none;
-  cursor: default;
-}
-
-.datePickerContainer :global(.DayPicker) {
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  &:focus {
-    outline: none;
-  }
-}
-
-.datePickerContainer :global(.DayPicker-Day) {
-  border: none;
-  &:focus {
-    outline: none;
-  }
-}
-
-.datePickerContainer :global(.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside)) {
-  background-color: #EC6608;
-}
-
-.datePickerContainer :global(.DayPicker-Day--today) {
-  font-weight: 600;
-  color: #000;
-}

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import s from './DateInputPart.module.less';
+import './DateInputPart.less';
 
 export default
 class DateInputPart extends Component {
@@ -25,6 +25,17 @@ class DateInputPart extends Component {
     if(this.props.date !== nextProps.date) {
       let initialState = this.getInitialState(nextProps, this.state);
       this.setState(initialState);
+    }
+
+    if (prevProps.isFocused === this.props.isFocused) {
+      return;
+    };
+
+    if (isFocused) {
+      this.inputRef.focus();
+
+    } else {
+      this.inputRef.blur();
     }
   }
 
@@ -155,16 +166,15 @@ class DateInputPart extends Component {
       ...restProps
     } = this.props;
 
-    console.log('date:', date);
     let inputValue = this.state.inputValue || (date && formatResolver.getValue(date, locale, options));
     let inputWidth = `${formatResolver.size + 0.5}ch`;
 
     return (
-      <div className={`${s.container || ''} ${className}`} title={formatResolver.type}>
+      <div className={`date-input-part ${className}`} title={formatResolver.type}>
         <input
           ref={inputRef => (this.inputRef = inputRef)}
           type="text"
-          className={`${s.input || ''}`}
+          className="date-input-part__input"
           onBlur={this.handleBlur.bind(this)}
           onChange={this.handleInputChange.bind(this)}
           onFocus={this.handleFocus.bind(this)}
@@ -185,6 +195,7 @@ DateInputPart.propTypes = {
   date: PropTypes.object,
   disabled: PropTypes.bool,
   formatResolver: PropTypes.object,
+  isFocused: PropTypes.bool,
   locale: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
@@ -198,10 +209,11 @@ DateInputPart.propTypes = {
 };
 DateInputPart.defaultProps = {
   className: '',
-  date: undefined,
+  date: null,
   disabled: false,
   formatResolver: {},
   locale: 'en-GB',
+  isFocused: false,
   onBlur: () => {},
   onChange: () => {},
   onError: () => {},

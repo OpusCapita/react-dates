@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import s from './DateInput.module.less';
+import  './DateInput.less';
 import DateInputPart from '../DateInputPart';
 import {
   getFormatResolvers,
@@ -103,6 +103,7 @@ class DateInput extends Component {
 
   render() {
     let {
+      className,
       dateFormat,
       disabled,
       date,
@@ -116,7 +117,6 @@ class DateInput extends Component {
       onUnmount,
       onPressLeft,
       onPressRight,
-      className,
       ...restProps
     } = this.props;
 
@@ -159,7 +159,7 @@ class DateInput extends Component {
 
     return (
       <div
-        className={`${s.dateInput || ''} ${className}`}
+        className={`date-input ${className}`}
         disabled={disabled}
         onKeyDown={this.handleKeyDown.bind(this)}
         { ...restProps }
@@ -191,7 +191,7 @@ DateInput.defaultProps = {
   dateFormat: 'dd.MM.yyyy',
   disabled: false,
   className: '',
-  date: new Date(),
+  date: null,
   locale: 'en-GB',
   minYear: 1920,
   maxYear: 2200,

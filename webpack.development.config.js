@@ -15,7 +15,7 @@ module.exports = {
     library: 'demopage',
     libraryTarget: 'umd'
   },
-  devtool: 'eval',
+  devtool: 'inline-source-map',
   watch: true,
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),

@@ -17,17 +17,17 @@ class DateRange extends Component {
     this.state = {
       from: undefined,
       to: undefined,
-      isShowDatePicker: false,
+      isShowPicker: false,
       isSelectingLastDay: false
     };
   }
 
   showDatePicker() {
-    this.setState({ isShowDatePicker: true });
+    this.setState({ isShowPicker: true });
   }
 
   hideDatePicker() {
-    this.setState({ isShowDatePicker: false });
+    this.setState({ isShowPicker: false });
   }
 
   handleFromInputMount(element) {
@@ -112,7 +112,7 @@ class DateRange extends Component {
   }
 
   render() {
-    let { from, to, isShowDatePicker } = this.state;
+    let { from, to, isShowPicker } = this.state;
     let {
       className,
       dateFormat,
@@ -125,8 +125,8 @@ class DateRange extends Component {
 
     let datePicker = (
       <Motion
-        defaultStyle={{ x: this.state.showSidebar ? 1 : 0 }}
-        style={{ x: this.state.isShowDatePicker ? spring(1, springPreset) : spring(0, springPreset) }}
+        defaultStyle={{ x: this.state.isShowPicker ? 1 : 0 }}
+        style={{ x: this.state.isShowPicker ? spring(1, springPreset) : spring(0, springPreset) }}
       >{interpolatedStyle =>
         <div
           className={s.datePickerContainer}

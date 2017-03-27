@@ -1,9 +1,0 @@
-*.log
-*.iml
-.idea
-tmp
-npm-debug.log
-/static
-/build
-/lib
-node_modules

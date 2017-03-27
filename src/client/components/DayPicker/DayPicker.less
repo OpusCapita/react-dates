@@ -1,0 +1,30 @@
+.opuscapita_day-picker abbr {
+  border-bottom: none;
+  cursor: default;
+}
+
+
+.opuscapita_day-picker .DayPicker {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  &:focus {
+    outline: none;
+  }
+}
+
+.opuscapita_day-picker .DayPicker-Day {
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.opuscapita_day-picker .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  background-color: #EC6608;
+}
+
+.opuscapita_day-picker .DayPicker-Day--today {
+  font-weight: 600;
+  color: #000;
+}

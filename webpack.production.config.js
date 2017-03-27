@@ -4,6 +4,7 @@ const webpack = require('webpack');
 let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let config = require('./webpack.development.config.js');
+config.entry = path.resolve(path.join(__dirname, 'src', 'client', 'index.js'));
 delete config.devtool;
 delete config.output.publicPath;
 config.plugins = config.plugins.concat([

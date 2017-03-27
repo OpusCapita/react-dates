@@ -1,9 +1,0 @@
-  /home/volkovich/vcs/js-react-dates/src/client/components/DateInputPart:
-  total used in directory 24 available 15751144
-  drwxrwxr-x 2 volkovich volkovich 4096 Mar 14 14:26 .
-  drwxrwxr-x 8 volkovich volkovich 4096 Mar 14 14:26 ..
-  -rw-rw-r-- 1 volkovich volkovich  719 Mar 14 14:26 DateInputPart.DOCUMENTATION.md
-  -rw-rw-r-- 1 volkovich volkovich   21 Mar 14 14:26 DateInputPart.module.less
-  -
-  rw-rw-r-- 1 volkovich volkovich  366 Mar 14 14:26 DateInputPart.react.js
-  -rw-rw-r-- 1 volkovich volkovich   57 Mar 14 14:26 index.js
