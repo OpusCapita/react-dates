@@ -5,22 +5,7 @@ import DateInput from '.';
 
 describe('<DateInput />', () => {
   it('should have default props', () => {
-    let component = <DateInput />;
-    expect(component.props.className).to.equal('');
-    expect(component.props.date).to.equal(null);
-    expect(component.props.disabled).to.equal(false);
-    expect(component.props.locale).to.equal('en-GB');
-    expect(component.props.maxYear).to.equal(2200);
-    expect(component.props.minYear).to.equal(1920);
-    expect(component.props.onBlur).to.be.a('function');
-    expect(component.props.onChange).to.be.a('function');
-    expect(component.props.onFocus).to.be.a('function');
-    expect(component.props.onLast).to.be.a('function');
-    expect(component.props.onMount).to.be.a('function');
-    expect(component.props.onPressLeft).to.be.a('function');
-    expect(component.props.onPressRight).to.be.a('function');
-    expect(component.props.onUnmount).to.be.a('function');
-    expect(component.props.dateFormat).to.equal('dd.MM.yyyy');
+
   });
 
   it('should have the right class name', () => {
@@ -29,31 +14,97 @@ describe('<DateInput />', () => {
     expect(wrapper).to.have.className('date-input');
   });
 
+  it('should became disabled if disabled prop is truthy', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
   it('should trigger onFocus property', () => {
     let wrapper = shallow(<DateInput />);
   });
 
-  // it('should have increment button', () => {
-  //   let wrapper = shallow(<DemoComponent />);
-  //   let incrementButton = wrapper.find('.demo-component__increment-button');
-  //   expect(incrementButton).to.present();
-  // });
+  it('should display date-mask if date prop not specified', () => {
+    let wrapper = shallow(<DateInput />);
+  });
 
-  // it('should increment clicks count by pressing increment button', () => {
-  //   let wrapper = shallow(<DemoComponent />);
-  //   let clicksCount = wrapper.find('.demo-component__clicks-count');
-  //   let incrementButton = wrapper.find('.demo-component__increment-button');
+  it('should render date-mask separators as non-focusable elements', () => {
+    let wrapper = shallow(<DateInput />);
+  });
 
-  //   incrementButton.simulate('click');
-  //   clicksCount = wrapper.find('.demo-component__clicks-count');
-  //   expect(clicksCount.text()).to.equal('1');
+  it('should render date-mask parts as focusable elements', () => {
+    let wrapper = shallow(<DateInput />);
+  });
 
-  //   incrementButton.simulate('click');
-  //   clicksCount = wrapper.find('.demo-component__clicks-count');
-  //   expect(clicksCount.text()).to.equal('2');
+  it('should render date-mask parts as inputs', () => {
+    let wrapper = shallow(<DateInput />);
+  });
 
-  //   incrementButton.simulate('click');
-  //   clicksCount = wrapper.find('.demo-component__clicks-count');
-  //   expect(clicksCount.text()).to.equal('3');
-  // });
+  it('should fire onChange prop if entered valid value to date-mask part', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
+  it('should\'t call onChange prop if entered invalid value to date-mask part', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
+  it('should call onFocus prop', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
+  it('should call onBlur prop', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
+  it('should show date-picker popup on focus', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
+  it('should hide date-picker popup on blur', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
+  it('should\'t show date-picker popup on focus if allowShowPicker prop is truthy', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
+  it('should call onChange prop on date-picker value selection', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
+  it('should call onChange prop on date-picker value selection', () => {
+    let wrapper = shallow(<DateInput />);
+  });
+
+  describe('key navigation', () => {
+    it('should move to next date-mask part on pres Right-Arrow', () => {
+      let wrapper = shallow(<DateInput />);
+    });
+
+    it('should move to next date-mask part on press TAB', () => {
+      let wrapper = shallow(<DateInput />);
+    });
+
+    it('should move to prev date-mask part on press Left-Arrow', () => {
+      let wrapper = shallow(<DateInput />);
+    });
+
+    it('should move to prev date-mask part on press Shift-TAB', () => {
+      let wrapper = shallow(<DateInput />);
+    });
+
+    it('should move to next focusable element in DOM on press TAB if last date-mask part selected', () => {
+      let wrapper = shallow(<DateInput />);
+    });
+
+    it('should move to prev focusable element in DOM on press Shift-TAB if first date-mask part selected', () => {
+      let wrapper = shallow(<DateInput />);
+    });
+
+    it('should change date-mask part to next possible value on press Down-Arrow', () => {
+      let wrapper = shallow(<DateInput />);
+    });
+
+    it('should change date-mask part to prev possible value on press Up-Arrow', () => {
+      let wrapper = shallow(<DateInput />);
+    });
+  });
 });

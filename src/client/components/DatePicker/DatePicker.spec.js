@@ -2,16 +2,8 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
+import simulant from 'simulant';
 import DatePicker from '.';
-
-let simulateBodyClick = () => {
-  /* JSDom body click simulate
-     http://stackoverflow.com/questions/27557624/simulating-click-on-document-reactjs-jsdom
-  */
-  let event = document.createEvent("HTMLEvents");
-  event.initEvent("click", false, true);
-  document.body.dispatchEvent(event);
-};
 
 describe('<DatePicker />', () => {
   it('should have default props', () => {
@@ -32,21 +24,21 @@ describe('<DatePicker />', () => {
     expect(wrapper).to.have.className('test-class-name');
   });
 
-  it('should have the right class name if showToTop property is truthy', () => {
+  it('should have the right class name if showToTop prop is truthy', () => {
     let wrapper = mount(<DatePicker showToTop={true} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container');
     expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container--to-top');
   });
 
-  it('should have the right class name if showToLeft property is truthy', () => {
+  it('should have the right class name if showToLeft prop is truthy', () => {
     let wrapper = mount(<DatePicker showToLeft={true} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container');
     expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container--to-left');
   });
 
-  it('should have the right class name if showToTop and showToLeft property is truthy', () => {
+  it('should have the right class name if showToTop and showToLeft prop is truthy', () => {
     let wrapper = mount(<DatePicker showToTop={true} showToLeft={true} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container');
@@ -98,14 +90,13 @@ describe('<DatePicker />', () => {
     }, 1000);
   });
 
-  it('should call onClick property on toggle button click', () => {
+  it('should call onClick prop on toggle button click', () => {
     let spy = sinon.spy();
     let wrapper = shallow(<DatePicker onClick={spy} />);
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
     showPickerButton.simulate('click');
     expect(spy).to.have.been.called;
   });
-
 
   it('should hide picker on toggle button click second time', (done) => {
     let wrapper = mount(<DatePicker />);
@@ -141,14 +132,33 @@ describe('<DatePicker />', () => {
 
     showPickerButton.simulate('click');
 
-    simulateBodyClick();
+    simulant.fire(document.body, 'click');
     setTimeout(() => {
       expect(pickerContainer).to.have.style('opacity', '0');
       done();
     }, 1000);
   });
 
-  it('should\'t hide on click within picker', (done) => {
+  it('should hide picker on press TAB', (done) => {
+    let wrapper = mount(
+      <div>
+        <DatePicker />
+        <input />
+      </div>
+    );
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+
+    showPickerButton.simulate('click');
+    showPickerButton.simulate('keydown', { which: 9, keyCode: 9 });
+
+    setTimeout(() => {
+      expect(pickerContainer).to.have.style('opacity', '0');
+      done();
+    }, 1000);
+  });
+
+  it('should\'t hide on click within picker but not concrete day', (done) => {
     let wrapper = mount(<DatePicker />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
@@ -176,7 +186,7 @@ describe('<DatePicker />', () => {
     expect(spy.args[0][0]).to.be.instanceOf(Date);
   });
 
-  it('should disable button if disabled property is truthy', () => {
+  it('should disable button if disabled prop is truthy', () => {
     let wrapper = shallow(<DatePicker disabled={true} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
@@ -184,7 +194,7 @@ describe('<DatePicker />', () => {
     expect(showPickerButton).to.have.attr('disabled');
   });
 
-  it('should show current month if date property not specified', () => {
+  it('should show current month if date prop not specified', () => {
     let wrapper = mount(<DatePicker locale="en-GB" />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
@@ -199,7 +209,7 @@ describe('<DatePicker />', () => {
     expect(dateElement).to.contain.text(currentDate);
   });
 
-  it('should change date if new date property passed', () => {
+  it('should change date if new date prop passed', () => {
     let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
@@ -226,4 +236,12 @@ describe('<DatePicker />', () => {
     wrapper.setProps({ locale: "hu-HU" });
     expect(monthElement).to.contain.text('július');
   });
+
+  // TODO
+  // it('should have year selection input', () => {
+  //   let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
+  //   let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+  //   let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+  //   showPickerButton.simulate('click');
+  // });
 });

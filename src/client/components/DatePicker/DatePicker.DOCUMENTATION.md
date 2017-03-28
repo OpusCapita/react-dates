@@ -19,7 +19,7 @@ DatePicker show calendar button. When you click it, calendar appears
 ```
 <DatePicker 
   locale="de-DE"
-  onChange={date => console.log('New date:', date)}
+  onChange={_scope.handleChange.bind(_scope)}
   onClick={() => console.log('click')}
 />
 ```

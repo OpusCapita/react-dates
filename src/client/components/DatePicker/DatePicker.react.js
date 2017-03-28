@@ -33,7 +33,7 @@ class DatePicker extends Component {
 
   handleToggleClick() {
     this.props.onClick();
-    if(this.state.showPicker) {
+    if (this.state.showPicker) {
       return this.hidePicker();
     }
     return this.showPicker();
@@ -42,6 +42,12 @@ class DatePicker extends Component {
   handleDateChange(date) {
     this.hidePicker();
     this.props.onChange(date);
+  }
+
+  handleKeyDown(event) {
+    if(event.which === 9) { // TAB key
+      this.hidePicker();
+    }
   }
 
   showPicker() {
@@ -103,6 +109,7 @@ class DatePicker extends Component {
     return (
       <div
         className={`opuscapita_date-picker ${className}`}
+        onKeyDown={this.handleKeyDown.bind(this)}
         ref={el => (this.container = el)}
         { ...restProps }
       >
