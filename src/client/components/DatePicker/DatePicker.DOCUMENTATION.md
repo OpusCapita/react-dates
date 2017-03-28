@@ -10,13 +10,19 @@ DatePicker show calendar button. When you click it, calendar appears
 | disabled                       | bool                    | Is DatePicker button disabled                                                  |
 | locale                         | string                  | Days and months translations, first day of week, etc. depends on this property |
 | onChange                       | func                    | Callback triggered on selecting new date                                       |
-| showPicker                     | bool                    | Force show or not show picker. Pass 'false' of 'true' bool value explicitly    |
+| showToTop                      | bool                    | Show picker popup to top relative to button                                    |
+| showToLeft                     | bool                    | Show picker popup to left relative to button                                   |
 | tabIndex                       | number                  | Default HTML behavior                                                          |
 
 ### Code Example
 
 ```
-<DatePicker />
+<DatePicker 
+  locale="de-DE"
+  showToTop={true}
+  showToLeft={true}
+  onChange={date => console.log('New date:', date)}
+/>
 ```
 
 ### Component Name
@@ -25,5 +31,4 @@ DatePicker
 
 ### License
 
-Licensed by © 2016 OpusCapita
-
+Licensed by © 2017 OpusCapita

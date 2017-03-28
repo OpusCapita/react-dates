@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDayPicker from 'react-day-picker/lib/src/DayPicker';
-import DateUtils from 'react-day-picker/lib/src/DateUtils';
+import MomentLocaleUtils from 'react-day-picker/moment';
 import './DayPicker.less';
 
 export default
@@ -14,6 +14,7 @@ class DayPicker extends Component {
     return (
       <ReactDayPicker
         className={`opuscapita_day-picker ${className}`}
+        localeUtils={ MomentLocaleUtils }
         { ...restProps }
       />
     );

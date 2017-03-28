@@ -18,6 +18,7 @@ describe('<DatePicker />', () => {
   it('should have default props', () => {
     let component = <DatePicker />;
     expect(component.props.className).to.equal('');
+    expect(component.props.date).to.be.an.instanceof(Date);
     expect(component.props.disabled).to.equal(false);
     expect(component.props.tabIndex).to.equal(0);
     expect(component.props.onChange).to.be.a('function');
@@ -29,6 +30,28 @@ describe('<DatePicker />', () => {
     let wrapper = shallow(<DatePicker className="test-class-name" />);
     expect(wrapper).to.have.className('opuscapita_date-picker');
     expect(wrapper).to.have.className('test-class-name');
+  });
+
+  it('should have the right class name if showToTop property is truthy', () => {
+    let wrapper = mount(<DatePicker showToTop={true} />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container');
+    expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container--to-top');
+  });
+
+  it('should have the right class name if showToLeft property is truthy', () => {
+    let wrapper = mount(<DatePicker showToLeft={true} />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container');
+    expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container--to-left');
+  });
+
+  it('should have the right class name if showToTop and showToLeft property is truthy', () => {
+    let wrapper = mount(<DatePicker showToTop={true} showToLeft={true} />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container');
+    expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container--to-top');
+    expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container--to-left');
   });
 
   it('should have toggle picker button', () => {
@@ -59,19 +82,6 @@ describe('<DatePicker />', () => {
     showPickerButton.simulate('click');
     setTimeout(() => {
       expect(pickerContainer).to.have.style('opacity', '1');
-      done();
-    }, 1000);
-  });
-
-  it('should hide picker on toggle button click second time', (done) => {
-    let wrapper = mount(<DatePicker />);
-    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
-    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
-
-    showPickerButton.simulate('click');
-    showPickerButton.simulate('click');
-    setTimeout(() => {
-      expect(pickerContainer).to.have.style('opacity', '0');
       done();
     }, 1000);
   });
@@ -129,5 +139,54 @@ describe('<DatePicker />', () => {
       expect(pickerContainer).to.have.style('opacity', '1');
       done();
     }, 1000);
+  });
+
+  it('should handle onChange', () => {
+    let spy = sinon.spy();
+    let wrapper = mount(<DatePicker onChange={spy} />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+
+    showPickerButton.simulate('click');
+    let dayElement = pickerContainer.find('.DayPicker-Day[aria-selected]').first();
+    dayElement.simulate('click');
+
+    expect(spy).to.have.been.called;
+    expect(spy.args[0][0]).to.be.instanceOf(Date);
+  });
+
+  it('should disable button if disabled property truthy', () => {
+    let wrapper = mount(<DatePicker disabled={true} />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+
+    expect(showPickerButton).to.have.attr('disabled');
+  });
+
+  it('should show current month if date property not specified', () => {
+    let wrapper = mount(<DatePicker locale="en-GB" />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+
+    showPickerButton.simulate('click');
+    let currentYear = new Date().getFullYear();
+    let currentDate = new Date().getDate();
+    let yearElement = pickerContainer.find('.DayPicker-Caption');
+    let dateElement = pickerContainer.find('.DayPicker-Day--today');
+
+    expect(yearElement).to.contain.text(currentYear);
+    expect(dateElement).to.contain.text(currentDate);
+  });
+
+  it('should change date if new date property passed', () => {
+    let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+    showPickerButton.simulate('click');
+    let yearElement = pickerContainer.find('.DayPicker-Caption');
+
+    expect(yearElement).to.contain.text(1945);
+    wrapper.setProps({ date: new Date(1971, 10, 15) });
+    expect(yearElement).to.contain.text(1971);
   });
 });

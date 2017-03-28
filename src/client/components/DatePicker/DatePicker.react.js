@@ -3,7 +3,7 @@ import './DatePicker.less';
 import LocaleUtils from 'react-day-picker/moment';
 import DayPicker from '../DayPicker';
 import { spring, presets, Motion} from 'react-motion';
-let springPreset = presets.gentle;
+let springPreset = presets.stiff;
 
 export default
 class DatePicker extends Component {
@@ -38,6 +38,11 @@ class DatePicker extends Component {
     return this.showPicker();
   }
 
+  handleDateChange(date) {
+    this.hidePicker();
+    this.props.onChange(date);
+  }
+
   showPicker() {
     this.setState({ showPicker: true });
   }
@@ -49,51 +54,60 @@ class DatePicker extends Component {
   render() {
     let {
       className,
+      date,
+      disabled,
       showButton,
       tabIndex,
       locale,
-      showPicker,
+      showToTop,
+      showToLeft,
       ...restProps
     } = this.props;
 
     let pickerElement = (
       <DayPicker
         locale={locale}
-        onBlur={() => console.log('hello')}
+        month={date}
+        onDayClick={this.handleDateChange.bind(this)}
+        onDayKeyDown={this.handleDateChange.bind(this)}
+        onDayTouchEnd={this.handleDateChange.bind(this)}
         { ...restProps }
       />
     );
 
+    let showToTopClassName = showToTop ? 'opuscapita_date-picker__picker-container--to-top' : '';
+    let showToLeftClassName = showToLeft ? 'opuscapita_date-picker__picker-container--to-left' : '';
+
     let pickerMotionElement = (
       <Motion
-          defaultStyle={{ x: this.state.showPicker ? 1 : 0 }}
-          style={{ x: this.state.showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
-        >
-          {interpolatedStyle => (
-            <div
-              className="opuscapita_date-picker__picker-container"
-              style={{
-                maxHeight: `${interpolatedStyle.x * 640}px`,
-                opacity: interpolatedStyle.x
-              }}
-            >
-              {pickerElement}
-            </div>
-          )}
+        defaultStyle={{ x: this.state.showPicker ? 1 : 0 }}
+        style={{ x: this.state.showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
+      >
+        {interpolatedStyle => (
+          <div
+            className={`opuscapita_date-picker__picker-container ${showToTopClassName} ${showToLeftClassName}`}
+            style={{
+              maxHeight: `${interpolatedStyle.x * 640}px`,
+              opacity: interpolatedStyle.x
+            }}
+          >
+            {pickerElement}
+          </div>
+        )}
       </Motion>
     );
 
     return (
       <div
         className={`opuscapita_date-picker ${className}`}
-        style={{ display: 'inline-flex' }}
         ref={el => (this.container = el)}
       >
         <button
-          onClick={this.handleToggleClick.bind(this)}
-          type="button"
-          tabIndex={tabIndex}
           className="opuscapita_date-picker__toggle-picker btn btn-default"
+          disabled={disabled}
+          onClick={this.handleToggleClick.bind(this)}
+          tabIndex={tabIndex}
+          type="button"
         >
           <i className="fa fa-calendar" />
         </button>
@@ -105,16 +119,22 @@ class DatePicker extends Component {
 
 DatePicker.propTypes = {
   className: PropTypes.string,
+  date: PropTypes.object,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
+  showToTop: PropTypes.bool,
+  showToLeft: PropTypes.bool,
   onChange: PropTypes.func,
   onHide: PropTypes.func,
   tabIndex: PropTypes.number
 };
 DatePicker.defaultProps = {
   className: '',
+  date: new Date(),
   disabled: false,
   locale: 'en-GB',
+  showToTop: false,
+  showToLeft: false,
   onChange: () => {},
   onHide: () => {},
   tabIndex: 0
