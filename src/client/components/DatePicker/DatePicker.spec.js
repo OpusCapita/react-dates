@@ -2,7 +2,6 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
-import simulant from 'simulant';
 import DatePicker from '.';
 
 describe('<DatePicker />', () => {
@@ -132,7 +131,10 @@ describe('<DatePicker />', () => {
 
     showPickerButton.simulate('click');
 
-    simulant.fire(document.body, 'click');
+    let event = document.createEvent("HTMLEvents");
+    event.initEvent("click", false, true);
+    document.body.dispatchEvent(event);
+
     setTimeout(() => {
       expect(pickerContainer).to.have.style('opacity', '0');
       done();
