@@ -19,9 +19,8 @@ DatePicker show calendar button. When you click it, calendar appears
 ```
 <DatePicker 
   locale="de-DE"
-  showToTop={true}
-  showToLeft={true}
   onChange={date => console.log('New date:', date)}
+  onClick={() => console.log('click')}
 />
 ```
 

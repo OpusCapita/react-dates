@@ -3,7 +3,7 @@ import './DatePicker.less';
 import LocaleUtils from 'react-day-picker/moment';
 import DayPicker from '../DayPicker';
 import { spring, presets, Motion} from 'react-motion';
-let springPreset = presets.stiff;
+let springPreset = presets.gentle;
 
 export default
 class DatePicker extends Component {
@@ -32,6 +32,7 @@ class DatePicker extends Component {
   }
 
   handleToggleClick() {
+    this.props.onClick();
     if(this.state.showPicker) {
       return this.hidePicker();
     }
@@ -56,11 +57,13 @@ class DatePicker extends Component {
       className,
       date,
       disabled,
-      showButton,
-      tabIndex,
       locale,
       showToTop,
       showToLeft,
+      onChange,
+      onClick,
+      onHide,
+      tabIndex,
       ...restProps
     } = this.props;
 
@@ -68,6 +71,7 @@ class DatePicker extends Component {
       <DayPicker
         locale={locale}
         month={date}
+        tabIndex={-1}
         onDayClick={this.handleDateChange.bind(this)}
         onDayKeyDown={this.handleDateChange.bind(this)}
         onDayTouchEnd={this.handleDateChange.bind(this)}
@@ -125,6 +129,7 @@ DatePicker.propTypes = {
   showToTop: PropTypes.bool,
   showToLeft: PropTypes.bool,
   onChange: PropTypes.func,
+  onClick: PropTypes.func,
   onHide: PropTypes.func,
   tabIndex: PropTypes.number
 };
@@ -136,6 +141,7 @@ DatePicker.defaultProps = {
   showToTop: false,
   showToLeft: false,
   onChange: () => {},
+  onClick: () => {},
   onHide: () => {},
   tabIndex: 0
 };

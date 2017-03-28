@@ -1,3 +1,5 @@
+@opuscapita_date-picker__picker-container_offset: 8px;
+
 .opuscapita_date-picker {
   position: relative;
   display: inline-flex;
@@ -5,11 +7,22 @@
 
 .opuscapita_date-picker__picker-container {
   background: #fff;
-  bottom: -8px;
+  bottom: -@opuscapita_date-picker__picker-container_offset;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
   left: 0;
   overflow: hidden;
   position: absolute;
   transform: translate(0, 100%);
   z-index: 9999;
+}
+
+.opuscapita_date-picker__picker-container--to-top {
+  bottom: auto;
+  top: -@opuscapita_date-picker__picker-container_offset;
+  transform: translate(0, -100%);
+}
+
+.opuscapita_date-picker__picker-container--to-left {
+  left: auto;
+  right: 0;
 }

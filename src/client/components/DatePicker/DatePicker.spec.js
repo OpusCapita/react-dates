@@ -4,7 +4,6 @@ import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import DatePicker from '.';
 
-
 let simulateBodyClick = () => {
   /* JSDom body click simulate
      http://stackoverflow.com/questions/27557624/simulating-click-on-document-reactjs-jsdom
@@ -22,6 +21,7 @@ describe('<DatePicker />', () => {
     expect(component.props.disabled).to.equal(false);
     expect(component.props.tabIndex).to.equal(0);
     expect(component.props.onChange).to.be.a('function');
+    expect(component.props.onClick).to.be.a('function');
     expect(component.props.onHide).to.be.a('function');
     expect(component.props.locale).to.equal('en-GB');
   });
@@ -85,6 +85,15 @@ describe('<DatePicker />', () => {
       done();
     }, 1000);
   });
+
+  it('should call onClick property on toggle button click', () => {
+    let spy = sinon.spy();
+    let wrapper = shallow(<DatePicker onClick={spy} />);
+    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+    showPickerButton.simulate('click');
+    expect(spy).to.have.been.called;
+  });
+
 
   it('should hide picker on toggle button click second time', (done) => {
     let wrapper = mount(<DatePicker />);
@@ -155,8 +164,8 @@ describe('<DatePicker />', () => {
     expect(spy.args[0][0]).to.be.instanceOf(Date);
   });
 
-  it('should disable button if disabled property truthy', () => {
-    let wrapper = mount(<DatePicker disabled={true} />);
+  it('should disable button if disabled property is truthy', () => {
+    let wrapper = shallow(<DatePicker disabled={true} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
 
@@ -188,5 +197,21 @@ describe('<DatePicker />', () => {
     expect(yearElement).to.contain.text(1945);
     wrapper.setProps({ date: new Date(1971, 10, 15) });
     expect(yearElement).to.contain.text(1971);
+  });
+
+  it('should react on locale change', () => {
+    let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+    let monthElement = pickerContainer.find('.DayPicker-Caption');
+    showPickerButton.simulate('click');
+
+    expect(monthElement).to.contain.text('July');
+    wrapper.setProps({ locale: "de-DE" });
+    expect(monthElement).to.contain.text('Juli');
+    wrapper.setProps({ locale: "ru-RU" });
+    expect(monthElement).to.contain.text('июль');
+    wrapper.setProps({ locale: "hu-HU" });
+    expect(monthElement).to.contain.text('július');
   });
 });
