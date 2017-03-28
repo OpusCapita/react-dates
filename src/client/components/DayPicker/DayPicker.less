@@ -3,21 +3,35 @@
   cursor: default;
 }
 
-
-.opuscapita_day-picker .DayPicker {
+.opuscapita_day-picker {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  &:focus {
-    outline: none;
-  }
+}
+
+.opuscapita_day-picker:focus {
+  outline: none;
 }
 
 .opuscapita_day-picker .DayPicker-Day {
   border: none;
-  &:focus {
-    outline: none;
-  }
+  position: relative;
+}
+
+.opuscapita_day-picker .DayPicker-Day:focus {
+  outline: none;
+}
+
+.opuscapita_day-picker .DayPicker-Day:not(.DayPicker-Day--outside):hover:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  opacity: 0.075;
+  z-index: 1;
 }
 
 .opuscapita_day-picker .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {

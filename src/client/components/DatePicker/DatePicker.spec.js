@@ -54,6 +54,18 @@ describe('<DatePicker />', () => {
     expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container--to-left');
   });
 
+  it('should pass html attributes to outer element', () => {
+    let wrapper = mount(
+      <DatePicker
+        aria-label="date-picker"
+        style={{ outline: '1px solid #000' }}
+      />
+    );
+    let container = wrapper.find('.opuscapita_date-picker');
+    expect(container).to.have.attr('aria-label', 'date-picker');
+    expect(container).to.have.attr('style').contain('outline');
+  });
+
   it('should have toggle picker button', () => {
     let wrapper = shallow(<DatePicker />);
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');

@@ -75,7 +75,6 @@ class DatePicker extends Component {
         onDayClick={this.handleDateChange.bind(this)}
         onDayKeyDown={this.handleDateChange.bind(this)}
         onDayTouchEnd={this.handleDateChange.bind(this)}
-        { ...restProps }
       />
     );
 
@@ -105,6 +104,7 @@ class DatePicker extends Component {
       <div
         className={`opuscapita_date-picker ${className}`}
         ref={el => (this.container = el)}
+        { ...restProps }
       >
         <button
           className="opuscapita_date-picker__toggle-picker btn btn-default"
