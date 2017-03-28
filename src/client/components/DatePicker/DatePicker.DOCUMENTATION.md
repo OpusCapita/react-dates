@@ -7,6 +7,7 @@ DatePicker show calendar button. When you click it, calendar appears
 | Name                           | Type                    | Description                                                                    |
 | ------------------------------ | :---------------------- | -----------------------------------------------------------                    |
 | className                      | string                  | Default HTML behavior                                                          |
+| date                           | instanceOf(Date)        |                                                                                |
 | disabled                       | bool                    | Is DatePicker button disabled                                                  |
 | locale                         | string                  | Days and months translations, first day of week, etc. depends on this property |
 | onChange                       | func                    | Callback triggered on selecting new date                                       |
@@ -21,6 +22,29 @@ DatePicker show calendar button. When you click it, calendar appears
   locale="de-DE"
   onChange={_scope.handleChange.bind(_scope)}
   onClick={() => console.log('click')}
+/>
+
+<DatePicker 
+  locale="de-DE"
+  onChange={_scope.handleChange.bind(_scope)}
+  onClick={() => console.log('click')}
+  showToLeft={true}
+/>
+
+<DatePicker 
+  locale="de-DE"
+  onChange={_scope.handleChange.bind(_scope)}
+  onClick={() => console.log('click')}
+  disabled={true}
+  showToLeft={true}
+/>
+
+<DatePicker
+  locale="de-DE"
+  onChange={_scope.handleChange.bind(_scope)}
+  onClick={() => console.log('click')}
+  showToTop={true}
+  showToLeft={true}
 />
 ```
 

@@ -174,7 +174,7 @@ describe('<DatePicker />', () => {
     }, 1000);
   });
 
-  it('should handle onChange', () => {
+  it('should call onChange when new date selected', () => {
     let spy = sinon.spy();
     let wrapper = mount(<DatePicker onChange={spy} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
@@ -239,11 +239,10 @@ describe('<DatePicker />', () => {
     expect(monthElement).to.contain.text('július');
   });
 
-  // TODO
-  // it('should have year selection input', () => {
-  //   let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
-  //   let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
-  //   let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
-  //   showPickerButton.simulate('click');
-  // });
+  it('should have year selection input', () => {
+    let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+    showPickerButton.simulate('click');
+  });
 });

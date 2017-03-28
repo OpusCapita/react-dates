@@ -46,6 +46,7 @@
     "json-loader": "^0.5.4",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
+    "lodash": "^4.17.4",
     "mocha": "3.2.0",
     "nodemon": "^1.11.0",
     "opuscapita-react-i18n": "^1.0.6-SNAPSHOT.20170110T072641.032Z",

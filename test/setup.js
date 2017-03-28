@@ -3,6 +3,9 @@ import chai from 'chai';
 import sinonChai from 'sinon-chai';
 import chaiEnzyme from 'chai-enzyme';
 
+chai.config.truncateThreshold = 0;
+chai.config.includeStack = true;
+
 chai.use(sinonChai);
 chai.use(chaiEnzyme());
 

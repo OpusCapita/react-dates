@@ -1,28 +1,36 @@
-.opuscapita_day-picker abbr {
-  border-bottom: none;
-  cursor: default;
+.opuscapita_day-picker {
+  display: inline-flex;
+  flex-direction: column;
 }
 
-.opuscapita_day-picker {
+.opuscapita_day-picker__picker {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
-.opuscapita_day-picker:focus {
+.opuscapita_day-picker__picker abbr {
+  border-bottom: none;
+  cursor: default;
+}
+
+.opuscapita_day-picker,
+.opuscapita_day-picker__picker:focus,
+.opuscapita_day-picker__picker .DayPicker,
+.opuscapita_day-picker__picker .DayPicker-Day:focus {
   outline: none;
 }
 
-.opuscapita_day-picker .DayPicker-Day {
+.opuscapita_day-picker__picker .DayPicker {
+  padding-bottom: 0.5rem;
+}
+
+.opuscapita_day-picker__picker .DayPicker-Day {
   border: none;
   position: relative;
 }
 
-.opuscapita_day-picker .DayPicker-Day:focus {
-  outline: none;
-}
-
-.opuscapita_day-picker .DayPicker-Day:not(.DayPicker-Day--outside):hover:after {
+.opuscapita_day-picker__picker .DayPicker-Day:not(.DayPicker-Day--outside):hover:after {
   content: '';
   position: absolute;
   top: 0;
@@ -34,11 +42,25 @@
   z-index: 1;
 }
 
-.opuscapita_day-picker .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+.opuscapita_day-picker__picker .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   background-color: #EC6608;
 }
 
-.opuscapita_day-picker .DayPicker-Day--today {
+.opuscapita_day-picker__picker .DayPicker-Day--today {
   font-weight: 600;
   color: #000;
+}
+
+.opuscapita_day-picker__footer {
+  display: flex;
+  justify-content: center;
+}
+
+.opuscapita_day-picker__today-button {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  border-left: none;
+  border-right: none;
+
 }

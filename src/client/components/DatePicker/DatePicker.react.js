@@ -78,9 +78,8 @@ class DatePicker extends Component {
         locale={locale}
         month={date}
         tabIndex={-1}
-        onDayClick={this.handleDateChange.bind(this)}
-        onDayKeyDown={this.handleDateChange.bind(this)}
-        onDayTouchEnd={this.handleDateChange.bind(this)}
+        fixedWeeks={true}
+        onChange={this.handleDateChange.bind(this)}
       />
     );
 

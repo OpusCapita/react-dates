@@ -8,9 +8,8 @@ DayPicker is a styled to OpusCapita defaults [react-day-picker](https://github.c
 ### Code Example
 
 ```
-
 <DayPicker
-  onDayClick={ day => console.log(day) }
+  onChange={ day => console.log(day) }
 />
 ```
 
