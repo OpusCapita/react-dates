@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "lodash": "4.17.4",
+    "moment": "2.18.1",
     "react-datepicker": "^0.41.1",
     "react-day-picker": "5.2.0",
     "webpack-bundle-analyzer": "^2.3.1"

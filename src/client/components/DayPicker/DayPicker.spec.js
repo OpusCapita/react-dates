@@ -32,7 +32,6 @@ describe('<DayPicker />', () => {
     expect(reactDayPickerElement).to.have.props({
       tabIndex: 4,
       locale: 'en-GB',
-      className: "picker",
       enableOutsideDays: true,
       fixedWeeks: true
     });
@@ -44,8 +43,8 @@ describe('<DayPicker />', () => {
         aria-label="day-picker"
         locale="en-GB"
         tabIndex={4}
-        className="container"
         pickerClassName="picker"
+        className="container"
         enableOutsideDays={true}
         fixedWeeks={true}
       />
@@ -57,7 +56,6 @@ describe('<DayPicker />', () => {
     expect(containerDiv).to.not.have.props({
       tabIndex: 4,
       locale: 'en-GB',
-      className: "picker",
       enableOutsideDays: true,
       fixedWeeks: true
     });

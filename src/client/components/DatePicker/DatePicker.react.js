@@ -3,7 +3,26 @@ import './DatePicker.less';
 import LocaleUtils from 'react-day-picker/moment';
 import DayPicker from '../DayPicker';
 import { spring, presets, Motion} from 'react-motion';
+import assign from 'lodash/assign';
 let springPreset = presets.gentle;
+
+function splitProps(props, specificPropNames = []) {
+  let result = Object.keys(props).reduce((result, propName) => {
+    let isPropSpecific = specificPropNames.indexOf(propName) >= 0;
+    if(isPropSpecific) {
+      let commonProps = assign({}, result[0]);
+      let specificProps = assign({}, result[1], { [propName]: props[propName] });
+      return [commonProps, specificProps];
+    }
+
+    let commonProps = assign({}, result[0], { [propName]: props[propName] });
+    let specificProps = assign({}, result[1]);
+    return [commonProps, specificProps];
+  }, [{}, {}]);
+
+
+  return result;
+};
 
 export default
 class DatePicker extends Component {
@@ -73,6 +92,10 @@ class DatePicker extends Component {
       ...restProps
     } = this.props;
 
+    let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
+    let commonProps = splittedProps[0];
+    let dayPickerSpecificProps = splittedProps[1];
+
     let pickerElement = (
       <DayPicker
         locale={locale}
@@ -80,6 +103,7 @@ class DatePicker extends Component {
         tabIndex={-1}
         fixedWeeks={true}
         onChange={this.handleDateChange.bind(this)}
+        { ...dayPickerSpecificProps }
       />
     );
 
@@ -110,7 +134,7 @@ class DatePicker extends Component {
         className={`opuscapita_date-picker ${className}`}
         onKeyDown={this.handleKeyDown.bind(this)}
         ref={el => (this.container = el)}
-        { ...restProps }
+        { ...commonProps }
       >
         <button
           className="opuscapita_date-picker__toggle-picker btn btn-default"

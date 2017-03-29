@@ -2,6 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
+import DayPicker from '../DayPicker';
 import DatePicker from '.';
 
 describe('<DatePicker />', () => {
@@ -43,6 +44,54 @@ describe('<DatePicker />', () => {
     expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container');
     expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container--to-top');
     expect(pickerContainer).to.have.className('opuscapita_date-picker__picker-container--to-left');
+  });
+
+  it('should pass specific DayPicker props to it', () => {
+    let wrapper = mount(
+      <DatePicker
+        aria-label="day-picker"
+        locale="en-GB"
+        tabIndex={4}
+        className="container"
+        pickerClassName="picker"
+        enableOutsideDays={true}
+        fixedWeeks={true}
+      />
+    );
+    let dayPickerElement = wrapper.find(DayPicker);
+    expect(dayPickerElement).to.not.have.className('picker');
+    expect(dayPickerElement).to.not.have.className('container');
+    expect(dayPickerElement).to.not.have.props('container');
+    expect(dayPickerElement).to.not.have.props({ 'aria-label': 'day-picker', tabIndex: 4 });
+    expect(dayPickerElement).to.have.props({
+      locale: 'en-GB',
+      enableOutsideDays: true,
+      fixedWeeks: true
+    });
+  });
+
+  it('should pass non specific ReactDayPicker props to container div', () => {
+    let wrapper = mount(
+      <DatePicker
+        aria-label="day-picker"
+        locale="en-GB"
+        tabIndex={4}
+        className="container"
+        pickerClassName="picker"
+        enableOutsideDays={true}
+        fixedWeeks={true}
+      />
+    );
+    let containerDiv = wrapper.find('.opuscapita_date-picker');
+    expect(containerDiv).to.not.have.className('picker');
+    expect(containerDiv).to.have.className('container');
+    expect(containerDiv).to.have.props({ 'aria-label': 'day-picker' });
+    expect(containerDiv).to.not.have.props({
+      tabIndex: 4,
+      locale: 'en-GB',
+      enableOutsideDays: true,
+      fixedWeeks: true
+    });
   });
 
   it('should pass html attributes to outer element', () => {

@@ -9,7 +9,7 @@ let getNewDate = (date, setterFn = (date) => date) => {
   let newDate = new Date(date.toISOString());
   setterFn(newDate);
   return newDate;
-}
+};
 
 export
 const resolverDefinitions = {

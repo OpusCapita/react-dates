@@ -19,37 +19,6 @@ function splitProps(props, specificPropNames = []) {
   }, [{}, {}]);
 };
 
-// function YearMonthForm({ date, localeUtils, onChange }) {
-//   const months = localeUtils.getMonths();
-
-//   const years = [];
-//   for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
-//     years.push(i);
-//   }
-
-//   const handleChange = function handleChange(e) {
-//     const { year, month } = e.target.form;
-//     onChange(new Date(year.value, month.value));
-//   };
-
-//   return (
-//     <form className="DayPicker-Caption">
-//       <select name="month" onChange={ handleChange } value={ date.getMonth() }>
-//         { months.map((month, i) =>
-//           <option key={ i } value={ i }>{ month }</option>)
-//         }
-//       </select>
-//       <select name="year" onChange={ handleChange } value={ date.getFullYear() }>
-//         { years.map((year, i) =>
-//           <option key={ i } value={ year }>
-//             { year }
-//           </option>)
-//         }
-//       </select>
-//     </form>
-//   );
-// }
-
 export default
 class DayPicker extends Component {
   constructor(props) {
@@ -57,12 +26,7 @@ class DayPicker extends Component {
     this.state = {
       date: props.date
     };
-    this.pickerSpecificProps = Object.keys(ReactDayPicker.propTypes);
   }
-
-  // handleYearMonthChange(date) {
-  //   this.setState({ date });
-  // }
 
   handleDateChange(date) {
     this.props.onChange(date);
@@ -79,7 +43,7 @@ class DayPicker extends Component {
       ...restProps
     } = this.props;
 
-    let splittedProps = splitProps(restProps, this.pickerSpecificProps);
+    let splittedProps = splitProps(restProps, Object.keys(ReactDayPicker.propTypes));
     let commonProps = splittedProps[0];
     let pickerSpecificProps = splittedProps[1];
 
@@ -113,13 +77,14 @@ class DayPicker extends Component {
 }
 
 DayPicker.propTypes = {
+  ...ReactDayPicker.propTypes,
   className: PropTypes.string,
-  pickerStyle: PropTypes.object,
   pickerClassName: PropTypes.string,
   onChange: PropTypes.func
 };
 DayPicker.defaultProps = {
   className: '',
+  labels: ReactDayPicker.defaultProps.labels,
   pickerClassName: '',
   onChange: () => {}
 };
