@@ -34,13 +34,17 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
   onClick={() => console.log('click')}
 />
 
+<hr />
+
 <DatePicker
-  locale="de-DE"
+  locale="ru-RU"
   onChange={_scope.handleChange.bind(_scope)}
   onClick={() => console.log('click')}
   showToLeft={true}
   fixedWeeks={false}
 />
+
+<hr />
 
 <DatePicker 
   locale="de-DE"
@@ -50,8 +54,10 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
   showToLeft={true}
 />
 
+<hr />
+
 <DatePicker
-  locale="de-DE"
+  locale="en-US"
   onChange={_scope.handleChange.bind(_scope)}
   onClick={() => console.log('click')}
   showToTop={true}

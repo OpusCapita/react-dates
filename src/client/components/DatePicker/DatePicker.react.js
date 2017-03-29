@@ -20,7 +20,6 @@ function splitProps(props, specificPropNames = []) {
     return [commonProps, specificProps];
   }, [{}, {}]);
 
-
   return result;
 };
 
