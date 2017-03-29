@@ -55,6 +55,7 @@ class DatePicker extends Component {
     if (this.state.showPicker) {
       return this.hidePicker();
     }
+    this.reactDayPicker && this.reactDayPicker.showMonth(this.props.date);
     return this.showPicker();
   }
 
@@ -98,6 +99,7 @@ class DatePicker extends Component {
 
     let pickerElement = (
       <DayPicker
+        dayPickerRef={el => (this.reactDayPicker = el)}
         locale={locale}
         month={date}
         tabIndex={-1}

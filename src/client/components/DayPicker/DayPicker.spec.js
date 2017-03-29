@@ -73,6 +73,14 @@ describe('<DayPicker />', () => {
     expect(reactDayPicker).to.have.prop('firstDayOfWeek', 0);
   });
 
+  it('should call dayPickerRef when react-day-picker mounted', () => {
+    let spy = sinon.spy();
+    let wrapper = mount(<DayPicker dayPickerRef={spy} />);
+
+    expect(spy).to.have.been.called;
+    expect(spy.args[0][0]).to.be.instanceOf(ReactDayPicker);
+  });
+
   it('should call onChange when new date selected', () => {
     let spy = sinon.spy();
     let wrapper = mount(<DayPicker onChange={spy} />);

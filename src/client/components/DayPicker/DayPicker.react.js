@@ -39,6 +39,7 @@ class DayPicker extends Component {
   render() {
     let {
       className,
+      dayPickerRef,
       pickerClassName,
       ...restProps
     } = this.props;
@@ -53,6 +54,7 @@ class DayPicker extends Component {
         </div>
         <div className={`opuscapita_day-picker__picker`}>
           <ReactDayPicker
+            ref={el => (dayPickerRef(el))}
             className={pickerClassName}
             localeUtils={ MomentLocaleUtils }
             onDayClick={this.handleDateChange.bind(this)}
@@ -80,10 +82,12 @@ DayPicker.propTypes = {
   ...ReactDayPicker.propTypes,
   className: PropTypes.string,
   pickerClassName: PropTypes.string,
+  dayPickerRef: PropTypes.func,
   onChange: PropTypes.func
 };
 DayPicker.defaultProps = {
   className: '',
+  dayPickerRef: () => {},
   labels: ReactDayPicker.defaultProps.labels,
   pickerClassName: '',
   onChange: () => {}

@@ -2,10 +2,7 @@
 
 DatePicker show calendar button. When you click it, calendar appears
 
-Based on  to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)
-
-* [Props Reference](http://react-day-picker.js.org/APIProps.html)
-* [Methods Reference](http://react-day-picker.js.org/APIMethods.html)
+Based on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)
 
 ### Props Reference
 
@@ -19,6 +16,14 @@ Based on  to OpusCapita defaults [react-day-picker](https://github.com/gpbl/reac
 | showToTop                      | bool                    | Show picker popup to top relative to button                                    |
 | showToLeft                     | bool                    | Show picker popup to left relative to button                                   |
 | tabIndex                       | number                  | Default HTML behavior                                                          |
+
+***
+
+See react-day-picker [props reference](http://react-day-picker.js.org/APIProps.html) if you need more customization
+
+### Methods reference
+
+See react-day-picker [methods reference](http://react-day-picker.js.org/APIMethods.html)
 
 ### Code Example
 

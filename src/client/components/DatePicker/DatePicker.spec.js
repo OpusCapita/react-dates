@@ -288,6 +288,25 @@ describe('<DatePicker />', () => {
     expect(monthElement).to.contain.text('július');
   });
 
+  it('should show date from prop after reopen picker', () => {
+    let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
+    let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
+    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
+    let nextMonthButton = wrapper.find('.DayPicker-NavButton--next');
+    let monthElement = pickerContainer.find('.DayPicker-Caption');
+
+    showPickerButton.simulate('click');
+    expect(monthElement).to.contain.text('July');
+
+    nextMonthButton.simulate('click');
+    expect(monthElement).to.contain.text('August');
+
+    showPickerButton.simulate('click');
+    showPickerButton.simulate('click');
+
+    expect(monthElement).to.contain.text('July');
+  });
+
   it('should have year selection input', () => {
     let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
