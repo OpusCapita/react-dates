@@ -12,7 +12,11 @@ DateInput2 is
 ### Code Example
 
 ```
-<DateInput2 />
+<DateInput2
+  dateFormat="DD.MM.YYYY"
+  date={_scope.state.date}
+  onChange={_scope.handleChange.bind(_scope)}
+/>
 ```
 
 ### Component Name

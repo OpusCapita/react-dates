@@ -13,7 +13,13 @@ export default
 class DateInput2Scope extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      date: new Date()
+    };
+  }
+
+  handleChange(date) {
+    this.setState({ date });
   }
 
   render() {
