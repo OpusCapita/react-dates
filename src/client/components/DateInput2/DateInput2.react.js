@@ -22,16 +22,19 @@ class DateInput2 extends Component {
     this.state = {
       activeInputKey: '',
       activeInputValue: '',
-      isFocused: false,
       isLastInputSelected: false,
       isFirstInputSelected: false,
-      dateFormatParts: []
+      dateFormatParts: [],
+      lastActiveElement: document.activeElement
     };
     this.inputs = {};
+    this.handleElementActivation = this.handleElementActivation.bind(this);
   }
 
   componentDidMount() {
     this.setDateFormat(this.props);
+    document.body.addEventListener('click', this.handleElementActivation);
+    document.body.addEventListener('focus', this.handleElementActivation);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,6 +45,25 @@ class DateInput2 extends Component {
 
   componentWillUnmount() {
     this.clearSelectTextTimeout();
+    document.body.removeEventListener('click', this.handleElementActivation);
+    document.body.removeEventListener('focus', this.handleElementActivation);
+  }
+
+  handleElementActivation(event) {
+    let isInputActivated = Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === event.target);
+    console.log('a', this.state.lastActiveElement);
+    console.log('b', this.isLastActiveElementInside());
+    if(isInputActivated && !this.isLastActiveElementInside()) {
+      this.props.onFocus();
+    }
+    if(!isInputActivated) {
+      this.props.onBlur();
+    }
+    this.setState({ lastActiveElement: event.target });
+  }
+
+  isLastActiveElementInside() {
+    return Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === this.state.lastActiveElement);
   }
 
   formatInputValue(format) {
@@ -116,13 +138,8 @@ class DateInput2 extends Component {
     let isFirstInput = currentInputIndex === 0;
     let isLastInput = currentInputIndex === Object.keys(this.inputs).length - 1;
 
-    if(!this.state.isFocused) {
-      this.props.onFocus();
-    }
-
     this.selectText(this.inputs[key]);
     this.setState({
-      isFocused: true,
       activeInputKey: key,
       activeInputValue: event.target.value,
       isLastInputSelected: isLastInput,
@@ -131,9 +148,7 @@ class DateInput2 extends Component {
   }
 
   handleInputBlur(event, key) {
-    console.log('tab', key);
-    this.clearSelectTextTimeout();
-    this.setState({ isFocused: false });
+
   }
 
   handleDelete() {

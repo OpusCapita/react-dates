@@ -21,14 +21,17 @@ module.exports = function (config) {
       terminal: true
     },
     singleRun: true,
-    frameworks: [ 'mocha', 'chai', 'sinon' ],
+    frameworks: [ 'mocha', 'chai' ],
     files: [
       'tests.webpack.js'
     ],
     preprocessors: {
       'tests.webpack.js': [ 'webpack' ]
     },
-    reporters: [ 'dots' ],
+    reporters: [ 'mocha' ],
+    mochaReporter: {
+      showDiff: true
+    },
     webpack: {
       module: {
         rules: rules

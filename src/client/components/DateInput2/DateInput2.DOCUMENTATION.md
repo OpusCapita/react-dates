@@ -16,6 +16,8 @@ DateInput2 is
   dateFormat="DD.MM.YYYY"
   date={_scope.state.date}
   onChange={_scope.handleChange.bind(_scope)}
+  onFocus={() => console.log('focus')}
+  onBlur={() => console.log('blur')}
 />
 ```
 
