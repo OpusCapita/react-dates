@@ -51,12 +51,10 @@ class DateInput2 extends Component {
 
   handleElementActivation(event) {
     let isInputActivated = Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === event.target);
-    console.log('a', this.state.lastActiveElement);
-    console.log('b', this.isLastActiveElementInside());
     if(isInputActivated && !this.isLastActiveElementInside()) {
       this.props.onFocus();
     }
-    if(!isInputActivated) {
+    if(!isInputActivated && this.isLastActiveElementInside()) {
       this.props.onBlur();
     }
     this.setState({ lastActiveElement: event.target });
@@ -192,8 +190,8 @@ class DateInput2 extends Component {
       date,
       locale,
       onChange,
-      onFocus,
       onPartFocus,
+      onFocus,
       onBlur,
       onCantMoveLeft,
       onCantMoveRight,
@@ -208,7 +206,6 @@ class DateInput2 extends Component {
 
     // console.log('state:', this.state);
     // console.log('this:', this.state.activeInputKey, this.state.activeInputValue);
-
 
     let formatPartElements = dateFormatParts.map((format, index) => {
       let key = index.toString();

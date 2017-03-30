@@ -53,18 +53,22 @@ describe('<DateInput2 />', () => {
       expect(spy).to.have.been.called;
     });
 
-    it('should\'t call onFocus prop if one of format inputs has been focused', () => {
+    it('should\'t call onFocus prop if one of format inputs has been focused', (done) => {
       let spy = sinon.spy();
       let wrapper = mount(<DateInput onFocus={spy} />, { attachTo: document.body });
 
+      let inputElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').at(0);
       let inputDOMElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
       let inputDOMElement_2 = wrapper.find('.opuscapita_date-input__format-part-input').get(1);
       let inputDOMElement_3 = wrapper.find('.opuscapita_date-input__format-part-input').get(2);
 
-      inputDOMElement_1.focus();
-      inputDOMElement_2.focus();
-      inputDOMElement_3.focus();
-      expect(spy.calledOnce).to.be.true;
+      inputElement_1.simulate('click');
+      // inputDOMElement_2.focus();
+      // inputDOMElement_3.focus();
+      setTimeout(() => {
+        expect(spy.called).to.be.true;
+        done();
+      }, 500);
 
       wrapper.detach();
     });
@@ -89,7 +93,6 @@ describe('<DateInput2 />', () => {
       inputDOMElement_3.focus();
       lastInputDOMElement.focus();
 
-      console.log('spy!!!', focusSpy);
       // expect(focusSpy.calledThrice).to.be.true;
       // expect(blurSpy.calledOnce).to.be.true;
 
