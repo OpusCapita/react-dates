@@ -207,9 +207,6 @@ class DateInput2 extends Component {
 
       let value = key === activeInputKey ? activeInputValue : this.formatInputValue(format);
 
-      // console.log('value:', value);
-      // console.log('date:', date);
-
       let refHandler = (element) => element === null ?
           this.handleInputUnmount(key):
           this.handleInputMount(key, element);

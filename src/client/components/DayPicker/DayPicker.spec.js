@@ -26,15 +26,13 @@ describe('<DayPicker />', () => {
       />
     );
     let reactDayPickerElement = wrapper.find(ReactDayPicker);
-    expect(reactDayPickerElement).to.have.className('picker');
-    expect(reactDayPickerElement).to.not.have.className('container');
-    expect(reactDayPickerElement).to.not.have.props({ 'aria-label': 'day-picker' });
-    expect(reactDayPickerElement).to.have.props({
-      tabIndex: 4,
-      locale: 'en-GB',
-      enableOutsideDays: true,
-      fixedWeeks: true
-    });
+    expect(reactDayPickerElement.hasClass('picker')).to.be.true;
+    expect(reactDayPickerElement.hasClass('container')).to.be.false;
+    expect(reactDayPickerElement.prop('aria-label')).to.be.undefined;
+    expect(reactDayPickerElement.prop('tabIndex')).to.equal(4);
+    expect(reactDayPickerElement.prop('locale')).to.equal('en-GB');
+    expect(reactDayPickerElement.prop('enableOutsideDays')).to.equal(true);
+    expect(reactDayPickerElement.prop('fixedWeeks')).to.equal(true);
   });
 
   it('should pass non specific ReactDayPicker props to container div', () => {
@@ -50,27 +48,25 @@ describe('<DayPicker />', () => {
       />
     );
     let containerDiv = wrapper.find('.opuscapita_day-picker');
-    expect(containerDiv).to.not.have.className('picker');
-    expect(containerDiv).to.have.className('container');
-    expect(containerDiv).to.have.props({ 'aria-label': 'day-picker' });
-    expect(containerDiv).to.not.have.props({
-      tabIndex: 4,
-      locale: 'en-GB',
-      enableOutsideDays: true,
-      fixedWeeks: true
-    });
+    expect(containerDiv.hasClass('picker')).to.be.false;
+    expect(containerDiv.hasClass('container')).to.be.true;
+    expect(containerDiv.prop('aria-label')).to.equal('day-picker');
+    expect(containerDiv.prop('tabIndex')).to.be.undefined;
+    expect(containerDiv.prop('locale')).to.be.undefined;
+    expect(containerDiv.prop('enableOutsideDays')).to.be.undefined;
+    expect(containerDiv.prop('fixedWeeks')).to.be.undefined;
   });
 
   it('should have the right class name', () => {
     let wrapper = shallow(<DayPicker className="test-class-name" />);
-    expect(wrapper).to.have.className('opuscapita_day-picker');
-    expect(wrapper).to.have.className('test-class-name');
+    expect(wrapper.hasClass('opuscapita_day-picker')).to.be.true;
+    expect(wrapper.hasClass('test-class-name')).to.be.true;
   });
 
   it('should pass props to ReactDayPicker', () => {
     let wrapper = shallow(<DayPicker className="test-class-name" firstDayOfWeek={0} />);
     let reactDayPicker = wrapper.find(ReactDayPicker);
-    expect(reactDayPicker).to.have.prop('firstDayOfWeek', 0);
+    expect(reactDayPicker.prop('firstDayOfWeek')).to.equal(0);
   });
 
   it('should call dayPickerRef when react-day-picker mounted', () => {
