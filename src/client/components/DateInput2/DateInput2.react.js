@@ -71,7 +71,6 @@ class DateInput2 extends Component {
     if(this.state.isLastInputSelected) {
       return this.props.onCantMoveRight();
     }
-
     let { activeInputKey } = this.state;
     let currentInputIndex = Object.keys(this.inputs).indexOf(activeInputKey);
     let key = Object.keys(this.inputs)[currentInputIndex + 1];
@@ -97,6 +96,10 @@ class DateInput2 extends Component {
     this.setState({ dateFormatParts });
   }
 
+  isLastActiveElementInside() {
+    return Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === this.state.lastActiveElement);
+  }
+
   handleInputMount(key, element) {
     this.inputs[key] = element;
   }
@@ -105,13 +108,10 @@ class DateInput2 extends Component {
     delete this.inputs[key];
   }
 
-
-  isLastActiveElementInside() {
-    return Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === this.state.lastActiveElement);
-  }
-
   handleBodyClick(event) {
-    let isActiveElementInside = Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === document.activeElement);
+    let isActiveElementInside = Object.keys(this.inputs).some(
+      inputKey => this.inputs[inputKey] === document.activeElement
+    );
     if(this.isLastActiveElementInside() && !isActiveElementInside) {
       this.props.onBlur();
     }
@@ -137,6 +137,9 @@ class DateInput2 extends Component {
 
   handleActiveInputChange(event, format) {
     let value = event.target.value;
+    let currentInputIndex = Object.keys(this.inputs).indexOf(this.state.activeInputKey);
+    let isLastInput = currentInputIndex === Object.keys(this.inputs).length - 1;
+
     this.setState({ activeInputValue: event.target.value });
     if(value.length === format.view.length) {
       this.focusNextInput();
@@ -187,7 +190,7 @@ class DateInput2 extends Component {
 
   handleKeyDown(event) {
     switch(event.which) {
-      case 37: this.handleArrowLeft(); break; // Arrow Left
+    case 37: this.handleArrowLeft(); break; // Arrow Left
       case 39: this.handleArrowRight(); break; // Arrow Right
       case 38: this.handleArrowUp(); break; // Arrow Up
       case 40: this.handleArrowDown(); break; // Arrow Down

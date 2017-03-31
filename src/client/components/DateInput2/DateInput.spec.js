@@ -45,73 +45,49 @@ describe('<DateInput2 />', () => {
     //   let wrapper = shallow(<DateInput />);
     // });
 
-    it('should call onFocus prop', () => {
-      let spy = sinon.spy();
-      let root = document.createElement('div');
-      root.id = 'root';
-      document.body.appendChild(root);
-      ReactDOM.render(<DateInput onFocus={spy} />, root);
-      let input = document.querySelector('.opuscapita_date-input__format-part-input');
-      // input.addEventListener('click', () => console.log('FOCUS LISTENER'));
-      input.click();
-      // let inputElement = wrapper.find('.opuscapita_date-input__format-part-input').at(0);
-      // let inputDOMElement = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
-      // console.log('!!!inputElement!!!', inputElement);
-      // console.log('!!!inputDOMElement!!!', inputDOMElement);
-      // inputDOMElement.focus();
-      // inputElement.simulate('click');
-      console.log('ACTIVE!!!', document.activeElement);
+    it('should call onFocus prop if date format input being focused', () => {
+      let spy_1_1 = sinon.spy();
+      let wrapper_1_1 = mount(<DateInput onFocus={spy_1_1} />, { attachTo: document.body });
+      let inputReactElement_1_1 = wrapper_1_1.find('.opuscapita_date-input__format-part-input').get(0);
+      inputReactElement_1_1.focus();
+      expect(spy_1_1.calledOnce).to.be.true;
+      wrapper_1_1.detach();
 
-      expect(spy.called).to.be.true;
-
-      // wrapper.detach();
+      let spy_2_1 = sinon.spy();
+      let wrapper_2_1 = mount(<DateInput onFocus={spy_2_1} />, { attachTo: document.body });
+      let inputReactElement_2_1 = wrapper_2_1.find('.opuscapita_date-input__format-part-input').get(1);
+      let inputReactElement_2_2 = wrapper_2_1.find('.opuscapita_date-input__format-part-input').get(2);
+      inputReactElement_2_1.focus();
+      inputReactElement_2_2.focus();
+      expect(spy_2_1.calledOnce).to.be.true;
+      wrapper_2_1.detach();
     });
 
-    // it('should\'t call onFocus prop if one of format inputs has been focused', (done) => {
-    //   let spy = sinon.spy();
-    //   let wrapper = mount(<DateInput onFocus={spy} />, { attachTo: document.body });
+    it('should\'t call onBlur if all format inputs being unfocused', () => {
+      let inputFocusSpy_1 = sinon.spy();
+      let inputFocusSpy_2 = sinon.spy();
+      let formatInputFocusSpy = sinon.spy();
+      let formatInputBlurSpy = sinon.spy();
+      let wrapper = mount((
+        <div>
+          <input className="input-1" onFocus={inputFocusSpy_1} />
+            <DateInput onBlur={formatInputBlurSpy} onFocus={formatInputFocusSpy} />
+          <input className="input-2" onFocus={inputFocusSpy_2} />
+        </div>
+      ), { attachTo: document.body });
 
-    //   let inputElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').at(0);
-    //   let inputDOMElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
-    //   let inputDOMElement_2 = wrapper.find('.opuscapita_date-input__format-part-input').get(1);
-    //   let inputDOMElement_3 = wrapper.find('.opuscapita_date-input__format-part-input').get(2);
+      let inputReactElement_1 = wrapper.find('.input-1').get(0);
+      let inputReactElement_2 = wrapper.find('.input-2').get(0);
+      let formatInputReactElement = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
 
-    //   inputElement_1.simulate('click');
-    //   // inputDOMElement_2.focus();
-    //   // inputDOMElement_3.focus();
-    //   setTimeout(() => {
-    //     expect(spy.called).to.be.true;
-    //     done();
-    //   }, 500);
-
-    //   wrapper.detach();
-    // });
-
-    // it('should call onBlur prop', () => {
-    //   let focusSpy = sinon.spy();
-    //   let blurSpy = sinon.spy();
-    //   let wrapper = mount((
-    //     <div>
-    //       <DateInput dateFormat="DD/MM/YYYY" onFocus={focusSpy} onBlur={blurSpy} />
-    //       <input className="last-input" type="text" />
-    //     </div>
-    //   ), { attachTo: document.body });
-
-    //   let inputDOMElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
-    //   let inputDOMElement_2 = wrapper.find('.opuscapita_date-input__format-part-input').get(1);
-    //   let inputDOMElement_3 = wrapper.find('.opuscapita_date-input__format-part-input').get(2);
-    //   let lastInputDOMElement = wrapper.find('.last-input').get(0);
-
-    //   inputDOMElement_1.focus();
-    //   inputDOMElement_2.focus();
-    //   inputDOMElement_3.focus();
-    //   lastInputDOMElement.focus();
-
-    //   // expect(focusSpy.calledThrice).to.be.true;
-    //   // expect(blurSpy.calledOnce).to.be.true;
-
-    //   wrapper.detach();
-    // });
+      inputReactElement_1.focus();
+      expect(inputFocusSpy_1.calledOnce).to.be.true;
+      formatInputReactElement.focus();
+      expect(formatInputFocusSpy.calledOnce).to.be.true;
+      inputReactElement_2.focus();
+      expect(inputFocusSpy_2.calledOnce).to.be.true;
+      wrapper.detach();
+    });
 
     // it('should call onChange prop on date-picker value selection', () => {
     //   let wrapper = shallow(<DateInput />);
@@ -123,39 +99,57 @@ describe('<DateInput2 />', () => {
 
   });
 
-  // describe('key navigation', () => {
-  //   it('should move to next dateFormat part on pres Right-Arrow', () => {
-  //     let wrapper = shallow(<DateInput />);
-  //   });
+  describe('key navigation', () => {
+    it('should move to next dateFormat part on press Right-Arrow', (done) => {
+      // let root = document.createElement('div');
+      // root.id = 'root';
+      // document.body.appendChild(root);
+      // ReactDOM.render(<DateInput />, root);
 
-  //   it('should move to next dateFormat part on press TAB', () => {
-  //     let wrapper = shallow(<DateInput />);
-  //   });
+      // let inputReactElement_1 = ReactDOM.findDOMNode('.opuscapita_date-input__format-part-input')[0];
+      // let inputReactElement_2 = ReactDOM.findDOMNode('.opuscapita_date-input__format-part-input')[1];
+      // let inputReactElement_3 = ReactDOM.findDOMNode('.opuscapita_date-input__format-part-input')[2];
 
-  //   it('should move to prev dateFormat part on press Left-Arrow', () => {
-  //     let wrapper = shallow(<DateInput />);
-  //   });
+      // ReactDOM.findDOMNode(inputReactElement_1).focus();
+      // console.log('!!! ACTIVE ELEMENT 1:', document.activeElement);
 
-  //   it('should move to prev dateFormat part on press Shift-TAB', () => {
-  //     let wrapper = shallow(<DateInput />);
-  //   });
+      // let keyDownEvent = new Event("keydown", { which: 39, keyCode: 39 });
+      // document.dispatchEvent(keyDownEvent);
+      // setTimeout(() => {
+      //   console.log('!!! ACTIVE ELEMENT 2:', document.activeElement);
+      //   done();
+      // }, 1000);
 
-  //   it('should move to next focusable element in DOM on press TAB if last dateFormat part selected', () => {
-  //     let wrapper = shallow(<DateInput />);
-  //   });
+    });
 
-  //   it('should move to prev focusable element in DOM on press Shift-TAB if first dateFormat part selected', () => {
-  //     let wrapper = shallow(<DateInput />);
-  //   });
+    // it('should move to next dateFormat part on press TAB', () => {
+    //   let wrapper = shallow(<DateInput />);
+    // });
 
-  //   it('should change dateFormat part to next possible value on press Down-Arrow', () => {
-  //     let wrapper = shallow(<DateInput />);
-  //   });
+    // it('should move to prev dateFormat part on press Left-Arrow', () => {
+    //   let wrapper = shallow(<DateInput />);
+    // });
 
-  //   it('should change dateFormat part to prev possible value on press Up-Arrow', () => {
-  //     let wrapper = shallow(<DateInput />);
-  //   });
-  // });
+    // it('should move to prev dateFormat part on press Shift-TAB', () => {
+    //   let wrapper = shallow(<DateInput />);
+    // });
+
+    // it('should move to next focusable element in DOM on press TAB if last dateFormat part selected', () => {
+    //   let wrapper = shallow(<DateInput />);
+    // });
+
+    // it('should move to prev focusable element in DOM on press Shift-TAB if first dateFormat part selected', () => {
+    //   let wrapper = shallow(<DateInput />);
+    // });
+
+    // it('should change dateFormat part to next possible value on press Down-Arrow', () => {
+    //   let wrapper = shallow(<DateInput />);
+    // });
+
+    // it('should change dateFormat part to prev possible value on press Up-Arrow', () => {
+    //   let wrapper = shallow(<DateInput />);
+    // });
+  });
 });
 
 // it('should show date-picker popup on focus', () => {
