@@ -25,16 +25,15 @@ class DateInput2 extends Component {
       isLastInputSelected: false,
       isFirstInputSelected: false,
       dateFormatParts: [],
-      lastActiveElement: document.activeElement
+      lastActiveElement: null
     };
     this.inputs = {};
-    this.handleElementActivation = this.handleElementActivation.bind(this);
+    this.handleBodyClick = this.handleBodyClick.bind(this);
   }
 
   componentDidMount() {
     this.setDateFormat(this.props);
-    document.body.addEventListener('click', this.handleElementActivation);
-    document.body.addEventListener('focus', this.handleElementActivation);
+    document.body.addEventListener('click', this.handleBodyClick);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,23 +44,7 @@ class DateInput2 extends Component {
 
   componentWillUnmount() {
     this.clearSelectTextTimeout();
-    document.body.removeEventListener('click', this.handleElementActivation);
-    document.body.removeEventListener('focus', this.handleElementActivation);
-  }
-
-  handleElementActivation(event) {
-    let isInputActivated = Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === event.target);
-    if(isInputActivated && !this.isLastActiveElementInside()) {
-      this.props.onFocus();
-    }
-    if(!isInputActivated && this.isLastActiveElementInside()) {
-      this.props.onBlur();
-    }
-    this.setState({ lastActiveElement: event.target });
-  }
-
-  isLastActiveElementInside() {
-    return Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === this.state.lastActiveElement);
+    document.body.removeEventListener('click', this.handleBodyClick);
   }
 
   formatInputValue(format) {
@@ -122,6 +105,36 @@ class DateInput2 extends Component {
     delete this.inputs[key];
   }
 
+
+  isLastActiveElementInside() {
+    return Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === this.state.lastActiveElement);
+  }
+
+  handleBodyClick(event) {
+    let isActiveElementInside = Object.keys(this.inputs).some(inputKey => this.inputs[inputKey] === document.activeElement);
+    if(this.isLastActiveElementInside() && !isActiveElementInside) {
+      this.props.onBlur();
+    }
+    this.setState({ lastActiveElement: event.target });
+  }
+
+  handleInputKeyDown(event) {
+    let inputKeys = Object.keys(this.inputs);
+    let lastInputKey = inputKeys[inputKeys.length - 1];
+    let firstInputKey = inputKeys[0];
+    let isFirstInput = this.inputs[firstInputKey] === event.target;
+    let isLastInput = this.inputs[lastInputKey] === event.target;
+    let isTabKey = event.which === 9;
+    if(isTabKey && isLastInput && !event.shiftKey) {
+      this.props.onBlur();
+      this.setState({ lastActiveElement: null });
+    }
+    if(isTabKey && isFirstInput && event.shiftKey) {
+      this.props.onBlur();
+      this.setState({ lastActiveElement: null });
+    }
+  }
+
   handleActiveInputChange(event, format) {
     let value = event.target.value;
     this.setState({ activeInputValue: event.target.value });
@@ -136,17 +149,18 @@ class DateInput2 extends Component {
     let isFirstInput = currentInputIndex === 0;
     let isLastInput = currentInputIndex === Object.keys(this.inputs).length - 1;
 
+    if(!this.isLastActiveElementInside()) {
+      this.props.onFocus();
+    }
+
     this.selectText(this.inputs[key]);
     this.setState({
       activeInputKey: key,
       activeInputValue: event.target.value,
       isLastInputSelected: isLastInput,
-      isFirstInputSelected: isFirstInput
+      isFirstInputSelected: isFirstInput,
+      lastActiveElement: event.target
     });
-  }
-
-  handleInputBlur(event, key) {
-
   }
 
   handleDelete() {
@@ -204,9 +218,6 @@ class DateInput2 extends Component {
       activeInputValue
     } = this.state;
 
-    // console.log('state:', this.state);
-    // console.log('this:', this.state.activeInputKey, this.state.activeInputValue);
-
     let formatPartElements = dateFormatParts.map((format, index) => {
       let key = index.toString();
       if (!format.type) {
@@ -233,8 +244,8 @@ class DateInput2 extends Component {
             placeholder={format.view}
             ref={refHandler}
             onFocus={event => this.handleInputFocus(event, key)}
-            onBlur={event => this.handleInputBlur(event, key)}
             onChange={(event) => key === activeInputKey && this.handleActiveInputChange(event, format)}
+            onKeyDown={this.handleInputKeyDown.bind(this)}
             disabled={disabled}
           />
         </div>

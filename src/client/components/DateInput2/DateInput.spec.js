@@ -10,11 +10,11 @@ describe('<DateInput2 />', () => {
 
   // });
 
-  it('should have the right class name', () => {
-    let wrapper = shallow(<DateInput className="test-class-name" />);
-    expect(wrapper.hasClass('test-class-name')).to.be.true;
-    expect(wrapper.hasClass('opuscapita_date-input')).to.be.true;
-  });
+  // it('should have the right class name', () => {
+  //   let wrapper = shallow(<DateInput className="test-class-name" />);
+  //   expect(wrapper.hasClass('test-class-name')).to.be.true;
+  //   expect(wrapper.hasClass('opuscapita_date-input')).to.be.true;
+  // });
 
   // it('should became disabled if disabled prop is truthy', () => {
   //   let wrapper = shallow(<DateInput />);
@@ -47,61 +47,75 @@ describe('<DateInput2 />', () => {
 
     it('should call onFocus prop', () => {
       let spy = sinon.spy();
-      let wrapper = mount(<DateInput onFocus={spy} />);
-      let formatPartInput = wrapper.find('.opuscapita_date-input__format-part-input').first();
-      formatPartInput.simulate('focus');
-      expect(spy).to.have.been.called;
+      let root = document.createElement('div');
+      root.id = 'root';
+      document.body.appendChild(root);
+      ReactDOM.render(<DateInput onFocus={spy} />, root);
+      let input = document.querySelector('.opuscapita_date-input__format-part-input');
+      // input.addEventListener('click', () => console.log('FOCUS LISTENER'));
+      input.click();
+      // let inputElement = wrapper.find('.opuscapita_date-input__format-part-input').at(0);
+      // let inputDOMElement = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
+      // console.log('!!!inputElement!!!', inputElement);
+      // console.log('!!!inputDOMElement!!!', inputDOMElement);
+      // inputDOMElement.focus();
+      // inputElement.simulate('click');
+      console.log('ACTIVE!!!', document.activeElement);
+
+      expect(spy.called).to.be.true;
+
+      // wrapper.detach();
     });
 
-    it('should\'t call onFocus prop if one of format inputs has been focused', (done) => {
-      let spy = sinon.spy();
-      let wrapper = mount(<DateInput onFocus={spy} />, { attachTo: document.body });
+    // it('should\'t call onFocus prop if one of format inputs has been focused', (done) => {
+    //   let spy = sinon.spy();
+    //   let wrapper = mount(<DateInput onFocus={spy} />, { attachTo: document.body });
 
-      let inputElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').at(0);
-      let inputDOMElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
-      let inputDOMElement_2 = wrapper.find('.opuscapita_date-input__format-part-input').get(1);
-      let inputDOMElement_3 = wrapper.find('.opuscapita_date-input__format-part-input').get(2);
+    //   let inputElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').at(0);
+    //   let inputDOMElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
+    //   let inputDOMElement_2 = wrapper.find('.opuscapita_date-input__format-part-input').get(1);
+    //   let inputDOMElement_3 = wrapper.find('.opuscapita_date-input__format-part-input').get(2);
 
-      inputElement_1.simulate('click');
-      // inputDOMElement_2.focus();
-      // inputDOMElement_3.focus();
-      setTimeout(() => {
-        expect(spy.called).to.be.true;
-        done();
-      }, 500);
+    //   inputElement_1.simulate('click');
+    //   // inputDOMElement_2.focus();
+    //   // inputDOMElement_3.focus();
+    //   setTimeout(() => {
+    //     expect(spy.called).to.be.true;
+    //     done();
+    //   }, 500);
 
-      wrapper.detach();
-    });
+    //   wrapper.detach();
+    // });
 
-    it('should call onBlur prop', () => {
-      let focusSpy = sinon.spy();
-      let blurSpy = sinon.spy();
-      let wrapper = mount((
-        <div>
-          <DateInput dateFormat="DD/MM/YYYY" onFocus={focusSpy} onBlur={blurSpy} />
-          <input className="last-input" type="text" />
-        </div>
-      ), { attachTo: document.body });
+    // it('should call onBlur prop', () => {
+    //   let focusSpy = sinon.spy();
+    //   let blurSpy = sinon.spy();
+    //   let wrapper = mount((
+    //     <div>
+    //       <DateInput dateFormat="DD/MM/YYYY" onFocus={focusSpy} onBlur={blurSpy} />
+    //       <input className="last-input" type="text" />
+    //     </div>
+    //   ), { attachTo: document.body });
 
-      let inputDOMElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
-      let inputDOMElement_2 = wrapper.find('.opuscapita_date-input__format-part-input').get(1);
-      let inputDOMElement_3 = wrapper.find('.opuscapita_date-input__format-part-input').get(2);
-      let lastInputDOMElement = wrapper.find('.last-input').get(0);
+    //   let inputDOMElement_1 = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
+    //   let inputDOMElement_2 = wrapper.find('.opuscapita_date-input__format-part-input').get(1);
+    //   let inputDOMElement_3 = wrapper.find('.opuscapita_date-input__format-part-input').get(2);
+    //   let lastInputDOMElement = wrapper.find('.last-input').get(0);
 
-      inputDOMElement_1.focus();
-      inputDOMElement_2.focus();
-      inputDOMElement_3.focus();
-      lastInputDOMElement.focus();
+    //   inputDOMElement_1.focus();
+    //   inputDOMElement_2.focus();
+    //   inputDOMElement_3.focus();
+    //   lastInputDOMElement.focus();
 
-      // expect(focusSpy.calledThrice).to.be.true;
-      // expect(blurSpy.calledOnce).to.be.true;
+    //   // expect(focusSpy.calledThrice).to.be.true;
+    //   // expect(blurSpy.calledOnce).to.be.true;
 
-      wrapper.detach();
-    });
+    //   wrapper.detach();
+    // });
 
-    it('should call onChange prop on date-picker value selection', () => {
-      let wrapper = shallow(<DateInput />);
-    });
+    // it('should call onChange prop on date-picker value selection', () => {
+    //   let wrapper = shallow(<DateInput />);
+    // });
 
     // it('should call onChange prop on date-picker value selection', () => {
     //   let wrapper = shallow(<DateInput />);
