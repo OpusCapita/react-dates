@@ -3,7 +3,7 @@ import moment from 'moment';
 import assign from 'lodash/assign';
 import DateInputPart from '../DateInputPart';
 import FORMATS from './formats';
-import './DateInput2.less';
+import './DateInputField.less';
 
 function splitFormats(dateFormat, supportedDateFormats) {
   let dateFormatParts = dateFormat.split(/\b/);
@@ -16,7 +16,7 @@ function splitFormats(dateFormat, supportedDateFormats) {
 }
 
 export default
-class DateInput2 extends Component {
+class DateInputField extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -137,21 +137,67 @@ class DateInput2 extends Component {
 
   handleActiveInputChange(event, format) {
     let value = event.target.value;
-    let currentInputIndex = Object.keys(this.inputs).indexOf(this.state.activeInputKey);
-    let isLastInput = currentInputIndex === Object.keys(this.inputs).length - 1;
+    let isNumericValue = /^\d+$/.test(value);
+    if(!isNumericValue) {
+      this.selectText(this.inputs[this.state.activeInputKey]);
+      return false;
+    }
 
     this.setState({ activeInputValue: event.target.value });
     if(value.length === format.view.length) {
-      this.focusNextInput();
+      this.handleInputFill();
     }
+  }
+
+  handleInputFill(inputKey) {
+    let currentInputIndex = Object.keys(this.inputs).indexOf(this.state.activeInputKey);
+    let isLastInput = currentInputIndex === Object.keys(this.inputs).length - 1;
+    let dateString = this.getDateString();
+    let momentDate = moment(dateString, this.props.dateFormat);
+    let error = this.getValidationError(momentDate);
+
+    if(typeof error === 'number') {
+      console.log(error);
+      this.props.onError(error);
+      this.selectText(this.inputs[this.state.activeInputKey]);
+      return null;
+    }
+
+    if(error === null) {
+      console.log(dateString);
+      let newDate = new Date(momentDate.toISOString());
+      if(isLastInput) {
+        this.selectText(this.inputs[this.state.activeInputKey]);
+      } else {
+        this.focusNextInput();
+      }
+      this.props.onChange(newDate);
+      return null;
+    }
+  }
+
+  getDateString() {
+    return Object.keys(this.state.dateFormatParts).reduce((result, key) => {
+      let value = this.state.dateFormatParts[key].type ?
+        this.inputs[key].value :
+        this.state.dateFormatParts[key].view;
+
+      return result.concat(value);
+    }, '');
+  }
+
+  getValidationError(momentDate) {
+    if(!momentDate.isValid()) {
+      return momentDate.invalidAt();
+    }
+    return null;
   }
 
   handleInputFocus(event, key) {
     event.preventDefault();
-    let currentInputIndex = Object.keys(this.inputs).indexOf(this.state.activeInputKey);
+    let currentInputIndex = Object.keys(this.inputs).indexOf(key);
     let isFirstInput = currentInputIndex === 0;
     let isLastInput = currentInputIndex === Object.keys(this.inputs).length - 1;
-
     if(!this.isLastActiveElementInside()) {
       this.props.onFocus();
     }
@@ -169,6 +215,7 @@ class DateInput2 extends Component {
   handleDelete() {
     let firstInputKey = Object.keys(this.inputs)[0];
     this.inputs[firstInputKey].focus();
+    this.setState({ activeInputValue: '' });
     this.props.onChange(null);
   }
 
@@ -238,10 +285,10 @@ class DateInput2 extends Component {
           this.handleInputMount(key, element);
 
       return (
-        <div className={`opuscapita_date-input__format-part ${className}`} title={format.type} key={index}>
+        <div className={`opuscapita_date-input-field__format-part ${className}`} title={format.type} key={index}>
           <input
             type="text"
-            className={`opuscapita_date-input__format-part-input`}
+            className={`opuscapita_date-input-field__format-part-input`}
             style={{ width:`${(format.view.length || 1) + 0.5}ch` }}
             value={value}
             placeholder={format.view}
@@ -257,7 +304,7 @@ class DateInput2 extends Component {
 
     return (
       <div
-        className={`opuscapita_date-input ${className}`}
+        className={`opuscapita_date-input-field ${className}`}
         onKeyDown={this.handleKeyDown.bind(this)}
         { ...restProps }
       >
@@ -267,7 +314,7 @@ class DateInput2 extends Component {
   }
 }
 
-DateInput2.propTypes = {
+DateInputField.propTypes = {
   dateFormat: PropTypes.string,
   disabled: PropTypes.bool,
   className: PropTypes.string,
@@ -276,10 +323,11 @@ DateInput2.propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  onError: PropTypes.func,
   onCantMoveLeft: PropTypes.func,
   onCantMoveRight: PropTypes.func
 };
-DateInput2.defaultProps = {
+DateInputField.defaultProps = {
   dateFormat: 'DD.MM.YYYY',
   disabled: false,
   className: '',
@@ -288,6 +336,7 @@ DateInput2.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onError: () => {},
   onCantMoveLeft: () => {},
   onCantMoveRight: () => {}
 };

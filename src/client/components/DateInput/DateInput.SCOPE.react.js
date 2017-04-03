@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import { showroomScopeDecorator } from 'opuscapita-showroom-client';
+/*
+   What is a SCOPE file. See documentation here:
+   https://github.com/OpusCapitaBES/js-react-showroom-client/blob/master/docs/scope-component.md
+*/
 
-export default
+import React, { Component, PropTypes } from 'react';
+import { showroomScopeDecorator } from 'opuscapita-showroom-client';
+import I18nContext from 'opuscapita-react-i18n';
+
+
 @showroomScopeDecorator
+export default
 class DateInputScope extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      date: undefined
-    };
-  }
-
-  handleChange(date) {
-    this.setState({ date });
+    this.state = {};
   }
 
   render() {
@@ -23,3 +24,10 @@ class DateInputScope extends Component {
     );
   }
 }
+
+DateInputScope.contextTypes = {
+  i18n: PropTypes.object
+};
+DateInputScope.childContextTypes = {
+  i18n: PropTypes.object
+};

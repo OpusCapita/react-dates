@@ -10,7 +10,7 @@ import I18nContext from 'opuscapita-react-i18n';
 
 @showroomScopeDecorator
 export default
-class DateInput2Scope extends Component {
+class DateInputFieldScope extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +19,7 @@ class DateInput2Scope extends Component {
   }
 
   handleChange(date) {
+    console.log('SCOPE handleChange:', date);
     this.setState({ date });
   }
 
@@ -31,9 +32,9 @@ class DateInput2Scope extends Component {
   }
 }
 
-DateInput2Scope.contextTypes = {
+DateInputFieldScope.contextTypes = {
   i18n: PropTypes.object
 };
-DateInput2Scope.childContextTypes = {
+DateInputFieldScope.childContextTypes = {
   i18n: PropTypes.object
 };
