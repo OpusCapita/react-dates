@@ -113,6 +113,7 @@ class DateInputField extends Component {
       inputKey => this.inputs[inputKey] === document.activeElement
     );
     if(this.isLastActiveElementInside() && !isActiveElementInside) {
+      console.log('blur hbc')
       this.props.onBlur();
     }
     this.setState({ lastActiveElement: event.target });
@@ -126,10 +127,12 @@ class DateInputField extends Component {
     let isLastInput = this.inputs[lastInputKey] === event.target;
     let isTabKey = event.which === 9;
     if(isTabKey && isLastInput && !event.shiftKey) {
+      console.log('blur hikd')
       this.props.onBlur();
       this.setState({ lastActiveElement: null });
     }
     if(isTabKey && isFirstInput && event.shiftKey) {
+      console.log('blur hikd-2')
       this.props.onBlur();
       this.setState({ lastActiveElement: null });
     }
@@ -157,8 +160,8 @@ class DateInputField extends Component {
     let error = this.getValidationError(momentDate);
 
     if(typeof error === 'number') {
-      console.log(error);
       this.props.onError(error);
+      this.setState({ activeInputValue: '' });
       this.selectText(this.inputs[this.state.activeInputKey]);
       return null;
     }
@@ -285,7 +288,7 @@ class DateInputField extends Component {
           this.handleInputMount(key, element);
 
       return (
-        <div className={`opuscapita_date-input-field__format-part ${className}`} title={format.type} key={index}>
+        <div className={`opuscapita_date-input-field__format-part`} title={format.type} key={index}>
           <input
             type="text"
             className={`opuscapita_date-input-field__format-part-input`}
