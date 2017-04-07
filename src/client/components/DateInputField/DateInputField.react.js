@@ -40,6 +40,11 @@ class DateInputField extends Component {
     if(this.props.dateFormat !== nextProps.dateFormat) {
       this.setDateFormat(nextProps);
     }
+    if(this.props.date !== nextProps.date) {
+      let activeInputFormat = this.state.dateFormatParts[this.state.activeInputKey];
+      let activeInputValue = this.formatInputValue(activeInputFormat, nextProps.date);
+      this.setState({ activeInputValue });
+    }
   }
 
   componentWillUnmount() {
@@ -47,8 +52,7 @@ class DateInputField extends Component {
     document.body.removeEventListener('click', this.handleBodyClick);
   }
 
-  formatInputValue(format) {
-    let { date } = this.props;
+  formatInputValue(format, date) {
     if(date) {
       return moment(date).format(format.type);
     }
@@ -75,6 +79,12 @@ class DateInputField extends Component {
     let currentInputIndex = Object.keys(this.inputs).indexOf(activeInputKey);
     let key = Object.keys(this.inputs)[currentInputIndex + 1];
     if(typeof this.inputs[key] !== 'undefined') {
+      let activeInputFormat = this.state.dateFormatParts[key];
+      let activeInputValue = this.formatInputValue(activeInputFormat, this.props.date);
+      console.log('key', key);
+      console.log('activeInputFormat', activeInputFormat);
+      console.log('activeInputValue', activeInputValue);
+      this.setState({ activeInputValue });
       return this.inputs[key].focus();
     }
   }
@@ -113,7 +123,6 @@ class DateInputField extends Component {
       inputKey => this.inputs[inputKey] === document.activeElement
     );
     if(this.isLastActiveElementInside() && !isActiveElementInside) {
-      console.log('blur hbc')
       this.props.onBlur();
     }
     this.setState({ lastActiveElement: event.target });
@@ -152,8 +161,9 @@ class DateInputField extends Component {
     }
   }
 
-  handleInputFill(inputKey) {
+  handleInputFill() {
     let currentInputIndex = Object.keys(this.inputs).indexOf(this.state.activeInputKey);
+    let activeInput = this.inputs[this.state.activeInputKey];
     let isLastInput = currentInputIndex === Object.keys(this.inputs).length - 1;
     let dateString = this.getDateString();
     let momentDate = moment(dateString, this.props.dateFormat);
@@ -167,10 +177,9 @@ class DateInputField extends Component {
     }
 
     if(error === null) {
-      console.log(dateString);
       let newDate = new Date(momentDate.toISOString());
       if(isLastInput) {
-        this.selectText(this.inputs[this.state.activeInputKey]);
+        this.selectText(activeInput);
       } else {
         this.focusNextInput();
       }
@@ -281,7 +290,7 @@ class DateInputField extends Component {
         );
       }
 
-      let value = key === activeInputKey ? activeInputValue : this.formatInputValue(format);
+      let value = key === activeInputKey ? activeInputValue : this.formatInputValue(format, date);
 
       let refHandler = (element) => element === null ?
           this.handleInputUnmount(key):
