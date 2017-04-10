@@ -20,6 +20,41 @@ function splitProps(props, specificPropNames = []) {
   }, [{}, {}]);
 };
 
+const currentYear = (new Date()).getFullYear();
+const fromMonth = new Date(currentYear, 0, 1, 0, 0);
+const toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
+
+function Caption({ date, localeUtils, onChange }) {
+  const months = localeUtils.getMonths();
+
+  const years = [];
+  for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
+    years.push(i);
+  }
+
+  const handleChange = function handleChange(e) {
+    const { year, month } = e.target.form;
+    onChange(new Date(year.value, month.value));
+  };
+
+  return (
+    <form className="DayPicker-Caption">
+      <select name="month" onChange={ handleChange } value={ date.getMonth() }>
+        { months.map((month, i) =>
+          <option key={ i } value={ i }>{ month }</option>)
+        }
+      </select>
+      <select name="year" onChange={ handleChange } value={ date.getFullYear() }>
+        { years.map((year, i) =>
+          <option key={ i } value={ year }>
+            { year }
+          </option>)
+        }
+      </select>
+    </form>
+  );
+}
+
 export default
 class DayPicker extends Component {
   constructor(props) {
@@ -36,6 +71,7 @@ class DayPicker extends Component {
   handleTodayClick() {
     this.props.onChange(new Date());
   }
+
 
   render() {
     let {
@@ -61,6 +97,9 @@ class DayPicker extends Component {
             onDayClick={this.handleDateChange.bind(this)}
             onDayKeyDown={this.handleDateChange.bind(this)}
             onDayTouchEnd={this.handleDateChange.bind(this)}
+            captionElement={
+              <Caption onChange={this.handleDateChange.bind(this)} />
+            }
             { ...pickerSpecificProps }
           />
         </div>
