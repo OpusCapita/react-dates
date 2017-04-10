@@ -1,6 +1,6 @@
   /home/volkovich/vcs/js-react-dates/src/client/components/DateRange:
   total used in directory 32 available 13076780
-  drwxrwxr-x 2 volkovich volkovich 4096 Mar 22 09:33 .
+g  drwxrwxr-x 2 volkovich volkovich 4096 Mar 22 09:33 .
   drwxrwxr-x 8 volkovich volkovich 4096 Mar 22 09:32 ..
   -rw-rw-r-- 1 volkovich volkovich  707 Mar 22 09:32 DateRange.DOCUMENTATION.md
   -rw-rw-r-- 1 volkovich volkovich   15 Mar 22 09:33 DateRange.module.less

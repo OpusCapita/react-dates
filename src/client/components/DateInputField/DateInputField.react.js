@@ -12,16 +12,15 @@ class DateInputField extends Component {
     };
   }
 
-  componentDidMount() {
-
-  }
-
-  nextProps(componentWillReceiveProps) {
-
-  }
-
   componentWillUnmount() {
     this.clearSelectTextTimeout();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.date && this.props.date !== nextProps.date || this.props.dateFormat !== nextProps.dateFormat) {
+      let inputValue = moment(nextProps.date.toISOString()).format(nextProps.dateFormat);
+      this.setState({ inputValue });
+    }
   }
 
   setInputValue(props) {
@@ -42,11 +41,14 @@ class DateInputField extends Component {
   }
 
   validate(dateString, dateFormat) {
-    let momentDate = moment(dateString, dateFormat);
+    let momentDate = moment(dateString, dateFormat, true);
     let error = momentDate.isValid() ? null : momentDate.invalidAt();
 
-    if (typeof error === 'number') {
+    if (error !== null) {
       this.props.onError(error);
+    } else {
+      let date = momentDate.toDate();
+      this.props.onChange(date);
     }
   }
 
@@ -70,19 +72,21 @@ class DateInputField extends Component {
       ...restProps
     } = this.props;
 
+    console.log('date:::', date);
+
     let {
       inputValue
     } = this.state;
 
     return (
       <input
-        className={`opuscapita_date-input-field`}
+        className={`opuscapita_date-input-field form-control`}
         disabled={disabled}
         onChange={this.handleInputChange.bind(this)}
         onFocus={onFocus}
+        onBlur={onBlur}
         placeholder={dateFormat}
         ref={onRef}
-        style={{ width:`${20 + 0.5}ch` }}
         type="text"
         value={inputValue}
       />

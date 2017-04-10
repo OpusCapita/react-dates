@@ -1,121 +1,31 @@
 import React, { Component, PropTypes } from 'react';
-import s from './DateRange.module.less';
+import './DateRange.less';
 import DateInput from '../DateInput';
-import DayPicker from 'react-day-picker/lib/src/DayPicker';
-import DateUtils from 'react-day-picker/lib/src/DateUtils';
-import spring from 'react-motion/lib/spring';
-import Motion from 'react-motion/lib/Motion';
-import presets from 'react-motion/lib/presets';
-import 'react-day-picker/lib/style.css';
-
-let springPreset = presets.gentle;
 
 export default
 class DateRange extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      from: undefined,
-      to: undefined,
-      isShowPicker: false,
-      isSelectingLastDay: false
-    };
-  }
-
-  showDatePicker() {
-    this.setState({ isShowPicker: true });
-  }
-
-  hideDatePicker() {
-    this.setState({ isShowPicker: false });
-  }
-
-  handleFromInputMount(element) {
-    this.fromInput = element;
-  }
-
-  handleFromInputUnmount(element) {
-    this.fromInput = undefined;
-  }
-
-  handleToInputMount(element) {
-    this.toInput = element;
-  }
-
-  handleToInputUnmount(element) {
-    this.toInput = undefined;
-  }
-
   handleFromInputChange(date) {
-    this.setState({ from: date });
-    this.props.onChange(date, this.state.to);
+    console.log('handleFromInputChange:', date);
+    let dateRange = [date, this.props.dateRange[1]];
+    this.props.onChange(dateRange);
   }
 
   handleToInputChange(date) {
-    this.setState({ to: date });
-    this.props.onChange(this.state.from, date);
-  }
-
-  handleFromInputLast() {
-    this.toInput.focusFirstPart();
-  }
-
-  handleFromInputPressRight(partsCount, partIndex) {
-    if(partsCount - 1 === partIndex) {
-      this.toInput.focusFirstPart();
-    }
-  }
-
-  handleToInputPressLeft(partsCount, partIndex) {
-    if(partIndex === 0) {
-      this.fromInput.focusLastPart();
-    }
-  }
-
-   handleDayClick(day) {
-    const { from, isSelectingLastDay } = this.state;
-    if (!isSelectingLastDay) {
-      this.setState({
-        isSelectingLastDay: true,
-        from: day,
-        to: undefined
-      });
-    }
-    if (isSelectingLastDay && from && day < from) {
-      this.setState({
-        from: day,
-        to: undefined
-      });
-    }
-    if (isSelectingLastDay && DateUtils.isSameDay(day, from)) {
-      this.reset();
-    }
-    if (isSelectingLastDay) {
-      this.setState({ isSelectingLastDay: false });
-    }
-  }
-
-  handleDayMouseEnter(day) {
-    const { isSelectingLastDay, from } = this.state;
-    if (!isSelectingLastDay || (from && day < from) || DateUtils.isSameDay(day, from)) {
-      return;
-    }
-    this.setState({ to: day });
+    console.log('handleToInputChange:', date);
+    let dateRange = [this.props.dateRange[0], date];
+    this.props.onChange(dateRange);
   }
 
   reset() {
-    this.setState({
-      from: undefined,
-      to: undefined,
-      isSelectingLastDay: false
-    });
+    let dateRange = [null, null];
+    this.props.onChange(dateRange);
   }
 
   render() {
-    let { from, to, isShowPicker } = this.state;
     let {
       className,
       dateFormat,
+      dateRange,
       disabled,
       locale,
       positionRight,
@@ -123,73 +33,43 @@ class DateRange extends Component {
       ...restProps
     } = this.props;
 
-    let datePicker = (
-      <Motion
-        defaultStyle={{ x: this.state.isShowPicker ? 1 : 0 }}
-        style={{ x: this.state.isShowPicker ? spring(1, springPreset) : spring(0, springPreset) }}
-      >{interpolatedStyle =>
-        <div
-          className={s.datePickerContainer}
-          style={{
-            maxHeight: `${interpolatedStyle.x * 640}px`,
-            opacity: interpolatedStyle.x
-          }}
-        >
-          <DayPicker
-            numberOfMonths={ 2 }
-            initialMonth={from ? from : (to ? to : new Date())}
-            selectedDays={ day => DateUtils.isDayInRange(day, { from, to }) }
-            modifiers={{
-              from: day => DateUtils.isSameDay(day, from),
-              to: day => DateUtils.isSameDay(day, to)
-            }}
-            locale={locale}
-            onDayClick={ this.handleDayClick.bind(this) }
-            onDayMouseEnter={ this.handleDayMouseEnter.bind(this) }
-          />
-        </div>
-        }
-      </Motion>
-    );
+    let fromDate = dateRange[0];
+    let toDate = dateRange[1];
+    console.log('fromDate: ', fromDate);
+    console.log('toDate: ', toDate);
 
     return (
       <div
-        className={`form-control ${s.dateRange} ${className}`}
+        className={`opuscapita_date-range ${className}`}
         disabled={disabled}
-        style={{ padding: 0, display: 'inline-flex', width: 'auto' }}
         { ...restProps }
       >
         <DateInput
-          date={from}
+          date={fromDate}
           dateFormat={dateFormat}
-          onChange={this.handleFromInputChange.bind(this)}
-          onLast={this.handleFromInputLast.bind(this)}
-          onMount={this.handleFromInputMount.bind(this)}
-          onUnmount={this.handleFromInputMount.bind(this)}
-          onPressRight={this.handleFromInputPressRight.bind(this)}
+          onChange={(date) => console.log('f', date) || this.handleFromInputChange.call(this, date)}
           disabled={disabled}
         />
         <div
-          className={`input-group-addon ${s.divider || ''}`}
+          className={`input-group-addon opuscapita_date-range__divider`}
         >
           <i className="fa fa-arrow-right" />
         </div>
         <DateInput
-          date={to}
+          date={toDate}
           dateFormat={dateFormat}
-          onChange={this.handleToInputChange.bind(this)}
-          onMount={this.handleToInputMount.bind(this)}
-          onUnmount={this.handleToInputMount.bind(this)}
-          onPressLeft={this.handleToInputPressLeft.bind(this)}
+          onChange={(date) => console.log('t', date) || this.handleToInputChange.call(this, date)}
           disabled={disabled}
         />
         <button
-          className={`btn btn-default input-group-addon ${s.divider || ''} ${s.dividerLast || ''}`}
+          className={`
+            btn btn-default input-group-addon opuscapita_date-range__divider opuscapita_date-range__divider--last
+          `}
           tabIndex="-1"
+          onClick={this.reset.bind(this)}
         >
           <i className="fa fa-times" />
         </button>
-        {datePicker}
       </div>
     );
   }
@@ -198,10 +78,9 @@ class DateRange extends Component {
 DateRange.propTypes = {
   className: PropTypes.string,
   dateFormat: PropTypes.string,
+  dateRange: PropTypes.array,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   positionRight: PropTypes.bool,
   positionTop: PropTypes.bool
@@ -209,6 +88,7 @@ DateRange.propTypes = {
 DateRange.defaultProps = {
   className: '',
   dateFormat: 'dd.MM.yyyy',
+  dateRange: [null, null],
   disabled: false,
   locale: 'en-GB',
   onChange: () => {},

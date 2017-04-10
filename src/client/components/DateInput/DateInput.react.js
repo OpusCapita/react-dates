@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import './DateInput.less';
 import DateInputField from '../DateInputField';
-import LocaleUtils from 'react-day-picker/moment';
 import DayPicker from '../DayPicker';
 import { spring, presets, Motion} from 'react-motion';
 import assign from 'lodash/assign';
@@ -49,11 +48,11 @@ class DateInput extends Component {
     if (clickedOutside) {
       return this.hidePicker();
     }
-    return undefined;
+    return null;
   }
 
-  handleError(errorCode) {
-    this.setState({ error: errorCode });
+  handleError(error) {
+    this.setState({ error });
   }
 
   handleDateChange(date) {
@@ -75,6 +74,7 @@ class DateInput extends Component {
   }
 
   handleInputBlur() {
+    console.log('blur!');
     this.setState({ isFocused: false });
     this.hidePicker();
   }
@@ -118,8 +118,7 @@ class DateInput extends Component {
 
     let showToTopClassName = showToTop ? 'opuscapita_date-input__picker-container--to-top' : '';
     let showToLeftClassName = showToLeft ? 'opuscapita_date-input__picker-container--to-left' : '';
-    let hasErrorClassName = error ? 'opuscapita-date-input--error' : '';
-    let focusedClassName = isFocused ? 'opuscapita-date-input--focus' : '';
+    let hasErrorClassName = error === null ? '' : 'has-error';
 
     let pickerMotionElement = (
       <Motion
@@ -143,7 +142,7 @@ class DateInput extends Component {
     return (
       <div
         ref={el => (this.container = el)}
-        className={`opuscapita-date-input form-control ${hasErrorClassName} ${focusedClassName}`}
+        className={`opuscapita-date-input form-group ${hasErrorClassName}`}
       >
         <DateInputField
           date={date}

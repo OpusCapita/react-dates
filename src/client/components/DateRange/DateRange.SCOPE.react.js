@@ -7,41 +7,43 @@ import React, { Component, PropTypes } from 'react';
 import { showroomScopeDecorator } from 'opuscapita-showroom-client';
 import I18nContext from 'opuscapita-react-i18n';
 
-
 @showroomScopeDecorator
 export default
-class DateInputScope extends Component {
+class DateRangeScope extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: null
+      dateRange: [new Date(), new Date()]
     };
   }
 
-  handleChange(date) {
-    console.log('DIS date:', date);
-    this.setState({ date });
+  handleChange(dateRange) {
+    this.setState({ dateRange });
   }
 
   render() {
-    let { date } = this.state;
-    let value = date ? date.toString() : 'not selected yet';
+    let { dateRange } = this.state;
+    let from = String(dateRange[0]);
+    let to = String(dateRange[1]);
     return (
       <div>
         {this._renderChildren()}
         <div>
           <hr />
-          <strong>Date: </strong>
-          <span>{value}</span>
+          <strong>From: </strong>
+          <span>{from}</span>
+          <br />
+          <strong>To: </strong>
+          <span>{to}</span>
         </div>
       </div>
     );
   }
 }
 
-DateInputScope.contextTypes = {
+DateRangeScope.contextTypes = {
   i18n: PropTypes.object
 };
-DateInputScope.childContextTypes = {
+DateRangeScope.childContextTypes = {
   i18n: PropTypes.object
 };

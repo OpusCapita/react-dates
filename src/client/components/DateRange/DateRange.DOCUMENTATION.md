@@ -7,8 +7,9 @@ DateRange is
 
 ```
 <DateRange
-  onChange={(from, to) => console.log(from, to)}
-  dateFormat="dd/MM/yyyy"
+  onChange={_scope.handleChange.bind(_scope)}
+  dateFormat="DD/MM/YYYY"
+  dateRange={_scope.state.dateRange}
 />
 ```
 
