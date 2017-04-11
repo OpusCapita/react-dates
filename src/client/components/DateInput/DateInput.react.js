@@ -29,18 +29,21 @@ class DateInput extends Component {
     super(props);
     this.state = {
       error: null,
-      isFocused: false,
       showPicker: false
     };
     this.handleBodyClick = this.handleBodyClick.bind(this);
+    this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   componentDidMount() {
     document.body.addEventListener('click', this.handleBodyClick);
+    document.body.addEventListener('keydown', this.handleBodyKeyDown);
   }
 
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleBodyClick);
+    document.body.removeEventListener('keydown', this.handleBodyKeyDown);
   }
 
   handleBodyClick(event) {
@@ -48,7 +51,12 @@ class DateInput extends Component {
     if (clickedOutside) {
       return this.hidePicker();
     }
-    return null;
+  }
+
+  handleBodyKeyDown(event) {
+    if(event.which === 9) {
+      this.hidePicker();
+    }
   }
 
   handleError(error) {
@@ -69,14 +77,11 @@ class DateInput extends Component {
   }
 
   handleInputFocus() {
-    this.setState({ isFocused: true });
     this.showPicker();
   }
 
-  handleInputBlur() {
-    console.log('blur!');
-    this.setState({ isFocused: false });
-    this.hidePicker();
+  reset() {
+    this.props.onChange(null);
   }
 
   render() {
@@ -88,6 +93,7 @@ class DateInput extends Component {
       locale,
       showToTop,
       showToLeft,
+      showResetButton,
       onChange,
       onClick,
       onHide,
@@ -95,10 +101,7 @@ class DateInput extends Component {
       ...restProps
     } = this.props;
 
-    let {
-      error,
-      isFocused
-    } = this.state;
+    let { error } = this.state;
 
     let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
     let commonProps = splittedProps[0];
@@ -139,6 +142,18 @@ class DateInput extends Component {
       </Motion>
     );
 
+    let resetButton = showResetButton ? (
+      <button
+        className={`
+          btn btn-default opuscapita_date-input__reset-btn
+        `}
+        tabIndex="-1"
+        onClick={this.reset}
+      >
+        <i className="fa fa-times" />
+      </button>
+    ) : null;
+
     return (
       <div
         ref={el => (this.container = el)}
@@ -150,8 +165,8 @@ class DateInput extends Component {
           onChange={this.handleDateChange.bind(this)}
           onError={this.handleError.bind(this)}
           onFocus={this.handleInputFocus.bind(this)}
-          onBlur={this.handleInputBlur.bind(this)}
         />
+        {resetButton}
         {pickerMotionElement}
       </div>
     );
@@ -166,6 +181,7 @@ DateInput.propTypes = {
   locale: PropTypes.string,
   showToTop: PropTypes.bool,
   showToLeft: PropTypes.bool,
+  showResetButton: PropTypes.bool,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   onHide: PropTypes.func,
@@ -179,6 +195,7 @@ DateInput.defaultProps = {
   locale: 'en-GB',
   showToTop: false,
   showToLeft: false,
+  showResetButton: false,
   onChange: () => {},
   onClick: () => {},
   onHide: () => {},

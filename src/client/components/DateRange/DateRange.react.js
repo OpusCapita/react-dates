@@ -58,7 +58,7 @@ class DateRange extends Component {
         <DateInput
           date={toDate}
           dateFormat={dateFormat}
-          onChange={(date) => console.log('t', date) || this.handleToInputChange.call(this, date)}
+          onChange={(date) => this.handleToInputChange.call(this, date)}
           disabled={disabled}
         />
         <button

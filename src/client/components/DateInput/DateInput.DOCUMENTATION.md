@@ -16,6 +16,7 @@ DateInput is
   date={_scope.state.date}
   dateFormat="DD.MM.YYYY"
   onChange={_scope.handleChange.bind(_scope)}
+  showResetButton={true}
 />
 ```
 

@@ -1,8 +1,10 @@
 @opuscapita_date-input__picker-container_offset: 8px;
 
 .opuscapita-date-input {
+  display: inline-flex;
   position: relative;
   margin-bottom: 0;
+  z-index: 1;
 }
 
 .opuscapita_date-input__picker-container {
@@ -30,4 +32,12 @@
 .opuscapita_date-input__picker-container--to-left {
   left: auto;
   right: 0;
+}
+
+.opuscapita_date-input__reset-btn {
+  align-items: center;
+  border-left: none;
+  box-shadow: none;
+  display: inline-flex;
+  width: initial;
 }

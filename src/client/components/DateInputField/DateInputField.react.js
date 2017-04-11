@@ -12,10 +12,6 @@ class DateInputField extends Component {
     };
   }
 
-  componentWillUnmount() {
-    this.clearSelectTextTimeout();
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.date && this.props.date !== nextProps.date || this.props.dateFormat !== nextProps.dateFormat) {
       let inputValue = moment(nextProps.date.toISOString()).format(nextProps.dateFormat);
@@ -26,18 +22,6 @@ class DateInputField extends Component {
   setInputValue(props) {
     let inputValue = '';
     this.setState({ inputValue });
-  }
-
-  selectText(element) {
-    this.selectTextTimeout = setTimeout(() => { // Timeout is a fix for EDGE and IE
-      element.select();
-    }, 0);
-  }
-
-  clearSelectTextTimeout() {
-    if (typeof this.selectTextTimeout !== 'undefined') {
-      clearTimeout(this.selectTextTimeout);
-    }
   }
 
   validate(dateString, dateFormat) {

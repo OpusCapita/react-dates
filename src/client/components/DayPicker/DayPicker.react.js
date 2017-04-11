@@ -24,33 +24,48 @@ const currentYear = (new Date()).getFullYear();
 const fromMonth = new Date(currentYear, 0, 1, 0, 0);
 const toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
 
-function Caption({ date, localeUtils, onChange }) {
-  const months = localeUtils.getMonths();
-
-  const years = [];
+function Caption(props) {
+  let { date, locale, localeUtils, onChange } = props;
+  let months = localeUtils.getMonths(locale);
+  let years = [];
   for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
     years.push(i);
   }
 
-  const handleChange = function handleChange(e) {
-    const { year, month } = e.target.form;
-    onChange(new Date(year.value, month.value));
+  let handleChange = (event) => {
+    let { year, month } = event.target.form;
+    let newDate = new Date(year.value, month.value);
+    onChange(newDate);
   };
 
   return (
     <form className="DayPicker-Caption">
-      <select name="month" onChange={ handleChange } value={ date.getMonth() }>
-        { months.map((month, i) =>
-          <option key={ i } value={ i }>{ month }</option>)
-        }
-      </select>
-      <select name="year" onChange={ handleChange } value={ date.getFullYear() }>
-        { years.map((year, i) =>
-          <option key={ i } value={ year }>
-            { year }
-          </option>)
-        }
-      </select>
+      <div className={`form-group opuscapita_day-picker__caption`}>
+        <select
+          className="opuscapita_day-picker__caption-select"
+          onChange={handleChange}
+          name="month"
+          value={date.getMonth()}
+          tabIndex={-1}
+        >
+          {months.map((month, index) =>
+            <option key={index} value={index}>{month}</option>)
+          }
+        </select>
+        <select
+          className="opuscapita_day-picker__caption-select"
+          onChange={handleChange}
+          name="year"
+          value={date.getFullYear()}
+          tabIndex={-1}
+        >
+          {years.map((year, index) =>
+            <option key={index} value={year}>
+              {year}
+            </option>)
+          }
+        </select>
+      </div>
     </form>
   );
 }
@@ -65,13 +80,13 @@ class DayPicker extends Component {
   }
 
   handleDateChange(date) {
+    console.log('date change:', date);
     this.props.onChange(date);
   }
 
   handleTodayClick() {
     this.props.onChange(new Date());
   }
-
 
   render() {
     let {
@@ -93,7 +108,7 @@ class DayPicker extends Component {
           <ReactDayPicker
             ref={el => (dayPickerRef(el))}
             className={pickerClassName}
-            localeUtils={ MomentLocaleUtils }
+            localeUtils={MomentLocaleUtils}
             onDayClick={this.handleDateChange.bind(this)}
             onDayKeyDown={this.handleDateChange.bind(this)}
             onDayTouchEnd={this.handleDateChange.bind(this)}
