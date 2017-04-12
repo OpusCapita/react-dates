@@ -31,14 +31,14 @@
 }
 
 .opuscapita_day-picker__picker .DayPicker-Day:not(.DayPicker-Day--outside):hover:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background: #000;
+  bottom: 0;
+  content: '';
+  left: 0;
   opacity: 0.075;
+  position: absolute;
+  right: 0;
+  top: 0;
   z-index: 1;
 }
 
@@ -57,19 +57,24 @@
 }
 
 .opuscapita_day-picker__today-button {
+  border-left: none;
+  border-right: none;
   display: flex;
   flex: 1;
   justify-content: center;
-  border-left: none;
-  border-right: none;
+}
 
+.opuscapita_day-picker__caption {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2.8em;
 }
 
 .opuscapita_day-picker__caption-select {
-  position: relative;
-  border: none;
-  background-color: transparent;
   appearance: none;
+  background-color: transparent;
+  border: none;
+  position: relative;
 }
 
 .opuscapita_day-picker__caption-select:hover {

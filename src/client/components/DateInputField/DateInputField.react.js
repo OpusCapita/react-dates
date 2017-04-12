@@ -56,8 +56,6 @@ class DateInputField extends Component {
       ...restProps
     } = this.props;
 
-    console.log('date:::', date);
-
     let {
       inputValue
     } = this.state;
@@ -89,19 +87,17 @@ DateInputField.propTypes = {
   onChange: PropTypes.func,
   onError: PropTypes.func,
   onFocus: PropTypes.func,
-  onInputFill: PropTypes.func,
   onRef: PropTypes.func
 };
 DateInputField.defaultProps = {
   className: '',
   date: null,
-  dateFormat: 'DD.MM.YYYY',
+  dateFormat: 'DD/MM/YYYY',
   disabled: false,
   locale: 'en-GB',
   onBlur: () => {},
   onChange: () => {},
   onError: () => {},
   onFocus: () => {},
-  onInputFill: () => {},
   onRef: () => {}
 };

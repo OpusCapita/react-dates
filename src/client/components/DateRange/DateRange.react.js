@@ -87,7 +87,7 @@ DateRange.propTypes = {
 };
 DateRange.defaultProps = {
   className: '',
-  dateFormat: 'dd.MM.yyyy',
+  dateFormat: 'DD/MM/YYYY',
   dateRange: [null, null],
   disabled: false,
   locale: 'en-GB',

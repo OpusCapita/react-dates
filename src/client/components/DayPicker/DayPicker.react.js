@@ -114,8 +114,7 @@ class DayPicker extends Component {
 
     return (
       <div className={`opuscapita_day-picker ${className}`} { ...commonProps }>
-        <div className={`opuscapita_day-picker__header`}>
-        </div>
+        <div className={`opuscapita_day-picker__header`}></div>
         <div className={`opuscapita_day-picker__picker`}>
           <ReactDayPicker
             ref={el => (dayPickerRef(el))}
@@ -124,9 +123,7 @@ class DayPicker extends Component {
             onDayClick={this.handleDateChange.bind(this)}
             onDayKeyDown={this.handleDateChange.bind(this)}
             onDayTouchEnd={this.handleDateChange.bind(this)}
-            captionElement={
-              <Caption onChange={this.handleDateChange.bind(this)} />
-            }
+            captionElement={<Caption onChange={this.handleDateChange.bind(this)} />}
             { ...pickerSpecificProps }
           />
         </div>

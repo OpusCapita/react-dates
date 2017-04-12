@@ -188,7 +188,7 @@ DateInput.propTypes = {
 DateInput.defaultProps = {
   className: '',
   date: new Date(),
-  dateFormat: 'DD.MM.YYYY',
+  dateFormat: 'DD/MM/YYYY',
   disabled: false,
   locale: 'en-GB',
   showToTop: false,
