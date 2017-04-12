@@ -191,7 +191,7 @@ class DateRangeInput extends Component {
     return (
       <div
         ref={el => (this.container = el)}
-        className={`opuscapita_date-range-input form-group ${className}`}
+        className={`opuscapita_date-range-input ${className}`}
         disabled={disabled}
         { ...restProps }
       >
