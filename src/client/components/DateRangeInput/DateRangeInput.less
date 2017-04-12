@@ -1,0 +1,42 @@
+@opuscapita_date-range-input__picker-container_offset: 8px;
+
+.opuscapita_date-range-input {
+  position: relative;
+  display: inline-flex;
+}
+
+.opuscapita_date-range-input__picker-container {
+  display: inline-flex;
+  background: #fff;
+  bottom: -@opuscapita_date-range-input__picker-container_offset;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  transform: translate(0, 100%);
+  z-index: 9999;
+}
+
+.opuscapita_date-range-input__picker-container:focus {
+  outline: none;
+}
+
+.opuscapita_date-range-input__picker-container .DayPicker {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.opuscapita_date-range-input__picker-container--to-top {
+  bottom: auto;
+  top: -@opuscapita_date-range-input__picker-container_offset;
+  transform: translate(0, -100%);
+}
+
+.opuscapita_date-range-input__picker-container--to-left {
+  left: auto;
+  right: 0;
+}
+
+.opuscapita_date-range-input__reset-btn {
+  border-left: none;
+}

@@ -73,6 +73,7 @@ class DateInputField extends Component {
         ref={onRef}
         type="text"
         value={inputValue}
+        {...restProps}
       />
     );
   }

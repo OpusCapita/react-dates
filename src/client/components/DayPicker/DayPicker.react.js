@@ -93,12 +93,24 @@ class DayPicker extends Component {
       className,
       dayPickerRef,
       pickerClassName,
+      hideTodayButton,
       ...restProps
     } = this.props;
 
     let splittedProps = splitProps(restProps, Object.keys(ReactDayPicker.propTypes));
     let commonProps = splittedProps[0];
     let pickerSpecificProps = splittedProps[1];
+
+    let todayButton = hideTodayButton ? null : (
+      <button
+        type="button"
+        className={`btn btn-sm btn-default opuscapita_day-picker__today-button`}
+        onClick={this.handleTodayClick.bind(this)}
+        tabIndex={-1}
+      >
+        Today
+      </button>
+    );
 
     return (
       <div className={`opuscapita_day-picker ${className}`} { ...commonProps }>
@@ -119,14 +131,7 @@ class DayPicker extends Component {
           />
         </div>
         <div className={`opuscapita_day-picker__footer`}>
-          <button
-            type="button"
-            className={`btn btn-sm btn-default opuscapita_day-picker__today-button`}
-            onClick={this.handleTodayClick.bind(this)}
-            tabIndex={-1}
-          >
-            Today
-        </button>
+          {todayButton}
         </div>
       </div>
     );
@@ -138,12 +143,14 @@ DayPicker.propTypes = {
   className: PropTypes.string,
   pickerClassName: PropTypes.string,
   dayPickerRef: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  hideTodayButton: PropTypes.bool
 };
 DayPicker.defaultProps = {
   className: '',
   dayPickerRef: () => {},
   labels: ReactDayPicker.defaultProps.labels,
   pickerClassName: '',
-  onChange: () => {}
+  onChange: () => {},
+  hideTodayButton: false
 };

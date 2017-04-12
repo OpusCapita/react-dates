@@ -95,7 +95,6 @@ class DateInput extends Component {
       showToLeft,
       showResetButton,
       onChange,
-      onClick,
       onHide,
       tabIndex,
       ...restProps
@@ -157,7 +156,7 @@ class DateInput extends Component {
     return (
       <div
         ref={el => (this.container = el)}
-        className={`opuscapita-date-input form-group ${hasErrorClassName}`}
+        className={`opuscapita-date-input form-group ${hasErrorClassName} ${className}`}
       >
         <DateInputField
           date={date}
@@ -183,7 +182,6 @@ DateInput.propTypes = {
   showToLeft: PropTypes.bool,
   showResetButton: PropTypes.bool,
   onChange: PropTypes.func,
-  onClick: PropTypes.func,
   onHide: PropTypes.func,
   tabIndex: PropTypes.number
 };
@@ -197,7 +195,6 @@ DateInput.defaultProps = {
   showToLeft: false,
   showResetButton: false,
   onChange: () => {},
-  onClick: () => {},
   onHide: () => {},
   tabIndex: 0
 };
