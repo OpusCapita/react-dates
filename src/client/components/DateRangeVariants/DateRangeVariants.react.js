@@ -8,68 +8,71 @@ let propTypes = {
     label: PropTypes.string,
     range: PropTypes.array
   })),
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  locale: PropTypes.string
 };
 
 let defaultProps = {
   variants: [
     {
       label: 'Previous week',
-      getRange: () => [
-        moment().subtract(7, 'days').startOf('week').toDate(),
-        moment().subtract(7, 'days').endOf('week').toDate()
+      getRange: (locale) => [
+        moment().locale(locale).subtract(7, 'days').startOf('week').toDate(),
+        moment().locale(locale).subtract(7, 'days').endOf('week').toDate()
       ]
     },
     {
       label: 'This week',
-      getRange: () => [
-        moment().startOf('week').toDate(),
-        moment().endOf('week').toDate()
+      getRange: (locale) => [
+        moment().locale(locale).startOf('week').toDate(),
+        moment().locale(locale).endOf('week').toDate()
       ]
     },
     {
       label: 'Next week',
-      getRange: () => [
-        moment().add(7, 'days').startOf('week').toDate(),
-        moment().add(7, 'days').endOf('week').toDate()
+      getRange: (locale) => [
+        moment().locale(locale).add(7, 'days').startOf('week').toDate(),
+        moment().locale(locale).add(7, 'days').endOf('week').toDate()
       ]
     },
     {
       label: 'Previous month',
-      getRange: () => [
-        moment().subtract(1, 'month').startOf('month').toDate(),
-        moment().subtract(1, 'month').endOf('month').toDate()
+      getRange: (locale) => [
+        moment().locale(locale).subtract(1, 'month').startOf('month').toDate(),
+        moment().locale(locale).subtract(1, 'month').endOf('month').toDate()
       ]
     },
     {
       label: 'Last 30 days',
-      getRange: () => [
-        moment().subtract(30, 'days').toDate(),
-        moment().toDate()
+      getRange: (locale) => [
+        moment().locale(locale).subtract(30, 'days').toDate(),
+        moment().locale(locale).toDate()
       ]
     },
     {
       label: 'This month',
-      getRange: () => [
-        moment().startOf('month').toDate(),
-        moment().endOf('month').toDate()
+      getRange: (locale) => [
+        moment().locale(locale).startOf('month').toDate(),
+        moment().locale(locale).endOf('month').toDate()
       ]
     },
     {
       label: 'Next month',
-      getRange: () => [
-        moment().add(1, 'month').startOf('month').toDate(),
-        moment().add(1, 'month').endOf('month').toDate()
+      getRange: (locale) => [
+        moment().locale(locale).add(1, 'month').startOf('month').toDate(),
+        moment().locale(locale).add(1, 'month').endOf('month').toDate()
       ]
     }
   ],
-  onChange: () => {}
+  onChange: () => {},
+  locale: 'en-GB'
 };
 
 export default
 class DateRangeVariants extends Component {
   handleChange(key) {
-    let range = this.props.variants[key].getRange();
+    console.log('locale:', this.props.locale);
+    let range = this.props.variants[key].getRange(this.props.locale);
     this.props.onChange(range);
   }
 

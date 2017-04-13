@@ -238,7 +238,7 @@ class DateRangeInput extends Component {
     );
 
     let variantsElement = hideVariantsButton ? null : (
-      <DateRangeVariants onChange={this.handleVariantSelect} />
+      <DateRangeVariants onChange={this.handleVariantSelect} locale={locale} />
     );
 
     let pickerMotionElement = (
