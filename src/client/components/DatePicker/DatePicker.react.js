@@ -23,6 +23,32 @@ function splitProps(props, specificPropNames = []) {
   return result;
 };
 
+let propTypes = {
+  className: PropTypes.string,
+  date: PropTypes.object,
+  disabled: PropTypes.bool,
+  locale: PropTypes.string,
+  showToTop: PropTypes.bool,
+  showToLeft: PropTypes.bool,
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
+  onHide: PropTypes.func,
+  tabIndex: PropTypes.number
+};
+
+let defaultProps = {
+  className: '',
+  date: new Date(),
+  disabled: false,
+  locale: 'en-GB',
+  showToTop: false,
+  showToLeft: false,
+  onChange: () => {},
+  onClick: () => {},
+  onHide: () => {},
+  tabIndex: 0
+};
+
 export default
 class DatePicker extends Component {
   constructor(props) {
@@ -152,27 +178,5 @@ class DatePicker extends Component {
   }
 }
 
-DatePicker.propTypes = {
-  className: PropTypes.string,
-  date: PropTypes.object,
-  disabled: PropTypes.bool,
-  locale: PropTypes.string,
-  showToTop: PropTypes.bool,
-  showToLeft: PropTypes.bool,
-  onChange: PropTypes.func,
-  onClick: PropTypes.func,
-  onHide: PropTypes.func,
-  tabIndex: PropTypes.number
-};
-DatePicker.defaultProps = {
-  className: '',
-  date: new Date(),
-  disabled: false,
-  locale: 'en-GB',
-  showToTop: false,
-  showToLeft: false,
-  onChange: () => {},
-  onClick: () => {},
-  onHide: () => {},
-  tabIndex: 0
-};
+DatePicker.propTypes = propTypes;
+DatePicker.defaultProps = defaultProps;

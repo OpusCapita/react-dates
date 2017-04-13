@@ -1,6 +1,6 @@
 ### Synopsis
 
-DateRangeInput is 
+DateRangeVariants is 
 *Write here a short introduction and/or overview that explains **what** component is.*
 
 ### Props Reference
@@ -12,15 +12,14 @@ DateRangeInput is
 ### Code Example
 
 ```
-<DateRangeInput 
-  dateRange={_scope.state.dateRange}
-  onChange={_scope.handleChange.bind(_scope)}
+<DateRangeVariants 
+  onChange={range => console.log(range)}
 />
 ```
 
 ### Component Name
 
-DateRangeInput
+DateRangeVariants
 
 ### License
 

@@ -2,6 +2,28 @@ import React, { Component, PropTypes } from 'react';
 import './DateRange.less';
 import DateInput from '../DateInput';
 
+let propTypes = {
+  className: PropTypes.string,
+  dateFormat: PropTypes.string,
+  dateRange: PropTypes.array,
+  disabled: PropTypes.bool,
+  locale: PropTypes.string,
+  onChange: PropTypes.func,
+  positionRight: PropTypes.bool,
+  positionTop: PropTypes.bool
+};
+
+let defaultProps = {
+  className: '',
+  dateFormat: 'DD/MM/YYYY',
+  dateRange: [null, null],
+  disabled: false,
+  locale: 'en-GB',
+  onChange: () => {},
+  positionRight: false,
+  positionTop: false
+};
+
 export default
 class DateRange extends Component {
   handleFromInputChange(date) {
@@ -75,23 +97,5 @@ class DateRange extends Component {
   }
 }
 
-DateRange.propTypes = {
-  className: PropTypes.string,
-  dateFormat: PropTypes.string,
-  dateRange: PropTypes.array,
-  disabled: PropTypes.bool,
-  locale: PropTypes.string,
-  onChange: PropTypes.func,
-  positionRight: PropTypes.bool,
-  positionTop: PropTypes.bool
-};
-DateRange.defaultProps = {
-  className: '',
-  dateFormat: 'DD/MM/YYYY',
-  dateRange: [null, null],
-  disabled: false,
-  locale: 'en-GB',
-  onChange: () => {},
-  positionRight: false,
-  positionTop: false
-};
+DateRange.propTypes = propTypes;
+DateRange.defaultProps = defaultProps;

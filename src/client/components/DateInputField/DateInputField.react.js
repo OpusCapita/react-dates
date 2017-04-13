@@ -3,6 +3,32 @@ import moment from 'moment';
 import FORMATS from './formats';
 import './DateInputField.less';
 
+let propTypes = {
+  className: PropTypes.string,
+  date: PropTypes.object,
+  dateFormat: PropTypes.string,
+  disabled: PropTypes.bool,
+  locale: PropTypes.string,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onError: PropTypes.func,
+  onFocus: PropTypes.func,
+  onRef: PropTypes.func
+};
+
+let defaultProps = {
+  className: '',
+  date: null,
+  dateFormat: 'DD/MM/YYYY',
+  disabled: false,
+  locale: 'en-GB',
+  onBlur: () => {},
+  onChange: () => {},
+  onError: () => {},
+  onFocus: () => {},
+  onRef: () => {}
+};
+
 export default
 class DateInputField extends Component {
   constructor(props) {
@@ -77,27 +103,5 @@ class DateInputField extends Component {
   }
 }
 
-DateInputField.propTypes = {
-  className: PropTypes.string,
-  date: PropTypes.object,
-  dateFormat: PropTypes.string,
-  disabled: PropTypes.bool,
-  locale: PropTypes.string,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  onError: PropTypes.func,
-  onFocus: PropTypes.func,
-  onRef: PropTypes.func
-};
-DateInputField.defaultProps = {
-  className: '',
-  date: null,
-  dateFormat: 'DD/MM/YYYY',
-  disabled: false,
-  locale: 'en-GB',
-  onBlur: () => {},
-  onChange: () => {},
-  onError: () => {},
-  onFocus: () => {},
-  onRef: () => {}
-};
+DateInputField.propTypes = propTypes;
+DateInputField.defaultProps = defaultProps;

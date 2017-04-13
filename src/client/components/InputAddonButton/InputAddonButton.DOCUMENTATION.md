@@ -1,6 +1,6 @@
 ### Synopsis
 
-DateRangeInput is 
+InputAddonButton is 
 *Write here a short introduction and/or overview that explains **what** component is.*
 
 ### Props Reference
@@ -12,15 +12,12 @@ DateRangeInput is
 ### Code Example
 
 ```
-<DateRangeInput 
-  dateRange={_scope.state.dateRange}
-  onChange={_scope.handleChange.bind(_scope)}
-/>
+<InputAddonButton />
 ```
 
 ### Component Name
 
-DateRangeInput
+InputAddonButton
 
 ### License
 

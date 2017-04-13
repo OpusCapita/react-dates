@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import './DateInput.less';
 import DateInputField from '../DateInputField';
 import DayPicker from '../DayPicker';
+import InputAddonButton from '../InputAddonButton';
 import { spring, presets, Motion} from 'react-motion';
 import assign from 'lodash/assign';
 let springPreset = presets.gentle;
@@ -21,6 +22,34 @@ function splitProps(props, specificPropNames = []) {
   }, [{}, {}]);
 
   return result;
+};
+
+let propTypes = {
+  className: PropTypes.string,
+  date: PropTypes.object,
+  dateFormat: PropTypes.string,
+  disabled: PropTypes.bool,
+  locale: PropTypes.string,
+  showToTop: PropTypes.bool,
+  showToLeft: PropTypes.bool,
+  showResetButton: PropTypes.bool,
+  onChange: PropTypes.func,
+  onHide: PropTypes.func,
+  tabIndex: PropTypes.number
+};
+
+let defaultProps = {
+  className: '',
+  date: new Date(),
+  dateFormat: 'DD/MM/YYYY',
+  disabled: false,
+  locale: 'en-GB',
+  showToTop: false,
+  showToLeft: false,
+  showResetButton: false,
+  onChange: () => {},
+  onHide: () => {},
+  tabIndex: 0
 };
 
 export default
@@ -142,15 +171,9 @@ class DateInput extends Component {
     );
 
     let resetButton = showResetButton ? (
-      <button
-        className={`
-          btn btn-default opuscapita_date-input__reset-btn
-        `}
-        tabIndex="-1"
-        onClick={this.reset}
-      >
-        <i className="fa fa-times" />
-      </button>
+      <InputAddonButton className="opuscapita_date-input__reset-btn" tabIndex="-1" onClick={this.reset}>
+        ✕
+      </InputAddonButton>
     ) : null;
 
     return (
@@ -172,29 +195,5 @@ class DateInput extends Component {
   }
 }
 
-DateInput.propTypes = {
-  className: PropTypes.string,
-  date: PropTypes.object,
-  dateFormat: PropTypes.string,
-  disabled: PropTypes.bool,
-  locale: PropTypes.string,
-  showToTop: PropTypes.bool,
-  showToLeft: PropTypes.bool,
-  showResetButton: PropTypes.bool,
-  onChange: PropTypes.func,
-  onHide: PropTypes.func,
-  tabIndex: PropTypes.number
-};
-DateInput.defaultProps = {
-  className: '',
-  date: new Date(),
-  dateFormat: 'DD/MM/YYYY',
-  disabled: false,
-  locale: 'en-GB',
-  showToTop: false,
-  showToLeft: false,
-  showResetButton: false,
-  onChange: () => {},
-  onHide: () => {},
-  tabIndex: 0
-};
+DateInput.propTypes = propTypes;
+DateInput.defaultProps = defaultProps;

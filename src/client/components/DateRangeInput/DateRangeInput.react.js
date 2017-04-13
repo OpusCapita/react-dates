@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import './DateRangeInput.less';
 import DayPicker from '../DayPicker';
+import InputAddonButton from '../InputAddonButton';
+import DateRangeVariants from '../DateRangeVariants';
 import { DateUtils } from 'react-day-picker';
 import moment from 'moment';
 import { spring, presets, Motion} from 'react-motion';
 let springPreset = presets.gentle;
 
 let initialState = {
-  from: null,
-  to: null,
-  enteredTo: null
+  enteredTo: null,
+  showPicker: false,
+  showVariants: false
 };
 
 function isSelectingFirstDay(from, to, day) {
@@ -18,6 +20,34 @@ function isSelectingFirstDay(from, to, day) {
   let rangeIsSelected = from && to;
   return firstDayIsNotSelected || selectedDayIsBeforeFirstDay || rangeIsSelected;
 }
+
+let propTypes = {
+  className: PropTypes.string,
+  dateFormat: PropTypes.string,
+  dateRange: PropTypes.array,
+  disabled: PropTypes.bool,
+  locale: PropTypes.string,
+  onChange: PropTypes.func,
+  positionRight: PropTypes.bool,
+  positionTop: PropTypes.bool,
+  placeholder: PropTypes.string,
+  hideVariantsButton: PropTypes.bool,
+  showToTop: PropTypes.bool,
+  showToLeft: PropTypes.bool
+};
+
+let defaultProps = {
+  className: '',
+  dateFormat: 'DD/MM/YYYY',
+  dateRange: [null, null],
+  disabled: false,
+  hideVariantsButton: false,
+  locale: 'en-GB',
+  placeholder: 'Select date range',
+  onChange: () => {},
+  showToTop: false,
+  showToLeft: false
+};
 
 export default
 class DateRangeInput extends Component {
@@ -29,10 +59,13 @@ class DateRangeInput extends Component {
     this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
+    this.handleVariantsButtonClick = this.handleVariantsButtonClick.bind(this);
+    this.handleVariantSelect = this.handleVariantSelect.bind(this);
   }
 
   handleDayClick(day) {
-    let { from, to } = this.state;
+    let from = this.props.dateRange[0];
+    let to = this.props.dateRange[1];
 
     if (DateUtils.isSameDay(day, from)) {
       this.reset();
@@ -40,14 +73,13 @@ class DateRangeInput extends Component {
     }
 
     if (isSelectingFirstDay(from, to, day)) {
+      this.props.onChange([ day, null ]);
       this.setState({
-        from: day,
-        to: null,
         enteredTo: null
       });
     } else {
+      this.props.onChange([ from, day ]);
       this.setState({
-        to: day,
         enteredTo: day
       });
     }
@@ -74,12 +106,14 @@ class DateRangeInput extends Component {
   handleBodyClick(event) {
     let clickedOutside = !this.container.contains(event.target);
     if (clickedOutside) {
-      return this.hidePicker();
+      this.hideVariants();
+      this.hidePicker();
     }
   }
 
   handleBodyKeyDown(event) {
     if (event.which === 9) {
+      this.hideVariants();
       this.hidePicker();
     }
   }
@@ -94,11 +128,31 @@ class DateRangeInput extends Component {
   }
 
   showPicker() {
-    this.setState({ showPicker: true });
+    this.setState({ showPicker: true, showVariants: false });
   }
 
   hidePicker() {
     this.setState({ showPicker: false });
+  }
+
+  showVariants() {
+    this.setState({ showVariants: true, showPicker: false });
+  }
+
+  hideVariants() {
+    this.setState({ showVariants: false });
+  }
+
+  handleVariantsButtonClick() {
+    if (this.state.showVariants) {
+      return this.hideVariants();
+    }
+    return this.showVariants();
+  }
+
+  handleVariantSelect(range) {
+    this.hideVariants();
+    this.props.onChange(range);
   }
 
   handleInputFocus() {
@@ -106,7 +160,8 @@ class DateRangeInput extends Component {
   }
 
   handleDayMouseEnter(day) {
-    let { from, to } = this.state;
+    let from = this.props.dateRange[0];
+    let to = this.props.dateRange[1];
 
     if (!isSelectingFirstDay(from, to, day)) {
       this.setState({
@@ -128,13 +183,15 @@ class DateRangeInput extends Component {
       disabled,
       locale,
       placeholder,
-      hideResetButton,
+      hideVariantsButton,
       showToTop,
       showToLeft,
       ...restProps
     } = this.props;
 
-    let { from, to, enteredTo, error } = this.state;
+    let from = this.props.dateRange[0];
+    let to = this.props.dateRange[1];
+    let { enteredTo, error } = this.state;
 
     let showToTopClassName = showToTop ? 'opuscapita_date-range-input__picker-container--to-top' : '';
     let showToLeftClassName = showToLeft ? 'opuscapita_date-range-input__picker-container--to-left' : '';
@@ -151,6 +208,10 @@ class DateRangeInput extends Component {
         onDayMouseEnter={ this.handleDayMouseEnter }
         hideTodayButton={true}
       />
+    );
+
+    let variantsElement = hideVariantsButton ? null : (
+      <DateRangeVariants onChange={this.handleVariantSelect} />
     );
 
     let pickerMotionElement = (
@@ -172,21 +233,50 @@ class DateRangeInput extends Component {
       </Motion>
     );
 
+    let variantsMotionElement = hideVariantsButton ? null : (
+      <Motion
+        defaultStyle={{ x: this.state.showVariants ? 1 : 0 }}
+        style={{ x: this.state.showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
+      >
+        {interpolatedStyle => (
+          <div
+            className={`
+              opuscapita_date-range-input__variants-container
+              ${showToTop ? 'opuscapita_date-range-input__variants-container--to-top' : ''}
+            `}
+            style={{
+              maxHeight: `${interpolatedStyle.x * 640}px`,
+              opacity: interpolatedStyle.x
+            }}
+          >
+            {variantsElement}
+          </div>
+        )}
+      </Motion>
+    );
+
     let inputValue = (from && to) ?
       `${moment(from).format(dateFormat)}  —  ${moment(to).format(dateFormat)}` :
       '';
 
-    let resetButton = hideResetButton ? null : (
-      <button
-        className={`
-          btn btn-default opuscapita_date-range-input__reset-btn
-        `}
-        tabIndex="-1"
-        onClick={this.reset}
-      >
-        <i className="fa fa-times" />
-      </button>
+    let resetButton = (
+      <InputAddonButton className="opuscapita_date-range-input__reset-btn" tabIndex="-1" onClick={this.reset}>
+        ✕
+      </InputAddonButton>
     );
+
+    let variantsButton = hideVariantsButton ? null : (
+      <InputAddonButton
+        className="opuscapita_date-range-input__variants-btn"
+        tabIndex="-1"
+        onClick={this.handleVariantsButtonClick}
+      >
+        ▼
+      </InputAddonButton>
+    );
+
+    let buttonsWidth = hideVariantsButton ? 4 : 7;
+    let inputWidth = `${dateFormat.length * 2 + buttonsWidth + 4}ch`;
 
     return (
       <div
@@ -200,40 +290,21 @@ class DateRangeInput extends Component {
           className="opuscapita_date-range-input__input-field form-control"
           onFocus={this.handleInputFocus.bind(this)}
           placeholder={placeholder}
-          style={{ width: `${dateFormat.length * 2 + 5}ch` }}
           value={inputValue}
           onChange={() => {}}
+          style={{
+            paddingRight: `${buttonsWidth}ch`,
+            width: inputWidth
+          }}
         />
+        {variantsButton}
         {resetButton}
         {pickerMotionElement}
+        {variantsMotionElement}
       </div>
     );
   }
 }
 
-DateRangeInput.propTypes = {
-  className: PropTypes.string,
-  dateFormat: PropTypes.string,
-  dateRange: PropTypes.array,
-  disabled: PropTypes.bool,
-  locale: PropTypes.string,
-  onChange: PropTypes.func,
-  positionRight: PropTypes.bool,
-  positionTop: PropTypes.bool,
-  placeholder: PropTypes.string,
-  hideResetButton: PropTypes.bool,
-  showToTop: PropTypes.bool,
-  showToLeft: PropTypes.bool
-};
-DateRangeInput.defaultProps = {
-  className: '',
-  dateFormat: 'DD/MM/YYYY',
-  dateRange: [null, null],
-  disabled: false,
-  hideResetButton: false,
-  locale: 'en-GB',
-  placeholder: 'Select date range',
-  onChange: () => {},
-  showToTop: false,
-  showToLeft: false
-};
+DateRangeInput.propTypes = propTypes;
+DateRangeInput.defaultProps = defaultProps;
