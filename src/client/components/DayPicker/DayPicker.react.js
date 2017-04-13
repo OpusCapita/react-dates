@@ -124,6 +124,7 @@ class DayPicker extends Component {
             onDayKeyDown={this.handleDateChange}
             onDayTouchEnd={this.handleDateChange}
             captionElement={<Caption onChange={this.handleDateChange} />}
+            tabIndex={-1}
             { ...pickerSpecificProps }
           />
         </div>
