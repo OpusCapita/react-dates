@@ -7,6 +7,7 @@ import { DateUtils } from 'react-day-picker';
 import moment from 'moment';
 import { spring, presets, Motion} from 'react-motion';
 let springPreset = presets.gentle;
+let easeOutCubic = (t) => (--t)*t*t+1;
 
 let initialState = {
   enteredTo: null,
@@ -246,7 +247,7 @@ class DateRangeInput extends Component {
             className={`opuscapita_date-range-input__picker-container ${showToTopClassName} ${showToLeftClassName}`}
             style={{
               maxHeight: `${interpolatedStyle.x * 640}px`,
-              opacity: interpolatedStyle.x
+              opacity: easeOutCubic(interpolatedStyle.x)
             }}
           >
             {pickerElement}
@@ -266,7 +267,7 @@ class DateRangeInput extends Component {
             `}
             style={{
               maxHeight: `${interpolatedStyle.x * 640}px`,
-              opacity: interpolatedStyle.x
+              opacity: easeOutCubic(interpolatedStyle.x)
             }}
           >
             {variantsElement}

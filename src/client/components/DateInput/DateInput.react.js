@@ -6,6 +6,7 @@ import InputAddonButton from '../InputAddonButton';
 import { spring, presets, Motion} from 'react-motion';
 import assign from 'lodash/assign';
 let springPreset = presets.gentle;
+let easeOutCubic = (t) => (--t)*t*t+1;
 
 function splitProps(props, specificPropNames = []) {
   let result = Object.keys(props).reduce((result, propName) => {
@@ -65,6 +66,7 @@ class DateInput extends Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleError = this.handleError.bind(this);
     this.handleInputFocus = this.handleInputFocus.bind(this);
+    this.handleInputClick = this.handleInputClick.bind(this);
     this.reset = this.reset.bind(this);
   }
 
@@ -96,6 +98,9 @@ class DateInput extends Component {
     if(event.which === 9) {
       this.hidePicker();
     }
+    if (event.which === 27) { // ESC key
+      this.hidePicker();
+    }
   }
 
   handleError(error) {
@@ -118,6 +123,10 @@ class DateInput extends Component {
   }
 
   handleInputFocus() {
+    this.showPicker();
+  }
+
+  handleInputClick() {
     this.showPicker();
   }
 
@@ -175,7 +184,7 @@ class DateInput extends Component {
             className={`opuscapita_date-input__picker-container ${showToTopClassName} ${showToLeftClassName}`}
             style={{
               maxHeight: `${interpolatedStyle.x * 640}px`,
-              opacity: interpolatedStyle.x
+              opacity: easeOutCubic(interpolatedStyle.x)
             }}
           >
             {pickerElement}
@@ -201,6 +210,7 @@ class DateInput extends Component {
           onChange={this.handleDateChange}
           onError={this.handleError}
           onFocus={this.handleInputFocus}
+          onClick={this.handleInputClick}
         />
         {resetButton}
         {pickerMotionElement}
