@@ -57,6 +57,9 @@ class DatePicker extends Component {
       showPicker: false
     };
     this.handleBodyClick = this.handleBodyClick.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleToggleClick = this.handleToggleClick.bind(this);
   }
 
   componentDidMount() {
@@ -129,7 +132,7 @@ class DatePicker extends Component {
         month={date}
         tabIndex={-1}
         fixedWeeks={true}
-        onChange={this.handleDateChange.bind(this)}
+        onChange={this.handleDateChange}
         { ...dayPickerSpecificProps }
       />
     );
@@ -159,14 +162,14 @@ class DatePicker extends Component {
     return (
       <div
         className={`opuscapita_date-picker ${className}`}
-        onKeyDown={this.handleKeyDown.bind(this)}
+        onKeyDown={this.handleKeyDown}
         ref={el => (this.container = el)}
         { ...commonProps }
       >
         <button
           className="opuscapita_date-picker__toggle-picker btn btn-default"
           disabled={disabled}
-          onClick={this.handleToggleClick.bind(this)}
+          onClick={this.handleToggleClick}
           tabIndex={tabIndex}
           type="button"
         >

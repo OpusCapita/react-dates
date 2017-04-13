@@ -26,7 +26,6 @@ const toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
 
 function Caption(props) {
   let { date, locale, localeUtils, onChange } = props;
-  console.log('locale:', props.locale);
   let months = localeUtils.getMonths(locale);
   let years = [];
   for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
@@ -78,10 +77,10 @@ class DayPicker extends Component {
     this.state = {
       date: props.date
     };
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   handleDateChange(date) {
-    console.log('date change:', date);
     this.props.onChange(date);
   }
 
@@ -121,10 +120,10 @@ class DayPicker extends Component {
             ref={el => (dayPickerRef(el))}
             className={pickerClassName}
             localeUtils={MomentLocaleUtils}
-            onDayClick={this.handleDateChange.bind(this)}
-            onDayKeyDown={this.handleDateChange.bind(this)}
-            onDayTouchEnd={this.handleDateChange.bind(this)}
-            captionElement={<Caption onChange={this.handleDateChange.bind(this)} />}
+            onDayClick={this.handleDateChange}
+            onDayKeyDown={this.handleDateChange}
+            onDayTouchEnd={this.handleDateChange}
+            captionElement={<Caption onChange={this.handleDateChange} />}
             { ...pickerSpecificProps }
           />
         </div>

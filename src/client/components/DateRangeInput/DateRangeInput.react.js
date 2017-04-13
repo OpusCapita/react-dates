@@ -61,6 +61,8 @@ class DateRangeInput extends Component {
     this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
     this.handleVariantsButtonClick = this.handleVariantsButtonClick.bind(this);
     this.handleVariantSelect = this.handleVariantSelect.bind(this);
+    this.handleInputFocus = this.handleInputFocus.bind(this);
+    this.handleInputClick = this.handleInputClick.bind(this);
   }
 
   handleDayClick(day) {
@@ -95,6 +97,13 @@ class DateRangeInput extends Component {
     document.body.removeEventListener('keydown', this.handleBodyKeyDown);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.dateRange[0] !== nextProps.dateRange[0]) {
+      let month = nextProps.dateRange[0] || new Date();
+      this.reactDayPicker.showMonth(month);
+    }
+  }
+
   componentWillUpdate(nextProps, nextState) {
     let rangeChanged = (this.state.from !== nextState.from) || (this.state.to !== nextState.to);
     let rangeFilled = nextState.from !== null && nextState.to !== null;
@@ -112,9 +121,13 @@ class DateRangeInput extends Component {
   }
 
   handleBodyKeyDown(event) {
-    if (event.which === 9) {
+    if (event.which === 9) { // TAB key
       this.hideVariants();
       this.hidePicker();
+    }
+    if (event.which === 27) { // ESC key
+      this.hidePicker();
+      this.hideVariants();
     }
   }
 
@@ -128,6 +141,8 @@ class DateRangeInput extends Component {
   }
 
   showPicker() {
+    let month = this.props.dateRange[0] || new Date();
+    this.reactDayPicker.showMonth(month);
     this.setState({ showPicker: true, showVariants: false });
   }
 
@@ -157,6 +172,10 @@ class DateRangeInput extends Component {
   }
 
   handleInputFocus() {
+    this.showPicker();
+  }
+
+  handleInputClick() {
     this.showPicker();
   }
 
@@ -200,6 +219,7 @@ class DateRangeInput extends Component {
 
     let pickerElement = (
       <DayPicker
+        dayPickerRef={el => (this.reactDayPicker = el)}
         className="Range"
         numberOfMonths={ 2 }
         fromMonth={ from }
@@ -286,7 +306,8 @@ class DateRangeInput extends Component {
           <input
             type="text"
             className="opuscapita_date-range-input__input-field form-control"
-            onFocus={this.handleInputFocus.bind(this)}
+            onFocus={this.handleInputFocus}
+            onClick={this.handleInputClick}
             placeholder={placeholder}
             value={inputValue}
             onChange={() => {}}

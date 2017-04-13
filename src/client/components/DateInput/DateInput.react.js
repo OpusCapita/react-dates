@@ -62,6 +62,9 @@ class DateInput extends Component {
     };
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleError = this.handleError.bind(this);
+    this.handleInputFocus = this.handleInputFocus.bind(this);
     this.reset = this.reset.bind(this);
   }
 
@@ -73,6 +76,13 @@ class DateInput extends Component {
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleBodyClick);
     document.body.removeEventListener('keydown', this.handleBodyKeyDown);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.date !== nextProps.date) {
+      let month = nextProps.date || new Date();
+      this.reactDayPicker.showMonth(month);
+    }
   }
 
   handleBodyClick(event) {
@@ -98,6 +108,8 @@ class DateInput extends Component {
   }
 
   showPicker() {
+    let month = this.props.date || new Date();
+    this.reactDayPicker.showMonth(month);
     this.setState({ showPicker: true });
   }
 
@@ -144,7 +156,7 @@ class DateInput extends Component {
         month={date}
         tabIndex={-1}
         fixedWeeks={true}
-        onChange={this.handleDateChange.bind(this)}
+        onChange={this.handleDateChange}
         { ...dayPickerSpecificProps }
       />
     );
@@ -186,9 +198,9 @@ class DateInput extends Component {
         <DateInputField
           date={date}
           dateFormat={momentCompatibleDateFormat}
-          onChange={this.handleDateChange.bind(this)}
-          onError={this.handleError.bind(this)}
-          onFocus={this.handleInputFocus.bind(this)}
+          onChange={this.handleDateChange}
+          onError={this.handleError}
+          onFocus={this.handleInputFocus}
         />
         {resetButton}
         {pickerMotionElement}

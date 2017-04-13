@@ -27,13 +27,11 @@ let defaultProps = {
 export default
 class DateRange extends Component {
   handleFromInputChange(date) {
-    console.log('handleFromInputChange:', date);
     let dateRange = [date, this.props.dateRange[1]];
     this.props.onChange(dateRange);
   }
 
   handleToInputChange(date) {
-    console.log('handleToInputChange:', date);
     let dateRange = [this.props.dateRange[0], date];
     this.props.onChange(dateRange);
   }
@@ -57,8 +55,6 @@ class DateRange extends Component {
 
     let fromDate = dateRange[0];
     let toDate = dateRange[1];
-    console.log('fromDate: ', fromDate);
-    console.log('toDate: ', toDate);
 
     return (
       <div
@@ -69,7 +65,7 @@ class DateRange extends Component {
         <DateInput
           date={fromDate}
           dateFormat={dateFormat}
-          onChange={(date) => console.log('f', date) || this.handleFromInputChange.call(this, date)}
+          onChange={(date) => this.handleFromInputChange.call(this, date)}
           disabled={disabled}
         />
         <div

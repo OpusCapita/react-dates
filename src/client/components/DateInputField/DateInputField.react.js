@@ -36,6 +36,7 @@ class DateInputField extends Component {
     this.state = {
       inputValue: ''
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -90,7 +91,7 @@ class DateInputField extends Component {
       <input
         className={`opuscapita_date-input-field form-control`}
         disabled={disabled}
-        onChange={this.handleInputChange.bind(this)}
+        onChange={this.handleInputChange}
         onFocus={onFocus}
         onBlur={onBlur}
         placeholder={dateFormat}

@@ -19,7 +19,6 @@ class DateInputScope extends Component {
   }
 
   handleChange(date) {
-    console.log('DIS date:', date);
     this.setState({ date });
   }
 
