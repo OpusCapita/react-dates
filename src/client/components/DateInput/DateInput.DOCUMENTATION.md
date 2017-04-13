@@ -14,7 +14,7 @@ DateInput is
 ```
 <DateInput 
   date={_scope.state.date}
-  dateFormat="DD/MM/YYYY"
+  dateFormat="dd/MM/yyyy"
   onChange={_scope.handleChange.bind(_scope)}
   showResetButton={true}
   locale="de-DE"

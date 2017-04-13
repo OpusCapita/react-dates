@@ -41,7 +41,7 @@ let propTypes = {
 let defaultProps = {
   className: '',
   date: new Date(),
-  dateFormat: 'DD/MM/YYYY',
+  dateFormat: 'dd/MM/yyyy',
   disabled: false,
   locale: 'en-GB',
   showToTop: false,
@@ -131,6 +131,8 @@ class DateInput extends Component {
 
     let { error } = this.state;
 
+    let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
+
     let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
     let commonProps = splittedProps[0];
     let dayPickerSpecificProps = splittedProps[1];
@@ -183,7 +185,7 @@ class DateInput extends Component {
       >
         <DateInputField
           date={date}
-          dateFormat={dateFormat}
+          dateFormat={momentCompatibleDateFormat}
           onChange={this.handleDateChange.bind(this)}
           onError={this.handleError.bind(this)}
           onFocus={this.handleInputFocus.bind(this)}

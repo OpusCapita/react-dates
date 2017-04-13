@@ -38,7 +38,7 @@ let propTypes = {
 
 let defaultProps = {
   className: '',
-  dateFormat: 'DD/MM/YYYY',
+  dateFormat: 'dd/MM/yyyy',
   dateRange: [null, null],
   disabled: false,
   hideVariantsButton: false,
@@ -193,9 +193,7 @@ class DateRangeInput extends Component {
     let from = this.props.dateRange[0];
     let to = this.props.dateRange[1];
     let { enteredTo, error } = this.state;
-
-    let duration = (to && from) && to.getTime() - from.getTime();
-    console.log('d', duration);
+    let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 
     let showToTopClassName = showToTop ? 'opuscapita_date-range-input__picker-container--to-top' : '';
     let showToLeftClassName = showToLeft ? 'opuscapita_date-range-input__picker-container--to-left' : '';
@@ -257,7 +255,7 @@ class DateRangeInput extends Component {
     );
 
     let inputValue = (from && to) ?
-      `${moment(from).format(dateFormat)}  —  ${moment(to).format(dateFormat)}` :
+      `${moment(from).format(momentCompatibleDateFormat)}  —  ${moment(to).format(momentCompatibleDateFormat)}` :
       '';
 
     let resetButton = (
@@ -300,7 +298,6 @@ class DateRangeInput extends Component {
           {resetButton}
           {pickerMotionElement}
         </div>
-
         {variantsMotionElement}
         {variantsButton}
       </div>

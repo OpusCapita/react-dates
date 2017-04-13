@@ -19,7 +19,7 @@ let propTypes = {
 let defaultProps = {
   className: '',
   date: null,
-  dateFormat: 'DD/MM/YYYY',
+  dateFormat: 'dd/MM/yyyy',
   disabled: false,
   locale: 'en-GB',
   onBlur: () => {},

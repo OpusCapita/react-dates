@@ -13,6 +13,7 @@ DateRangeInput is
 
 ```
 <DateRangeInput 
+  dateFormat="MM/dd/yyyy"
   dateRange={_scope.state.dateRange}
   onChange={_scope.handleChange.bind(_scope)}
 />
