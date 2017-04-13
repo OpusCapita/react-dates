@@ -148,6 +148,9 @@ class DateRangeInput extends Component {
   }
 
   hidePicker() {
+    if(this.props.dateRange[0] && !this.props.dateRange[1]) {
+      this.props.onChange([ null, null ]);
+    }
     this.setState({ showPicker: false });
   }
 
