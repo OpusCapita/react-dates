@@ -17,6 +17,7 @@ DateInput is
   dateFormat="DD/MM/YYYY"
   onChange={_scope.handleChange.bind(_scope)}
   showResetButton={true}
+  locale="de-DE"
 />
 ```
 

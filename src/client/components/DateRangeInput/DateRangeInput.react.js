@@ -152,6 +152,7 @@ class DateRangeInput extends Component {
 
   handleVariantSelect(range) {
     this.hideVariants();
+    this.setState({ enteredTo: range[1] });
     this.props.onChange(range);
   }
 
@@ -193,6 +194,9 @@ class DateRangeInput extends Component {
     let to = this.props.dateRange[1];
     let { enteredTo, error } = this.state;
 
+    let duration = (to && from) && to.getTime() - from.getTime();
+    console.log('d', duration);
+
     let showToTopClassName = showToTop ? 'opuscapita_date-range-input__picker-container--to-top' : '';
     let showToLeftClassName = showToLeft ? 'opuscapita_date-range-input__picker-container--to-left' : '';
 
@@ -202,11 +206,12 @@ class DateRangeInput extends Component {
         numberOfMonths={ 2 }
         fromMonth={ from }
         selectedDays={ [from, { from, to: enteredTo }] }
-        disabledDays={ { before: this.state.from } }
+        disabledDays={ { before: from } }
         modifiers={ { start: from, end: enteredTo } }
         onDayClick={ this.handleDayClick }
         onDayMouseEnter={ this.handleDayMouseEnter }
         hideTodayButton={true}
+        locale={locale}
       />
     );
 
@@ -218,8 +223,7 @@ class DateRangeInput extends Component {
       <Motion
         defaultStyle={{ x: this.state.showPicker ? 1 : 0 }}
         style={{ x: this.state.showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
-      >
-        {interpolatedStyle => (
+      >{interpolatedStyle => (
           <div
             className={`opuscapita_date-range-input__picker-container ${showToTopClassName} ${showToLeftClassName}`}
             style={{
@@ -229,16 +233,14 @@ class DateRangeInput extends Component {
           >
             {pickerElement}
           </div>
-        )}
-      </Motion>
+      )}</Motion>
     );
 
     let variantsMotionElement = hideVariantsButton ? null : (
       <Motion
         defaultStyle={{ x: this.state.showVariants ? 1 : 0 }}
         style={{ x: this.state.showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
-      >
-        {interpolatedStyle => (
+      >{interpolatedStyle => (
           <div
             className={`
               opuscapita_date-range-input__variants-container
@@ -251,8 +253,7 @@ class DateRangeInput extends Component {
           >
             {variantsElement}
           </div>
-        )}
-      </Motion>
+      )}</Motion>
     );
 
     let inputValue = (from && to) ?
@@ -266,17 +267,15 @@ class DateRangeInput extends Component {
     );
 
     let variantsButton = hideVariantsButton ? null : (
-      <InputAddonButton
-        className="opuscapita_date-range-input__variants-btn"
+      <button
+        type="button"
+        className="btn btn-default opuscapita_date-range-input__variants-btn"
         tabIndex="-1"
         onClick={this.handleVariantsButtonClick}
       >
-        ▼
-      </InputAddonButton>
+        <span className="caret"></span>
+      </button>
     );
-
-    let buttonsWidth = hideVariantsButton ? 4 : 7;
-    let inputWidth = `${dateFormat.length * 2 + buttonsWidth + 4}ch`;
 
     return (
       <div
@@ -285,22 +284,25 @@ class DateRangeInput extends Component {
         disabled={disabled}
         { ...restProps }
       >
-        <input
-          type="text"
-          className="opuscapita_date-range-input__input-field form-control"
-          onFocus={this.handleInputFocus.bind(this)}
-          placeholder={placeholder}
-          value={inputValue}
-          onChange={() => {}}
-          style={{
-            paddingRight: `${buttonsWidth}ch`,
-            width: inputWidth
-          }}
-        />
-        {variantsButton}
-        {resetButton}
-        {pickerMotionElement}
+        <div className="opuscapita_date-range-input__input-field-container">
+          <input
+            type="text"
+            className="opuscapita_date-range-input__input-field form-control"
+            onFocus={this.handleInputFocus.bind(this)}
+            placeholder={placeholder}
+            value={inputValue}
+            onChange={() => {}}
+            style={{
+              paddingRight: `${3}ch`,
+              width: `${dateFormat.length * 2 + 7}ch`
+            }}
+          />
+          {resetButton}
+          {pickerMotionElement}
+        </div>
+
         {variantsMotionElement}
+        {variantsButton}
       </div>
     );
   }

@@ -26,6 +26,7 @@ const toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
 
 function Caption(props) {
   let { date, locale, localeUtils, onChange } = props;
+  console.log('locale:', props.locale);
   let months = localeUtils.getMonths(locale);
   let years = [];
   for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
