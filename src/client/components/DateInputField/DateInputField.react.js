@@ -39,8 +39,8 @@ class DateInputField extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.date && this.props.date !== nextProps.date || this.props.dateFormat !== nextProps.dateFormat) {
-      let inputValue = moment(nextProps.date.toISOString()).format(nextProps.dateFormat);
+    if (this.props.date !== nextProps.date || this.props.dateFormat !== nextProps.dateFormat) {
+      let inputValue = nextProps.date ? moment(nextProps.date.toISOString()).format(nextProps.dateFormat) : '';
       this.setState({ inputValue });
     }
   }
