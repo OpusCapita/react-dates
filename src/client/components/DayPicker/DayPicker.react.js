@@ -20,12 +20,13 @@ function splitProps(props, specificPropNames = []) {
   }, [{}, {}]);
 };
 
-const currentYear = (new Date()).getFullYear();
-const fromMonth = new Date(currentYear, 0, 1, 0, 0);
-const toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
+let currentYear = (new Date()).getFullYear();
+let fromMonth = new Date(currentYear, 0, 1, 0, 0);
+let toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
 
 function Caption(props) {
   let { date, locale, localeUtils, onChange } = props;
+  console.log('onChange', onChange);
   let months = localeUtils.getMonths(locale);
   let years = [];
   for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
@@ -33,6 +34,7 @@ function Caption(props) {
   }
 
   let handleChange = (event) => {
+    console.log('onChange:::::::::::::', onChange);
     let { year, month } = event.target.form;
     let newDate = new Date(year.value, month.value);
     onChange(newDate);
@@ -81,6 +83,7 @@ class DayPicker extends Component {
   }
 
   handleDateChange(date) {
+    console.log('date:', date);
     this.props.onChange(date);
   }
 

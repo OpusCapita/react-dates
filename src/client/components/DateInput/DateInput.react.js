@@ -108,6 +108,7 @@ class DateInput extends Component {
   }
 
   handleDateChange(date) {
+    console.log('!!!!dddddd:', date);
     this.props.onChange(date);
     this.setState({ error: null });
   }
@@ -131,6 +132,7 @@ class DateInput extends Component {
   }
 
   reset() {
+    this.hidePicker();
     this.props.onChange(null);
   }
 
