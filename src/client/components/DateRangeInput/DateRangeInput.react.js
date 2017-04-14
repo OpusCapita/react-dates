@@ -28,6 +28,7 @@ let propTypes = {
   dateRange: PropTypes.array,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
+  isValid: PropTypes.bool,
   onChange: PropTypes.func,
   positionRight: PropTypes.bool,
   positionTop: PropTypes.bool,
@@ -44,6 +45,7 @@ let defaultProps = {
   disabled: false,
   hideVariantsButton: false,
   locale: 'en-GB',
+  isValid: true,
   placeholder: 'Select date range',
   onChange: () => {},
   showToTop: false,
@@ -206,6 +208,7 @@ class DateRangeInput extends Component {
       dateRange,
       disabled,
       locale,
+      isValid,
       placeholder,
       hideVariantsButton,
       showToTop,
@@ -299,6 +302,8 @@ class DateRangeInput extends Component {
       </button>
     );
 
+    let hasErrorClassName = isValid ? '' : 'has-error';
+
     return (
       <div
         ref={el => (this.container = el)}
@@ -306,7 +311,7 @@ class DateRangeInput extends Component {
         disabled={disabled}
         { ...restProps }
       >
-        <div className="opuscapita_date-range-input__input-field-container">
+        <div className={`opuscapita_date-range-input__input-field-container ${hasErrorClassName}`}>
           <input
             type="text"
             className="opuscapita_date-range-input__input-field form-control"

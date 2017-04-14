@@ -28,11 +28,10 @@ let propTypes = {
   date: PropTypes.object,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
-  showToTop: PropTypes.bool,
-  showToLeft: PropTypes.bool,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
-  onHide: PropTypes.func,
+  showToLeft: PropTypes.bool,
+  showToTop: PropTypes.bool,
   tabIndex: PropTypes.number
 };
 
@@ -41,11 +40,10 @@ let defaultProps = {
   date: new Date(),
   disabled: false,
   locale: 'en-GB',
-  showToTop: false,
-  showToLeft: false,
   onChange: () => {},
   onClick: () => {},
-  onHide: () => {},
+  showToLeft: false,
+  showToTop: false,
   tabIndex: 0
 };
 
@@ -116,7 +114,6 @@ class DatePicker extends Component {
       showToLeft,
       onChange,
       onClick,
-      onHide,
       tabIndex,
       ...restProps
     } = this.props;

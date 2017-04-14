@@ -33,10 +33,10 @@ let propTypes = {
   locale: PropTypes.string,
   showToTop: PropTypes.bool,
   showToLeft: PropTypes.bool,
-  showResetButton: PropTypes.bool,
   onChange: PropTypes.func,
   onHide: PropTypes.func,
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
+  isValid: PropTypes.bool
 };
 
 let defaultProps = {
@@ -47,10 +47,10 @@ let defaultProps = {
   locale: 'en-GB',
   showToTop: false,
   showToLeft: false,
-  showResetButton: false,
   onChange: () => {},
   onHide: () => {},
-  tabIndex: 0
+  tabIndex: 0,
+  isValid: true
 };
 
 export default
@@ -142,10 +142,10 @@ class DateInput extends Component {
       date,
       dateFormat,
       disabled,
+      isValid,
       locale,
       showToTop,
       showToLeft,
-      showResetButton,
       onChange,
       onHide,
       tabIndex,
@@ -175,7 +175,7 @@ class DateInput extends Component {
 
     let showToTopClassName = showToTop ? 'opuscapita_date-input__picker-container--to-top' : '';
     let showToLeftClassName = showToLeft ? 'opuscapita_date-input__picker-container--to-left' : '';
-    let hasErrorClassName = error === null ? '' : 'has-error';
+    let hasErrorClassName = (error === null && isValid) ? '' : 'has-error';
 
     let pickerMotionElement = (
       <Motion
@@ -196,11 +196,11 @@ class DateInput extends Component {
       </Motion>
     );
 
-    let resetButton = showResetButton ? (
+    let resetButton = (
       <InputAddonButton className="opuscapita_date-input__reset-btn" tabIndex="-1" onClick={this.reset}>
         ✕
       </InputAddonButton>
-    ) : null;
+    );
 
     return (
       <div

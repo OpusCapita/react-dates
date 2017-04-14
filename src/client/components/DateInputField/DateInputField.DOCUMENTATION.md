@@ -7,7 +7,16 @@ DateInputField is
 
 | Name                           | Type                    | Description                                                 |
 | ------------------------------ | :---------------------- | ----------------------------------------------------------- |
-| demoProp                       | string                  | Write a description of the property                         |
+| className                      | string                  |                                                             |
+| date                           | object                  |                                                             |
+| dateFormat                     | string                  |                                                             |
+| disabled                       | bool                    |                                                             |
+| locale                         | string                  |                                                             |
+| onBlur                         | func                    |                                                             |
+| onChange                       | func                    |                                                             |
+| onError                        | func                    |                                                             |
+| onFocus                        | func                    |                                                             |
+| onRef                          | fun                     |                                                             |
 
 ### Code Example
 

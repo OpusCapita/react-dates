@@ -5,9 +5,11 @@ DateRangeVariants is
 
 ### Props Reference
 
-| Name                           | Type                    | Description                                                 |
-| ------------------------------ | :---------------------- | ----------------------------------------------------------- |
-| demoProp                       | string                  | Write a description of the property                         |
+| Name                           | Type                                                  | Description                                                 |
+| ------------------------------ | :----------------------                               | ----------------------------------------------------------- |
+| variants                       | [ { label: string, range: [ from<Date>, to<Date>] } ] |                                                             |
+| onChange                       | func                                                  |                                                             |
+| locale                         | string                                                |                                                             |
 
 ### Code Example
 

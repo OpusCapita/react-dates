@@ -13,8 +13,9 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 | disabled                       | bool                    | Is DatePicker button disabled                                                  |
 | locale                         | string                  | Days and months translations, first day of week, etc. depends on this property |
 | onChange                       | func                    | Callback triggered on selecting new date                                       |
-| showToTop                      | bool                    | Show picker popup to top relative to button                                    |
+| onClick                        | func                    |                                                                                |
 | showToLeft                     | bool                    | Show picker popup to left relative to button                                   |
+| showToTop                      | bool                    | Show picker popup to top relative to button                                    |
 | tabIndex                       | number                  | Default HTML behavior                                                          |
 
 ***

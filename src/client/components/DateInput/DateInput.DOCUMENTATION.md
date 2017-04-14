@@ -7,7 +7,17 @@ DateInput is
 
 | Name                           | Type                    | Description                                                 |
 | ------------------------------ | :---------------------- | ----------------------------------------------------------- |
-| demoProp                       | string                  | Write a description of the property                         |
+| className                      | string                  |                                                             |
+| date                           | object                  | Instance of Date                                            |
+| dateFormat                     | string                  | Something like "yyyy/MM/dd" or "dd.MM.yyyy"                 |
+| disabled                       | bool                    |                                                             |
+| isValid                        | bool                    | If false -                                |
+| locale                         | string                  |                                                             |
+| onChange                       | func                    |                                                             |
+| onHide                         | func                    |                                                             |
+| showToLeft                     | bool                    |                                                             |
+| showToTop                      | bool                    |                                                             |
+| tabIndex                       | number                  |                                                             |
 
 ### Code Example
 

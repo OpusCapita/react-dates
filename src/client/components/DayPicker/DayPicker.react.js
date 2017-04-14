@@ -72,6 +72,24 @@ function Caption(props) {
   );
 }
 
+let propTypes = {
+  ...ReactDayPicker.propTypes,
+  className: PropTypes.string,
+  pickerClassName: PropTypes.string,
+  dayPickerRef: PropTypes.func,
+  onChange: PropTypes.func,
+  hideTodayButton: PropTypes.bool
+};
+
+let defaultProps = {
+  className: '',
+  dayPickerRef: () => {},
+  labels: ReactDayPicker.defaultProps.labels,
+  pickerClassName: '',
+  onChange: () => {},
+  hideTodayButton: false
+};
+
 export default
 class DayPicker extends Component {
   constructor(props) {
@@ -139,19 +157,5 @@ class DayPicker extends Component {
   }
 }
 
-DayPicker.propTypes = {
-  ...ReactDayPicker.propTypes,
-  className: PropTypes.string,
-  pickerClassName: PropTypes.string,
-  dayPickerRef: PropTypes.func,
-  onChange: PropTypes.func,
-  hideTodayButton: PropTypes.bool
-};
-DayPicker.defaultProps = {
-  className: '',
-  dayPickerRef: () => {},
-  labels: ReactDayPicker.defaultProps.labels,
-  pickerClassName: '',
-  onChange: () => {},
-  hideTodayButton: false
-};
+DayPicker.propTypes = propTypes;
+DayPicker.defaultProps = defaultProps;
