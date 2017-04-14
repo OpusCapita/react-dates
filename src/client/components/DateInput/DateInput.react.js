@@ -165,6 +165,7 @@ class DateInput extends Component {
         dayPickerRef={el => (this.reactDayPicker = el)}
         locale={locale}
         month={date}
+        selectedDays={date}
         tabIndex={-1}
         fixedWeeks={true}
         onChange={this.handleDateChange}
