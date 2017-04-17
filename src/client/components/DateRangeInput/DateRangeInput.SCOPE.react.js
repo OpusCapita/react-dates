@@ -13,29 +13,28 @@ class DateRangeInputScope extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dateRange: [null, null]
+      dateRange1: [null, null],
+      dateRange2: [new Date(), new Date()],
+      dateRange3: [null, null]
     };
   }
 
-  handleChange(dateRange) {
-    this.setState({ dateRange });
+  handleChange1(dateRange) {
+    this.setState({ dateRange1: dateRange });
+  }
+
+  handleChange2(dateRange) {
+    this.setState({ dateRange2: dateRange });
+  }
+
+  handleChange3(dateRange) {
+    this.setState({ dateRange3: dateRange });
   }
 
   render() {
-    let { dateRange } = this.state;
-    let from = String(dateRange[0]);
-    let to = String(dateRange[1]);
     return (
       <div>
         {this._renderChildren()}
-        <div>
-          <hr />
-          <strong>From: </strong>
-          <span>{from}</span>
-          <br />
-          <strong>To: </strong>
-          <span>{to}</span>
-        </div>
       </div>
     );
   }

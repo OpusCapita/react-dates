@@ -4,10 +4,28 @@ import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
 import DateRangeVariants from '../DateRangeVariants';
 import { DateUtils } from 'react-day-picker';
+import assign from 'lodash/assign';
 import moment from 'moment';
 import { spring, presets, Motion } from 'react-motion';
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
+
+function splitProps(props, specificPropNames = []) {
+  let result = Object.keys(props).reduce((result, propName) => {
+    let isPropSpecific = specificPropNames.indexOf(propName) >= 0;
+    if (isPropSpecific) {
+      let commonProps = assign({}, result[0]);
+      let specificProps = assign({}, result[1], { [propName]: props[propName] });
+      return [commonProps, specificProps];
+    }
+
+    let commonProps = assign({}, result[0], { [propName]: props[propName] });
+    let specificProps = assign({}, result[1]);
+    return [commonProps, specificProps];
+  }, [{}, {}]);
+
+  return result;
+}
 
 let initialState = {
   enteredTo: null,
@@ -217,6 +235,10 @@ class DateRangeInput extends Component {
       ...restProps
     } = this.props;
 
+    let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
+    let commonProps = splittedProps[0];
+    let dayPickerSpecificProps = splittedProps[1];
+
     let from = this.props.dateRange[0];
     let to = this.props.dateRange[1];
     let { enteredTo } = this.state;
@@ -238,6 +260,7 @@ class DateRangeInput extends Component {
         onDayMouseEnter={ this.handleDayMouseEnter }
         hideTodayButton={true}
         locale={locale}
+        { ...dayPickerSpecificProps }
       />
     );
 
@@ -315,7 +338,7 @@ class DateRangeInput extends Component {
       <div
         ref={el => (this.container = el)}
         className={`opuscapita_date-range-input ${className}`}
-        { ...restProps }
+        { ...commonProps }
       >
         <div className={`opuscapita_date-range-input__input-field-container ${hasErrorClassName}`}>
           <input
