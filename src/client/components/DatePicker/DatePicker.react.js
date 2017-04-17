@@ -28,7 +28,6 @@ let propTypes = {
   disabled: PropTypes.bool,
   locale: PropTypes.string,
   onChange: PropTypes.func,
-  onClick: PropTypes.func,
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
   tabIndex: PropTypes.number
@@ -40,7 +39,6 @@ let defaultProps = {
   disabled: false,
   locale: 'en-GB',
   onChange: () => {},
-  onClick: () => {},
   showToLeft: false,
   showToTop: false,
   tabIndex: 0
@@ -75,7 +73,6 @@ class DatePicker extends Component {
   }
 
   handleToggleClick() {
-    this.props.onClick();
     if (this.state.showPicker) {
       this.hidePicker();
     } else {
@@ -114,7 +111,6 @@ class DatePicker extends Component {
       showToTop,
       showToLeft,
       onChange, // eslint-disable-line no-unused-vars
-      onClick, // eslint-disable-line no-unused-vars
       tabIndex,
       ...restProps
     } = this.props;

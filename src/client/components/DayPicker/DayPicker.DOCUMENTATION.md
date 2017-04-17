@@ -9,10 +9,10 @@ DayPicker is a styled to OpusCapita defaults [react-day-picker](https://github.c
 
 | Name                           | Type                    | Description                                                                                                                                                                                                         |
 | ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                                                         |
-| className                      | string                  | Default HTML behavior                                                                                                                                                                                               |
-| dayPickerRef                   | func                    | Callback with default react ref behavior, but returns [react-day-picker](http://react-day-picker.js.org/) element. Useful if you want call some [methods](http://react-day-picker.js.org/APIMethods.html) |
+| className                      | string                  | Default behavior                                                                                                                                                                                               |
+| dayPickerRef                   | func                    | Callback with [react ref](https://facebook.github.io/react/docs/refs-and-the-dom.html) behavior, but returns [react-day-picker](http://react-day-picker.js.org/) element. Useful if you want call some [methods](http://react-day-picker.js.org/APIMethods.html) |
 | pickerClassName                | string                  | Class name passed to react day picker                                                                                                                                                                               |
-| onChange                       | func                    | Callback fired when new date selected `date => {}`                                                                                                                                                                  |
+| onChange                       | func                    | Callback fired when new date selected `Date date => {}`                                                                                                                                                         |
 
 ***
 

@@ -27,15 +27,19 @@ let propTypes = {
   dateFormat: PropTypes.string,
   dateRange: PropTypes.array,
   disabled: PropTypes.bool,
-  locale: PropTypes.string,
   isValid: PropTypes.bool,
+  locale: PropTypes.string,
   onChange: PropTypes.func,
+  placeholder: PropTypes.string,
   positionRight: PropTypes.bool,
   positionTop: PropTypes.bool,
-  placeholder: PropTypes.string,
-  hideVariantsButton: PropTypes.bool,
+  showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
-  showToLeft: PropTypes.bool
+  tabIndex: PropTypes.number,
+  variants: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    range: PropTypes.array
+  }))
 };
 
 let defaultProps = {
@@ -43,13 +47,14 @@ let defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   dateRange: [null, null],
   disabled: false,
-  hideVariantsButton: false,
-  locale: 'en-GB',
   isValid: true,
-  placeholder: 'Select date range',
+  locale: 'en-GB',
   onChange: () => {},
+  placeholder: 'Select date range',
+  showToLeft: false,
   showToTop: false,
-  showToLeft: false
+  tabIndex: 0,
+  variants: undefined
 };
 
 export default
@@ -205,9 +210,10 @@ class DateRangeInput extends Component {
       locale,
       isValid,
       placeholder,
-      hideVariantsButton,
+      tabIndex,
       showToTop,
       showToLeft,
+      variants,
       ...restProps
     } = this.props;
 
@@ -235,9 +241,14 @@ class DateRangeInput extends Component {
       />
     );
 
-    let variantsElement = hideVariantsButton ? null : (
-      <DateRangeVariants onChange={this.handleVariantSelect} locale={locale} />
-    );
+    let showVariants = typeof variants === 'undefined' || (variants && variants.length);
+    let variantsElement = (showVariants) ? (
+      <DateRangeVariants
+        onChange={this.handleVariantSelect}
+        locale={locale}
+        variants={variants}
+      />
+    ) : null;
 
     let pickerMotionElement = (
       <Motion
@@ -256,7 +267,7 @@ class DateRangeInput extends Component {
       )}</Motion>
     );
 
-    let variantsMotionElement = hideVariantsButton ? null : (
+    let variantsMotionElement = variantsElement ? (
       <Motion
         defaultStyle={{ x: this.state.showVariants ? 1 : 0 }}
         style={{ x: this.state.showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
@@ -274,7 +285,7 @@ class DateRangeInput extends Component {
             {variantsElement}
           </div>
       )}</Motion>
-    );
+    ) : null;
 
     let inputValue = (from && to) ?
       `${moment(from).format(momentCompatibleDateFormat)}  —  ${moment(to).format(momentCompatibleDateFormat)}` :
@@ -286,16 +297,17 @@ class DateRangeInput extends Component {
       </InputAddonButton>
     );
 
-    let variantsButton = hideVariantsButton ? null : (
+    let variantsButton = variantsElement ? (
       <button
         type="button"
         className="btn btn-default opuscapita_date-range-input__variants-btn"
+        disabled={disabled}
         tabIndex="-1"
         onClick={this.handleVariantsButtonClick}
       >
         <span className="caret"></span>
       </button>
-    );
+    ) : null;
 
     let hasErrorClassName = isValid ? '' : 'has-error';
 
@@ -303,16 +315,17 @@ class DateRangeInput extends Component {
       <div
         ref={el => (this.container = el)}
         className={`opuscapita_date-range-input ${className}`}
-        disabled={disabled}
         { ...restProps }
       >
         <div className={`opuscapita_date-range-input__input-field-container ${hasErrorClassName}`}>
           <input
             type="text"
             className="opuscapita_date-range-input__input-field form-control"
+            disabled={disabled}
             onFocus={this.handleInputFocus}
             onClick={this.handleInputClick}
             placeholder={placeholder}
+            tabIndex={tabIndex}
             value={inputValue}
             onChange={() => {}}
             style={{

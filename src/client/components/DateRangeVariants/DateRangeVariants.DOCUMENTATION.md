@@ -5,11 +5,11 @@ DateRangeVariants is
 
 ### Props Reference
 
-| Name                           | Type                                                  | Description                                                 |
-| ------------------------------ | :----------------------                               | ----------------------------------------------------------- |
-| variants                       | [ { label: string, range: [ from<Date>, to<Date>] } ] |                                                             |
-| onChange                       | func                                                  |                                                             |
-| locale                         | string                                                |                                                             |
+| Name                           | Type                    | Description                                                                                                                                                 |
+| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                 |
+| variants                       | array                   | `[ { label: string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |
+| onChange                       | func                    | `([Date from, Date to]) => {}`                                                                                                                              |
+| locale                         | string                  |                                                                                                                                                             |
 
 ### Code Example
 

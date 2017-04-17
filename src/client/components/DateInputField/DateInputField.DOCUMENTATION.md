@@ -1,22 +1,14 @@
-### Synopsis
-
-DateInputField is 
-*Write here a short introduction and/or overview that explains **what** component is.*
-
 ### Props Reference
 
-| Name                           | Type                    | Description                                                 |
-| ------------------------------ | :---------------------- | ----------------------------------------------------------- |
-| className                      | string                  |                                                             |
-| date                           | object                  |                                                             |
-| dateFormat                     | string                  |                                                             |
-| disabled                       | bool                    |                                                             |
-| locale                         | string                  |                                                             |
-| onBlur                         | func                    |                                                             |
-| onChange                       | func                    |                                                             |
-| onError                        | func                    |                                                             |
-| onFocus                        | func                    |                                                             |
-| onRef                          | fun                     |                                                             |
+| Name                           | Type                    | Description                                                                                                                   |
+| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                   |
+| className                      | string                  | Default behavior                                                                                                              |
+| date                           | object                  | Instance of `Date`                                                                                                            |
+| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                              |
+| disabled                       | bool                    | If true - became inactive                                                                                                 |
+| locale                         | string                  | `en`, `de`, etc.                                                                                                              |
+| onChange                       | func                    | Callback fired on date change `Date date => {}`                                                                               |
+| onError                        | func                    | Callback fired on validation error and return MomentJS [validation error code](https://momentjs.com/docs/#/parsing/is-valid/) |
 
 ### Code Example
 

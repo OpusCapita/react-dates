@@ -6,17 +6,16 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 
 ### Props Reference
 
-| Name                           | Type                    | Description                                                                    |
-| ------------------------------ | :---------------------- | -----------------------------------------------------------                    |
-| className                      | string                  | Default HTML behavior                                                          |
-| date                           | instanceOf(Date)        |                                                                                |
-| disabled                       | bool                    | Is DatePicker button disabled                                                  |
-| locale                         | string                  | Days and months translations, first day of week, etc. depends on this property |
-| onChange                       | func                    | Callback triggered on selecting new date                                       |
-| onClick                        | func                    |                                                                                |
-| showToLeft                     | bool                    | Show picker popup to left relative to button                                   |
-| showToTop                      | bool                    | Show picker popup to top relative to button                                    |
-| tabIndex                       | number                  | Default HTML behavior                                                          |
+| Name                           | Type                    | Description                                                                                     |
+| ------------------------------ | :---------------------- | -----------------------------------------------------------                                     |
+| className                      | string                  | Default HTML behavior                                                                           |
+| date                           | instanceOf(Date)        | Instance of `Date`                                                                              |
+| disabled                       | bool                    | If true - became inactive                                                                       |
+| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property |
+| onChange                       | func                    | Callback triggered on selecting new date                                                        |
+| showToLeft                     | bool                    | Show picker popup to left relative to button                                                    |
+| showToTop                      | bool                    | Show picker popup to top relative to button                                                     |
+| tabIndex                       | number                  | Default HTML behavior                                                                           |
 
 ***
 

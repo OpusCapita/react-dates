@@ -8,11 +8,8 @@ let propTypes = {
   dateFormat: PropTypes.string,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
-  onBlur: PropTypes.func,
   onChange: PropTypes.func,
-  onError: PropTypes.func,
-  onFocus: PropTypes.func,
-  onRef: PropTypes.func
+  onError: PropTypes.func
 };
 
 let defaultProps = {
@@ -21,11 +18,9 @@ let defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   locale: 'en-GB',
-  onBlur: () => {},
   onChange: () => {},
   onError: () => {},
-  onFocus: () => {},
-  onRef: () => {}
+  onValid: () => {}
 };
 
 export default
@@ -54,10 +49,10 @@ class DateInputField extends Component {
     let momentDate = moment(dateString, dateFormat, true);
     let error = momentDate.isValid() ? null : momentDate.invalidAt();
 
-    if (error !== null) {
+    if (error !== null && dateString.length) {
       this.props.onError(error);
     } else {
-      let date = momentDate.toDate();
+      let date = !dateString.length ? null : momentDate.toDate();
       this.props.onChange(date);
     }
   }
@@ -75,10 +70,8 @@ class DateInputField extends Component {
       className,
       date, // eslint-disable-line no-unused-vars
       locale, // eslint-disable-line no-unused-vars
+      onError, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
-      onFocus,
-      onBlur,
-      onRef,
       ...restProps
     } = this.props;
 
@@ -91,10 +84,7 @@ class DateInputField extends Component {
         className={`opuscapita_date-input-field form-control ${className}`}
         disabled={disabled}
         onChange={this.handleInputChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
         placeholder={dateFormat}
-        ref={onRef}
         type="text"
         value={inputValue}
         {...restProps}
