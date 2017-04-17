@@ -351,10 +351,7 @@ class DateRangeInput extends Component {
             tabIndex={tabIndex}
             value={inputValue}
             onChange={() => {}}
-            style={{
-              paddingRight: `${3}ch`,
-              width: `${dateFormat.length * 2 + 7}ch`
-            }}
+            style={{ paddingRight: `${3}ch` }}
           />
           {resetButton}
           {pickerMotionElement}
