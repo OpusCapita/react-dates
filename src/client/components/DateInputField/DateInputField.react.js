@@ -19,8 +19,7 @@ let defaultProps = {
   disabled: false,
   locale: 'en-GB',
   onChange: () => {},
-  onError: () => {},
-  onValid: () => {}
+  onError: () => {}
 };
 
 export default
