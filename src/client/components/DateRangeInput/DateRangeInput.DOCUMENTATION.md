@@ -20,33 +20,13 @@
 
 ```
 <DateRangeInput 
-  dateFormat="MM/dd/yyyy"
-  dateRange={_scope.state.dateRange}
-  locale={'de'}
-  onChange={_scope.handleChange.bind(_scope)}
-/>
-
-<br />
-<br />
-
-<DateRangeInput 
-  dateFormat="dd/MM/yyyy"
-  dateRange={_scope.state.dateRange}
-  onChange={_scope.handleChange.bind(_scope)}
-  disabled={true}
-/>
-
-<br />
-<br />
-
-<DateRangeInput 
   dateFormat="dd.MM.yyyy"
   dateRange={_scope.state.dateRange}
   onChange={_scope.handleChange.bind(_scope)}
   locale={'ru'}
   placeholder="Выберите диапазон дат"
-  showToTop={true}
-  showToLeft={true}
+  showToTop={false}
+  showToLeft={false}
 />
 ``` 
 
