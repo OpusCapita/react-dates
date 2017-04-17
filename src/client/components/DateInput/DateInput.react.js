@@ -202,7 +202,7 @@ class DateInput extends Component {
     return (
       <div
         ref={el => (this.container = el)}
-        className={`opuscapita-date-input form-group ${hasErrorClassName} ${className}`}
+        className={`opuscapita-date-input form-control ${hasErrorClassName} ${className}`}
       >
         <DateInputField
           date={date}

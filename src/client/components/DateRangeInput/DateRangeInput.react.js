@@ -337,7 +337,7 @@ class DateRangeInput extends Component {
     return (
       <div
         ref={el => (this.container = el)}
-        className={`opuscapita_date-range-input ${className}`}
+        className={`opuscapita_date-range-input form-control ${className}`}
         { ...commonProps }
       >
         <div className={`opuscapita_date-range-input__input-field-container ${hasErrorClassName}`}>

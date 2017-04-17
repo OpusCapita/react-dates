@@ -1,6 +1,6 @@
 ### Synopsis
 
-DatePicker show calendar button. When you click it, calendar appears
+DatePicker shows the calendar button. When you click it, calendar appears. Allows select date using mouse.
 
 Based on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)
 

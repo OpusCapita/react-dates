@@ -1,9 +1,12 @@
 .opuscapita_date-range-input {
   position: relative;
-  display: flex;
+  display: inline-flex !important;
+  padding: 0;
+  border: none;
 }
 
 .opuscapita_date-range-input__picker-container {
+  will-change: opacity, max-height;
   display: inline-flex;
   background: #fff;
   top: 40px;
@@ -34,6 +37,7 @@
 }
 
 .opuscapita_date-range-input__variants-container {
+  will-change: opacity, max-height;
   display: inline-flex;
   background: #fff;
   top: 40px;
@@ -53,6 +57,14 @@
   position: absolute;
   top: 0;
   right: 1ch;
+}
+
+.opuscapita_date-range-input__input-field {
+  width: 100% !important;
+}
+
+.opuscapita_date-range-input__input-field[placeholder] {
+  text-overflow: ellipsis;
 }
 
 .opuscapita_date-range-input__input-field-container {

@@ -1,5 +1,7 @@
 ### Synopsis
 
+Allows select date range using mouse.
+
 ### Props Reference
 
 | Name                           | Type                                                                 | Description                                                                                                                                                 |

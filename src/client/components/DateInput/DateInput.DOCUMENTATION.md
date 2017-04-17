@@ -1,4 +1,6 @@
-f### Synopsis
+### Synopsis
+
+Allows select date using mouse or keyboard.
 
 Based on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)
 
