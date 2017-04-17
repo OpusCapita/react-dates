@@ -15,7 +15,8 @@ class DateRangeInputScope extends Component {
     this.state = {
       dateRange1: [null, null],
       dateRange2: [new Date(), new Date()],
-      dateRange3: [null, null]
+      dateRange3: [null, null],
+      dateRange4: [null, null]
     };
   }
 
@@ -31,6 +32,10 @@ class DateRangeInputScope extends Component {
     this.setState({ dateRange3: dateRange });
   }
 
+  handleChange4(dateRange) {
+    this.setState({ dateRange4: dateRange });
+  }
+
   render() {
     return (
       <div>
@@ -39,10 +44,3 @@ class DateRangeInputScope extends Component {
     );
   }
 }
-
-DateRangeInputScope.contextTypes = {
-  i18n: PropTypes.object
-};
-DateRangeInputScope.childContextTypes = {
-  i18n: PropTypes.object
-};

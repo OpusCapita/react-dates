@@ -23,7 +23,7 @@ module.exports = {
       'process.env.HOST': JSON.stringify(host),
       'process.env.PORT': JSON.stringify(port),
       // Uncomment next line if animation perf is bad
-      // 'process.env.NODE_ENV': '"production"'
+      'process.env.NODE_ENV': '"production"'
     }),
   ],
   externals: {

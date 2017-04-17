@@ -26,7 +26,7 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
 
 ```
 <DayPicker
-  onChange={ day => console.log(day) }
+  onChange={ day => console.log('day:', day) }
   locale="de-DE"
 />
 ```

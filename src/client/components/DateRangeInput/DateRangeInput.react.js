@@ -354,8 +354,8 @@ class DateRangeInput extends Component {
             style={{ paddingRight: `${3}ch` }}
           />
           {resetButton}
-          {pickerMotionElement}
         </div>
+        {pickerMotionElement}
         {variantsMotionElement}
         {variantsButton}
       </div>

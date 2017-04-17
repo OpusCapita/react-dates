@@ -35,6 +35,7 @@ function Caption(props) {
   let handleChange = (event) => {
     let { year, month } = event.target.form;
     let newDate = new Date(year.value, month.value);
+    console.log('new date:', newDate);
     onChange(newDate);
   };
 
@@ -99,7 +100,6 @@ class DayPicker extends Component {
   }
 
   handleDateChange(date) {
-    console.log('date:', date);
     this.props.onChange(date);
   }
 

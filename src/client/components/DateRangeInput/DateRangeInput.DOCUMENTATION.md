@@ -38,15 +38,31 @@
 
 <hr />
 
-<DateRangeInput 
-  dateFormat="dd.MM.yyyy"
-  dateRange={_scope.state.dateRange3}
-  onChange={_scope.handleChange3.bind(_scope)}
-  locale={'ru'}
-  placeholder="Выберите диапазон дат"
-  showToTop={true}
-  showToLeft={false}
-/>
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput 
+      dateFormat="dd.MM.yyyy"
+      dateRange={_scope.state.dateRange3}
+      onChange={_scope.handleChange3.bind(_scope)}
+      locale={'ru'}
+      placeholder="Выберите диапазон дат"
+      showToTop={true}
+      showToLeft={false}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput 
+      dateFormat="dd.MM.yyyy"
+      dateRange={_scope.state.dateRange4}
+      onChange={_scope.handleChange4.bind(_scope)}
+      locale={'ru'}
+      placeholder="Выберите диапазон дат"
+      showToTop={true}
+      showToLeft={true}
+    />
+  </div>
+</div>
 ``` 
 
 ### Component Name
