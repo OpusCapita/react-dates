@@ -20,12 +20,13 @@ function splitProps(props, specificPropNames = []) {
   }, [{}, {}]);
 }
 
-let currentYear = (new Date()).getFullYear();
-let fromMonth = new Date(currentYear, 0, 1, 0, 0);
-let toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
-
 function Caption(props) {
   let { date, locale, localeUtils, onChange } = props; // eslint-disable-line react/prop-types
+
+  let currentYear = date.getFullYear();
+  let fromMonth = new Date(currentYear, 0, 1, 0, 0);
+  let toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
+
   let months = localeUtils.getMonths(locale);
   let years = [];
   for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {

@@ -99,6 +99,7 @@ class DateRangeInput extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.dateRange[0] !== nextProps.dateRange[0]) {
       let month = nextProps.dateRange[0] || new Date();
+      console.log('month:', month);
       this.reactDayPicker.showMonth(month);
     }
   }
@@ -249,18 +250,19 @@ class DateRangeInput extends Component {
 
     let pickerElement = (
       <DayPicker
-        dayPickerRef={el => (this.reactDayPicker = el)}
         className="Range"
-        numberOfMonths={ 2 }
-        fromMonth={ from }
-        selectedDays={ [from, { from, to: enteredTo }] }
-        disabledDays={ { before: from } }
-        modifiers={ { start: from, end: enteredTo } }
-        onDayClick={ this.handleDayClick }
-        onDayMouseEnter={ this.handleDayMouseEnter }
+        disabledDays={{ before: from }}
+        fixedWeeks={true}
+        fromMonth={from}
         hideTodayButton={true}
         locale={locale}
-        { ...dayPickerSpecificProps }
+        modifiers={ { start: from, end: enteredTo }}
+        numberOfMonths={2}
+        onDayClick={ this.handleDayClick }
+        onDayMouseEnter={this.handleDayMouseEnter}
+        selectedDays={[ from, { from, to: enteredTo } ]}
+        dayPickerRef={el => (this.reactDayPicker = el)}
+        {...dayPickerSpecificProps}
       />
     );
 

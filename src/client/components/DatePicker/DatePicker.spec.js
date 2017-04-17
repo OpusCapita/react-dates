@@ -14,8 +14,6 @@ describe('<DatePicker />', () => {
     expect(component.props.disabled).to.equal(false);
     expect(component.props.tabIndex).to.equal(0);
     expect(component.props.onChange).to.be.a('function');
-    expect(component.props.onClick).to.be.a('function');
-    expect(component.props.onHide).to.be.a('function');
     expect(component.props.locale).to.equal('en-GB');
   });
 
@@ -134,14 +132,6 @@ describe('<DatePicker />', () => {
       expect(pickerContainerStyle).to.have.property('opacity', '1');
       done();
     }, 1000);
-  });
-
-  it('should call onClick prop on toggle button click', () => {
-    let spy = sinon.spy();
-    let wrapper = shallow(<DatePicker onClick={spy} />);
-    let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
-    showPickerButton.simulate('click');
-    expect(spy).to.have.been.called;
   });
 
   it('should hide picker on toggle button click second time', (done) => {
@@ -264,7 +254,7 @@ describe('<DatePicker />', () => {
   });
 
   it('should change date if new date prop passed', () => {
-    let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
+    let wrapper = mount( DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
     showPickerButton.simulate('click');

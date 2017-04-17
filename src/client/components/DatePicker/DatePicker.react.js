@@ -36,7 +36,7 @@ let propTypes = {
 
 let defaultProps = {
   className: '',
-  date: new Date(),
+  date: null,
   disabled: false,
   locale: 'en-GB',
   onChange: () => {},
@@ -77,9 +77,6 @@ class DatePicker extends Component {
     if (this.state.showPicker) {
       this.hidePicker();
     } else {
-      if (this.reactDayPicker) {
-        this.reactDayPicker.showMonth(this.props.date);
-      }
       this.showPicker();
     }
   }
@@ -120,11 +117,14 @@ class DatePicker extends Component {
     let commonProps = splittedProps[0];
     let dayPickerSpecificProps = splittedProps[1];
 
+    console.log(':;date:', date);
+
     let pickerElement = (
       <DayPicker
         dayPickerRef={el => (this.reactDayPicker = el)}
         locale={locale}
         month={date}
+        selectedDays={date}
         tabIndex={-1}
         fixedWeeks={true}
         onChange={this.handleDateChange}
