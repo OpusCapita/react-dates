@@ -22,9 +22,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.HOST': JSON.stringify(host),
       'process.env.PORT': JSON.stringify(port),
-      'process.env': {
-        'NODE_ENV': '"production"'
-      }
+      // Uncomment next line if animation perf is bad
+      // 'process.env.NODE_ENV': '"production"'
     }),
   ],
   externals: {

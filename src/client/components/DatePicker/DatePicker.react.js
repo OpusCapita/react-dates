@@ -4,6 +4,7 @@ import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 let springPreset = presets.gentle;
+let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
 function splitProps(props, specificPropNames = []) {
   let result = Object.keys(props).reduce((result, propName) => {
@@ -144,7 +145,7 @@ class DatePicker extends Component {
             className={`opuscapita_date-picker__picker-container ${showToTopClassName} ${showToLeftClassName}`}
             style={{
               maxHeight: `${interpolatedStyle.x * 640}px`,
-              opacity: interpolatedStyle.x
+              opacity: easeOutCubic(interpolatedStyle.x)
             }}
           >
             {pickerElement}
