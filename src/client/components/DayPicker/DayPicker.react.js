@@ -8,7 +8,7 @@ import './DayPicker.less';
 function splitProps(props, specificPropNames = []) {
   return Object.keys(props).reduce((result, propName) => {
     let isPropSpecific = specificPropNames.indexOf(propName) >= 0;
-    if(isPropSpecific) {
+    if (isPropSpecific) {
       let commonProps = assign({}, result[0]);
       let specificProps = assign({}, result[1], { [propName]: props[propName] });
       return [commonProps, specificProps];
@@ -18,15 +18,14 @@ function splitProps(props, specificPropNames = []) {
     let specificProps = assign({}, result[1]);
     return [commonProps, specificProps];
   }, [{}, {}]);
-};
+}
 
 let currentYear = (new Date()).getFullYear();
 let fromMonth = new Date(currentYear, 0, 1, 0, 0);
 let toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
 
 function Caption(props) {
-  let { date, locale, localeUtils, onChange } = props;
-  console.log('onChange', onChange);
+  let { date, locale, localeUtils, onChange } = props; // eslint-disable-line react/prop-types
   let months = localeUtils.getMonths(locale);
   let years = [];
   for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
@@ -34,7 +33,6 @@ function Caption(props) {
   }
 
   let handleChange = (event) => {
-    console.log('onChange:::::::::::::', onChange);
     let { year, month } = event.target.form;
     let newDate = new Date(year.value, month.value);
     onChange(newDate);

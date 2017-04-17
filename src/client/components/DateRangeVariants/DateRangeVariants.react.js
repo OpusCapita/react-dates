@@ -71,13 +71,16 @@ let defaultProps = {
 export default
 class DateRangeVariants extends Component {
   handleChange(key) {
-    console.log('locale:', this.props.locale);
-    let range = this.props.variants[key].getRange(this.props.locale);
+    let variants = this.props.variants;
+    let range = variants[key].getRange(this.props.locale);
     this.props.onChange(range);
   }
 
   render() {
-    let { variants, onChange } = this.props;
+    let {
+      variants,
+      onChange // eslint-disable-line no-unused-vars
+    } = this.props;
     let items = variants.map((variant, index) => ({ key: index.toString(), value: variant.label }));
 
     let variantsElement = (

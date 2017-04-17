@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
-import DateInputField '.';
+import DateInputField from '.';
 
 describe('<DateInputField />', () => {
   // it('should have default props', () => {
@@ -86,7 +86,8 @@ describe('<DateInputField />', () => {
       expect(formatInputFocusSpy.calledOnce).to.be.true;
       inputReactElement_2.focus();
       expect(inputFocusSpy_2.calledOnce).to.be.true;
-      wrapper.detach();}
+      wrapper.detach();
+    }
       );
 
     // it('should call onChange prop on date-picker value selection', () => {
@@ -96,7 +97,6 @@ describe('<DateInputField />', () => {
     // it('should call onChange prop on date-picker value selection', () => {
     //   let wrapper = shallow(<DateInputField />);
     // });
-
   });
 
   describe('key navigation', () => {

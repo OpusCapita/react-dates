@@ -3,15 +3,15 @@ import './DateInput.less';
 import DateInputField from '../DateInputField';
 import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
-import { spring, presets, Motion} from 'react-motion';
+import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 let springPreset = presets.gentle;
-let easeOutCubic = (t) => (--t)*t*t+1;
+let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
 function splitProps(props, specificPropNames = []) {
   let result = Object.keys(props).reduce((result, propName) => {
     let isPropSpecific = specificPropNames.indexOf(propName) >= 0;
-    if(isPropSpecific) {
+    if (isPropSpecific) {
       let commonProps = assign({}, result[0]);
       let specificProps = assign({}, result[1], { [propName]: props[propName] });
       return [commonProps, specificProps];
@@ -23,7 +23,7 @@ function splitProps(props, specificPropNames = []) {
   }, [{}, {}]);
 
   return result;
-};
+}
 
 let propTypes = {
   className: PropTypes.string,
@@ -67,7 +67,7 @@ class DateInput extends Component {
     this.handleError = this.handleError.bind(this);
     this.handleInputFocus = this.handleInputFocus.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
-    this.reset = this.reset.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   componentDidMount() {
@@ -75,16 +75,16 @@ class DateInput extends Component {
     document.body.addEventListener('keydown', this.handleBodyKeyDown);
   }
 
-  componentWillUnmount() {
-    document.body.removeEventListener('click', this.handleBodyClick);
-    document.body.removeEventListener('keydown', this.handleBodyKeyDown);
-  }
-
   componentWillReceiveProps(nextProps) {
-    if(this.props.date !== nextProps.date) {
+    if (this.props.date !== nextProps.date) {
       let month = nextProps.date || new Date();
       this.reactDayPicker.showMonth(month);
     }
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('click', this.handleBodyClick);
+    document.body.removeEventListener('keydown', this.handleBodyKeyDown);
   }
 
   handleBodyClick(event) {
@@ -92,10 +92,11 @@ class DateInput extends Component {
     if (clickedOutside) {
       return this.hidePicker();
     }
+    return false;
   }
 
   handleBodyKeyDown(event) {
-    if(event.which === 9) {
+    if (event.which === 9) {
       this.hidePicker();
     }
     if (event.which === 27) { // ESC key
@@ -108,7 +109,6 @@ class DateInput extends Component {
   }
 
   handleDateChange(date) {
-    console.log('!!!!dddddd:', date);
     this.props.onChange(date);
     this.setState({ error: null });
   }
@@ -131,7 +131,7 @@ class DateInput extends Component {
     this.showPicker();
   }
 
-  reset() {
+  handleReset() {
     this.hidePicker();
     this.props.onChange(null);
   }
@@ -146,8 +146,6 @@ class DateInput extends Component {
       locale,
       showToTop,
       showToLeft,
-      onChange,
-      onHide,
       tabIndex,
       ...restProps
     } = this.props;
@@ -157,7 +155,6 @@ class DateInput extends Component {
     let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 
     let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
-    let commonProps = splittedProps[0];
     let dayPickerSpecificProps = splittedProps[1];
 
     let pickerElement = (
@@ -197,7 +194,7 @@ class DateInput extends Component {
     );
 
     let resetButton = (
-      <InputAddonButton className="opuscapita_date-input__reset-btn" tabIndex="-1" onClick={this.reset}>
+      <InputAddonButton className="opuscapita_date-input__reset-btn" tabIndex="-1" onClick={this.handleReset}>
         ✕
       </InputAddonButton>
     );
@@ -210,10 +207,12 @@ class DateInput extends Component {
         <DateInputField
           date={date}
           dateFormat={momentCompatibleDateFormat}
+          disabled={disabled}
           onChange={this.handleDateChange}
           onError={this.handleError}
           onFocus={this.handleInputFocus}
           onClick={this.handleInputClick}
+          tabIndex={tabIndex}
         />
         {resetButton}
         {pickerMotionElement}

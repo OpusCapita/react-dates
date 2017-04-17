@@ -3,9 +3,8 @@
    https://github.com/OpusCapitaBES/js-react-showroom-client/blob/master/docs/scope-component.md
 */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { showroomScopeDecorator } from 'opuscapita-showroom-client';
-import I18nContext from 'opuscapita-react-i18n';
 
 
 @showroomScopeDecorator
@@ -37,10 +36,3 @@ class DateInputScope extends Component {
     );
   }
 }
-
-DateInputScope.contextTypes = {
-  i18n: PropTypes.object
-};
-DateInputScope.childContextTypes = {
-  i18n: PropTypes.object
-};

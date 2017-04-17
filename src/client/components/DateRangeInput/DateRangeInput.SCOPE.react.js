@@ -10,7 +10,7 @@ import { showroomScopeDecorator } from 'opuscapita-showroom-client';
 @showroomScopeDecorator
 export default
 class DateRangeInputScope extends Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       dateRange: [null, null]

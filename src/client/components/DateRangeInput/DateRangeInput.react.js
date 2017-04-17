@@ -5,9 +5,9 @@ import InputAddonButton from '../InputAddonButton';
 import DateRangeVariants from '../DateRangeVariants';
 import { DateUtils } from 'react-day-picker';
 import moment from 'moment';
-import { spring, presets, Motion} from 'react-motion';
+import { spring, presets, Motion } from 'react-motion';
 let springPreset = presets.gentle;
-let easeOutCubic = (t) => (--t)*t*t+1;
+let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
 let initialState = {
   enteredTo: null,
@@ -57,7 +57,7 @@ class DateRangeInput extends Component {
   constructor(props) {
     super(props);
     this.state = initialState;
-    this.reset = this.reset.bind(this);
+    this.handleReset = this.handleReset.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
@@ -68,40 +68,13 @@ class DateRangeInput extends Component {
     this.handleInputClick = this.handleInputClick.bind(this);
   }
 
-  handleDayClick(day) {
-    let from = this.props.dateRange[0];
-    let to = this.props.dateRange[1];
-
-    if (DateUtils.isSameDay(day, from)) {
-      this.reset();
-      return;
-    }
-
-    if (isSelectingFirstDay(from, to, day)) {
-      this.props.onChange([ day, null ]);
-      this.setState({
-        enteredTo: null
-      });
-    } else {
-      this.props.onChange([ from, day ]);
-      this.setState({
-        enteredTo: day
-      });
-    }
-  }
-
   componentDidMount() {
     document.body.addEventListener('click', this.handleBodyClick);
     document.body.addEventListener('keydown', this.handleBodyKeyDown);
   }
 
-  componentWillUnmount() {
-    document.body.removeEventListener('click', this.handleBodyClick);
-    document.body.removeEventListener('keydown', this.handleBodyKeyDown);
-  }
-
   componentWillReceiveProps(nextProps) {
-    if(this.props.dateRange[0] !== nextProps.dateRange[0]) {
+    if (this.props.dateRange[0] !== nextProps.dateRange[0]) {
       let month = nextProps.dateRange[0] || new Date();
       this.reactDayPicker.showMonth(month);
     }
@@ -111,7 +84,34 @@ class DateRangeInput extends Component {
     let rangeChanged = (this.state.from !== nextState.from) || (this.state.to !== nextState.to);
     let rangeFilled = nextState.from !== null && nextState.to !== null;
     if (rangeChanged && rangeFilled) {
-      this.props.onChange([ nextState.from, nextState.to ]);
+      this.props.onChange([nextState.from, nextState.to]);
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('click', this.handleBodyClick);
+    document.body.removeEventListener('keydown', this.handleBodyKeyDown);
+  }
+
+  handleDayClick(day) {
+    let from = this.props.dateRange[0];
+    let to = this.props.dateRange[1];
+
+    if (DateUtils.isSameDay(day, from)) {
+      this.handleReset();
+      return;
+    }
+
+    if (isSelectingFirstDay(from, to, day)) {
+      this.props.onChange([day, null]);
+      this.setState({
+        enteredTo: null
+      });
+    } else {
+      this.props.onChange([from, day]);
+      this.setState({
+        enteredTo: day
+      });
     }
   }
 
@@ -134,13 +134,8 @@ class DateRangeInput extends Component {
     }
   }
 
-  handleError(error) {
-    this.setState({ error });
-  }
-
   handleDateChange(date) {
     this.props.onChange(date);
-    this.setState({ error: null });
   }
 
   showPicker() {
@@ -150,8 +145,8 @@ class DateRangeInput extends Component {
   }
 
   hidePicker() {
-    if(this.props.dateRange[0] && !this.props.dateRange[1]) {
-      this.props.onChange([ null, null ]);
+    if (this.props.dateRange[0] && !this.props.dateRange[1]) {
+      this.props.onChange([null, null]);
     }
     this.setState({ showPicker: false });
   }
@@ -196,16 +191,16 @@ class DateRangeInput extends Component {
     }
   }
 
-  reset() {
+  handleReset() {
     this.setState(initialState);
-    this.props.onChange([ null, null ]);
+    this.props.onChange([null, null]);
   }
 
   render() {
     let {
       className,
       dateFormat,
-      dateRange,
+      dateRange, // eslint-disable-line no-unused-vars
       disabled,
       locale,
       isValid,
@@ -218,7 +213,7 @@ class DateRangeInput extends Component {
 
     let from = this.props.dateRange[0];
     let to = this.props.dateRange[1];
-    let { enteredTo, error } = this.state;
+    let { enteredTo } = this.state;
     let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 
     let showToTopClassName = showToTop ? 'opuscapita_date-range-input__picker-container--to-top' : '';
@@ -286,7 +281,7 @@ class DateRangeInput extends Component {
       '';
 
     let resetButton = (
-      <InputAddonButton className="opuscapita_date-range-input__reset-btn" tabIndex="-1" onClick={this.reset}>
+      <InputAddonButton className="opuscapita_date-range-input__reset-btn" tabIndex="-1" onClick={this.handleReset}>
         ✕
       </InputAddonButton>
     );

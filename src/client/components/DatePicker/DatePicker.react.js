@@ -1,15 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 import './DatePicker.less';
-import LocaleUtils from 'react-day-picker/moment';
 import DayPicker from '../DayPicker';
-import { spring, presets, Motion} from 'react-motion';
+import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 let springPreset = presets.gentle;
 
 function splitProps(props, specificPropNames = []) {
   let result = Object.keys(props).reduce((result, propName) => {
     let isPropSpecific = specificPropNames.indexOf(propName) >= 0;
-    if(isPropSpecific) {
+    if (isPropSpecific) {
       let commonProps = assign({}, result[0]);
       let specificProps = assign({}, result[1], { [propName]: props[propName] });
       return [commonProps, specificProps];
@@ -21,7 +20,7 @@ function splitProps(props, specificPropNames = []) {
   }, [{}, {}]);
 
   return result;
-};
+}
 
 let propTypes = {
   className: PropTypes.string,
@@ -71,18 +70,20 @@ class DatePicker extends Component {
   handleBodyClick(event) {
     let clickedOutside = !this.container.contains(event.target);
     if (clickedOutside) {
-      return this.hidePicker();
+      this.hidePicker();
     }
-    return undefined;
   }
 
   handleToggleClick() {
     this.props.onClick();
     if (this.state.showPicker) {
-      return this.hidePicker();
+      this.hidePicker();
+    } else {
+      if (this.reactDayPicker) {
+        this.reactDayPicker.showMonth(this.props.date);
+      }
+      this.showPicker();
     }
-    this.reactDayPicker && this.reactDayPicker.showMonth(this.props.date);
-    return this.showPicker();
   }
 
   handleDateChange(date) {
@@ -91,7 +92,7 @@ class DatePicker extends Component {
   }
 
   handleKeyDown(event) {
-    if(event.which === 9) { // TAB key
+    if (event.which === 9) { // TAB key
       this.hidePicker();
     }
   }
@@ -112,8 +113,8 @@ class DatePicker extends Component {
       locale,
       showToTop,
       showToLeft,
-      onChange,
-      onClick,
+      onChange, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
       tabIndex,
       ...restProps
     } = this.props;

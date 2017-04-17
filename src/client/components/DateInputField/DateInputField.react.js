@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
-import FORMATS from './formats';
 import './DateInputField.less';
 
 let propTypes = {
@@ -74,9 +73,9 @@ class DateInputField extends Component {
       dateFormat,
       disabled,
       className,
-      date,
-      locale,
-      onChange,
+      date, // eslint-disable-line no-unused-vars
+      locale, // eslint-disable-line no-unused-vars
+      onChange, // eslint-disable-line no-unused-vars
       onFocus,
       onBlur,
       onRef,
@@ -89,7 +88,7 @@ class DateInputField extends Component {
 
     return (
       <input
-        className={`opuscapita_date-input-field form-control`}
+        className={`opuscapita_date-input-field form-control ${className}`}
         disabled={disabled}
         onChange={this.handleInputChange}
         onFocus={onFocus}
