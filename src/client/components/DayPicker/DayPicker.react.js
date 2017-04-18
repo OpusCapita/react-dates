@@ -27,12 +27,10 @@ function Caption(props) {
     localeUtils, // eslint-disable-line react/prop-types
     isRange, // eslint-disable-line react/prop-types
     onChange, // eslint-disable-line react/prop-types
-    currentMonth, // eslint-disable-line react/prop-types
+    currentMonth // eslint-disable-line react/prop-types
   } = props;
 
   let currentYear = date.getFullYear();
-  let fromMonth = new Date(currentYear, 0, 1, 0, 0);
-  let toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
 
   let months = localeUtils.getMonths(locale);
   let dateNow = new Date();

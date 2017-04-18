@@ -122,7 +122,7 @@ class DateRangeInput extends Component {
     let from = range[0];
     let to = range[1];
     let fromGreaterThanTo = (from && to) && (from.getTime() > to.getTime());
-    if(fromGreaterThanTo) {
+    if (fromGreaterThanTo) {
       return [to, from];
     }
     return range;
@@ -246,7 +246,7 @@ class DateRangeInput extends Component {
       disabled,
       locale,
       isValid,
-      onChange,
+      onChange, // eslint-disable-line no-unused-vars
       placeholder,
       tabIndex,
       showToTop,
