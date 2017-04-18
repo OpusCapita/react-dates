@@ -83,12 +83,14 @@ class DateRangeInput extends Component {
     this.handleReset = this.handleReset.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
+    this.handleDayMouseLeave = this.handleDayMouseLeave.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
     this.handleVariantsButtonClick = this.handleVariantsButtonClick.bind(this);
     this.handleVariantSelect = this.handleVariantSelect.bind(this);
     this.handleInputFocus = this.handleInputFocus.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
+    this.handleRangeChange = this.handleRangeChange.bind(this);
   }
 
   componentDidMount() {
@@ -99,7 +101,6 @@ class DateRangeInput extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.dateRange[0] !== nextProps.dateRange[0]) {
       let month = nextProps.dateRange[0] || new Date();
-      console.log('month:', month);
       this.reactDayPicker.showMonth(month);
     }
   }
@@ -108,13 +109,30 @@ class DateRangeInput extends Component {
     let rangeChanged = (this.state.from !== nextState.from) || (this.state.to !== nextState.to);
     let rangeFilled = nextState.from !== null && nextState.to !== null;
     if (rangeChanged && rangeFilled) {
-      this.props.onChange([nextState.from, nextState.to]);
+      this.handleRangeChange([nextState.from, nextState.to]);
     }
   }
 
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleBodyClick);
     document.body.removeEventListener('keydown', this.handleBodyKeyDown);
+  }
+
+  normalizeRange(range) {
+    let from = range[0];
+    let to = range[1];
+    let fromGreaterThanTo = (from && to) && (from.getTime() > to.getTime());
+    console.log(from && from.getTime(), to && to.getTime());
+    if(fromGreaterThanTo) {
+      return [to, from];
+    }
+    return range;
+  }
+
+  handleRangeChange(range) {
+    this.setState({ enteredTo: null });
+    let normalizedRange = this.normalizeRange(range);
+    this.props.onChange(normalizedRange);
   }
 
   handleDayClick(day) {
@@ -127,12 +145,12 @@ class DateRangeInput extends Component {
     }
 
     if (isSelectingFirstDay(from, to, day)) {
-      this.props.onChange([day, null]);
+      this.handleRangeChange([day, null]);
       this.setState({
         enteredTo: null
       });
     } else {
-      this.props.onChange([from, day]);
+      this.handleRangeChange([from, day]);
       this.setState({
         enteredTo: day
       });
@@ -158,10 +176,6 @@ class DateRangeInput extends Component {
     }
   }
 
-  handleDateChange(date) {
-    this.props.onChange(date);
-  }
-
   showPicker() {
     let month = this.props.dateRange[0] || new Date();
     this.reactDayPicker.showMonth(month);
@@ -170,7 +184,7 @@ class DateRangeInput extends Component {
 
   hidePicker() {
     if (this.props.dateRange[0] && !this.props.dateRange[1]) {
-      this.props.onChange([null, null]);
+      this.handleRangeChange([null, null]);
     }
     this.setState({ showPicker: false });
   }
@@ -193,7 +207,7 @@ class DateRangeInput extends Component {
   handleVariantSelect(range) {
     this.hideVariants();
     this.setState({ enteredTo: range[1] });
-    this.props.onChange(range);
+    this.handleRangeChange(range);
   }
 
   handleInputFocus() {
@@ -215,9 +229,13 @@ class DateRangeInput extends Component {
     }
   }
 
+  handleDayMouseLeave(day) {
+    this.setState({ enteredTo: null });
+  }
+
   handleReset() {
     this.setState(initialState);
-    this.props.onChange([null, null]);
+    this.handleRangeChange([null, null]);
   }
 
   render() {
@@ -228,6 +246,7 @@ class DateRangeInput extends Component {
       disabled,
       locale,
       isValid,
+      onChange,
       placeholder,
       tabIndex,
       showToTop,
@@ -251,18 +270,20 @@ class DateRangeInput extends Component {
     let pickerElement = (
       <DayPicker
         className="Range"
-        dayPickerRef={el => (this.reactDayPicker = el)}
         disabledDays={{ before: from }}
         fixedWeeks={true}
-        hideTodayButton={true}
-        isRange={true}
-        locale={locale}
-        modifiers={ { start: from, end: enteredTo }}
         month={from}
+        hideTodayButton={true}
+        locale={locale}
+        modifiers={ { start: from, end: enteredTo || to }}
         numberOfMonths={2}
-        onDayClick={ this.handleDayClick }
+        isRange={true}
+        onChange={this.handleRangeChange}
+        onDayClick={this.handleDayClick}
         onDayMouseEnter={this.handleDayMouseEnter}
-        selectedDays={[from, { from, to: enteredTo }]}
+        onDayMouseLeave={this.handleDayMouseLeave}
+        selectedDays={[from, { from, to: enteredTo || to }]}
+        dayPickerRef={el => (this.reactDayPicker = el)}
         {...dayPickerSpecificProps}
       />
     );
@@ -354,7 +375,6 @@ class DateRangeInput extends Component {
             tabIndex={tabIndex}
             value={inputValue}
             onChange={() => {}}
-            style={{ paddingRight: `${3}ch` }}
           />
           {resetButton}
         </div>

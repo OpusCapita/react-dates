@@ -28,7 +28,6 @@ function Caption(props) {
     isRange, // eslint-disable-line react/prop-types
     onChange, // eslint-disable-line react/prop-types
     currentMonth, // eslint-disable-line react/prop-types
-    onCaptionClick // eslint-disable-line react/prop-types
   } = props;
 
   let currentYear = date.getFullYear();
@@ -36,8 +35,9 @@ function Caption(props) {
   let toMonth = new Date(currentYear + 10, 11, 31, 23, 59);
 
   let months = localeUtils.getMonths(locale);
+  let dateNow = new Date();
   let years = [];
-  for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
+  for (let i = dateNow.getFullYear() - 6; i <= dateNow.getFullYear() + 6; i += 1) {
     years.push(i);
   }
 
@@ -53,13 +53,8 @@ function Caption(props) {
     }
   };
 
-  let handleClick = () => {
-    console.log('handleClick');
-    onCaptionClick(date);
-  };
-
   return (
-    <form className="DayPicker-Caption" onClick={handleClick}>
+    <form className="DayPicker-Caption">
       <div className={`form-group opuscapita_day-picker__caption`}>
         <select
           className="opuscapita_day-picker__caption-select"
@@ -121,11 +116,6 @@ class DayPicker extends Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleMonthChange = this.handleMonthChange.bind(this);
     this.handleTodayClick = this.handleTodayClick.bind(this);
-    this.handleCaptionClick = this.handleCaptionClick.bind(this);
-  }
-
-  handleCaptionClick(currentMonth) {
-    console.log('currentMonth!!', currentMonth);
   }
 
   handleDateChange(date, captionIndex) {
@@ -185,7 +175,6 @@ class DayPicker extends Component {
         onChange={this.handleDateChange}
         isRange={isRange}
         currentMonth={currentMonth}
-        onCaptionClick={this.handleCaptionClick}
       />
     );
 

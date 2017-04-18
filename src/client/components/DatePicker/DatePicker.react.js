@@ -117,8 +117,6 @@ class DatePicker extends Component {
     let commonProps = splittedProps[0];
     let dayPickerSpecificProps = splittedProps[1];
 
-    console.log(':;date:', date);
-
     let pickerElement = (
       <DayPicker
         dayPickerRef={el => (this.reactDayPicker = el)}
