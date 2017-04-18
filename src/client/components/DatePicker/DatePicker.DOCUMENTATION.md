@@ -12,7 +12,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 | date                           | instanceOf(Date)        | Instance of `Date`                                                                              |
 | disabled                       | bool                    | If true - became inactive                                                                       |
 | locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property |
-| onChange                       | func                    | Callback triggered on selecting new date                                                        |
+| onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                      |
 | showToLeft                     | bool                    | Show picker popup to left relative to button                                                    |
 | showToTop                      | bool                    | Show picker popup to top relative to button                                                     |
 | tabIndex                       | number                  | Default HTML behavior                                                                           |
