@@ -251,17 +251,18 @@ class DateRangeInput extends Component {
     let pickerElement = (
       <DayPicker
         className="Range"
+        dayPickerRef={el => (this.reactDayPicker = el)}
         disabledDays={{ before: from }}
         fixedWeeks={true}
-        fromMonth={from}
         hideTodayButton={true}
+        isRange={true}
         locale={locale}
         modifiers={ { start: from, end: enteredTo }}
+        month={from}
         numberOfMonths={2}
         onDayClick={ this.handleDayClick }
         onDayMouseEnter={this.handleDayMouseEnter}
-        selectedDays={[ from, { from, to: enteredTo } ]}
-        dayPickerRef={el => (this.reactDayPicker = el)}
+        selectedDays={[from, { from, to: enteredTo }]}
         {...dayPickerSpecificProps}
       />
     );
