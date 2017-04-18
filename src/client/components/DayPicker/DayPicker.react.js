@@ -21,7 +21,15 @@ function splitProps(props, specificPropNames = []) {
 }
 
 function Caption(props) {
-  let { date, locale, localeUtils, isRange, onChange, currentMonth, onCaptionClick } = props; // eslint-disable-line react/prop-typ
+  let {
+    date,  // eslint-disable-line react/prop-types
+    locale,  // eslint-disable-line react/prop-types
+    localeUtils, // eslint-disable-line react/prop-types
+    isRange, // eslint-disable-line react/prop-types
+    onChange, // eslint-disable-line react/prop-types
+    currentMonth, // eslint-disable-line react/prop-types
+    onCaptionClick // eslint-disable-line react/prop-types
+  } = props;
 
   let currentYear = date.getFullYear();
   let fromMonth = new Date(currentYear, 0, 1, 0, 0);
@@ -36,7 +44,7 @@ function Caption(props) {
   let handleChange = (event) => {
     let { year, month } = event.target.form;
     let newDate = new Date(year.value, month.value);
-    if(isRange) {
+    if (isRange) {
       let isCaptionFrom = date.getMonth() === currentMonth.getMonth();
       let captionIndex = isCaptionFrom ? 0 : 1;
       onChange(newDate, captionIndex);
@@ -121,15 +129,15 @@ class DayPicker extends Component {
   }
 
   handleDateChange(date, captionIndex) {
-    if(this.props.isRange) {
+    if (this.props.isRange) {
       let range = this.props.selectedDays[1];
       let fromChanged = captionIndex === 0;
       let toChanged = captionIndex === 1;
-      if(fromChanged) {
-        this.props.onChange([ date, range.to ]);
+      if (fromChanged) {
+        this.props.onChange([date, range.to]);
       }
-      if(toChanged) {
-        this.props.onChange([ range.from, date ]);
+      if (toChanged) {
+        this.props.onChange([range.from, date]);
       }
     } else {
       this.props.onChange(date);
