@@ -67,6 +67,7 @@ class DateInput extends Component {
     this.handleError = this.handleError.bind(this);
     this.handleInputFocus = this.handleInputFocus.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
+    this.handleDayClick = this.handleDayClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
@@ -85,6 +86,11 @@ class DateInput extends Component {
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleBodyClick);
     document.body.removeEventListener('keydown', this.handleBodyKeyDown);
+  }
+
+  handleDayClick(day) {
+    this.setState({ showPicker: false });
+    this.handleDateChange(day);
   }
 
   handleBodyClick(event) {
@@ -144,8 +150,9 @@ class DateInput extends Component {
       disabled,
       isValid,
       locale,
-      showToTop,
+      onChange, // eslint-disable-line no-unused-vars
       showToLeft,
+      showToTop,
       tabIndex,
       ...restProps
     } = this.props;
@@ -166,6 +173,7 @@ class DateInput extends Component {
         tabIndex={-1}
         fixedWeeks={true}
         onChange={this.handleDateChange}
+        onDayClick={this.handleDayClick}
         { ...dayPickerSpecificProps }
       />
     );

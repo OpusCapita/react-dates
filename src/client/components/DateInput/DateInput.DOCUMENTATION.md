@@ -29,8 +29,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
   onChange={_scope.handleChange.bind(_scope)}
 />
 
-<br />
-<br />
+<hr />
 
 <DateInput 
   date={_scope.state.date}
@@ -40,8 +39,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
   onChange={_scope.handleChange.bind(_scope)}
 />
 
-<br />
-<br />
+<hr />
 
 <DateInput 
   date={_scope.state.date}

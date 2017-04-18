@@ -122,7 +122,6 @@ class DateRangeInput extends Component {
     let from = range[0];
     let to = range[1];
     let fromGreaterThanTo = (from && to) && (from.getTime() > to.getTime());
-    console.log(from && from.getTime(), to && to.getTime());
     if(fromGreaterThanTo) {
       return [to, from];
     }
@@ -152,7 +151,8 @@ class DateRangeInput extends Component {
     } else {
       this.handleRangeChange([from, day]);
       this.setState({
-        enteredTo: day
+        enteredTo: day,
+        showPicker: false
       });
     }
   }

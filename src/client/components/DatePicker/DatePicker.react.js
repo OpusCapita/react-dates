@@ -56,6 +56,7 @@ class DatePicker extends Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleToggleClick = this.handleToggleClick.bind(this);
+    this.handleDayClick = this.handleDayClick.bind(this);
   }
 
   componentDidMount() {
@@ -73,6 +74,11 @@ class DatePicker extends Component {
     }
   }
 
+  handleDayClick(day) {
+    this.handleDateChange(day);
+    this.setState({ showPicker: false });
+  }
+
   handleToggleClick() {
     if (this.state.showPicker) {
       this.hidePicker();
@@ -82,7 +88,6 @@ class DatePicker extends Component {
   }
 
   handleDateChange(date) {
-    this.hidePicker();
     this.props.onChange(date);
   }
 
@@ -106,9 +111,9 @@ class DatePicker extends Component {
       date,
       disabled,
       locale,
-      showToTop,
-      showToLeft,
       onChange, // eslint-disable-line no-unused-vars
+      showToLeft,
+      showToTop,
       tabIndex,
       ...restProps
     } = this.props;
@@ -125,6 +130,7 @@ class DatePicker extends Component {
         selectedDays={date}
         tabIndex={-1}
         fixedWeeks={true}
+        onDayClick={this.handleDayClick}
         onChange={this.handleDateChange}
         { ...dayPickerSpecificProps }
       />
