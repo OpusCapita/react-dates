@@ -313,7 +313,7 @@ class DateRangeInput extends Component {
     ) : null;
 
     let inputValue = (from && to) ?
-      `${moment(from).format(momentCompatibleDateFormat)}  —  ${moment(to).format(momentCompatibleDateFormat)}` :
+      `${moment(from).format(momentCompatibleDateFormat)} — ${moment(to).format(momentCompatibleDateFormat)}` :
       '';
 
     let resetButton = (

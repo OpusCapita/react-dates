@@ -75,6 +75,7 @@
     "opuscapita-react-ui-autocompletes": "1.0.3",
     "react-datepicker": "0.41.1",
     "react-day-picker": "5.2.0",
+    "react-maskedinput": "^3.3.4",
     "webpack-bundle-analyzer": "2.3.1"
   }
 }
