@@ -21,7 +21,7 @@ Allows select date range using mouse.
 ### Code Example
 
 ```
-<DateRangeInput 
+<DateRangeInput
   dateFormat="MM.dd.yyyy"
   dateRange={_scope.state.dateRange1}
   onChange={_scope.handleChange1.bind(_scope)}
@@ -30,7 +30,7 @@ Allows select date range using mouse.
 
 <hr />
 
-<DateRangeInput 
+<DateRangeInput
   dateFormat="dd.MM.yyyy"
   dateRange={_scope.state.dateRange2}
   disabled={true}
@@ -42,7 +42,7 @@ Allows select date range using mouse.
 
 <div className="row">
   <div className="col-xs-6">
-    <DateRangeInput 
+    <DateRangeInput
       dateFormat="dd.MM.yyyy"
       dateRange={_scope.state.dateRange3}
       onChange={_scope.handleChange3.bind(_scope)}
@@ -54,7 +54,7 @@ Allows select date range using mouse.
   </div>
 
   <div className="col-xs-6">
-    <DateRangeInput 
+    <DateRangeInput
       dateFormat="dd.MM.yyyy"
       dateRange={_scope.state.dateRange4}
       onChange={_scope.handleChange4.bind(_scope)}
@@ -65,7 +65,7 @@ Allows select date range using mouse.
     />
   </div>
 </div>
-``` 
+```
 
 ### Component Name
 

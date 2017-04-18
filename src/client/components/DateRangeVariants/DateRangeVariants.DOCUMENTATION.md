@@ -1,6 +1,6 @@
 ### Synopsis
 
-DateRangeVariants is 
+DateRangeVariants is
 *Write here a short introduction and/or overview that explains **what** component is.*
 
 ### Props Reference
@@ -14,7 +14,7 @@ DateRangeVariants is
 ### Code Example
 
 ```
-<DateRangeVariants 
+<DateRangeVariants
   onChange={range => console.log(range)}
 />
 ```

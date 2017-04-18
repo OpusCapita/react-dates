@@ -11,6 +11,7 @@ describe('<DayPicker />', () => {
     expect(component.props.className).to.equal('');
     expect(component.props.onChange).to.be.a('function');
     expect(component.props.pickerClassName).to.be.a('string');
+    expect(component.props.isRange).to.equal(false);
   });
 
   it('should pass specific ReactDayPicker props to it', () => {
@@ -106,5 +107,28 @@ describe('<DayPicker />', () => {
     expect(spy.args[0][0].getFullYear()).to.equal(todayDate.getFullYear());
     expect(spy.args[0][0].getMonth()).to.equal(todayDate.getMonth());
     expect(spy.args[0][0].getDate()).to.equal(todayDate.getDate());
+  });
+
+  it('should return [from, to] date range if isRange === true', () => {
+    let spy = sinon.spy();
+    let wrapper = mount(
+      <DayPicker
+        onChange={spy}
+        isRange={true}
+        month={new Date()}
+        numberOfMonths={2}
+        selectedDays={[ new Date(), { from: new Date(), to: new Date(2030, 10, 10, 10) }]}
+      />
+    );
+
+    let firstDayElement = wrapper.find('.DayPicker-Day[aria-selected]').first();
+    firstDayElement.simulate('click');
+
+    let lastDayElement = wrapper.find('.DayPicker-Day[aria-selected]').last();
+    console.log(lastDayElement);
+    lastDayElement.simulate('click');
+
+    expect(spy).to.have.been.called;
+    expect(spy.args[0][0]).to.be.instanceOf(Date);
   });
 });

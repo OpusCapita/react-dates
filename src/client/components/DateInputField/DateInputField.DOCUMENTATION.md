@@ -17,7 +17,7 @@
   dateFormat="DD.MM.YYYY"
   date={_scope.state.date}
   onChange={_scope.handleChange.bind(_scope)}
-  onFocus={() => console.log('focus')}  
+  onFocus={() => console.log('focus')}
   onError={(error) => console.log('error:', error)}
   onBlur={() => console.log('blur')}
 />

@@ -90,7 +90,7 @@ let propTypes = {
   hideTodayButton: PropTypes.bool,
   isRange: PropTypes.bool,
   onChange: PropTypes.func,
-  pickerClassName: PropTypes.string,
+  pickerClassName: PropTypes.string
 };
 
 let defaultProps = {
