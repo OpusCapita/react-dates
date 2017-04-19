@@ -9,7 +9,7 @@
     "lint": "eslint src/client",
     "prepublish": "npm run build",
     "start": "node www/index",
-    "test": "mocha --compilers js:babel-core/register --require ignore-styles --require ./test/setup.js --recursive src/**/*.spec.js",
+    "test": "",
     "publish-release": "npm run build && npm-publish --release"
   },
   "main": "lib/index.js",
