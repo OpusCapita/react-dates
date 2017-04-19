@@ -17,3 +17,9 @@ OpusCapita implementation of DatePickers.
 `yarn start`
 
 Open [demo page](http://localhost:3000) in browser
+
+Click **Sidebar** button and change one of:
+
+* DateInput
+* DatePicker
+* DateRangeInput
