@@ -9,7 +9,8 @@
     "lint": "eslint src/client",
     "prepublish": "npm run build",
     "start": "node www/index",
-    "test": "mocha --compilers js:babel-core/register --require ignore-styles --require ./test/setup.js --recursive src/**/*.spec.js"
+    "test": "mocha --compilers js:babel-core/register --require ignore-styles --require ./test/setup.js --recursive src/**/*.spec.js",
+    "publish-release": "npm run npm-build && npm-publish --release"
   },
   "main": "lib/index.js",
   "files": [
@@ -49,7 +50,8 @@
     "lodash": "4.17.4",
     "mocha": "3.2.0",
     "nodemon": "1.11.0",
-    "opuscapita-react-i18n": "1.0.6-SNAPSHOT.20170110T072641.032Z",
+    "opuscapita-npm-scripts": "1.0.6",
+    "opuscapita-react-i18n": "1.0.6",
     "opuscapita-showroom-client": "1.1.0",
     "opuscapita-showroom-server": "1.1.0",
     "postcss-loader": "1.3.3",
