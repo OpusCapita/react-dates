@@ -35,7 +35,7 @@ function Caption(props) {
   let months = localeUtils.getMonths(locale);
   let dateNow = new Date();
   let years = [];
-  for (let i = dateNow.getFullYear() - 6; i <= dateNow.getFullYear() + 6; i += 1) {
+  for (let i = dateNow.getFullYear() - 100; i <= dateNow.getFullYear() + 100; i += 1) {
     years.push(i);
   }
 
