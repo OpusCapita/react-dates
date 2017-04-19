@@ -34,21 +34,19 @@ let propTypes = {
   showToTop: PropTypes.bool,
   showToLeft: PropTypes.bool,
   onChange: PropTypes.func,
-  onHide: PropTypes.func,
   tabIndex: PropTypes.number,
   isValid: PropTypes.bool
 };
 
 let defaultProps = {
   className: '',
-  date: new Date(),
+  date: null,
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   locale: 'en-GB',
   showToTop: false,
   showToLeft: false,
   onChange: () => {},
-  onHide: () => {},
   tabIndex: 0,
   isValid: true
 };
@@ -138,6 +136,8 @@ class DateInput extends Component {
   }
 
   handleReset() {
+    this.setState({ error: null });
+    this.dateInputField.clear();
     this.hidePicker();
     this.props.onChange(null);
   }
@@ -210,7 +210,7 @@ class DateInput extends Component {
     return (
       <div
         ref={el => (this.container = el)}
-        className={`opuscapita-date-input form-control ${hasErrorClassName} ${className}`}
+        className={`opuscapita_date-input form-control ${hasErrorClassName} ${className}`}
       >
         <DateInputField
           date={date}
@@ -220,6 +220,7 @@ class DateInput extends Component {
           onError={this.handleError}
           onFocus={this.handleInputFocus}
           onClick={this.handleInputClick}
+          onRef={dateInputField => (this.dateInputField = dateInputField)}
           tabIndex={tabIndex}
         />
         {resetButton}

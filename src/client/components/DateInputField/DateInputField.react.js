@@ -31,6 +31,8 @@ class DateInputField extends Component {
       inputValue: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleRef = this.handleRef.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,6 +45,10 @@ class DateInputField extends Component {
   setInputValue(props) {
     let inputValue = '';
     this.setState({ inputValue });
+  }
+
+  clear() {
+    this.setState({ inputValue: '' });
   }
 
   validate(dateString, dateFormat) {
@@ -63,6 +69,10 @@ class DateInputField extends Component {
     this.setState({ inputValue });
   }
 
+  handleRef() {
+    this.props.onRef(this);
+  }
+
   render() {
     let {
       dateFormat,
@@ -72,6 +82,7 @@ class DateInputField extends Component {
       locale, // eslint-disable-line no-unused-vars
       onError, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
+      onRef, // eslint-disable-line no-unused-vars
       ...restProps
     } = this.props;
 
@@ -83,6 +94,7 @@ class DateInputField extends Component {
 
     return (
       <MaskedInput
+        ref={this.handleRef}
         className={`opuscapita_date-input-field form-control ${className}`}
         mask={mask}
         placeholderChar="-"
