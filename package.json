@@ -10,7 +10,7 @@
     "prepublish": "npm run build",
     "start": "node www/index",
     "test": "mocha --compilers js:babel-core/register --require ignore-styles --require ./test/setup.js --recursive src/**/*.spec.js",
-    "publish-release": "npm run npm-build && npm-publish --release"
+    "publish-release": "npm run build && npm-publish --release"
   },
   "main": "lib/index.js",
   "files": [
