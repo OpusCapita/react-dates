@@ -1,6 +1,6 @@
 {
-  "name": "opuscapita-react-dates",
-  "version": "0.0.2",
+  "name": "opuscapita-react-ui-dates",
+  "version": "0.0.1-beta.0",
   "description": "Start write new project with no effort.",
   "scripts": {
     "build": "rimraf lib && babel --copy-files --no-babelrc --presets es2015,stage-0,react --plugins transform-decorators-legacy --ignore __tests__,*.spec.js,demo src/client/components --out-dir lib",
