@@ -10,7 +10,8 @@ let propTypes = {
   disabled: PropTypes.bool,
   locale: PropTypes.string,
   onChange: PropTypes.func,
-  onError: PropTypes.func
+  onError: PropTypes.func,
+  onRef: PropTypes.func
 };
 
 let defaultProps = {
@@ -20,7 +21,8 @@ let defaultProps = {
   disabled: false,
   locale: 'en-GB',
   onChange: () => {},
-  onError: () => {}
+  onError: () => {},
+  onRef: () => {}
 };
 
 export default
