@@ -7,7 +7,6 @@ cp lib/* .gh-pages-tmp
 cp www/index.html .gh-pages-tmp
 
 git checkout gh-pages
-rm -rf ./*
 git checkout master -- .gh-pages-tmp
 mv .gh-pages-tmp/* .
 rm -rf .gh-pages-tmp
