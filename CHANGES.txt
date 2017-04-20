@@ -1,4 +1,20 @@
 
+Release 0.0.1-beta.1 Thu Apr 20 2017 11:47:55 GMT+0300 (+03)
+=======================================================
+
+ - Add demo page (Kirill Volkovich <volkovich@scand.com>, Thu Apr 20 11:36:12 2017 +0300)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, Thu Apr 20 11:26:46 2017 +0300)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, Thu Apr 20 11:25:56 2017 +0300)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, Thu Apr 20 11:25:15 2017 +0300)
+ - Add demo images. Update README (Kirill Volkovich <volkovich@scand.com>, Thu Apr 20 11:22:08 2017 +0300)
+ - Merge branch 'master' of opuscapita.github.com:OpusCapita/react-dates (656ebd0 85791d2, Kirill Volkovich <volkovich@scand.com>)
+ - Add "repository" field to package.json (Kirill Volkovich <volkovich@scand.com>, Thu Apr 20 11:10:39 2017 +0300)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, Thu Apr 20 11:08:54 2017 +0300)
+ - Change package name (Kirill Volkovich <visortelle@gmail.com>, Thu Apr 20 11:00:06 2017 +0300)
+ - Added LICENSE (Kirill Volkovich <visortelle@gmail.com>, Thu Apr 20 10:59:55 2017 +0300)
+ - Updated REAMDE.md (Kirill Volkovich <visortelle@gmail.com>, Wed Apr 19 17:43:14 2017 +0300)
+ - Updating to a version to  0.0.1-beta.1 (Kirill Volkovich <visortelle@gmail.com>, Wed Apr 19 17:41:01 2017 +0300)
+
 Release 0.0.1-beta.0 Wed Apr 19 2017 17:40:57 GMT+0300 (+03)
 =======================================================
 
