@@ -8,10 +8,4 @@ OpusCapita React Components (date inputs/pickers).
 
 ## Demo and documentation
 
-`git clone https://github.com/OpusCapita/react-dates`
-
-`cd react-dates`
-
-`yarn`
-
-`yarn start`
+Online docs: https://opuscapita.github.io/react-dates
