@@ -15,17 +15,3 @@ OpusCapita React Components (date inputs/pickers).
 `yarn`
 
 `yarn start`
-
-## Components
-
-### DateInput
-
-![date-input](./docs/DateInput.gif)
-
-### DateRangeInput
-
-![date-range-input](./docs/DateRangeInput.gif)
-
-### DatePicker
-
-![date-picker](./docs/DatePicker.gif)
