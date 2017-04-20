@@ -9,5 +9,7 @@ cp www/index.html .gh-pages-tmp &&
 git checkout gh-pages &&
 mv .gh-pages-tmp/* . &&
 rm -rf .gh-pages-tmp &&
+git add . &&
+git commit -m "Update gh-pages" &&
 git push --force origin gh-pages &&
 git checkout master
