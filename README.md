@@ -9,3 +9,5 @@ OpusCapita React Components (date inputs/pickers).
 ## Demo and documentation
 
 Online docs: https://opuscapita.github.io/react-dates
+
+> To update docs - run `gh-pages-update.sh`
