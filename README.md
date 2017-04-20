@@ -1,6 +1,20 @@
 ## Synopsis
 
-OpusCapita implementation of DatePickers.
+OpusCapita React Components (date inputs/pickers).
+
+## Components
+
+* DateInput
+
+[date-input](./docs/DateInput.gif)
+
+* DateRangeInput
+
+[date-range-input](./docs/DateRangeInput.gif)
+
+* DatePicker
+
+[date-picker](./docs/DatePicker.gif)
 
 ## Installation
 
@@ -15,11 +29,3 @@ OpusCapita implementation of DatePickers.
 `yarn`
 
 `yarn start`
-
-Open [demo page](http://localhost:3000) in browser
-
-Click **Sidebar** button and change one of:
-
-* DateInput
-* DatePicker
-* DateRangeInput
