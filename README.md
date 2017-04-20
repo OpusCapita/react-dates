@@ -4,13 +4,13 @@ OpusCapita implementation of DatePickers.
 
 ## Installation
 
-`yarn add -D opuscapita-react-ui-dates`
+`yarn add -D @opuscapita/react-dates`
 
 ## Demo and documentation
 
-`git clone http://buildserver.jcatalog.com/git/js-react-dates.git`
+`git clone https://github.com/OpusCapita/react-dates`
 
-`cd js-react-dates`
+`cd react-dates`
 
 `yarn`
 
