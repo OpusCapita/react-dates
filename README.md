@@ -4,17 +4,17 @@ OpusCapita React Components (date inputs/pickers).
 
 ## Components
 
-* DateInput
+### DateInput
 
-[date-input](./docs/DateInput.gif)
+![date-input](./docs/DateInput.gif)
 
-* DateRangeInput
+### DateRangeInput
 
-[date-range-input](./docs/DateRangeInput.gif)
+![date-range-input](./docs/DateRangeInput.gif)
 
-* DatePicker
+### DatePicker
 
-[date-picker](./docs/DatePicker.gif)
+![date-picker](./docs/DatePicker.gif)
 
 ## Installation
 
