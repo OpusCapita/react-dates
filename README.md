@@ -4,7 +4,7 @@ OpusCapita React Components (date inputs/pickers).
 
 ## Installation
 
-`yarn add -D @opuscapita/react-dates`
+`yarn add -D opuscapita-react-dates`
 
 ## Demo and documentation
 
