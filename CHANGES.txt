@@ -1,4 +1,10 @@
 
+Release 0.0.1-beta.2 Thu Apr 20 2017 12:06:29 GMT+0300 (+03)
+=======================================================
+
+ - Change package name (Kirill Volkovich <volkovich@scand.com>, Thu Apr 20 12:04:55 2017 +0300)
+ - Updating to a version to  0.0.1-beta.2 (Kirill Volkovich <volkovich@scand.com>, Thu Apr 20 11:49:58 2017 +0300)
+
 Release 0.0.1-beta.1 Thu Apr 20 2017 11:49:48 GMT+0300 (+03)
 =======================================================
 
