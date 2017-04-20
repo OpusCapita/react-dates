@@ -7,6 +7,7 @@ cp lib/* .gh-pages-tmp &&
 cp www/index.html .gh-pages-tmp &&
 
 git checkout gh-pages &&
+find . ! -regex -name '.*\(node_modules\|\.git.*\)$' -delete &&
 mv .gh-pages-tmp/* . &&
 rm -rf .gh-pages-tmp &&
 git add . &&
