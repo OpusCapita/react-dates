@@ -1,5 +1,5 @@
 {
-  "name": "@opuscapita/react-dates",
+  "name": "opuscapita-react-dates",
   "version": "0.0.1-beta.2",
   "description": "Start write new project with no effort.",
   "scripts": {
