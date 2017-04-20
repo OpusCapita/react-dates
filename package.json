@@ -17,6 +17,10 @@
     "lib",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpusCapita/react-dates"
+  },
   "peerDependencies": {
     "react": "15.4.2",
     "react-dom": "15.4.2"
