@@ -8,6 +8,8 @@ cp www/index.html .gh-pages-tmp &&
 
 git checkout gh-pages &&
 git ls-files | grep -v -e "\(^\.gitignore$\|^\.gitattributes$\|^\.gh-pages-tmp$\)" | xargs rm -rf &&
+echo "LS!" &&
+ls -la &&
 mv .gh-pages-tmp/* . &&
 rm -rf .gh-pages-tmp &&
 git add . &&
