@@ -1,6 +1,7 @@
 *.log
 *.iml
 .idea
+.gh-pages-tmp
 tmp
 npm-debug.log
 /static
