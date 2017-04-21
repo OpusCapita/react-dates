@@ -16,6 +16,16 @@ This project uses [react-day-picker](https://github.com/gpbl/react-day-picker)
 
 * DatePicker
 
+## Documentation
+
+Online demo and components reference available here: https://opuscapita.github.io/react-dates
+
+> Demo powered by [opuscapita-react-showroom](https://github.com/OpusCapitaBES/js-react-showroom-client)
+
+## Installation
+
+`yarn add -D opuscapita-react-dates`
+
 ## Date format
 
 * `dd` - day
@@ -23,13 +33,3 @@ This project uses [react-day-picker](https://github.com/gpbl/react-day-picker)
 * `yy` - year
 
 Any separators except these allowed: `1`, `a`, `A`, `*`, `#`
-
-## Installation
-
-`yarn add -D opuscapita-react-dates`
-
-## Documentation
-
-Online demo and components reference available here: https://opuscapita.github.io/react-dates
-
-> Demo powered by [opuscapita-react-showroom](https://github.com/OpusCapitaBES/js-react-showroom-client)
