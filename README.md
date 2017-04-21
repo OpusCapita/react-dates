@@ -1,12 +1,12 @@
 # opuscapita-react-dates
 
-![date-input](https://raw.githubusercontent.com/OpusCapita/react-dates/f01f4a9e42be4de2f4ae9ced2eb63155fe6e866e/docs/DateInput.gif)
-
 ## Synopsis
 
 ![npm-version](https://img.shields.io/npm/v/opuscapita-react-dates.svg?style=flat-square)
 
 OpusCapita React Components (date inputs/pickers)
+
+![date-input](https://raw.githubusercontent.com/OpusCapita/react-dates/f01f4a9e42be4de2f4ae9ced2eb63155fe6e866e/docs/DateInput.gif)
 
 This project uses [react-day-picker](https://github.com/gpbl/react-day-picker)
 
