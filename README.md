@@ -1,4 +1,4 @@
-# opuscapita-react-dates
+# React dates
 
 ## Synopsis
 
