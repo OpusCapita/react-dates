@@ -21,7 +21,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 
 ### Code Example
 
-```
+```jsx
 <DateInput
   date={_scope.state.date}
   dateFormat="dd/MM/yyyy"
