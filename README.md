@@ -2,7 +2,8 @@
 
 ## Synopsis
 
-![npm-version](https://img.shields.io/npm/v/opuscapita-react-dates.svg?style=flat-square)
+![badge-npm-version](https://img.shields.io/npm/v/opuscapita-react-dates.svg?style=flat-square)
+![badge-license](https://img.shields.io/github/license/OpusCapita/react-dates.svg)
 
 OpusCapita React Components (date inputs/pickers)
 
