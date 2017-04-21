@@ -79,7 +79,7 @@
   "dependencies": {
     "lodash": "4.17.4",
     "moment": "2.18.1",
-    "opuscapita-react-ui-autocompletes": "1.0.3",
+    "opuscapita-react-ui-autocompletes": "1.0.4",
     "react-day-picker": "5.2.0",
     "react-maskedinput": "3.3.4",
     "webpack-bundle-analyzer": "2.3.1"
