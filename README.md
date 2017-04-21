@@ -1,6 +1,6 @@
 # opuscapita-react-dates
 
-![date-input](./docs/DateInput.gif)
+![date-input](https://raw.githubusercontent.com/OpusCapita/react-dates/f01f4a9e42be4de2f4ae9ced2eb63155fe6e866e/docs/DateInput.gif)
 
 ## Synopsis
 
