@@ -20,7 +20,7 @@ Allows select date range using mouse.
 
 ### Code Example
 
-```
+```jsx
 <DateRangeInput
   dateFormat="MM.dd.yyyy"
   dateRange={_scope.state.dateRange1}

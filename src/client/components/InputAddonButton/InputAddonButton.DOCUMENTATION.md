@@ -11,7 +11,7 @@ InputAddonButton is
 
 ### Code Example
 
-```
+```jsx
 <InputAddonButton />
 ```
 

@@ -26,7 +26,7 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
 
 ### Code Example
 
-```
+```jsx
 <DayPicker
   dayPickerRef={ref => (window.picker = ref)}
   onChange={ day => console.log('day:', day) }

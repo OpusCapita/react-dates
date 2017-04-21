@@ -18,7 +18,7 @@
 
 ### Code Example
 
-```
+```jsx
 <DateInputField
   dateFormat="DD.MM.YYYY"
   date={_scope.state.date}

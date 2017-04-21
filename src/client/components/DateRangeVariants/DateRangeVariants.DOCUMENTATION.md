@@ -13,7 +13,7 @@ DateRangeVariants is
 
 ### Code Example
 
-```
+```jsx
 <DateRangeVariants
   onChange={range => console.log(range)}
 />
