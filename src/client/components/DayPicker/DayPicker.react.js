@@ -30,8 +30,6 @@ function Caption(props) {
     currentMonth // eslint-disable-line react/prop-types
   } = props;
 
-  let currentYear = date.getFullYear();
-
   let months = localeUtils.getMonths(locale);
   let dateNow = new Date();
   let years = [];
