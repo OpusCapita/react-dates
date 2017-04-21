@@ -1,6 +1,6 @@
 # React dates ![badge-npm-version](https://img.shields.io/npm/v/opuscapita-react-dates.svg) ![badge-license](https://img.shields.io/github/license/OpusCapita/react-dates.svg)
 
-![date-input](https://raw.githubusercontent.com/OpusCapita/react-dates/f01f4a9e42be4de2f4ae9ced2eb63155fe6e866e/docs/DateInput.gif)
+![date-input](https://raw.githubusercontent.com/OpusCapita/react-dates/master/docs/DateInput.gif)
 
 OpusCapita React Components (date inputs/pickers)
 
