@@ -1,4 +1,20 @@
 
+Release 0.0.1-beta.5 Wed May 10 2017 12:15:12 GMT+0300 (+03)
+=======================================================
+
+ - Change property name 'date' to 'value'
+    
+    To be consistent to react component naming convention that supports
+    onChange and value properties, please change date property name to value.
+    
+    This is not just a cosmetic change - libraries like redux-form us
+    react-common notation to inject it's own specific props to declared inputs. (Kirill Volkovich <volkovich@scand.com>, Wed May 10 11:59:12 2017 +0300)
+ - Update gh-pages-updates.sh (Kirill Volkovich <volkovich@scand.com>, Fri Apr 21 17:30:33 2017 +0300)
+ - Update gh-pages-updates.sh (Kirill Volkovich <volkovich@scand.com>, Fri Apr 21 17:29:57 2017 +0300)
+ - Fix I18nLinker default datePattern (Kirill Volkovich <volkovich@scand.com>, Fri Apr 21 17:26:03 2017 +0300)
+ - Add I18nLinker component (Kirill Volkovich <volkovich@scand.com>, Fri Apr 21 17:21:28 2017 +0300)
+ - Updating to a version to  0.0.1-beta.5 (Kirill Volkovich <volkovich@scand.com>, Fri Apr 21 16:24:25 2017 +0300)
+
 Release 0.0.1-beta.4 Fri Apr 21 2017 16:24:11 GMT+0300 (+03)
 =======================================================
 
