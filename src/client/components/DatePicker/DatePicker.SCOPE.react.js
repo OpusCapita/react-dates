@@ -13,17 +13,17 @@ class DatePickerScope extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: null
+      value: null
     };
   }
 
-  handleChange(date) {
-    this.setState({ date });
+  handleChange(value) {
+    this.setState({ value });
   }
 
   render() {
-    let { date } = this.state;
-    let value = date ? date.toString() : 'not selected yet';
+    let value = this.state.value ? this.state.value.toString() : 'not selected yet';
+
     return (
       <div>
         {this._renderChildren()}

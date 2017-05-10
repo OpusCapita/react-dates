@@ -27,28 +27,28 @@ function splitProps(props, specificPropNames = []) {
 
 let propTypes = {
   className: PropTypes.string,
-  date: PropTypes.object,
   dateFormat: PropTypes.string,
   disabled: PropTypes.bool,
+  isValid: PropTypes.bool,
   locale: PropTypes.string,
-  showToTop: PropTypes.bool,
-  showToLeft: PropTypes.bool,
   onChange: PropTypes.func,
+  showToLeft: PropTypes.bool,
+  showToTop: PropTypes.bool,
   tabIndex: PropTypes.number,
-  isValid: PropTypes.bool
+  value: PropTypes.object
 };
 
 let defaultProps = {
   className: '',
-  date: null,
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
+  isValid: true,
   locale: 'en-GB',
-  showToTop: false,
-  showToLeft: false,
   onChange: () => {},
+  showToLeft: false,
+  showToTop: false,
   tabIndex: 0,
-  isValid: true
+  value: null
 };
 
 export default
@@ -75,8 +75,8 @@ class DateInput extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.date !== nextProps.date) {
-      let month = nextProps.date || new Date();
+    if (this.props.value !== nextProps.value) {
+      let month = nextProps.value || new Date();
       this.reactDayPicker.showMonth(month);
     }
   }
@@ -112,13 +112,13 @@ class DateInput extends Component {
     this.setState({ error });
   }
 
-  handleDateChange(date) {
-    this.props.onChange(date);
+  handleDateChange(value) {
+    this.props.onChange(value);
     this.setState({ error: null });
   }
 
   showPicker() {
-    let month = this.props.date || new Date();
+    let month = this.props.value || new Date();
     this.reactDayPicker.showMonth(month);
     this.setState({ showPicker: true });
   }
@@ -145,7 +145,6 @@ class DateInput extends Component {
   render() {
     let {
       className,
-      date,
       dateFormat,
       disabled,
       isValid,
@@ -154,6 +153,7 @@ class DateInput extends Component {
       showToLeft,
       showToTop,
       tabIndex,
+      value,
       ...restProps
     } = this.props;
 
@@ -168,8 +168,8 @@ class DateInput extends Component {
       <DayPicker
         dayPickerRef={el => (this.reactDayPicker = el)}
         locale={locale}
-        month={date}
-        selectedDays={date}
+        month={value}
+        selectedDays={value}
         tabIndex={-1}
         fixedWeeks={true}
         onChange={this.handleDateChange}
@@ -213,15 +213,15 @@ class DateInput extends Component {
         className={`opuscapita_date-input form-control ${hasErrorClassName} ${className}`}
       >
         <DateInputField
-          date={date}
           dateFormat={momentCompatibleDateFormat}
           disabled={disabled}
           onChange={this.handleDateChange}
+          onClick={this.handleInputClick}
           onError={this.handleError}
           onFocus={this.handleInputFocus}
-          onClick={this.handleInputClick}
           onRef={dateInputField => (this.dateInputField = dateInputField)}
           tabIndex={tabIndex}
+          value={value}
         />
         {resetButton}
         {pickerMotionElement}

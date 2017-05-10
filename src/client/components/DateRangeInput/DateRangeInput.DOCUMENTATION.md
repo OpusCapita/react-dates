@@ -8,7 +8,6 @@ Allows select date range using mouse.
 | ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                 |
 | className                      | string                  | Default behavior                                                                                                                                            |
 | dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                            |
-| dateRange                      | array                   | `[Date from, Date to]`                                                                                                                                      |
 | disabled                       | bool                    | If true - became inactive                                                                                                                                   |
 | isValid                        | bool                    | If false - highlight input as error                                                                                                                         |
 | locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                             |
@@ -16,6 +15,7 @@ Allows select date range using mouse.
 | showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                 |
 | showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                  |
 | tabIndex                       | number                  | Default behavior                                                                                                                                            |
+| value                          | array                   | `[Date from, Date to]`                                                                                                                                      |
 | variants                       | array                   | `[ { label: string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |
 
 ### Code Example
@@ -23,19 +23,19 @@ Allows select date range using mouse.
 ```jsx
 <DateRangeInput
   dateFormat="MM.dd.yyyy"
-  dateRange={_scope.state.dateRange1}
-  onChange={_scope.handleChange1.bind(_scope)}
   locale={'de'}
+  onChange={_scope.handleChange1.bind(_scope)}
+  value={_scope.state.value1}
 />
 
 <hr />
 
 <DateRangeInput
   dateFormat="dd.MM.yyyy"
-  dateRange={_scope.state.dateRange2}
   disabled={true}
-  onChange={_scope.handleChange3.bind(_scope)}
   locale={'de'}
+  onChange={_scope.handleChange3.bind(_scope)}
+  value={_scope.state.value2}
 />
 
 <hr />
@@ -44,24 +44,24 @@ Allows select date range using mouse.
   <div className="col-xs-6">
     <DateRangeInput
       dateFormat="dd.MM.yyyy"
-      dateRange={_scope.state.dateRange3}
-      onChange={_scope.handleChange3.bind(_scope)}
       locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
       placeholder="Выберите диапазон дат"
-      showToTop={true}
       showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
     />
   </div>
 
   <div className="col-xs-6">
     <DateRangeInput
       dateFormat="dd.MM.yyyy"
-      dateRange={_scope.state.dateRange4}
-      onChange={_scope.handleChange4.bind(_scope)}
       locale={'ru'}
+      onChange={_scope.handleChange4.bind(_scope)}
       placeholder="Выберите диапазон дат"
-      showToTop={true}
       showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
     />
   </div>
 </div>

@@ -9,13 +9,13 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 | Name                           | Type                    | Description                                                                                     |
 | ------------------------------ | :---------------------- | -----------------------------------------------------------                                     |
 | className                      | string                  | Default HTML behavior                                                                           |
-| date                           | instanceOf(Date)        | Instance of `Date`                                                                              |
 | disabled                       | bool                    | If true - became inactive                                                                       |
 | locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property |
 | onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                      |
 | showToLeft                     | bool                    | Show picker popup to left relative to button                                                    |
 | showToTop                      | bool                    | Show picker popup to top relative to button                                                     |
 | tabIndex                       | number                  | Default HTML behavior                                                                           |
+| value                          | instanceOf(Date)        | Instance of `Date`                                                                              |
 
 ***
 
@@ -29,9 +29,9 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
 
 ```jsx
 <DatePicker
-  date={_scope.state.date}
   locale="de-DE"
   onChange={_scope.handleChange.bind(_scope)}
+  value={_scope.state.value}
 />
 
 

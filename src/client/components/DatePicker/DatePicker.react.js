@@ -25,24 +25,24 @@ function splitProps(props, specificPropNames = []) {
 
 let propTypes = {
   className: PropTypes.string,
-  date: PropTypes.object,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
   onChange: PropTypes.func,
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
+  value: PropTypes.object
 };
 
 let defaultProps = {
   className: '',
-  date: null,
   disabled: false,
   locale: 'en-GB',
   onChange: () => {},
   showToLeft: false,
   showToTop: false,
-  tabIndex: 0
+  tabIndex: 0,
+  value: null
 };
 
 export default
@@ -87,8 +87,8 @@ class DatePicker extends Component {
     }
   }
 
-  handleDateChange(date) {
-    this.props.onChange(date);
+  handleDateChange(value) {
+    this.props.onChange(value);
   }
 
   handleKeyDown(event) {
@@ -108,13 +108,13 @@ class DatePicker extends Component {
   render() {
     let {
       className,
-      date,
       disabled,
       locale,
       onChange, // eslint-disable-line no-unused-vars
       showToLeft,
       showToTop,
       tabIndex,
+      value,
       ...restProps
     } = this.props;
 
@@ -126,8 +126,8 @@ class DatePicker extends Component {
       <DayPicker
         dayPickerRef={el => (this.reactDayPicker = el)}
         locale={locale}
-        month={date}
-        selectedDays={date}
+        month={value}
+        selectedDays={value}
         tabIndex={-1}
         fixedWeeks={true}
         onDayClick={this.handleDayClick}

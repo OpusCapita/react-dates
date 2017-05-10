@@ -9,7 +9,6 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 | Name                           | Type                    | Description                                                                                     |
 | ------------------------------ | :---------------------- | -----------------------------------------------------------                                     |
 | className                      | string                  | Default behavior                                                                                |
-| date                           | object                  | Instance of `Date`                                                                              |
 | dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                |
 | disabled                       | bool                    | If true - became inactive                                                                       |
 | isValid                        | bool                    | If false - highlight input as error                                                             |
@@ -18,12 +17,13 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 | showToLeft                     | bool                    | Show picker popup to left relative to input                                                     |
 | showToTop                      | bool                    | Show picker popup to top relative to input                                                      |
 | tabIndex                       | number                  | Default behavior                                                                                |
+| value                          | object                  | Instance of `Date`                                                                              |
 
 ### Code Example
 
 ```jsx
 <DateInput
-  date={_scope.state.date}
+  value={_scope.state.value}
   dateFormat="dd/MM/yyyy"
   locale="de-DE"
   onChange={_scope.handleChange.bind(_scope)}
@@ -32,7 +32,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 <hr />
 
 <DateInput
-  date={_scope.state.date}
+  value={_scope.state.value}
   dateFormat="dd/MM/yyyy"
   disabled={true}
   locale="en-GB"
@@ -42,7 +42,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 <hr />
 
 <DateInput
-  date={_scope.state.date}
+  value={_scope.state.value}
   dateFormat="dd/MM/yyyy"
   locale="hu-HU"
   onChange={_scope.handleChange.bind(_scope)}

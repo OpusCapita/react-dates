@@ -5,24 +5,24 @@ import './DateInputField.less';
 
 let propTypes = {
   className: PropTypes.string,
-  date: PropTypes.object,
   dateFormat: PropTypes.string,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
   onChange: PropTypes.func,
   onError: PropTypes.func,
-  onRef: PropTypes.func
+  onRef: PropTypes.func,
+  value: PropTypes.object
 };
 
 let defaultProps = {
   className: '',
-  date: null,
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   locale: 'en-GB',
   onChange: () => {},
   onError: () => {},
-  onRef: () => {}
+  onRef: () => {},
+  value: null
 };
 
 export default
@@ -38,8 +38,8 @@ class DateInputField extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.date !== nextProps.date || this.props.dateFormat !== nextProps.dateFormat) {
-      let inputValue = nextProps.date ? moment(nextProps.date.toISOString()).format(nextProps.dateFormat) : '';
+    if (this.props.value !== nextProps.value || this.props.dateFormat !== nextProps.dateFormat) {
+      let inputValue = nextProps.value ? moment(nextProps.value.toISOString()).format(nextProps.dateFormat) : '';
       this.setState({ inputValue });
     }
   }
@@ -60,8 +60,8 @@ class DateInputField extends Component {
     if (error !== null && dateString.length) {
       this.props.onError(error);
     } else {
-      let date = !dateString.length ? null : momentDate.toDate();
-      this.props.onChange(date);
+      let value = !dateString.length ? null : momentDate.toDate();
+      this.props.onChange(value);
     }
   }
 
@@ -77,14 +77,14 @@ class DateInputField extends Component {
 
   render() {
     let {
+      className,
       dateFormat,
       disabled,
-      className,
-      date, // eslint-disable-line no-unused-vars
       locale, // eslint-disable-line no-unused-vars
-      onError, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
+      onError, // eslint-disable-line no-unused-vars
       onRef, // eslint-disable-line no-unused-vars
+      value, // eslint-disable-line no-unused-vars
       ...restProps
     } = this.props;
 

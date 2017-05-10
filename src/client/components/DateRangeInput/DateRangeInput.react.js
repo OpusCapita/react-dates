@@ -43,7 +43,6 @@ function isSelectingFirstDay(from, to, day) {
 let propTypes = {
   className: PropTypes.string,
   dateFormat: PropTypes.string,
-  dateRange: PropTypes.array,
   disabled: PropTypes.bool,
   isValid: PropTypes.bool,
   locale: PropTypes.string,
@@ -54,6 +53,7 @@ let propTypes = {
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
   tabIndex: PropTypes.number,
+  value: PropTypes.array,
   variants: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
     range: PropTypes.array
@@ -63,7 +63,6 @@ let propTypes = {
 let defaultProps = {
   className: '',
   dateFormat: 'dd/MM/yyyy',
-  dateRange: [null, null],
   disabled: false,
   isValid: true,
   locale: 'en-GB',
@@ -72,6 +71,7 @@ let defaultProps = {
   showToLeft: false,
   showToTop: false,
   tabIndex: 0,
+  value: [null, null],
   variants: undefined
 };
 
@@ -99,8 +99,8 @@ class DateRangeInput extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.dateRange[0] !== nextProps.dateRange[0]) {
-      let month = nextProps.dateRange[0] || new Date();
+    if (this.props.value[0] !== nextProps.value[0]) {
+      let month = nextProps.value[0] || new Date();
       this.reactDayPicker.showMonth(month);
     }
   }
@@ -135,8 +135,8 @@ class DateRangeInput extends Component {
   }
 
   handleDayClick(day) {
-    let from = this.props.dateRange[0];
-    let to = this.props.dateRange[1];
+    let from = this.props.value[0];
+    let to = this.props.value[1];
 
     if (DateUtils.isSameDay(day, from)) {
       this.handleReset();
@@ -177,13 +177,13 @@ class DateRangeInput extends Component {
   }
 
   showPicker() {
-    let month = this.props.dateRange[0] || new Date();
+    let month = this.props.value[0] || new Date();
     this.reactDayPicker.showMonth(month);
     this.setState({ showPicker: true, showVariants: false });
   }
 
   hidePicker() {
-    if (this.props.dateRange[0] && !this.props.dateRange[1]) {
+    if (this.props.value[0] && !this.props.value[1]) {
       this.handleRangeChange([null, null]);
     }
     this.setState({ showPicker: false });
@@ -219,8 +219,8 @@ class DateRangeInput extends Component {
   }
 
   handleDayMouseEnter(day) {
-    let from = this.props.dateRange[0];
-    let to = this.props.dateRange[1];
+    let from = this.props.value[0];
+    let to = this.props.value[1];
 
     if (!isSelectingFirstDay(from, to, day)) {
       this.setState({
@@ -242,7 +242,7 @@ class DateRangeInput extends Component {
     let {
       className,
       dateFormat,
-      dateRange, // eslint-disable-line no-unused-vars
+      value, // eslint-disable-line no-unused-vars
       disabled,
       locale,
       isValid,
@@ -259,8 +259,8 @@ class DateRangeInput extends Component {
     let commonProps = splittedProps[0];
     let dayPickerSpecificProps = splittedProps[1];
 
-    let from = this.props.dateRange[0];
-    let to = this.props.dateRange[1];
+    let from = this.props.value[0];
+    let to = this.props.value[1];
     let { enteredTo } = this.state;
     let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 

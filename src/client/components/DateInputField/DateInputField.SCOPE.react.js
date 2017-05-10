@@ -13,13 +13,13 @@ class DateInputFieldScope extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date()
+      value: new Date()
     };
   }
 
-  handleChange(date) {
-    console.log('SCOPE handleChange:', date);
-    this.setState({ date });
+  handleChange(value) {
+    console.log('SCOPE handleChange:', value);
+    this.setState({ value });
   }
 
   render() {
