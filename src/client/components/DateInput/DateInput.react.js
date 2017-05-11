@@ -31,7 +31,9 @@ let propTypes = {
   disabled: PropTypes.bool,
   isValid: PropTypes.bool,
   locale: PropTypes.string,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
   tabIndex: PropTypes.number,
@@ -44,6 +46,8 @@ let defaultProps = {
   disabled: false,
   isValid: true,
   locale: 'en-GB',
+  onBlur: () => {},
+  onFocus: () => {},
   onChange: () => {},
   showToLeft: false,
   showToTop: false,
@@ -127,7 +131,8 @@ class DateInput extends Component {
     this.setState({ showPicker: false });
   }
 
-  handleInputFocus() {
+  handleInputFocus(event) {
+    this.props.onFocus(event);
     this.showPicker();
   }
 
@@ -149,7 +154,9 @@ class DateInput extends Component {
       disabled,
       isValid,
       locale,
+      onBlur,
       onChange, // eslint-disable-line no-unused-vars
+      onFocus,
       showToLeft,
       showToTop,
       tabIndex,
@@ -215,6 +222,7 @@ class DateInput extends Component {
         <DateInputField
           dateFormat={momentCompatibleDateFormat}
           disabled={disabled}
+          onBlur={onBlur}
           onChange={this.handleDateChange}
           onClick={this.handleInputClick}
           onError={this.handleError}

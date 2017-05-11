@@ -46,7 +46,9 @@ let propTypes = {
   disabled: PropTypes.bool,
   isValid: PropTypes.bool,
   locale: PropTypes.string,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   positionRight: PropTypes.bool,
   positionTop: PropTypes.bool,
@@ -66,7 +68,9 @@ let defaultProps = {
   disabled: false,
   isValid: true,
   locale: 'en-GB',
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   placeholder: 'Select date range',
   showToLeft: false,
   showToTop: false,
@@ -210,8 +214,9 @@ class DateRangeInput extends Component {
     this.handleRangeChange(range);
   }
 
-  handleInputFocus() {
-    this.showPicker();
+  handleInputFocus(event) {
+    this.props.onFocus(event);
+    this.showPicker(event);
   }
 
   handleInputClick() {
@@ -246,7 +251,9 @@ class DateRangeInput extends Component {
       disabled,
       locale,
       isValid,
+      onBlur,
       onChange, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
       placeholder,
       tabIndex,
       showToTop,
@@ -369,6 +376,7 @@ class DateRangeInput extends Component {
             type="text"
             className="opuscapita_date-range-input__input-field form-control"
             disabled={disabled}
+            onBlur={onBlur}
             onFocus={this.handleInputFocus}
             onClick={this.handleInputClick}
             placeholder={placeholder}

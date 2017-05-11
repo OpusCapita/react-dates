@@ -11,7 +11,9 @@ Allows select date range using mouse.
 | disabled                       | bool                    | If true - became inactive                                                                                                                                   |
 | isValid                        | bool                    | If false - highlight input as error                                                                                                                         |
 | locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                             |
+| onBlur                         | func                    | Callback fired on input blur `(e) => {}`                                                                                                                    |
 | onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                                                                                  |
+| onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                                                                                                   |
 | showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                 |
 | showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                  |
 | tabIndex                       | number                  | Default behavior                                                                                                                                            |
@@ -57,7 +59,9 @@ Allows select date range using mouse.
     <DateRangeInput
       dateFormat="dd.MM.yyyy"
       locale={'ru'}
+      onBlur={(e) => console.log('Blur!', e)}
       onChange={_scope.handleChange4.bind(_scope)}
+      onFocus={(e) => console.log('Focus!', e)}
       placeholder="Выберите диапазон дат"
       showToLeft={true}
       showToTop={true}
