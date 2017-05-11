@@ -37,9 +37,16 @@ function Caption(props) {
     years.push(i);
   }
 
-  let handleChange = (event) => {
-    let { year, month } = event.target.form;
-    let newDate = new Date(year.value, month.value);
+  let handleYearChange = (event) => {
+    handleChange(event.target.value, date.getMonth());
+  };
+
+  let handleMonthChange = (event) => {
+    handleChange(date.getFullYear(), event.target.value);
+  };
+
+  let handleChange = (year, month) => {
+    let newDate = new Date(year, month);
     if (isRange) {
       let isCaptionFrom = date.getMonth() === currentMonth.getMonth();
       let captionIndex = isCaptionFrom ? 0 : 1;
@@ -50,11 +57,11 @@ function Caption(props) {
   };
 
   return (
-    <form className="DayPicker-Caption">
+    <div className="DayPicker-Caption">
       <div className={`form-group opuscapita_day-picker__caption`}>
         <select
           className="opuscapita_day-picker__caption-select"
-          onChange={handleChange}
+          onChange={handleMonthChange}
           name="month"
           value={date.getMonth()}
           tabIndex={-1}
@@ -65,7 +72,7 @@ function Caption(props) {
         </select>
         <select
           className="opuscapita_day-picker__caption-select"
-          onChange={handleChange}
+          onChange={handleYearChange}
           name="year"
           value={date.getFullYear()}
           tabIndex={-1}
@@ -77,7 +84,7 @@ function Caption(props) {
           }
         </select>
       </div>
-    </form>
+    </div>
   );
 }
 
