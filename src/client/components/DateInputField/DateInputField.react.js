@@ -30,7 +30,7 @@ class DateInputField extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: ''
+      inputValue: props.value ? moment(props.value.toISOString()).format(props.dateFormat) : ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleRef = this.handleRef.bind(this);
@@ -42,11 +42,6 @@ class DateInputField extends Component {
       let inputValue = nextProps.value ? moment(nextProps.value.toISOString()).format(nextProps.dateFormat) : '';
       this.setState({ inputValue });
     }
-  }
-
-  setInputValue(props) {
-    let inputValue = '';
-    this.setState({ inputValue });
   }
 
   clear() {
