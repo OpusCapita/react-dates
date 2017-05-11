@@ -1,4 +1,10 @@
 
+Release 0.0.1-beta.8 Thu May 11 2017 18:56:41 GMT+0300 (+03)
+=======================================================
+
+ - Fix lint (Kirill Volkovich <volkovich@scand.com>, Thu May 11 15:25:28 2017 +0300)
+ - Updating to a version to  0.0.1-beta.8 (Kirill Volkovich <volkovich@scand.com>, Thu May 11 15:22:07 2017 +0300)
+
 Release 0.0.1-beta.7 Thu May 11 2017 15:21:57 GMT+0300 (+03)
 =======================================================
 
