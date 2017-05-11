@@ -156,7 +156,7 @@ class DateInput extends Component {
       locale,
       onBlur,
       onChange, // eslint-disable-line no-unused-vars
-      onFocus,
+      onFocus, // eslint-disable-line no-unused-vars
       showToLeft,
       showToTop,
       tabIndex,

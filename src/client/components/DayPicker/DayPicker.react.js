@@ -37,14 +37,6 @@ function Caption(props) {
     years.push(i);
   }
 
-  let handleYearChange = (event) => {
-    handleChange(event.target.value, date.getMonth());
-  };
-
-  let handleMonthChange = (event) => {
-    handleChange(date.getFullYear(), event.target.value);
-  };
-
   let handleChange = (year, month) => {
     let newDate = new Date(year, month);
     if (isRange) {
@@ -54,6 +46,14 @@ function Caption(props) {
     } else {
       onChange(newDate);
     }
+  };
+
+  let handleYearChange = (event) => {
+    handleChange(event.target.value, date.getMonth());
+  };
+
+  let handleMonthChange = (event) => {
+    handleChange(date.getFullYear(), event.target.value);
   };
 
   return (
