@@ -1,4 +1,10 @@
 
+Release 0.0.1-beta.9 Fri May 12 2017 15:07:17 GMT+0300 (+03)
+=======================================================
+
+ - Fix peerDependencies (Kirill Volkovich <volkovich@scand.com>, Fri May 12 15:06:49 2017 +0300)
+ - Updating to a version to  0.0.1-beta.9 (Kirill Volkovich <volkovich@scand.com>, Thu May 11 18:58:01 2017 +0300)
+
 Release 0.0.1-beta.8 Thu May 11 2017 18:56:41 GMT+0300 (+03)
 =======================================================
 
