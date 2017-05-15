@@ -71,6 +71,7 @@ class DateInput extends Component {
     this.handleInputClick = this.handleInputClick.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   componentDidMount() {
@@ -145,6 +146,13 @@ class DateInput extends Component {
     this.dateInputField.clear();
     this.hidePicker();
     this.props.onChange(null);
+  }
+
+  handleBlur(e) {
+    if(this.state.error) {
+      this.handleReset();
+    }
+    this.props.onBlur(e);
   }
 
   render() {
@@ -222,7 +230,7 @@ class DateInput extends Component {
         <DateInputField
           dateFormat={momentCompatibleDateFormat}
           disabled={disabled}
-          onBlur={onBlur}
+          onBlur={this.handleBlur}
           onChange={this.handleDateChange}
           onClick={this.handleInputClick}
           onError={this.handleError}
