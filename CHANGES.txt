@@ -1,4 +1,17 @@
 
+Release 0.0.1-beta.10 Mon May 15 2017 10:47:39 GMT+0300 (+03)
+=======================================================
+
+ - After onBlur fired clear DateInput in case incorrect date was entered manually
+    
+    User enter invalid date manually
+    Focus out of the date input
+    invalid user input is left inside the input
+    TODO:
+    
+    in case value is invalid - clear the the input before onBlur is fired (Kirill Volkovich <volkovich@scand.com>, Mon May 15 10:46:08 2017 +0300)
+ - Updating to a version to  0.0.1-beta.10 (Kirill Volkovich <volkovich@scand.com>, Fri May 12 15:07:32 2017 +0300)
+
 Release 0.0.1-beta.9 Fri May 12 2017 15:07:17 GMT+0300 (+03)
 =======================================================
 
