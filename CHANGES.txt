@@ -1,4 +1,23 @@
 
+Release 0.0.1-beta.12 Tue May 16 2017 15:59:07 GMT+0300 (+03)
+=======================================================
+
+ - Changed font (Kirill Volkovich <volkovich@scand.com>, Tue May 16 15:58:19 2017 +0300)
+ - Updating to a version to  0.0.1-beta.12 (Kirill Volkovich <volkovich@scand.com>, Tue May 16 15:49:38 2017 +0300)
+ - Fix ability to clear date input with 'x' in case disabled=true
+    
+    Issue #5 (Kirill Volkovich <volkovich@scand.com>, Tue May 16 15:46:54 2017 +0300)
+ - Updating to a version to  0.0.1-beta.11 (Kirill Volkovich <volkovich@scand.com>, Mon May 15 10:47:51 2017 +0300)
+ - After onBlur fired clear DateInput in case incorrect date was entered manually
+    
+    User enter invalid date manually
+    Focus out of the date input
+    invalid user input is left inside the input
+    TODO:
+    
+    in case value is invalid - clear the the input before onBlur is fired (Kirill Volkovich <volkovich@scand.com>, Mon May 15 10:46:08 2017 +0300)
+ - Updating to a version to  0.0.1-beta.10 (Kirill Volkovich <volkovich@scand.com>, Fri May 12 15:07:32 2017 +0300)
+
 Release 0.0.1-beta.11 Tue May 16 2017 15:47:47 GMT+0300 (+03)
 =======================================================
 
