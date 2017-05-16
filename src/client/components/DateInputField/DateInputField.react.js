@@ -94,7 +94,7 @@ class DateInputField extends Component {
         ref={this.handleRef}
         className={`opuscapita_date-input-field form-control ${className}`}
         mask={mask}
-        placeholderChar="-"
+        placeholderChar="‒"
         disabled={disabled}
         onChange={this.handleInputChange}
         placeholder={dateFormat}
