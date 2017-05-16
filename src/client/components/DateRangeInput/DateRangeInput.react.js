@@ -346,7 +346,12 @@ class DateRangeInput extends Component {
       '';
 
     let resetButton = (
-      <InputAddonButton className="opuscapita_date-range-input__reset-btn" tabIndex="-1" onClick={this.handleReset}>
+      <InputAddonButton
+        className="opuscapita_date-range-input__reset-btn"
+        tabIndex="-1"
+        onClick={this.handleReset}
+        disabled={disabled}
+      >
         ✕
       </InputAddonButton>
     );

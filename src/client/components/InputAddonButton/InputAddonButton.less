@@ -9,8 +9,13 @@
   &:focus {
     outline: none;
   }
-  &:hover {
-    color: #666;
-    cursor: pointer;
-  }
+}
+
+.opuscapita_input-addon-button:hover:not(.opuscapita_input-addon-button--disabled) {
+  color: #666;
+  cursor: pointer;
+}
+
+.opuscapita_input-addon-button--disabled {
+  cursor: not-allowed;
 }
