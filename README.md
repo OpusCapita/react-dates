@@ -31,3 +31,13 @@ Online demo and components reference available here: https://opuscapita.github.i
 * `yy` - year
 
 Any separators except these allowed: `1`, `a`, `A`, `*`, `#`
+
+## Contributors
+
+* Alexey Sergeev - [alexey.sergeev@jcatalog.com](alexey.sergeev@jcatalog.com)
+* Kirill Volkovich - [kirill.volkovich@jcatalog.com](kirill.volkovich@jcatalog.com)
+* Contributing are welcome. We need YOU! :metal:
+
+## License
+
+**OpusCapita react-dates** is licensed under the Apache License, Version 2.0. See [LICENSE](./LICENSE) for the full license text.
