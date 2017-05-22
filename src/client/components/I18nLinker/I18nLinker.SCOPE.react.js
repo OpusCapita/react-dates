@@ -22,7 +22,7 @@ class I18nLinker extends Component {
     super(props);
     this.state = {
       date: null,
-      range: [ null, null ]
+      range: [null, null]
     };
   }
 
