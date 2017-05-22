@@ -25,7 +25,7 @@ class InputAddonButton extends Component {
     let {
       children,
       className,
-      onClick,
+      onClick, // eslint-disable-line no-unused-vars
       disabled,
       ...restProps
     } = this.props;
