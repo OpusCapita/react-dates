@@ -7,9 +7,13 @@ import React, { Component, PropTypes } from 'react';
 import { showroomScopeDecorator } from 'opuscapita-showroom-client';
 import { I18nContext } from 'opuscapita-react-i18n';
 import DateInput from '../DateInput';
+import DateRangeInput from '../DateRangeInput';
+import DatePicker from '../DatePicker';
 
 window.I18nContext = I18nContext;
 window.DateInput = DateInput;
+window.DateRangeInput = DateRangeInput;
+window.DatePicker = DatePicker;
 
 @showroomScopeDecorator
 export default
@@ -17,12 +21,17 @@ class I18nLinker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: null
+      date: null,
+      range: [ null, null ]
     };
   }
 
   handleChange(date) {
     this.setState({ date });
+  }
+
+  handleRangeChange(range) {
+    this.setState({ range });
   }
 
   render() {

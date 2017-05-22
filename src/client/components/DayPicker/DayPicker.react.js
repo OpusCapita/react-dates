@@ -93,6 +93,7 @@ let propTypes = {
   className: PropTypes.string,
   dayPickerRef: PropTypes.func,
   hideTodayButton: PropTypes.bool,
+  todayButtonLabel: PropTypes.string,
   isRange: PropTypes.bool,
   onChange: PropTypes.func,
   pickerClassName: PropTypes.string
@@ -104,6 +105,7 @@ let defaultProps = {
   hideTodayButton: false,
   isRange: false,
   labels: ReactDayPicker.defaultProps.labels,
+  todayButtonLabel: 'Today',
   onChange: () => {},
   pickerClassName: ''
 };
@@ -152,6 +154,7 @@ class DayPicker extends Component {
       isRange,
       hideTodayButton,
       onChange, // eslint-disable-line no-unused-vars
+      todayButtonLabel,
       pickerClassName,
       ...restProps
     } = this.props;
@@ -169,7 +172,7 @@ class DayPicker extends Component {
         onClick={this.handleTodayClick}
         tabIndex={-1}
       >
-        Today
+        {todayButtonLabel}
       </button>
     );
 

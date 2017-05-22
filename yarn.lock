@@ -3150,9 +3150,9 @@ jsbn@~0.1.0:
   version "0.1.1"
   resolved "http://leon.scand:4873/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
 
-jsdom@^9.12.0:
+jsdom@9.12.0:
   version "9.12.0"
-  resolved "http://leon.scand:4873/jsdom/-/jsdom-9.12.0.tgz#e8c546fffcb06c00d4833ca84410fed7f8a097d4"
+  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-9.12.0.tgz#e8c546fffcb06c00d4833ca84410fed7f8a097d4"
   dependencies:
     abab "^1.0.3"
     acorn "^4.0.4"
@@ -3956,9 +3956,9 @@ optionator@^0.8.1, optionator@^0.8.2:
     type-check "~0.3.2"
     wordwrap "~1.0.0"
 
-opuscapita-i18n@1.0.12:
+opuscapita-i18n@1.0.12, opuscapita-i18n@^1.0.12:
   version "1.0.12"
-  resolved "http://leon.scand:4873/opuscapita-i18n/-/opuscapita-i18n-1.0.12.tgz#14330dcb4a41ee99853616d2930305f2d697d68e"
+  resolved "https://registry.yarnpkg.com/opuscapita-i18n/-/opuscapita-i18n-1.0.12.tgz#14330dcb4a41ee99853616d2930305f2d697d68e"
   dependencies:
     lodash "4.17.2"
     moment "2.17.0"

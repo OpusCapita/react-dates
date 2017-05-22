@@ -15,6 +15,7 @@ DayPicker is a styled to OpusCapita defaults [react-day-picker](https://github.c
 | hideTodayButton                | bool                    |                                                                                                                                                                                                                                                                  |
 | onChange                       | func                    | Callback fired when new date selected `Date date => {}`                                                                                                                                                                                                          |
 | pickerClassName                | string                  | Class name passed to react day picker                                                                                                                                                                                                                            |
+| todayButtonLabel               | string                  |                                                                                                                                                                                                                                                                  |
 
 ***
 
@@ -31,6 +32,7 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
   dayPickerRef={ref => (window.picker = ref)}
   onChange={ day => console.log('day:', day) }
   locale="de-DE"
+  todayButtonLabel="Today"
 />
 ```
 

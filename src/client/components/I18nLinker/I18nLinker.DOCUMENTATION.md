@@ -18,7 +18,7 @@ This component takes `dateFormat` and `locale` values from instance of `i18nMana
 ```jsx
 {/* We use I18nContext in demo, but it isn't required */}
 <I18nContext 
-  locale='en'
+  locale='de'
   formatInfos={{
     'en': {
       datePattern: 'dd/MM/yyyy',
@@ -40,12 +40,28 @@ This component takes `dateFormat` and `locale` values from instance of `i18nMana
     }
   }}
 >
-  <I18nLinker>
-    <DateInput
-      onChange={_scope.handleChange.bind(_scope)} 
-      date={_scope.state.date} 
-    />
-  </I18nLinker>
+  <div>
+    <I18nLinker>
+      <DateInput
+        onChange={_scope.handleChange.bind(_scope)} 
+        value={_scope.state.date} 
+      />
+    </I18nLinker>
+    
+    <I18nLinker>
+      <DateRangeInput
+        onChange={_scope.handleRangeChange.bind(_scope)} 
+        value={_scope.state.range} 
+      />
+    </I18nLinker>
+
+    <I18nLinker>
+      <DatePicker
+        onChange={_scope.handleChange.bind(_scope)} 
+        value={_scope.state.value} 
+      />
+    </I18nLinker>
+  </div>
 </I18nContext>
 ```
 
