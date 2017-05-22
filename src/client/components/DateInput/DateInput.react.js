@@ -149,7 +149,7 @@ class DateInput extends Component {
   }
 
   handleBlur(e) {
-    if(this.state.error) {
+    if (this.state.error) {
       this.handleReset();
     }
     this.props.onBlur(e);
@@ -162,7 +162,7 @@ class DateInput extends Component {
       disabled,
       isValid,
       locale,
-      onBlur,
+      onBlur, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       showToLeft,

@@ -16,13 +16,20 @@ let defaultProps = {
 export default
 class InputAddonButton extends Component {
   handleOnClick(e) {
-    if(!this.props.disabled) {
+    if (!this.props.disabled) {
       this.props.onClick(e);
     }
   }
 
   render() {
-    let { children, className, onClick, disabled, ...restProps } = this.props;
+    let {
+      children,
+      className,
+      onClick,
+      disabled,
+      ...restProps
+    } = this.props;
+
     return (
       <div
         className={`
