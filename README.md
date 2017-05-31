@@ -14,7 +14,7 @@ This project uses [react-day-picker](https://github.com/gpbl/react-day-picker)
 
 * DatePicker
 
-## Documentation
+## Demo and documentation
 
 Online demo and components reference available here: https://opuscapita.github.io/react-dates
 
