@@ -22,7 +22,8 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "repository": "https://github.com/OpusCapita/react-dates",
+  "license": "Apache-2.0",
+  "repository": "OpusCapita/react-dates",
   "peerDependencies": {
     "react": ">= 0.14.0 || >= 15.0.0",
     "react-dom": ">= 0.14.0 || >= 15.0.0"
