@@ -4,7 +4,7 @@
 */
 
 import React, { Component, PropTypes } from 'react';
-import { showroomScopeDecorator } from 'opuscapita-showroom-client';
+import { showroomScopeDecorator } from '@opuscapita/react-showroom-client';
 
 
 @showroomScopeDecorator
