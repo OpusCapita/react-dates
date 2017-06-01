@@ -28,8 +28,8 @@
     "react-dom": ">= 0.14.0 || >= 15.0.0"
   },
   "devDependencies": {
-    "@opuscapita/react-showroom-client": "1.1.0",
-    "@opuscapita/react-showroom-server": "1.1.0",
+    "@opuscapita/react-showroom-client": "1.2.2",
+    "@opuscapita/react-showroom-server": "1.2.0",
     "@opuscapita/npm-scripts": "1.0.8",
     "autoprefixer": "6.7.6",
     "babel-cli": "6.23.0",
