@@ -18,7 +18,7 @@ This project uses [react-day-picker](https://github.com/gpbl/react-day-picker)
 
 Online demo and components reference available here: https://opuscapita.github.io/react-dates
 
-> Demo powered by [opuscapita-react-showroom](https://github.com/OpusCapitaBES/js-react-showroom-client)
+> Demo powered by [react-showroom](https://github.com/OpusCapitaBES/js-react-showroom-client)
 
 ## Installation
 
