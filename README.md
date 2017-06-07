@@ -22,7 +22,7 @@ Online demo and components reference available here: https://opuscapita.github.i
 
 ## Installation
 
-`yarn add -D opuscapita-react-dates`
+`yarn add opuscapita-react-dates`
 
 ## Date format
 
