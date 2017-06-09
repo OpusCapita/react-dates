@@ -3,15 +3,13 @@
   "version": "0.1.0",
   "description": "Start write new project with no effort.",
   "scripts": {
-    "build": "rimraf lib && babel --copy-files --no-babelrc --presets es2015,stage-0,react --ignore *.spec.js src/client/components --out-dir lib ",
-    "bundle": "webpack --config webpack.production.config.js",
-    "build-docs": "rm -rf lib docs/* && webpack --config ./webpack.docs.config.js && cp -R lib/* docs && cp www/index.html docs",
     "link-mode": "webpack --watch --config ./webpack.link.config.js",
     "lint": "eslint src",
-    "prepublish": "npm run build",
     "start": "node www/index",
     "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/mocha-setup.js --require ignore-styles",
-    "publish-release": "npm run build && npm-publish --release"
+    "npm-build": "rimraf lib && babel --copy-files --no-babelrc --presets es2015,stage-0,react --ignore *.spec.js src/client/components --out-dir lib && webpack --config webpack.production.config.js",
+    "npm-publish": "npm run npm-build && npm-publish",
+    "publish-release": "npm run npm-publish -- --release"
   },
   "main": "lib/index.js",
   "files": [
