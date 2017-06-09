@@ -6,61 +6,14 @@ import sinon from 'sinon';
 import DateInputField from '.';
 
 describe('<DateInputField />', () => {
-  // it('should have default props', () => {
-
-  // });
-
-  // it('should have the right class name', () => {
-  //   let wrapper = shallow(<DateInputField className="test-class-name" />);
-  //   expect(wrapper.hasClass('test-class-name')).to.be.true;
-  //   expect(wrapper.hasClass('opuscapita_date-input')).to.be.true;
-  // });
-
-  // it('should became disabled if disabled prop is truthy', () => {
-  //   let wrapper = shallow(<DateInputField />);
-  // });
-
-  // it('should display dateFormat if date prop not specified', () => {
-  //   let wrapper = shallow(<DateInputField />);
-  // });
-
-  // it('should render dateFormat separators as non-focusable elements', () => {
-  //   let wrapper = shallow(<DateInputField />);
-  // });
-
-  // it('should render dateFormat parts as focusable elements', () => {
-  //   let wrapper = shallow(<DateInputField />);
-  // });
-
-  // it('should render dateFormat parts as inputs', () => {
-  //   let wrapper = shallow(<DateInputField />);
-  // });
 
   describe('callback props', () => {
-    // it('should fire onChange prop if entered valid value to dateFormat part', () => {
-    //   let wrapper = shallow(<DateInputField />);
-    // });
-
-    // it('should\'t call onChange prop if entered invalid value to dateFormat part', () => {
-    //   let wrapper = shallow(<DateInputField />);
-    // });
 
     it('should call onFocus prop if date format input being focused', () => {
-      let spy_1_1 = sinon.spy();
-      let wrapper_1_1 = mount(<DateInputField onFocus={spy_1_1} />, { attachTo: document.body });
-      let inputReactElement_1_1 = wrapper_1_1.find('.opuscapita_date-input__format-part-input').get(0);
-      inputReactElement_1_1.focus();
-      expect(spy_1_1.calledOnce).to.be.true;
+      const spy_1_1 = sinon.spy();
+      const wrapper_1_1 = mount(<DateInputField onFocus={spy_1_1}/>, { attachTo: document.body });
+      wrapper_1_1.find('input').simulate('focus');
       wrapper_1_1.detach();
-
-      let spy_2_1 = sinon.spy();
-      let wrapper_2_1 = mount(<DateInputField onFocus={spy_2_1} />, { attachTo: document.body });
-      let inputReactElement_2_1 = wrapper_2_1.find('.opuscapita_date-input__format-part-input').get(1);
-      let inputReactElement_2_2 = wrapper_2_1.find('.opuscapita_date-input__format-part-input').get(2);
-      inputReactElement_2_1.focus();
-      inputReactElement_2_2.focus();
-      expect(spy_2_1.calledOnce).to.be.true;
-      wrapper_2_1.detach();
     });
 
     it('should call onBlur if all format inputs being unfocused', () => {
@@ -78,7 +31,8 @@ describe('<DateInputField />', () => {
 
       let inputReactElement_1 = wrapper.find('.input-1').get(0);
       let inputReactElement_2 = wrapper.find('.input-2').get(0);
-      let formatInputReactElement = wrapper.find('.opuscapita_date-input__format-part-input').get(0);
+      let formatInputReactElement = wrapper.find('.opuscapita_date-input-field').get(0);
+
 
       inputReactElement_1.focus();
       expect(inputFocusSpy_1.calledOnce).to.be.true;
@@ -90,13 +44,6 @@ describe('<DateInputField />', () => {
     }
       );
 
-    // it('should call onChange prop on date-picker value selection', () => {
-    //   let wrapper = shallow(<DateInputField />);
-    // });
-
-    // it('should call onChange prop on date-picker value selection', () => {
-    //   let wrapper = shallow(<DateInputField />);
-    // });
   });
 
   describe('key navigation', () => {

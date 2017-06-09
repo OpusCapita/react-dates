@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import VerticalList from 'opuscapita-react-ui-autocompletes/lib/VerticalList';
+import VerticalList from '@opuscapita/react-autocompletes/lib/VerticalList';
 import moment from 'moment';
 import './DateRangeVariants.less';
 

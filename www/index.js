@@ -24,15 +24,14 @@ try {
   console.error(err);
 }
 
-require('babel-register')(config);
-
 let serverOptions = {
   watchOptions: {
     aggregateTimeout: 300,
     poll: true
   },
   headers: {'Access-Control-Allow-Origin': '*'},
-  stats: {colors: true}
+  stats: { colors: true },
+  noInfo: true
 };
 
 app.use(compression());

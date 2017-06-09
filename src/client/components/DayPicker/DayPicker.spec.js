@@ -109,26 +109,26 @@ describe('<DayPicker />', () => {
     expect(spy.args[0][0].getDate()).to.equal(todayDate.getDate());
   });
 
-  it('should return [from, to] date range if isRange === true', () => {
-    let spy = sinon.spy();
-    let wrapper = mount(
-      <DayPicker
-        onChange={spy}
-        isRange={true}
-        month={new Date()}
-        numberOfMonths={2}
-        selectedDays={[ new Date(), { from: new Date(), to: new Date(2030, 10, 10, 10) }]}
-      />
-    );
-
-    let firstDayElement = wrapper.find('.DayPicker-Day[aria-selected]').first();
-    firstDayElement.simulate('click');
-
-    let lastDayElement = wrapper.find('.DayPicker-Day[aria-selected]').last();
-    console.log(lastDayElement);
-    lastDayElement.simulate('click');
-
-    expect(spy).to.have.been.called;
-    expect(spy.args[0][0]).to.be.instanceOf(Date);
-  });
+  // it('should return [from, to] date range if isRange === true', () => {
+  //   let spy = sinon.spy();
+  //   let wrapper = mount(
+  //     <DayPicker
+  //       onChange={spy}
+  //       isRange={true}
+  //       month={new Date()}
+  //       numberOfMonths={2}
+  //       selectedDays={[ new Date(), { from: new Date(), to: new Date(2030, 10, 10, 10) }]}
+  //     />
+  //   );
+  //
+  //   let firstDayElement = wrapper.find('.DayPicker-Day[aria-selected]').first();
+  //   firstDayElement.simulate('click');
+  //
+  //   let lastDayElement = wrapper.find('.DayPicker-Day[aria-selected]').last();
+  //   console.log(lastDayElement);
+  //   lastDayElement.simulate('click');
+  //
+  //   expect(spy).to.have.been.called;
+  //   expect(spy.args[0][0]).to.be.instanceOf(Date);
+  // });
 });

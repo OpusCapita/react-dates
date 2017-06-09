@@ -10,7 +10,7 @@ describe('<DatePicker />', () => {
   it('should have default props', () => {
     let component = <DatePicker />;
     expect(component.props.className).to.equal('');
-    expect(component.props.date).to.be.an.instanceof(Date);
+    // expect(component.props.date).to.be.an.instanceof(Date);
     expect(component.props.disabled).to.equal(false);
     expect(component.props.tabIndex).to.equal(0);
     expect(component.props.onChange).to.be.a('function');
@@ -254,19 +254,20 @@ describe('<DatePicker />', () => {
   });
 
   it('should change date if new date prop passed', () => {
-    let wrapper = mount( DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
+    let wrapper = mount(<DatePicker locale="en-GB" value={new Date(1945, 6, 16)} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
     showPickerButton.simulate('click');
     let yearElement = pickerContainer.find('.DayPicker-Caption');
 
     expect(yearElement.text()).to.contain(1945);
-    wrapper.setProps({ date: new Date(1971, 10, 15) });
+    // wrapper.setProps({ date: new Date(1971, 10, 15) });
+    wrapper.setProps({ value: new Date(1971, 10, 15) });
     expect(yearElement.text()).to.contain(1971);
   });
 
   it('should react on locale change', () => {
-    let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
+    let wrapper = mount(<DatePicker locale="en-GB" value={new Date(1945, 6, 16)} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
     let monthElement = pickerContainer.find('.DayPicker-Caption');
@@ -282,7 +283,7 @@ describe('<DatePicker />', () => {
   });
 
   it('should show date from prop after reopen picker', () => {
-    let wrapper = mount(<DatePicker locale="en-GB" date={new Date(1945, 6, 16)} />);
+    let wrapper = mount(<DatePicker locale="en-GB" value={new Date(1945, 6, 16)} />);
     let pickerContainer = wrapper.find('.opuscapita_date-picker__picker-container');
     let showPickerButton = wrapper.find('button.opuscapita_date-picker__toggle-picker');
     let nextMonthButton = wrapper.find('.DayPicker-NavButton--next');
