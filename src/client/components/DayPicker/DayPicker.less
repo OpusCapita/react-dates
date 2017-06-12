@@ -15,15 +15,15 @@
   text-decoration: none;
 }
 
+.opuscapita_day-picker__picker .DayPicker {
+  padding-top: 0;
+}
+
 .opuscapita_day-picker,
 .opuscapita_day-picker__picker:focus,
 .opuscapita_day-picker__picker .DayPicker,
 .opuscapita_day-picker__picker .DayPicker-Day:focus {
   outline: none;
-}
-
-.opuscapita_day-picker__picker .DayPicker {
-  padding-bottom: 0.5rem;
 }
 
 .opuscapita_day-picker__picker .DayPicker-Day {
@@ -77,6 +77,9 @@
   border: none;
   position: relative;
   padding: 0 8px;
+  &::-ms-expand {
+    display: none;
+  }
 }
 
 .opuscapita_day-picker__caption-select:hover {
