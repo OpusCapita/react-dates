@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import './DateRangeInput.less';
 import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
-import DateRangeVariants from '../DateRangeVariants';
+import DateVariants from '../DateVariants';
 import { DateUtils } from 'react-day-picker';
 import assign from 'lodash/assign';
 import moment from 'moment';
@@ -297,7 +297,7 @@ class DateRangeInput extends Component {
 
     let showVariants = typeof variants === 'undefined' || (variants && variants.length);
     let variantsElement = (showVariants) ? (
-      <DateRangeVariants
+      <DateVariants
         onChange={this.handleVariantSelect}
         locale={locale}
         variants={variants}

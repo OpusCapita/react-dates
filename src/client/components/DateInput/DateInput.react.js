@@ -2,9 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import './DateInput.less';
 import DateInputField from '../DateInputField';
 import DayPicker from '../DayPicker';
+import DateVariants from '../DateVariants';
 import InputAddonButton from '../InputAddonButton';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
+import moment from 'moment';
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -25,6 +27,7 @@ function splitProps(props, specificPropNames = []) {
   return result;
 }
 
+
 let propTypes = {
   className: PropTypes.string,
   dateFormat: PropTypes.string,
@@ -36,8 +39,14 @@ let propTypes = {
   onFocus: PropTypes.func,
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
+  showVariants: PropTypes.bool,
+  variants: PropTypes.object,
   tabIndex: PropTypes.number,
-  value: PropTypes.object
+  value: PropTypes.object,
+  variants: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    range: PropTypes.array
+  }))
 };
 
 let defaultProps = {
@@ -52,7 +61,21 @@ let defaultProps = {
   showToLeft: false,
   showToTop: false,
   tabIndex: 0,
-  value: null
+  value: null,
+  variants: [
+    {
+      label: 'Yesterday',
+      getValue: (locale) => moment().locale(locale).subtract(1, 'days').toDate()
+    },
+    {
+      label: 'Today',
+      getValue: (locale) => moment().locale(locale).toDate()
+    },
+    {
+      label: 'Tomorrow',
+      getValue: (locale) => moment().locale(locale).add(1, 'days').toDate()
+    }
+  ]
 };
 
 export default
@@ -61,7 +84,8 @@ class DateInput extends Component {
     super(props);
     this.state = {
       error: null,
-      showPicker: false
+      showPicker: false,
+      showVariants: false
     };
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
@@ -72,6 +96,8 @@ class DateInput extends Component {
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
+    this.handleVariantSelect = this.handleVariantSelect.bind(this);
+    this.handleVariantsButtonClick = this.handleVariantsButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -99,18 +125,40 @@ class DateInput extends Component {
   handleBodyClick(event) {
     let clickedOutside = !this.container.contains(event.target);
     if (clickedOutside) {
-      return this.hidePicker();
+      this.hideVariants();
+      this.hidePicker();
     }
-    return false;
   }
 
   handleBodyKeyDown(event) {
     if (event.which === 9) {
+      this.hideVariants();
       this.hidePicker();
     }
     if (event.which === 27) { // ESC key
+      this.hideVariants();
       this.hidePicker();
     }
+  }
+
+  showVariants() {
+    this.setState({ showVariants: true, showPicker: false });
+  }
+
+  hideVariants() {
+    this.setState({ showVariants: false });
+  }
+
+  handleVariantsButtonClick() {
+    if (this.state.showVariants) {
+      return this.hideVariants();
+    }
+    return this.showVariants();
+  }
+
+  handleVariantSelect(value) {
+    this.hideVariants();
+    this.handleDateChange(value);
   }
 
   handleError(error) {
@@ -169,6 +217,7 @@ class DateInput extends Component {
       showToTop,
       tabIndex,
       value,
+      variants,
       ...restProps
     } = this.props;
 
@@ -227,25 +276,70 @@ class DateInput extends Component {
       </InputAddonButton>
     );
 
+    let showVariants = typeof variants === 'undefined' || (variants && variants.length);
+    let variantsElement = (showVariants) ? (
+      <DateVariants
+        onChange={this.handleVariantSelect}
+        locale={locale}
+        variants={variants}
+        />
+    ) : null;
+
+    let variantsMotionElement = variantsElement ? (
+      <Motion
+        defaultStyle={{ x: this.state.showVariants ? 1 : 0 }}
+        style={{ x: this.state.showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
+      >{interpolatedStyle => (
+          <div
+            className={`
+              opuscapita_date-range-input__variants-container
+              ${showToTop ? 'opuscapita_date-range-input__variants-container--to-top' : ''}
+            `}
+            style={{
+              maxHeight: `${interpolatedStyle.x * 640}px`,
+              opacity: easeOutCubic(interpolatedStyle.x)
+            }}
+          >
+            {variantsElement}
+          </div>
+      )}</Motion>
+    ) : null;
+
+    let variantsButton = variantsElement ? (
+      <button
+        type="button"
+        className="btn btn-default opuscapita_date-range-input__variants-btn"
+        disabled={disabled}
+        tabIndex="-1"
+        onClick={this.handleVariantsButtonClick}
+      >
+        <span className="caret"></span>
+      </button>
+    ) : null;
+
     return (
       <div
         ref={el => (this.container = el)}
         className={`opuscapita_date-input form-control ${hasErrorClassName} ${className}`}
       >
-        <DateInputField
-          dateFormat={momentCompatibleDateFormat}
-          disabled={disabled}
-          onBlur={this.handleBlur}
-          onChange={this.handleDateChange}
-          onClick={this.handleInputClick}
-          onError={this.handleError}
-          onFocus={this.handleInputFocus}
-          onRef={dateInputField => (this.dateInputField = dateInputField)}
-          tabIndex={tabIndex}
-          value={value}
-        />
-        {resetButton}
+        <div className={`opuscapita_date-input__input-container`}>
+          <DateInputField
+            dateFormat={momentCompatibleDateFormat}
+            disabled={disabled}
+            onBlur={this.handleBlur}
+            onChange={this.handleDateChange}
+            onClick={this.handleInputClick}
+            onError={this.handleError}
+            onFocus={this.handleInputFocus}
+            onRef={dateInputField => (this.dateInputField = dateInputField)}
+            tabIndex={tabIndex}
+            value={value}
+          />
+            {resetButton}
+        </div>
         {pickerMotionElement}
+        {variantsMotionElement}
+        {variantsButton}
       </div>
     );
   }
