@@ -9,7 +9,7 @@ import { showroomScopeDecorator } from '@opuscapita/react-showroom-client';
 
 @showroomScopeDecorator
 export default
-class DateRangeVariantsScope extends Component {
+class DateVariantsScope extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -24,9 +24,9 @@ class DateRangeVariantsScope extends Component {
   }
 }
 
-DateRangeVariantsScope.contextTypes = {
+DateVariantsScope.contextTypes = {
   i18n: PropTypes.object
 };
-DateRangeVariantsScope.childContextTypes = {
+DateVariantsScope.childContextTypes = {
   i18n: PropTypes.object
 };

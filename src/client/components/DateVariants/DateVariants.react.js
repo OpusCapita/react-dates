@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import VerticalList from '@opuscapita/react-autocompletes/lib/VerticalList';
 import moment from 'moment';
-import './DateRangeVariants.less';
+import './DateVariants.less';
 
 let propTypes = {
   variants: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
-    range: PropTypes.array
+    value: PropTypes.array
   })),
   onChange: PropTypes.func,
   locale: PropTypes.string
@@ -16,49 +16,49 @@ let defaultProps = {
   variants: [
     {
       label: 'Previous week',
-      getRange: (locale) => [
+      getValue: (locale) => [
         moment().locale(locale).subtract(7, 'days').startOf('week').toDate(),
         moment().locale(locale).subtract(7, 'days').endOf('week').toDate()
       ]
     },
     {
       label: 'This week',
-      getRange: (locale) => [
+      getValue: (locale) => [
         moment().locale(locale).startOf('week').toDate(),
         moment().locale(locale).endOf('week').toDate()
       ]
     },
     {
       label: 'Next week',
-      getRange: (locale) => [
+      getValue: (locale) => [
         moment().locale(locale).add(7, 'days').startOf('week').toDate(),
         moment().locale(locale).add(7, 'days').endOf('week').toDate()
       ]
     },
     {
       label: 'Previous month',
-      getRange: (locale) => [
+      getValue: (locale) => [
         moment().locale(locale).subtract(1, 'month').startOf('month').toDate(),
         moment().locale(locale).subtract(1, 'month').endOf('month').toDate()
       ]
     },
     {
       label: 'Last 30 days',
-      getRange: (locale) => [
+      getValue: (locale) => [
         moment().locale(locale).subtract(30, 'days').toDate(),
         moment().locale(locale).toDate()
       ]
     },
     {
       label: 'This month',
-      getRange: (locale) => [
+      getValue: (locale) => [
         moment().locale(locale).startOf('month').toDate(),
         moment().locale(locale).endOf('month').toDate()
       ]
     },
     {
       label: 'Next month',
-      getRange: (locale) => [
+      getValue: (locale) => [
         moment().locale(locale).add(1, 'month').startOf('month').toDate(),
         moment().locale(locale).add(1, 'month').endOf('month').toDate()
       ]
@@ -69,11 +69,11 @@ let defaultProps = {
 };
 
 export default
-class DateRangeVariants extends Component {
+class DateVariants extends Component {
   handleChange(key) {
     let variants = this.props.variants;
-    let range = variants[key].getRange(this.props.locale);
-    this.props.onChange(range);
+    let value = variants[key].getValue(this.props.locale);
+    this.props.onChange(value);
   }
 
   render() {
@@ -81,7 +81,10 @@ class DateRangeVariants extends Component {
       variants,
       onChange // eslint-disable-line no-unused-vars
     } = this.props;
-    let items = variants.map((variant, index) => ({ key: index.toString(), value: variant.label }));
+    let items = variants.map((variant, index) => ({
+      key: index.toString(),
+      value: variant.label
+    }));
 
     let variantsElement = (
       <li className="opuscapita_date-range-variants__list">
@@ -97,5 +100,5 @@ class DateRangeVariants extends Component {
   }
 }
 
-DateRangeVariants.propTypes = propTypes;
-DateRangeVariants.defaultProps = defaultProps;
+DateVariants.propTypes = propTypes;
+DateVariants.defaultProps = defaultProps;
