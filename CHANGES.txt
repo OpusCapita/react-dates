@@ -1,4 +1,50 @@
 
+Release 0.1.0 Wed Jun 14 2017 16:57:29 GMT+0300 (+03)
+=======================================================
+
+ - Merge pull request #11 from OpusCapita/feature/7
+    
+    Add drop-down button to DateInput with predefined date variants (4e70d3a 9c7e0d4, Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>)
+ - Add drop-down button to DateInput with predefined date variants (Kirill Volkovich <volkovich@scand.com>, Mon Jun 12 14:30:40 2017 +0300)
+ - Building correct index.js (Alexey Sergeev <sab@scand.com>, Fri Jun 9 09:05:19 2017 +0300)
+ - Using babel 7, cleanup non executable tests (Alexey Sergeev <sab@scand.com>, Fri Jun 9 08:47:18 2017 +0300)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, Wed Jun 7 10:41:20 2017 +0300)
+ - Merge branch 'master' of opuscapita.github.com:OpusCapita/react-dates (41348f2 c05e6a5, Kirill Volkovich <volkovich@scand.com>)
+ - Add license field to package.json (Kirill Volkovich <volkovich@scand.com>, Thu Jun 1 12:41:36 2017 +0300)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, Thu Jun 1 11:39:21 2017 +0300)
+ - Update yarn.lock (Kirill Volkovich <volkovich@scand.com>, Thu Jun 1 10:25:40 2017 +0300)
+ - Fix dependency version (Kirill Volkovich <volkovich@scand.com>, Thu Jun 1 10:15:07 2017 +0300)
+ - Update showroom, npm-scripts, add publishConfig to package.json (Kirill Volkovich <volkovich@scand.com>, Thu Jun 1 10:14:14 2017 +0300)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, Wed May 31 12:01:01 2017 +0300)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, Tue May 30 20:21:33 2017 +0300)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, Tue May 30 16:45:17 2017 +0300)
+ - Updating to a version to  0.0.1-beta.16 (Kirill Volkovich <volkovich@scand.com>, Fri May 26 11:41:15 2017 +0300)
+ - Change peerDependencies (Kirill Volkovich <volkovich@scand.com>, Fri May 26 11:40:27 2017 +0300)
+ - Updating to a version to  0.0.1-beta.15 (Kirill Volkovich <volkovich@scand.com>, Mon May 22 16:42:46 2017 +0300)
+ - Fix lint (Kirill Volkovich <volkovich@scand.com>, Mon May 22 16:42:06 2017 +0300)
+ - Add translations to i18nLinker (Kirill Volkovich <volkovich@scand.com>, Mon May 22 16:40:44 2017 +0300)
+ - Fix lint (Kirill Volkovich <volkovich@scand.com>, Mon May 22 13:31:09 2017 +0300)
+ - Fix lint (Kirill Volkovich <volkovich@scand.com>, Mon May 22 13:30:23 2017 +0300)
+ - Update README.md (Kirill Volkovich <volkovich@scand.com>, Thu May 18 10:05:04 2017 +0300)
+ - Updating to a version to  0.0.1-beta.14 (Kirill Volkovich <volkovich@scand.com>, Tue May 16 17:15:52 2017 +0300)
+ - Fix invalid import (Kirill Volkovich <volkovich@scand.com>, Tue May 16 17:15:19 2017 +0300)
+ - Updating to a version to  0.0.1-beta.13 (Kirill Volkovich <volkovich@scand.com>, Tue May 16 15:59:20 2017 +0300)
+ - Changed font (Kirill Volkovich <volkovich@scand.com>, Tue May 16 15:58:19 2017 +0300)
+ - Updating to a version to  0.0.1-beta.12 (Kirill Volkovich <volkovich@scand.com>, Tue May 16 15:49:38 2017 +0300)
+ - Fix ability to clear date input with 'x' in case disabled=true
+    
+    Issue #5 (Kirill Volkovich <volkovich@scand.com>, Tue May 16 15:46:54 2017 +0300)
+ - Updating to a version to  0.0.1-beta.11 (Kirill Volkovich <volkovich@scand.com>, Mon May 15 10:47:51 2017 +0300)
+ - After onBlur fired clear DateInput in case incorrect date was entered manually
+    
+    User enter invalid date manually
+    Focus out of the date input
+    invalid user input is left inside the input
+    TODO:
+    
+    in case value is invalid - clear the the input before onBlur is fired (Kirill Volkovich <volkovich@scand.com>, Mon May 15 10:46:08 2017 +0300)
+ - Updating to a version to  0.0.1-beta.10 (Kirill Volkovich <volkovich@scand.com>, Fri May 12 15:07:32 2017 +0300)
+
 Release 0.0.1-beta.15 Fri May 26 2017 11:41:00 GMT+0300 (+03)
 =======================================================
 
