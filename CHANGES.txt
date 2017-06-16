@@ -1,4 +1,10 @@
 
+Release 0.2.3 Fri Jun 16 2017 16:51:43 GMT+0300 (+03)
+=======================================================
+
+ - Fix 'Select date range' translation (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 16:50:50 2017 +0300)
+ - Updating to a version to  0.2.3 (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 16:47:21 2017 +0300)
+
 Release 0.2.2 Fri Jun 16 2017 16:47:10 GMT+0300 (+03)
 =======================================================
 
