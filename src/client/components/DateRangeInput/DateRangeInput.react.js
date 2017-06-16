@@ -73,7 +73,7 @@ let defaultProps = {
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
-  placeholder: 'Select date range',
+  placeholder: null,
   showToLeft: false,
   showToTop: false,
   tabIndex: 0,
@@ -446,7 +446,7 @@ class DateRangeInput extends Component {
             onBlur={onBlur}
             onFocus={this.handleInputFocus}
             onClick={this.handleInputClick}
-            placeholder={placeholder}
+            placeholder={placeholder || getMessage(locale, 'selectDateRange')}
             tabIndex={tabIndex}
             value={inputValue}
             onChange={() => {}}
