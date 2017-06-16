@@ -7,7 +7,7 @@ import InputAddonButton from '../InputAddonButton';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import moment from 'moment';
-import getMessage from '../../translations';
+import getMessage from '../translations';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
