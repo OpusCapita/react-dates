@@ -1,4 +1,10 @@
 
+Release 0.2.2 Fri Jun 16 2017 16:47:10 GMT+0300 (+03)
+=======================================================
+
+ - Fix locale (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 16:46:46 2017 +0300)
+ - Updating to a version to  0.2.2 (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 16:01:05 2017 +0300)
+
 Release 0.2.1 Fri Jun 16 2017 16:00:52 GMT+0300 (+03)
 =======================================================
 
