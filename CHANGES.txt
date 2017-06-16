@@ -1,4 +1,10 @@
 
+Release 0.2.1 Fri Jun 16 2017 16:00:52 GMT+0300 (+03)
+=======================================================
+
+ - Fix traslations.js in build (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 15:59:48 2017 +0300)
+ - Updating to a version to  0.2.1 (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 11:55:39 2017 +0300)
+
 Release 0.2.0 Fri Jun 16 2017 11:55:28 GMT+0300 (+03)
 =======================================================
 
