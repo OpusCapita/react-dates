@@ -180,6 +180,7 @@ class DayPicker extends Component {
 
     let caption = (
       <Caption
+        locale={locale}
         onChange={this.handleDateChange}
         isRange={isRange}
         currentMonth={currentMonth}
@@ -194,6 +195,7 @@ class DayPicker extends Component {
             ref={el => dayPickerRef(el)}
             className={pickerClassName}
             localeUtils={MomentLocaleUtils}
+            locale={locale}
             onDayClick={this.handleDateChange}
             onDayKeyDown={this.handleDateChange}
             onDayTouchEnd={this.handleDateChange}
