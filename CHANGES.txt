@@ -1,4 +1,13 @@
 
+Release 0.2.0 Fri Jun 16 2017 11:55:28 GMT+0300 (+03)
+=======================================================
+
+ - Update minor version (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 11:54:40 2017 +0300)
+ - Update minor version (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 11:54:20 2017 +0300)
+ - Removed I18nLinker. Added default translations (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 11:53:23 2017 +0300)
+ - Fix styles (Kirill Volkovich <volkovich@scand.com>, Thu Jun 15 16:24:15 2017 +0300)
+ - Updating to a version to  0.1.1 (Kirill Volkovich <volkovich@scand.com>, Wed Jun 14 17:00:44 2017 +0300)
+
 Release 0.1.0 Wed Jun 14 2017 17:00:31 GMT+0300 (+03)
 =======================================================
 
