@@ -6,20 +6,21 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 
 ### Props Reference
 
-| Name                           | Type                    | Description                                                                                     |
-| ------------------------------ | :---------------------- | -----------------------------------------------------------                                     |
-| className                      | string                  | Default behavior                                                                                |
-| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                |
-| disabled                       | bool                    | If true - became inactive                                                                       |
-| isValid                        | bool                    | If false - highlight input as error                                                             |
-| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property |
-| onBlur                         | func                    | Callback fired on input blur `(e) => {}`                          |
-| onChange                       | func                    | Callback fired on date change `Date date => {}`                                                 |
-| onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                    |
-| showToLeft                     | bool                    | Show picker popup to left relative to input                                                     |
-| showToTop                      | bool                    | Show picker popup to top relative to input                                                      |
-| tabIndex                       | number                  | Default behavior                                                                                |
-| value                          | object                  | Instance of `Date`                                                                              |
+| Name                           | Type                    | Description                                                                                                                                                                |
+| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |
+| className                      | string                  | Default behavior                                                                                                                                                           |
+| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |
+| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |
+| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |
+| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |
+| onBlur                         | func                    | Callback fired on input blur `(e) => {}`                                                                                                                                   |
+| onChange                       | func                    | Callback fired on date change `Date date => {}`                                                                                                                            |
+| onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                                                                                                                  |
+| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |
+| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |
+| tabIndex                       | number                  | Default behavior                                                                                                                                                           |
+| value                          | object                  | Instance of `Date`                                                                                                                                                         |
+| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |
 
 ### Code Example
 
@@ -27,7 +28,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 <DateInput
   value={_scope.state.value}
   dateFormat="dd/MM/yyyy"
-  locale="de-DE"
+  locale="de"
   onChange={_scope.handleChange.bind(_scope)}
 />
 
@@ -37,7 +38,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
   value={_scope.state.value}
   dateFormat="dd/MM/yyyy"
   disabled={true}
-  locale="en-GB"
+  locale="en"
   onChange={_scope.handleChange.bind(_scope)}
 />
 
@@ -46,7 +47,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 <DateInput
   value={_scope.state.value}
   dateFormat="dd/MM/yyyy"
-  locale="hu-HU"
+  locale="hu"
   onBlur={(e) => console.log('Blur!', e)}
   onChange={_scope.handleChange.bind(_scope)}
   onFocus={(e) => console.log('Focus!', e)}

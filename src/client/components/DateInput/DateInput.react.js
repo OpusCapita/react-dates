@@ -7,6 +7,8 @@ import InputAddonButton from '../InputAddonButton';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import moment from 'moment';
+import getMessage from '../../translations';
+
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -44,8 +46,8 @@ let propTypes = {
   tabIndex: PropTypes.number,
   value: PropTypes.object,
   variants: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    range: PropTypes.array
+    getLabel: PropTypes.func,
+    getValue: PropTypes.func
   }))
 };
 
@@ -54,7 +56,7 @@ let defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   isValid: true,
-  locale: 'en-GB',
+  locale: 'en',
   onBlur: () => {},
   onFocus: () => {},
   onChange: () => {},
@@ -64,15 +66,15 @@ let defaultProps = {
   value: null,
   variants: [
     {
-      label: 'Yesterday',
+      getLabel: (locale) => getMessage(locale, 'yesterday'),
       getValue: (locale) => moment().locale(locale).subtract(1, 'days').toDate()
     },
     {
-      label: 'Today',
+      getLabel: (locale) => getMessage(locale, 'today'),
       getValue: (locale) => moment().locale(locale).toDate()
     },
     {
-      label: 'Tomorrow',
+      getLabel: (locale) => getMessage(locale, 'tomorrow'),
       getValue: (locale) => moment().locale(locale).add(1, 'days').toDate()
     }
   ]
@@ -277,13 +279,23 @@ class DateInput extends Component {
     );
 
     let showVariants = typeof variants === 'undefined' || (variants && variants.length);
-    let variantsElement = (showVariants) ? (
-      <DateVariants
-        onChange={this.handleVariantSelect}
-        locale={locale}
-        variants={variants}
+    let variantsElement = null;
+
+    if (showVariants) {
+      let translatedVariants = variants.map(variant => ({
+        ...variant,
+        label: variant.getLabel(locale)
+      }));
+
+      variantsElement = (
+        <DateVariants
+          onChange={this.handleVariantSelect}
+          locale={locale}
+          variants={translatedVariants}
         />
-    ) : null;
+      );
+    };
+
 
     let variantsMotionElement = variantsElement ? (
       <Motion

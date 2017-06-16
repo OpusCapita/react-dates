@@ -29,7 +29,7 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
 
 ```jsx
 <DatePicker
-  locale="de-DE"
+  locale="de"
   onChange={_scope.handleChange.bind(_scope)}
   value={_scope.state.value}
 />

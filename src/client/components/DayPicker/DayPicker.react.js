@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDayPicker from 'react-day-picker/lib/src/DayPicker';
 import "react-day-picker/lib/style.css";
 import MomentLocaleUtils from 'react-day-picker/moment';
+import getMessage from '../../translations';
 import assign from 'lodash/assign';
 import './DayPicker.less';
 
@@ -93,7 +94,7 @@ let propTypes = {
   className: PropTypes.string,
   dayPickerRef: PropTypes.func,
   hideTodayButton: PropTypes.bool,
-  todayButtonLabel: PropTypes.string,
+  getTodayButtonLabel: PropTypes.func,
   isRange: PropTypes.bool,
   onChange: PropTypes.func,
   pickerClassName: PropTypes.string
@@ -105,7 +106,7 @@ let defaultProps = {
   hideTodayButton: false,
   isRange: false,
   labels: ReactDayPicker.defaultProps.labels,
-  todayButtonLabel: 'Today',
+  getTodayButtonLabel: (locale) => getMessage(locale, 'today'),
   onChange: () => {},
   pickerClassName: ''
 };
@@ -154,7 +155,8 @@ class DayPicker extends Component {
       isRange,
       hideTodayButton,
       onChange, // eslint-disable-line no-unused-vars
-      todayButtonLabel,
+      getTodayButtonLabel,
+      locale,
       pickerClassName,
       ...restProps
     } = this.props;
@@ -172,7 +174,7 @@ class DayPicker extends Component {
         onClick={this.handleTodayClick}
         tabIndex={-1}
       >
-        {todayButtonLabel}
+        {getTodayButtonLabel(locale)}
       </button>
     );
 

@@ -18,7 +18,7 @@ Allows select date range using mouse.
 | showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                  |
 | tabIndex                       | number                  | Default behavior                                                                                                                                            |
 | value                          | array                   | `[Date from, Date to]`                                                                                                                                      |
-| variants                       | array                   | `[ { label: string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |
+| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |
 
 ### Code Example
 

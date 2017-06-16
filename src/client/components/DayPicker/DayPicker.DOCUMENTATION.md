@@ -14,8 +14,9 @@ DayPicker is a styled to OpusCapita defaults [react-day-picker](https://github.c
 | isRange                        | bool                    |                                                                                                                                                                                                                                                                  |
 | hideTodayButton                | bool                    |                                                                                                                                                                                                                                                                  |
 | onChange                       | func                    | Callback fired when new date selected `Date date => {}`                                                                                                                                                                                                          |
+| locale                         | string                  | `de`, `en`, etc.                                                                                                                                                                                                                                                 |
 | pickerClassName                | string                  | Class name passed to react day picker                                                                                                                                                                                                                            |
-| todayButtonLabel               | string                  |                                                                                                                                                                                                                                                                  |
+| getTodayButtonLabel            | string                  |                                                                                                                                                                                                                                                                  |
 
 ***
 
@@ -31,8 +32,7 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
 <DayPicker
   dayPickerRef={ref => (window.picker = ref)}
   onChange={ day => console.log('day:', day) }
-  locale="de-DE"
-  todayButtonLabel="Today"
+  locale="de"
 />
 ```
 

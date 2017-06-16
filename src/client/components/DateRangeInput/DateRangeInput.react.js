@@ -7,6 +7,8 @@ import { DateUtils } from 'react-day-picker';
 import assign from 'lodash/assign';
 import moment from 'moment';
 import { spring, presets, Motion } from 'react-motion';
+import getMessage from '../../translations';
+
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -57,8 +59,8 @@ let propTypes = {
   tabIndex: PropTypes.number,
   value: PropTypes.array,
   variants: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    range: PropTypes.array
+    getLabel: PropTypes.func,
+    getValue: PropTypes.func
   }))
 };
 
@@ -76,7 +78,57 @@ let defaultProps = {
   showToTop: false,
   tabIndex: 0,
   value: [null, null],
-  variants: undefined
+  variants: [
+    {
+      getLabel: (locale) => getMessage(locale, 'previousWeek'),
+      getValue: (locale) => [
+        moment().locale(locale).subtract(7, 'days').startOf('week').toDate(),
+        moment().locale(locale).subtract(7, 'days').endOf('week').toDate()
+      ]
+    },
+    {
+      getLabel: (locale) => getMessage(locale, 'thisWeek'),
+      getValue: (locale) => [
+        moment().locale(locale).startOf('week').toDate(),
+        moment().locale(locale).endOf('week').toDate()
+      ]
+    },
+    {
+      getLabel: (locale) => getMessage(locale, 'nextWeek'),
+      getValue: (locale) => [
+        moment().locale(locale).add(7, 'days').startOf('week').toDate(),
+        moment().locale(locale).add(7, 'days').endOf('week').toDate()
+      ]
+    },
+    {
+      getLabel: (locale) => getMessage(locale, 'previousMonth'),
+      getValue: (locale) => [
+        moment().locale(locale).subtract(1, 'month').startOf('month').toDate(),
+        moment().locale(locale).subtract(1, 'month').endOf('month').toDate()
+      ]
+    },
+    {
+      getLabel: (locale) => getMessage(locale, 'last30Days'),
+      getValue: (locale) => [
+        moment().locale(locale).subtract(30, 'days').toDate(),
+        moment().locale(locale).toDate()
+      ]
+    },
+    {
+      getLabel: (locale) => getMessage(locale, 'thisMonth'),
+      getValue: (locale) => [
+        moment().locale(locale).startOf('month').toDate(),
+        moment().locale(locale).endOf('month').toDate()
+      ]
+    },
+    {
+      getLabel: (locale) => getMessage(locale, 'nextMonth'),
+      getValue: (locale) => [
+        moment().locale(locale).add(1, 'month').startOf('month').toDate(),
+        moment().locale(locale).add(1, 'month').endOf('month').toDate()
+      ]
+    }
+  ]
 };
 
 export default
@@ -296,13 +348,23 @@ class DateRangeInput extends Component {
     );
 
     let showVariants = typeof variants === 'undefined' || (variants && variants.length);
-    let variantsElement = (showVariants) ? (
-      <DateVariants
-        onChange={this.handleVariantSelect}
-        locale={locale}
-        variants={variants}
-      />
-    ) : null;
+    let variantsElement = null;
+
+    if (showVariants) {
+      let translatedVariants = variants.map(variant => ({
+        ...variant,
+        label: variant.getLabel(locale)
+      }));
+
+      console.log(translatedVariants);
+      variantsElement = (
+        <DateVariants
+          onChange={this.handleVariantSelect}
+          locale={locale}
+          variants={translatedVariants}
+        />
+      );
+    };
 
     let pickerMotionElement = (
       <Motion
