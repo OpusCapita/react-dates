@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import './DatePicker.less';
 import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
@@ -46,7 +46,7 @@ let defaultProps = {
 };
 
 export default
-class DatePicker extends Component {
+class DatePicker extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

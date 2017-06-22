@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import './DateInput.less';
 import DateInputField from '../DateInputField';
 import DayPicker from '../DayPicker';
@@ -81,7 +81,7 @@ let defaultProps = {
 };
 
 export default
-class DateInput extends Component {
+class DateInput extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
