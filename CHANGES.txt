@@ -1,4 +1,10 @@
 
+Release 0.2.4 Thu Jun 22 2017 18:20:02 GMT+0300 (+03)
+=======================================================
+
+ - Move Component => PureComponent (Kirill Volkovich <volkovich@scand.com>, Thu Jun 22 18:19:35 2017 +0300)
+ - Updating to a version to  0.2.4 (Kirill Volkovich <volkovich@scand.com>, Fri Jun 16 16:51:57 2017 +0300)
+
 Release 0.2.3 Fri Jun 16 2017 16:51:43 GMT+0300 (+03)
 =======================================================
 
