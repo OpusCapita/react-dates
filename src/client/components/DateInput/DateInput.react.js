@@ -43,7 +43,6 @@ let propTypes = {
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
   showVariants: PropTypes.bool,
-  variants: PropTypes.object,
   tabIndex: PropTypes.number,
   value: PropTypes.object,
   variants: PropTypes.arrayOf(PropTypes.shape({
@@ -115,11 +114,6 @@ class DateInput extends Component {
     }
   }
 
-  componentWillUnmount() {
-    document.body.removeEventListener('click', this.handleBodyClick);
-    document.body.removeEventListener('keydown', this.handleBodyKeyDown);
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.state.error !== nextState.error ||
@@ -137,6 +131,11 @@ class DateInput extends Component {
       !isEqual(this.props.value, nextProps.value) ||
       !isEqual(this.props.variants, nextProps.variants)
     );
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('click', this.handleBodyClick);
+    document.body.removeEventListener('keydown', this.handleBodyKeyDown);
   }
 
   handleDayClick(day) {
@@ -314,7 +313,7 @@ class DateInput extends Component {
           variants={translatedVariants}
         />
       );
-    };
+    }
 
 
     let variantsMotionElement = variantsElement ? (

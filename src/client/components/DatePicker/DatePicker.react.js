@@ -64,10 +64,6 @@ class DatePicker extends Component {
     document.body.addEventListener('click', this.handleBodyClick);
   }
 
-  componentWillUnmount() {
-    document.body.removeEventListener('click', this.handleBodyClick);
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.state.showPicker !== nextState.showPicker ||
@@ -80,6 +76,10 @@ class DatePicker extends Component {
       this.props.tabIndex !== nextProps.tabIndex ||
       !isEqual(this.props.value, nextProps.value)
     );
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('click', this.handleBodyClick);
   }
 
   handleBodyClick(event) {

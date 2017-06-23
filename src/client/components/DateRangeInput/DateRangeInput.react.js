@@ -160,19 +160,6 @@ class DateRangeInput extends PureComponent {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    let rangeChanged = (this.state.from !== nextState.from) || (this.state.to !== nextState.to);
-    let rangeFilled = nextState.from !== null && nextState.to !== null;
-    if (rangeChanged && rangeFilled) {
-      this.handleRangeChange([nextState.from, nextState.to]);
-    }
-  }
-
-  componentWillUnmount() {
-    document.body.removeEventListener('click', this.handleBodyClick);
-    document.body.removeEventListener('keydown', this.handleBodyKeyDown);
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return (
       !isEqual(this.state.enteredTo, nextState.enteredTo) ||
@@ -191,6 +178,19 @@ class DateRangeInput extends PureComponent {
       !isEqual(this.props.value, nextProps.value) ||
       !isEqual(this.props.variants, nextProps.variants)
     );
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    let rangeChanged = (this.state.from !== nextState.from) || (this.state.to !== nextState.to);
+    let rangeFilled = nextState.from !== null && nextState.to !== null;
+    if (rangeChanged && rangeFilled) {
+      this.handleRangeChange([nextState.from, nextState.to]);
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('click', this.handleBodyClick);
+    document.body.removeEventListener('keydown', this.handleBodyKeyDown);
   }
 
   normalizeRange(range) {
@@ -382,7 +382,7 @@ class DateRangeInput extends PureComponent {
           variants={translatedVariants}
         />
       );
-    };
+    }
 
     let pickerMotionElement = (
       <Motion
