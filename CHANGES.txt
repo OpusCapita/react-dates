@@ -1,4 +1,10 @@
 
+Release 0.2.5 Fri Jun 23 2017 15:29:47 GMT+0300 (+03)
+=======================================================
+
+ - Implement shouldComponentUpdate for DateInput, DateRangeInput, DatePicker (Kirill Volkovich <volkovich@scand.com>, Fri Jun 23 15:29:00 2017 +0300)
+ - Updating to a version to  0.2.5 (Kirill Volkovich <volkovich@scand.com>, Thu Jun 22 18:20:17 2017 +0300)
+
 Release 0.2.4 Thu Jun 22 2017 18:20:02 GMT+0300 (+03)
 =======================================================
 
