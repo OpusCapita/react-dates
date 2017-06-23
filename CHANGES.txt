@@ -1,4 +1,10 @@
 
+Release 0.2.6 Fri Jun 23 2017 18:37:26 GMT+0300 (+03)
+=======================================================
+
+ - Remove console.log (Kirill Volkovich <volkovich@scand.com>, Fri Jun 23 18:37:01 2017 +0300)
+ - Updating to a version to  0.2.6 (Kirill Volkovich <volkovich@scand.com>, Fri Jun 23 15:29:59 2017 +0300)
+
 Release 0.2.5 Fri Jun 23 2017 15:29:47 GMT+0300 (+03)
 =======================================================
 
