@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import './DateInput.less';
 import DateInputField from '../DateInputField';
 import DayPicker from '../DayPicker';
@@ -8,6 +8,7 @@ import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import moment from 'moment';
 import getMessage from '../translations';
+import isEqual from 'lodash/isEqual';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
@@ -81,7 +82,7 @@ let defaultProps = {
 };
 
 export default
-class DateInput extends PureComponent {
+class DateInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -117,6 +118,25 @@ class DateInput extends PureComponent {
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleBodyClick);
     document.body.removeEventListener('keydown', this.handleBodyKeyDown);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.state.error !== nextState.error ||
+      this.state.showPicker !== nextState.showPicker ||
+      this.state.showVariants !== nextState.showVariants ||
+
+      this.props.className !== nextProps.className ||
+      this.props.dateFormat !== nextProps.dateFormat ||
+      this.props.disabled !== nextProps.disabled ||
+      this.props.isValid !== nextProps.isValid ||
+      this.props.locale !== nextProps.locale ||
+      this.props.showToLeft !== nextProps.showToLeft ||
+      this.props.showToTop !== nextProps.showToTop ||
+      this.props.tabIndex !== nextProps.tabIndex ||
+      !isEqual(this.props.value, nextProps.value) ||
+      !isEqual(this.props.variants, nextProps.variants)
+    );
   }
 
   handleDayClick(day) {

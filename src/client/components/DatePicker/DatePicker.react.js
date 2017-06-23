@@ -1,8 +1,9 @@
-import React, { PropTypes, PureComponent } from 'react';
+import React, { PropTypes, Component } from 'react';
 import './DatePicker.less';
 import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
+import isEqual from 'lodash/isEqual';
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -46,7 +47,7 @@ let defaultProps = {
 };
 
 export default
-class DatePicker extends PureComponent {
+class DatePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,6 +66,20 @@ class DatePicker extends PureComponent {
 
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleBodyClick);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.state.showPicker !== nextState.showPicker ||
+
+      this.props.className !== nextProps.className ||
+      this.props.disabled !== nextProps.disabled ||
+      this.props.locale !== nextProps.locale ||
+      this.props.showToLeft !== nextProps.showToLeft ||
+      this.props.showToTop !== nextProps.showToTop ||
+      this.props.tabIndex !== nextProps.tabIndex ||
+      !isEqual(this.props.value, nextProps.value)
+    );
   }
 
   handleBodyClick(event) {

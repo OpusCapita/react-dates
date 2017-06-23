@@ -5,6 +5,7 @@ import InputAddonButton from '../InputAddonButton';
 import DateVariants from '../DateVariants';
 import { DateUtils } from 'react-day-picker';
 import assign from 'lodash/assign';
+import isEqual from 'lodash/isEqual';
 import moment from 'moment';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
@@ -52,8 +53,6 @@ let propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   placeholder: PropTypes.string,
-  positionRight: PropTypes.bool,
-  positionTop: PropTypes.bool,
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
   tabIndex: PropTypes.number,
@@ -172,6 +171,26 @@ class DateRangeInput extends PureComponent {
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleBodyClick);
     document.body.removeEventListener('keydown', this.handleBodyKeyDown);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !isEqual(this.state.enteredTo, nextState.enteredTo) ||
+      this.state.showPicker !== nextState.showPicker ||
+      this.state.showVariants !== nextState.showVariants ||
+
+      this.props.className !== nextProps.className ||
+      this.props.dateFormat !== nextProps.dateFormat ||
+      this.props.disabled !== nextProps.disabled ||
+      this.props.isValid !== nextProps.isValid ||
+      this.props.locale !== nextProps.locale ||
+      this.props.placeholder !== nextProps.placeholder ||
+      this.props.showToLeft !== nextProps.showToLeft ||
+      this.props.showToTop !== nextProps.showToTop ||
+      this.props.tabIndex !== nextProps.tabIndex ||
+      !isEqual(this.props.value, nextProps.value) ||
+      !isEqual(this.props.variants, nextProps.variants)
+    );
   }
 
   normalizeRange(range) {
@@ -356,7 +375,6 @@ class DateRangeInput extends PureComponent {
         label: variant.getLabel(locale)
       }));
 
-      console.log(translatedVariants);
       variantsElement = (
         <DateVariants
           onChange={this.handleVariantSelect}
@@ -431,6 +449,7 @@ class DateRangeInput extends PureComponent {
     ) : null;
 
     let hasErrorClassName = isValid ? '' : 'has-error';
+    console.log('DateRangeInput render');
 
     return (
       <div
