@@ -449,7 +449,6 @@ class DateRangeInput extends PureComponent {
     ) : null;
 
     let hasErrorClassName = isValid ? '' : 'has-error';
-    console.log('DateRangeInput render');
 
     return (
       <div
