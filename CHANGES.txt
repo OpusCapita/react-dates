@@ -1,4 +1,11 @@
 
+Release 0.2.7 Mon Jun 26 2017 15:28:57 GMT+0300 (+03)
+=======================================================
+
+ - Add missing styles to DateInput (Kirill Volkovich <volkovich@scand.com>, Mon Jun 26 15:27:09 2017 +0300)
+ - Fix lint errors (Kirill Volkovich <volkovich@scand.com>, Fri Jun 23 18:40:20 2017 +0300)
+ - Updating to a version to  0.2.7 (Kirill Volkovich <volkovich@scand.com>, Fri Jun 23 18:37:38 2017 +0300)
+
 Release 0.2.6 Fri Jun 23 2017 18:37:26 GMT+0300 (+03)
 =======================================================
 
