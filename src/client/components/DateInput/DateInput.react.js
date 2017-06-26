@@ -323,8 +323,8 @@ class DateInput extends Component {
       >{interpolatedStyle => (
           <div
             className={`
-              opuscapita_date-range-input__variants-container
-              ${showToTop ? 'opuscapita_date-range-input__variants-container--to-top' : ''}
+              opuscapita_date-input__variants-container
+              ${showToTop ? 'opuscapita_date-input__variants-container--to-top' : ''}
             `}
             style={{
               maxHeight: `${interpolatedStyle.x * 640}px`,
@@ -339,7 +339,7 @@ class DateInput extends Component {
     let variantsButton = variantsElement ? (
       <button
         type="button"
-        className="btn btn-default opuscapita_date-range-input__variants-btn"
+        className="btn btn-default opuscapita_date-input__variants-btn"
         disabled={disabled}
         tabIndex="-1"
         onClick={this.handleVariantsButtonClick}
