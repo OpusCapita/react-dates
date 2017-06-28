@@ -1,3 +1,4 @@
+// full copy 'react-day-picker/src/addons/MomentLocaleUtils.js'
 /* eslint-disable import/no-extraneous-dependencies, no-underscore-dangle */
 
 import moment from './momentInit';
