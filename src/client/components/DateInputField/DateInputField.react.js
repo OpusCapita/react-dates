@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import MaskedInput from 'react-maskedinput';
-import moment from '../../utils/momentInit';
+import moment from '../utils/momentInit';
 import './DateInputField.less';
 
 let propTypes = {
