@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDayPicker from 'react-day-picker/lib/src/DayPicker';
 import "react-day-picker/lib/style.css";
 import MomentLocaleUtils from '../utils/MomentLocaleUtils';
@@ -112,7 +112,7 @@ let defaultProps = {
 };
 
 export default
-class DayPicker extends PureComponent {
+class DayPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
