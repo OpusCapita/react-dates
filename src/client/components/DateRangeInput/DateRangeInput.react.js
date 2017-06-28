@@ -5,7 +5,7 @@ import InputAddonButton from '../InputAddonButton';
 import DateVariants from '../DateVariants';
 import { DateUtils } from 'react-day-picker';
 import assign from 'lodash/assign';
-import moment from 'moment';
+import moment from '../../utils/momentInit';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
 

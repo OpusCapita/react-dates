@@ -6,7 +6,7 @@ import DateVariants from '../DateVariants';
 import InputAddonButton from '../InputAddonButton';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
-import moment from 'moment';
+import moment from '../../utils/momentInit';
 import getMessage from '../translations';
 
 let springPreset = presets.gentle;
