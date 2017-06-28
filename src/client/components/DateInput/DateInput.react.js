@@ -8,6 +8,7 @@ import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import moment from '../../utils/momentInit';
 import getMessage from '../translations';
+import isEqual from 'lodash/isEqual';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
@@ -42,7 +43,6 @@ let propTypes = {
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
   showVariants: PropTypes.bool,
-  variants: PropTypes.object,
   tabIndex: PropTypes.number,
   value: PropTypes.object,
   variants: PropTypes.arrayOf(PropTypes.shape({
@@ -112,6 +112,25 @@ class DateInput extends Component {
       let month = nextProps.value || new Date();
       this.reactDayPicker.showMonth(month);
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.state.error !== nextState.error ||
+      this.state.showPicker !== nextState.showPicker ||
+      this.state.showVariants !== nextState.showVariants ||
+
+      this.props.className !== nextProps.className ||
+      this.props.dateFormat !== nextProps.dateFormat ||
+      this.props.disabled !== nextProps.disabled ||
+      this.props.isValid !== nextProps.isValid ||
+      this.props.locale !== nextProps.locale ||
+      this.props.showToLeft !== nextProps.showToLeft ||
+      this.props.showToTop !== nextProps.showToTop ||
+      this.props.tabIndex !== nextProps.tabIndex ||
+      !isEqual(this.props.value, nextProps.value) ||
+      !isEqual(this.props.variants, nextProps.variants)
+    );
   }
 
   componentWillUnmount() {
@@ -294,7 +313,7 @@ class DateInput extends Component {
           variants={translatedVariants}
         />
       );
-    };
+    }
 
 
     let variantsMotionElement = variantsElement ? (
@@ -304,8 +323,8 @@ class DateInput extends Component {
       >{interpolatedStyle => (
           <div
             className={`
-              opuscapita_date-range-input__variants-container
-              ${showToTop ? 'opuscapita_date-range-input__variants-container--to-top' : ''}
+              opuscapita_date-input__variants-container
+              ${showToTop ? 'opuscapita_date-input__variants-container--to-top' : ''}
             `}
             style={{
               maxHeight: `${interpolatedStyle.x * 640}px`,
@@ -320,7 +339,7 @@ class DateInput extends Component {
     let variantsButton = variantsElement ? (
       <button
         type="button"
-        className="btn btn-default opuscapita_date-range-input__variants-btn"
+        className="btn btn-default opuscapita_date-input__variants-btn"
         disabled={disabled}
         tabIndex="-1"
         onClick={this.handleVariantsButtonClick}

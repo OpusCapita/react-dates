@@ -3,6 +3,7 @@ import './DatePicker.less';
 import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
+import isEqual from 'lodash/isEqual';
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -61,6 +62,20 @@ class DatePicker extends Component {
 
   componentDidMount() {
     document.body.addEventListener('click', this.handleBodyClick);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.state.showPicker !== nextState.showPicker ||
+
+      this.props.className !== nextProps.className ||
+      this.props.disabled !== nextProps.disabled ||
+      this.props.locale !== nextProps.locale ||
+      this.props.showToLeft !== nextProps.showToLeft ||
+      this.props.showToTop !== nextProps.showToTop ||
+      this.props.tabIndex !== nextProps.tabIndex ||
+      !isEqual(this.props.value, nextProps.value)
+    );
   }
 
   componentWillUnmount() {

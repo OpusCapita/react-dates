@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import VerticalList from '@opuscapita/react-autocompletes/lib/VerticalList';
 import moment from '../../utils/momentInit';
 import './DateVariants.less';
@@ -69,7 +69,7 @@ let defaultProps = {
 };
 
 export default
-class DateVariants extends Component {
+class DateVariants extends PureComponent {
   handleChange(key) {
     let variants = this.props.variants;
     let value = variants[key].getValue(this.props.locale);

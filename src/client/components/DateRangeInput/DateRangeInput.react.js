@@ -1,10 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import './DateRangeInput.less';
 import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
 import DateVariants from '../DateVariants';
 import { DateUtils } from 'react-day-picker';
 import assign from 'lodash/assign';
+import isEqual from 'lodash/isEqual';
 import moment from '../../utils/momentInit';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
@@ -52,8 +53,6 @@ let propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   placeholder: PropTypes.string,
-  positionRight: PropTypes.bool,
-  positionTop: PropTypes.bool,
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
   tabIndex: PropTypes.number,
@@ -132,7 +131,7 @@ let defaultProps = {
 };
 
 export default
-class DateRangeInput extends Component {
+class DateRangeInput extends PureComponent {
   constructor(props) {
     super(props);
     this.state = initialState;
@@ -159,6 +158,26 @@ class DateRangeInput extends Component {
       let month = nextProps.value[0] || new Date();
       this.reactDayPicker.showMonth(month);
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      !isEqual(this.state.enteredTo, nextState.enteredTo) ||
+      this.state.showPicker !== nextState.showPicker ||
+      this.state.showVariants !== nextState.showVariants ||
+
+      this.props.className !== nextProps.className ||
+      this.props.dateFormat !== nextProps.dateFormat ||
+      this.props.disabled !== nextProps.disabled ||
+      this.props.isValid !== nextProps.isValid ||
+      this.props.locale !== nextProps.locale ||
+      this.props.placeholder !== nextProps.placeholder ||
+      this.props.showToLeft !== nextProps.showToLeft ||
+      this.props.showToTop !== nextProps.showToTop ||
+      this.props.tabIndex !== nextProps.tabIndex ||
+      !isEqual(this.props.value, nextProps.value) ||
+      !isEqual(this.props.variants, nextProps.variants)
+    );
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -356,7 +375,6 @@ class DateRangeInput extends Component {
         label: variant.getLabel(locale)
       }));
 
-      console.log(translatedVariants);
       variantsElement = (
         <DateVariants
           onChange={this.handleVariantSelect}
@@ -364,7 +382,7 @@ class DateRangeInput extends Component {
           variants={translatedVariants}
         />
       );
-    };
+    }
 
     let pickerMotionElement = (
       <Motion

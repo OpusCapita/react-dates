@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import MaskedInput from 'react-maskedinput';
 import moment from '../../utils/momentInit';
 import './DateInputField.less';
@@ -26,7 +26,7 @@ let defaultProps = {
 };
 
 export default
-class DateInputField extends Component {
+class DateInputField extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

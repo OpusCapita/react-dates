@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import './InputAddonButton.less';
 
 let propTypes = {
@@ -14,7 +14,7 @@ let defaultProps = {
 };
 
 export default
-class InputAddonButton extends Component {
+class InputAddonButton extends PureComponent {
   handleOnClick(e) {
     if (!this.props.disabled) {
       this.props.onClick(e);
