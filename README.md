@@ -40,4 +40,4 @@ Any separators except these allowed: `1`, `a`, `A`, `*`, `#`
 
 ## License
 
-**OpusCapita react-dates** is licensed under the Apache License, Version 2.0. See [LICENSE](./LICENSE) for the full license text.
+Licensed under the Apache License, Version 2.0. See [LICENSE](./LICENSE) for the full license text.
