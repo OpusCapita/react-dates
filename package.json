@@ -27,7 +27,7 @@
     "react-dom": ">= 0.14.0 || >= 15.0.0"
   },
   "devDependencies": {
-    "@opuscapita/npm-scripts": "2.0.0-beta.0",
+    "@opuscapita/npm-scripts": "2.0.0-beta.1",
     "@opuscapita/react-showroom-client": "1.2.2",
     "@opuscapita/react-showroom-server": "1.2.0",
     "autoprefixer": "6.7.6",
