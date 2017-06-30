@@ -3,6 +3,7 @@ import './DateRangeInput.less';
 import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
 import DateVariants from '../DateVariants';
+import DateInputField from '../DateInputField';
 import { DateUtils } from 'react-day-picker';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
@@ -204,8 +205,10 @@ class DateRangeInput extends Component {
   }
 
   handleRangeChange(range) {
+    console.log('change:', range);
     this.setState({ enteredTo: null });
     let normalizedRange = this.normalizeRange(range);
+    console.log('normal', normalizedRange);
     this.props.onChange(normalizedRange);
   }
 
@@ -332,7 +335,7 @@ class DateRangeInput extends Component {
       variants,
       ...restProps
     } = this.props;
-
+    console.log('value:::::', value);
     let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
     let commonProps = splittedProps[0];
     let dayPickerSpecificProps = splittedProps[1];
@@ -456,18 +459,32 @@ class DateRangeInput extends Component {
         className={`opuscapita_date-range-input form-control ${className}`}
         { ...commonProps }
       >
-        <div className={`opuscapita_date-range-input__input-field-container ${hasErrorClassName}`}>
-          <input
-            type="text"
-            className="opuscapita_date-range-input__input-field form-control"
+        <div className={`opuscapita_date-range-input__input-field-container form-control ${hasErrorClassName}`}>
+          <DateInputField
+            className="opuscapita_date-range-input__input-field"
+            dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
             onBlur={onBlur}
-            onFocus={this.handleInputFocus}
+            onChange={(date) => this.handleRangeChange([date, value[1]])}
             onClick={this.handleInputClick}
-            placeholder={placeholder || getMessage(locale, 'selectDateRange')}
+            onError={this.handleError}
+            onFocus={this.handleInputFocus}
+            onRef={dateInputField => (this.dateInputFieldFrom = dateInputField)}
             tabIndex={tabIndex}
-            value={inputValue}
-            onChange={() => {}}
+            value={value[0]}
+          />
+          <DateInputField
+            className="opuscapita_date-range-input__input-field"
+            dateFormat={momentCompatibleDateFormat}
+            disabled={disabled}
+            onBlur={onBlur}
+            onChange={(date) => this.handleRangeChange([value[0], date])}
+            onClick={this.handleInputClick}
+            onError={this.handleError}
+            onFocus={this.handleInputFocus}
+            onRef={dateInputField => (this.dateInputFieldTo = dateInputField)}
+            tabIndex={tabIndex}
+            value={value[1]}
           />
           {resetButton}
         </div>
