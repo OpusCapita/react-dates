@@ -1,3 +1,5 @@
+## [v0.2.16](https://github.com/OpusCapita/react-dates/compare/v0.2.15...v0.2.16) (Fri, 30 Jun 2017 15:33:57 GMT)
+
 ## [v0.2.15](https://github.com/OpusCapita/react-dates/compare/v0.2.9...v0.2.15) (Fri, 30 Jun 2017 15:32:58 GMT)
  - Update "npm-scripts" dependency. Add flag to regenerate whole changelog (Kirill Volkovich <volkovich@scand.com>, 7566f35)
  - Add "npm-publish" npm goal (Kirill Volkovich <volkovich@scand.com>, 7fd57d0)
