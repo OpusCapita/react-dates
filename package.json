@@ -8,7 +8,7 @@
     "start": "node www/index",
     "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/mocha-setup.js --require ignore-styles",
     "npm-build": "rimraf lib && babel --copy-files --no-babelrc --presets es2015,stage-0,react --ignore *.spec.js src/client/components --out-dir lib && webpack --config webpack.production.config.js",
-    "npm-publish": "update-changelog && npm run npm-build && npm-publish",
+    "npm-publish": "update-changelog -- --all && npm run npm-build && npm-publish",
     "publish-release": "npm run npm-publish -- --release"
   },
   "main": "lib/index.js",
@@ -27,7 +27,7 @@
     "react-dom": ">= 0.14.0 || >= 15.0.0"
   },
   "devDependencies": {
-    "@opuscapita/npm-scripts": "2.0.0-beta.1",
+    "@opuscapita/npm-scripts": "2.0.0-beta.2",
     "@opuscapita/react-showroom-client": "1.2.2",
     "@opuscapita/react-showroom-server": "1.2.0",
     "autoprefixer": "6.7.6",
