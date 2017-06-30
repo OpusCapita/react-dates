@@ -1,3 +1,13 @@
+## [v0.2.15](https://github.com/OpusCapita/react-dates/compare/v0.2.9...v0.2.15) (Fri, 30 Jun 2017 15:32:58 GMT)
+ - Update "npm-scripts" dependency. Add flag to regenerate whole changelog (Kirill Volkovich <volkovich@scand.com>, 7566f35)
+ - Add "npm-publish" npm goal (Kirill Volkovich <volkovich@scand.com>, 7fd57d0)
+ - Update README.md (Kirill Volkovich <volkovich@scand.com>, 628a0ed)
+ - Remove CHANGELOG.md (Kirill Volkovich <volkovich@scand.com>, 3e811fe)
+ - Update "npm-scripts" dependency (Kirill Volkovich <volkovich@scand.com>, 590e104)
+ - Removed CHANGES.txt in favor of CHANGELOG.md (Kirill Volkovich <volkovich@scand.com>, 11db9f6)
+ - Update "npm-scripts" dependency (Kirill Volkovich <volkovich@scand.com>, 6fc9abd)
+ - PureComponent => Component for react < v15.3.0 compatibility (Kirill Volkovich <volkovich@scand.com>, 1770f65)
+
 ## [v0.2.14](https://github.com/OpusCapita/react-dates/compare/v0.2.9...v0.2.14) (Fri, 30 Jun 2017 14:56:51 GMT)
  - Add "npm-publish" npm goal (Kirill Volkovich <volkovich@scand.com>, 7fd57d0)
  - Update README.md (Kirill Volkovich <volkovich@scand.com>, 628a0ed)
