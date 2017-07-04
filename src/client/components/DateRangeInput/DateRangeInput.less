@@ -62,8 +62,10 @@
 
 .opuscapita_date-range-input__input-field {
   width: 100% !important;
+  height: 100%;
   padding-right: 3ch;
   border: none;
+  text-align: center;
   box-shadow: none !important;
 }
 
@@ -89,4 +91,18 @@
   opacity: 0.6;
   bottom: -2px;
   transform: translate(0, 100%);
+}
+
+.opuscapita_date-range-input__dash {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+  color: #aaa;
 }

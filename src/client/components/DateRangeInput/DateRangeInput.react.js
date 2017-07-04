@@ -205,10 +205,9 @@ class DateRangeInput extends Component {
   }
 
   handleRangeChange(range) {
-    console.log('change:', range);
+    console.log('handleRangeChange:', range);
     this.setState({ enteredTo: null });
     let normalizedRange = this.normalizeRange(range);
-    console.log('normal', normalizedRange);
     this.props.onChange(normalizedRange);
   }
 
@@ -261,9 +260,6 @@ class DateRangeInput extends Component {
   }
 
   hidePicker() {
-    if (this.props.value[0] && !this.props.value[1]) {
-      this.handleRangeChange([null, null]);
-    }
     this.setState({ showPicker: false });
   }
 
@@ -473,6 +469,7 @@ class DateRangeInput extends Component {
             tabIndex={tabIndex}
             value={value[0]}
           />
+          <div className="opuscapita_date-range-input__dash">―</div>
           <DateInputField
             className="opuscapita_date-range-input__input-field"
             dateFormat={momentCompatibleDateFormat}

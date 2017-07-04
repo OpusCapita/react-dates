@@ -78,4 +78,3 @@ DateRangeInput
 ### License
 
 Licensed by © 2017 OpusCapita
-
