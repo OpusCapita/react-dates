@@ -29,6 +29,14 @@
 .opuscapita_day-picker__picker .DayPicker-Day {
   border: none;
   position: relative;
+  transition: transform 0.1s ease;
+
+  &:active:focus {
+    transform: scale(1.4);
+  }
+  &:focus {
+    transform: scale(1);
+  }
 }
 
 .opuscapita_day-picker__picker .DayPicker-Day:not(.DayPicker-Day--outside):hover:after {
