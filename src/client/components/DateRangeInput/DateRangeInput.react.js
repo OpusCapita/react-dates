@@ -34,7 +34,10 @@ function splitProps(props, specificPropNames = []) {
 let initialState = {
   enteredTo: null,
   showPicker: false,
-  showVariants: false
+  showVariants: false,
+  fromFocused: false,
+  toFocused: false,
+  error: false
 };
 
 function isSelectingFirstDay(from, to, day) {
@@ -144,7 +147,11 @@ class DateRangeInput extends Component {
     this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
     this.handleVariantsButtonClick = this.handleVariantsButtonClick.bind(this);
     this.handleVariantSelect = this.handleVariantSelect.bind(this);
-    this.handleInputFocus = this.handleInputFocus.bind(this);
+    this.handleFromInputBlur = this.handleFromInputBlur.bind(this);
+    this.handleToInputBlur = this.handleToInputBlur.bind(this);
+    this.handleFromInputFocus = this.handleFromInputFocus.bind(this);
+    this.handleFocusOrBlur = this.handleFocusOrBlur.bind(this);
+    this.handleToInputFocus = this.handleToInputFocus.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
     this.handleRangeChange = this.handleRangeChange.bind(this);
   }
@@ -205,7 +212,6 @@ class DateRangeInput extends Component {
   }
 
   handleRangeChange(range) {
-    console.log('handleRangeChange:', range);
     this.setState({ enteredTo: null });
     let normalizedRange = this.normalizeRange(range);
     this.props.onChange(normalizedRange);
@@ -284,9 +290,41 @@ class DateRangeInput extends Component {
     this.handleRangeChange(range);
   }
 
-  handleInputFocus(event) {
-    this.props.onFocus(event);
-    this.showPicker(event);
+  handleFromInputBlur() {
+    this.handleFocusOrBlur({ ...this.state, fromFocused: false });
+  }
+
+  handleToInputBlur() {
+    this.handleFocusOrBlur({ ...this.state, toFocused: false });
+  }
+
+  handleFromInputFocus() {
+    this.handleFocusOrBlur({ ...this.state, fromFocused: true });
+  }
+
+  handleToInputFocus() {
+    this.handleFocusOrBlur({ ...this.state, toFocused: true });
+  }
+
+  handleFocusOrBlur(nextState) {
+    let blurFired = (
+      ((this.state.fromFocused && !nextState.fromFocused) && (!this.state.toFocused && !nextState.toFocused)) ||
+      ((!this.state.fromFocused && !nextState.fromFocused) && (this.state.toFocused && !nextState.toFocused))
+    ) && this.state.focused;
+
+    if(blurFired) {
+      this.props.onBlur();
+      this.hidePicker();
+      this.hideVariants();
+    }
+
+    console.log('Handle Blur ===================================');
+    console.log(this.state.fromFocused, nextState.fromFocused);
+    console.log(this.state.toFocused, nextState.toFocused);
+    console.log('blurFired', blurFired);
+    console.log();
+
+    this.setState({ ...nextState, focused: !blurFired });
   }
 
   handleInputClick() {
@@ -331,7 +369,7 @@ class DateRangeInput extends Component {
       variants,
       ...restProps
     } = this.props;
-    console.log('value:::::', value);
+
     let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
     let commonProps = splittedProps[0];
     let dayPickerSpecificProps = splittedProps[1];
@@ -460,11 +498,11 @@ class DateRangeInput extends Component {
             className="opuscapita_date-range-input__input-field"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
-            onBlur={onBlur}
+            onBlur={this.handleFromInputBlur}
             onChange={(date) => this.handleRangeChange([date, value[1]])}
             onClick={this.handleInputClick}
             onError={this.handleError}
-            onFocus={this.handleInputFocus}
+            onFocus={this.handleFromInputFocus}
             onRef={dateInputField => (this.dateInputFieldFrom = dateInputField)}
             tabIndex={tabIndex}
             value={value[0]}
@@ -474,11 +512,11 @@ class DateRangeInput extends Component {
             className="opuscapita_date-range-input__input-field"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
-            onBlur={onBlur}
+            onBlur={this.handleToInputBlur}
             onChange={(date) => this.handleRangeChange([value[0], date])}
             onClick={this.handleInputClick}
             onError={this.handleError}
-            onFocus={this.handleInputFocus}
+            onFocus={this.handleToInputFocus}
             onRef={dateInputField => (this.dateInputFieldTo = dateInputField)}
             tabIndex={tabIndex}
             value={value[1]}
