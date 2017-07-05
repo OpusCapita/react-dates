@@ -1,6 +1,6 @@
 {
   "name": "@opuscapita/react-dates",
-  "version": "0.3.0-beta.1",
+  "version": "0.3.0-beta.2",
   "description": "Start write new project with no effort.",
   "scripts": {
     "link-mode": "webpack --watch --config ./webpack.link.config.js",
