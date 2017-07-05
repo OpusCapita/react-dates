@@ -55,7 +55,6 @@ let propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
-  placeholder: PropTypes.string,
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
   tabIndex: PropTypes.number,
@@ -75,7 +74,6 @@ let defaultProps = {
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
-  placeholder: null,
   showToLeft: false,
   showToTop: false,
   tabIndex: 0,
@@ -178,7 +176,6 @@ class DateRangeInput extends Component {
       this.props.disabled !== nextProps.disabled ||
       this.props.isValid !== nextProps.isValid ||
       this.props.locale !== nextProps.locale ||
-      this.props.placeholder !== nextProps.placeholder ||
       this.props.showToLeft !== nextProps.showToLeft ||
       this.props.showToTop !== nextProps.showToTop ||
       this.props.tabIndex !== nextProps.tabIndex ||
@@ -339,10 +336,9 @@ class DateRangeInput extends Component {
       disabled,
       locale,
       isValid,
-      onBlur,
+      onBlur, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
-      placeholder,
       tabIndex,
       showToTop,
       showToLeft,
@@ -437,10 +433,6 @@ class DateRangeInput extends Component {
           </div>
       )}</Motion>
     ) : null;
-
-    let inputValue = (from && to) ?
-      `${moment(from).format(momentCompatibleDateFormat)} — ${moment(to).format(momentCompatibleDateFormat)}` :
-      '';
 
     let resetButton = (
       <InputAddonButton
