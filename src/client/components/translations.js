@@ -14,7 +14,7 @@ const translations = {
   },
   de: {
     selectDateRange: 'Datumsbereich auswählen',
-    today: 'Gegenwärtig',
+    today: 'Gestern',
     yesterday: 'Gisteren',
     tomorrow: 'Morgen',
     previousWeek: 'Vorige week',
