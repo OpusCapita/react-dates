@@ -1,3 +1,6 @@
+## [v0.3.0-beta.2](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.1...v0.3.0-beta.2) (Wed, 05 Jul 2017 14:14:38 GMT)
+ - Fix DateRangeInput placeholders overflow (Kirill Volkovich <volkovich@scand.com>, becd790)
+
 ## [v0.3.0-beta.1](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.0...v0.3.0-beta.1) (Wed, 05 Jul 2017 10:23:57 GMT)
  - Fix dash centering styles of DateRangeInput (Kirill Volkovich <volkovich@scand.com>, ed08b24)
 
