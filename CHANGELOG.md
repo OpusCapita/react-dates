@@ -1,3 +1,6 @@
+## [v0.3.0-beta.3](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.2...v0.3.0-beta.3) (Wed, 05 Jul 2017 14:37:33 GMT)
+ - We should have dominion power over bootstrap selectors. Sadly it's always important (Kirill Volkovich <volkovich@scand.com>, 22588f4)
+
 ## [v0.3.0-beta.2](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.1...v0.3.0-beta.2) (Wed, 05 Jul 2017 14:14:38 GMT)
  - Fix DateRangeInput placeholders overflow (Kirill Volkovich <volkovich@scand.com>, becd790)
 
