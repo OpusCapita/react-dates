@@ -1,3 +1,6 @@
+## [v0.3.0-beta.1](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.0...v0.3.0-beta.1) (Wed, 05 Jul 2017 10:23:57 GMT)
+ - Fix dash centering styles of DateRangeInput (Kirill Volkovich <volkovich@scand.com>, ed08b24)
+
 ## [v0.3.0-beta.0](https://github.com/OpusCapita/react-dates/compare/v0.2.16...v0.3.0-beta.0) (Wed, 05 Jul 2017 09:44:04 GMT)
  - Update minor package version (Kirill Volkovich <volkovich@scand.com>, 29a36e2)
  - Merge pull request #18 from OpusCapita/feature/17
