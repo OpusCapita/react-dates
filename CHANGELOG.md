@@ -1,3 +1,23 @@
+## [v0.3.0-beta.0](https://github.com/OpusCapita/react-dates/compare/v0.2.16...v0.3.0-beta.0) (Wed, 05 Jul 2017 09:44:04 GMT)
+ - Update minor package version (Kirill Volkovich <volkovich@scand.com>, 29a36e2)
+ - Merge pull request #18 from OpusCapita/feature/17
+    
+    Date range: impossible to enter value by keyboard, fix 'de' l11n (56f6d3f 5f0c236, c8ad4e2)
+ - Add multiple entries to webpack config (Kirill Volkovich <volkovich@scand.com>, 5f0c236)
+ - Fix de l11n (Kirill Volkovich <volkovich@scand.com>, e3393e6)
+ - Fix de l11n (Kirill Volkovich <volkovich@scand.com>, 6e21d87)
+ - Fix lint (Kirill Volkovich <volkovich@scand.com>, 6a9ef31)
+ - Fix docs to valid md (Kirill Volkovich <volkovich@scand.com>, e84bd17)
+ - Add focus and error highlights to focused DateRangeInput (Kirill Volkovich <volkovich@scand.com>, 38d858f)
+ - Implemented DateRangeInput `onFocus` and `onBlur` props (Kirill Volkovich <volkovich@scand.com>, d2657e0)
+ - Fix DateRangeInput dash styles (Kirill Volkovich <volkovich@scand.com>, 37c7e7f)
+ - In progress (Kirill Volkovich <volkovich@scand.com>, 8d2f505)
+ - Fix z-index of active "day" element (Kirill Volkovich <volkovich@scand.com>, 56e35f9)
+ - Add "day" element selection animation (Kirill Volkovich <volkovich@scand.com>, da622dc)
+ - Add dash between DateRangeInput inputs (Kirill Volkovich <volkovich@scand.com>, ea2e126)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, 56f6d3f)
+ - #17 Add two inputs to DateRangeInput (Kirill Volkovich <volkovich@scand.com>, 8257a25)
+
 ## [v0.2.16](https://github.com/OpusCapita/react-dates/compare/v0.2.15...v0.2.16) (Fri, 30 Jun 2017 15:33:57 GMT)
 
 ## [v0.2.15](https://github.com/OpusCapita/react-dates/compare/v0.2.9...v0.2.15) (Fri, 30 Jun 2017 15:32:58 GMT)
