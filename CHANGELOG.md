@@ -1,3 +1,7 @@
+## [v0.3.0-beta.4](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.3...v0.3.0-beta.4) (Wed, 05 Jul 2017 15:11:49 GMT)
+ - We should have dominion power over jquery-ui selectors. Sadly it's
+    always important too (Kirill Volkovich <volkovich@scand.com>, 0935a8c)
+
 ## [v0.3.0-beta.3](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.2...v0.3.0-beta.3) (Wed, 05 Jul 2017 14:37:33 GMT)
  - We should have dominion power over bootstrap selectors. Sadly it's always important (Kirill Volkovich <volkovich@scand.com>, 22588f4)
 
