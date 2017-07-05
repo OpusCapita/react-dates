@@ -57,12 +57,20 @@
   position: absolute;
   top: 0;
   right: 1ch;
+  z-index: 10;
 }
 
 .opuscapita_date-range-input__input-field {
-
   width: 100% !important;
+  height: 100%;
   padding-right: 3ch;
+  border: none;
+  text-align: center;
+  box-shadow: none !important;
+
+  &:first-child {
+    padding-right: 12px;
+  }
 }
 
 .opuscapita_date-range-input__input-field[placeholder] {
@@ -73,6 +81,20 @@
   position: relative;
   display: flex;
   flex: 1;
+  padding: 0;
+
+  &--focused {
+    border-color: #369;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(51, 102, 153, 0.6);
+  }
+
+  &.has-error {
+    border-color: #a94442;
+
+  }
+  &--focused.has-error {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483;
+  }
 }
 
 .opuscapita_date-range-input__variants-btn {
@@ -86,4 +108,19 @@
   opacity: 0.6;
   bottom: -2px;
   transform: translate(0, 100%);
+}
+
+.opuscapita_date-range-input__dash {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+  color: #aaa;
+  padding-right: 12px;
 }

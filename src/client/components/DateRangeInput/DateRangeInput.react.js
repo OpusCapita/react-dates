@@ -3,6 +3,7 @@ import './DateRangeInput.less';
 import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
 import DateVariants from '../DateVariants';
+import DateInputField from '../DateInputField';
 import { DateUtils } from 'react-day-picker';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
@@ -33,7 +34,9 @@ function splitProps(props, specificPropNames = []) {
 let initialState = {
   enteredTo: null,
   showPicker: false,
-  showVariants: false
+  showVariants: false,
+  error: false,
+  focused: false
 };
 
 function isSelectingFirstDay(from, to, day) {
@@ -52,7 +55,6 @@ let propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
-  placeholder: PropTypes.string,
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
   tabIndex: PropTypes.number,
@@ -72,7 +74,6 @@ let defaultProps = {
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
-  placeholder: null,
   showToLeft: false,
   showToTop: false,
   tabIndex: 0,
@@ -142,8 +143,10 @@ class DateRangeInput extends Component {
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
     this.handleVariantsButtonClick = this.handleVariantsButtonClick.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleError = this.handleError.bind(this);
     this.handleVariantSelect = this.handleVariantSelect.bind(this);
-    this.handleInputFocus = this.handleInputFocus.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
     this.handleRangeChange = this.handleRangeChange.bind(this);
   }
@@ -165,13 +168,14 @@ class DateRangeInput extends Component {
       !isEqual(this.state.enteredTo, nextState.enteredTo) ||
       this.state.showPicker !== nextState.showPicker ||
       this.state.showVariants !== nextState.showVariants ||
+      this.state.error !== nextState.error ||
+      this.state.focused !== nextState.focused ||
 
       this.props.className !== nextProps.className ||
       this.props.dateFormat !== nextProps.dateFormat ||
       this.props.disabled !== nextProps.disabled ||
       this.props.isValid !== nextProps.isValid ||
       this.props.locale !== nextProps.locale ||
-      this.props.placeholder !== nextProps.placeholder ||
       this.props.showToLeft !== nextProps.showToLeft ||
       this.props.showToTop !== nextProps.showToTop ||
       this.props.tabIndex !== nextProps.tabIndex ||
@@ -204,7 +208,7 @@ class DateRangeInput extends Component {
   }
 
   handleRangeChange(range) {
-    this.setState({ enteredTo: null });
+    this.setState({ enteredTo: null, error: false });
     let normalizedRange = this.normalizeRange(range);
     this.props.onChange(normalizedRange);
   }
@@ -258,9 +262,6 @@ class DateRangeInput extends Component {
   }
 
   hidePicker() {
-    if (this.props.value[0] && !this.props.value[1]) {
-      this.handleRangeChange([null, null]);
-    }
     this.setState({ showPicker: false });
   }
 
@@ -285,9 +286,22 @@ class DateRangeInput extends Component {
     this.handleRangeChange(range);
   }
 
-  handleInputFocus(event) {
-    this.props.onFocus(event);
-    this.showPicker(event);
+  handleFocus(e, inputName) {
+    this.props.onFocus(e, inputName);
+    this.showPicker();
+
+    this.setState({ focused: true });
+  }
+
+  handleBlur(e, inputName) {
+    this.props.onBlur(e, inputName);
+    this.hideVariants();
+
+    this.setState({ focused: false });
+  }
+
+  handleError() {
+    this.setState({ error: true });
   }
 
   handleInputClick() {
@@ -322,10 +336,9 @@ class DateRangeInput extends Component {
       disabled,
       locale,
       isValid,
-      onBlur,
+      onBlur, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
-      placeholder,
       tabIndex,
       showToTop,
       showToLeft,
@@ -339,7 +352,7 @@ class DateRangeInput extends Component {
 
     let from = this.props.value[0];
     let to = this.props.value[1];
-    let { enteredTo } = this.state;
+    let { enteredTo, error, focused } = this.state;
     let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 
     let showToTopClassName = showToTop ? 'opuscapita_date-range-input__picker-container--to-top' : '';
@@ -421,10 +434,6 @@ class DateRangeInput extends Component {
       )}</Motion>
     ) : null;
 
-    let inputValue = (from && to) ?
-      `${moment(from).format(momentCompatibleDateFormat)} — ${moment(to).format(momentCompatibleDateFormat)}` :
-      '';
-
     let resetButton = (
       <InputAddonButton
         className="opuscapita_date-range-input__reset-btn"
@@ -448,7 +457,8 @@ class DateRangeInput extends Component {
       </button>
     ) : null;
 
-    let hasErrorClassName = isValid ? '' : 'has-error';
+    let hasErrorClassName = (isValid && !error) ? '' : 'has-error';
+    let focusedClassName = focused ? 'opuscapita_date-range-input__input-field-container--focused' : '';
 
     return (
       <div
@@ -456,18 +466,40 @@ class DateRangeInput extends Component {
         className={`opuscapita_date-range-input form-control ${className}`}
         { ...commonProps }
       >
-        <div className={`opuscapita_date-range-input__input-field-container ${hasErrorClassName}`}>
-          <input
-            type="text"
-            className="opuscapita_date-range-input__input-field form-control"
+        <div
+          className={`
+            opuscapita_date-range-input__input-field-container
+            form-control
+            ${hasErrorClassName}
+            ${focusedClassName}
+          `}
+        >
+          <DateInputField
+            className="opuscapita_date-range-input__input-field"
+            dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
-            onBlur={onBlur}
-            onFocus={this.handleInputFocus}
+            onBlur={(e) => this.handleBlur(e, 'from')}
+            onFocus={(e) => this.handleFocus(e, 'from')}
+            onChange={(date) => this.handleRangeChange([date, value[1]])}
             onClick={this.handleInputClick}
-            placeholder={placeholder || getMessage(locale, 'selectDateRange')}
+            onError={this.handleError}
+            onRef={dateInputField => (this.dateInputFieldFrom = dateInputField)}
             tabIndex={tabIndex}
-            value={inputValue}
-            onChange={() => {}}
+            value={value[0]}
+          />
+          <div className="opuscapita_date-range-input__dash">―</div>
+          <DateInputField
+            className="opuscapita_date-range-input__input-field"
+            dateFormat={momentCompatibleDateFormat}
+            disabled={disabled}
+            onBlur={(e) => this.handleBlur(e, 'to')}
+            onFocus={(e) => this.handleFocus(e, 'to')}
+            onChange={(date) => this.handleRangeChange([value[0], date])}
+            onClick={this.handleInputClick}
+            onError={this.handleError}
+            onRef={dateInputField => (this.dateInputFieldTo = dateInputField)}
+            tabIndex={tabIndex}
+            value={value[1]}
           />
           {resetButton}
         </div>

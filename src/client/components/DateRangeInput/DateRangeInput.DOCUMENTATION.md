@@ -4,20 +4,20 @@ Allows select date range using mouse.
 
 ### Props Reference
 
-| Name                           | Type                    | Description                                                                                                                                                 |
-| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                 |
-| className                      | string                  | Default behavior                                                                                                                                            |
-| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                            |
-| disabled                       | bool                    | If true - became inactive                                                                                                                                   |
-| isValid                        | bool                    | If false - highlight input as error                                                                                                                         |
-| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                             |
-| onBlur                         | func                    | Callback fired on input blur `(e) => {}`                                                                                                                    |
-| onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                                                                                  |
-| onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                                                                                                   |
-| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                 |
-| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                  |
-| tabIndex                       | number                  | Default behavior                                                                                                                                            |
-| value                          | array                   | `[Date from, Date to]`                                                                                                                                      |
+| Name                           | Type                    | Description                                                                                                                                                                |
+| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |
+| className                      | string                  | Default behavior                                                                                                                                                           |
+| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |
+| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |
+| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |
+| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |
+| onFocus                        | func                    | Callback fired on input focus `(e, inputName) => {}` where `inputName === 'from                                                                                            |
+| onBlur                         | func                    | Callback fired on input blur `(e, inputName) => {}`  where `inputName === 'from                                                                                            |
+| onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                                                                                                 |
+| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |
+| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |
+| tabIndex                       | number                  | Default behavior                                                                                                                                                           |
+| value                          | array                   | `[Date from, Date to]`                                                                                                                                                     |
 | variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |
 
 ### Code Example
@@ -59,9 +59,9 @@ Allows select date range using mouse.
     <DateRangeInput
       dateFormat="dd.MM.yyyy"
       locale={'ru'}
-      onBlur={(e) => console.log('Blur!', e)}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
       onChange={_scope.handleChange4.bind(_scope)}
-      onFocus={(e) => console.log('Focus!', e)}
       placeholder="Выберите диапазон дат"
       showToLeft={true}
       showToTop={true}
@@ -78,4 +78,3 @@ DateRangeInput
 ### License
 
 Licensed by © 2017 OpusCapita
-
