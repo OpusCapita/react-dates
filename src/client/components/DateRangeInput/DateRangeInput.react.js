@@ -35,8 +35,6 @@ let initialState = {
   enteredTo: null,
   showPicker: false,
   showVariants: false,
-  fromFocused: false,
-  toFocused: false,
   error: false
 };
 
@@ -146,12 +144,9 @@ class DateRangeInput extends Component {
     this.handleBodyClick = this.handleBodyClick.bind(this);
     this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
     this.handleVariantsButtonClick = this.handleVariantsButtonClick.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
     this.handleVariantSelect = this.handleVariantSelect.bind(this);
-    this.handleFromInputBlur = this.handleFromInputBlur.bind(this);
-    this.handleToInputBlur = this.handleToInputBlur.bind(this);
-    this.handleFromInputFocus = this.handleFromInputFocus.bind(this);
-    this.handleFocusOrBlur = this.handleFocusOrBlur.bind(this);
-    this.handleToInputFocus = this.handleToInputFocus.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
     this.handleRangeChange = this.handleRangeChange.bind(this);
   }
@@ -290,41 +285,15 @@ class DateRangeInput extends Component {
     this.handleRangeChange(range);
   }
 
-  handleFromInputBlur() {
-    this.handleFocusOrBlur({ ...this.state, fromFocused: false });
+  handleFocus(e, inputName) {
+    this.props.onFocus(e, inputName);
+    this.showPicker();
   }
 
-  handleToInputBlur() {
-    this.handleFocusOrBlur({ ...this.state, toFocused: false });
-  }
-
-  handleFromInputFocus() {
-    this.handleFocusOrBlur({ ...this.state, fromFocused: true });
-  }
-
-  handleToInputFocus() {
-    this.handleFocusOrBlur({ ...this.state, toFocused: true });
-  }
-
-  handleFocusOrBlur(nextState) {
-    let blurFired = (
-      ((this.state.fromFocused && !nextState.fromFocused) && (!this.state.toFocused && !nextState.toFocused)) ||
-      ((!this.state.fromFocused && !nextState.fromFocused) && (this.state.toFocused && !nextState.toFocused))
-    ) && this.state.focused;
-
-    if(blurFired) {
-      this.props.onBlur();
-      this.hidePicker();
-      this.hideVariants();
-    }
-
-    console.log('Handle Blur ===================================');
-    console.log(this.state.fromFocused, nextState.fromFocused);
-    console.log(this.state.toFocused, nextState.toFocused);
-    console.log('blurFired', blurFired);
-    console.log();
-
-    this.setState({ ...nextState, focused: !blurFired });
+  handleBlur(e, inputName) {
+    this.props.onBlur(e, inputName);
+    this.hidePicker();
+    this.hideVariants();
   }
 
   handleInputClick() {
@@ -498,11 +467,11 @@ class DateRangeInput extends Component {
             className="opuscapita_date-range-input__input-field"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
-            onBlur={this.handleFromInputBlur}
+            onBlur={(e) => this.handleBlur(e, 'from')}
+            onFocus={(e) => this.handleFocus(e, 'from')}
             onChange={(date) => this.handleRangeChange([date, value[1]])}
             onClick={this.handleInputClick}
             onError={this.handleError}
-            onFocus={this.handleFromInputFocus}
             onRef={dateInputField => (this.dateInputFieldFrom = dateInputField)}
             tabIndex={tabIndex}
             value={value[0]}
@@ -512,11 +481,11 @@ class DateRangeInput extends Component {
             className="opuscapita_date-range-input__input-field"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
-            onBlur={this.handleToInputBlur}
+            onBlur={(e) => this.handleBlur(e, 'to')}
+            onFocus={(e) => this.handleFocus(e, 'to')}
             onChange={(date) => this.handleRangeChange([value[0], date])}
             onClick={this.handleInputClick}
             onError={this.handleError}
-            onFocus={this.handleToInputFocus}
             onRef={dateInputField => (this.dateInputFieldTo = dateInputField)}
             tabIndex={tabIndex}
             value={value[1]}
