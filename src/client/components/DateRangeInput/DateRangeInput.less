@@ -68,8 +68,14 @@
   text-align: center;
   box-shadow: none !important;
 
-  &:first-child {
+  &:first-of-type {
+    text-align: left;
     padding-right: 12px;
+  }
+
+  &:last-of-type {
+    text-align: right;
+    padding-right: 36px;
   }
 }
 
@@ -122,5 +128,5 @@
   z-index: 10;
   pointer-events: none;
   color: #aaa;
-  padding-right: 12px;
+  padding-right: 24px;
 }
