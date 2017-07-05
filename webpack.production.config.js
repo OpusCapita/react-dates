@@ -4,7 +4,11 @@ const webpack = require('webpack');
 // let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let config = require('./webpack.development.config.js');
-config.entry = path.resolve(path.join(__dirname, 'src', 'client', 'index.js'));
+config.entry = {
+  DateInput: './src/client/DateInput',
+  DateRangeInput: './src/client/DateRangeInput',
+  DatePicker: './src/client/DatePicker'
+};
 delete config.devtool;
 delete config.output.publicPath;
 delete config.watch;
