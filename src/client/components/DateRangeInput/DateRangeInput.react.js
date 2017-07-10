@@ -326,6 +326,8 @@ class DateRangeInput extends Component {
   handleReset() {
     this.setState(initialState);
     this.handleRangeChange([null, null]);
+    this.dateInputFieldTo.clear();
+    this.dateInputFieldFrom.clear();
   }
 
   render() {
