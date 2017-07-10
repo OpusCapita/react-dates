@@ -7,7 +7,7 @@
     "lint": "eslint src",
     "start": "node www/index",
     "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/mocha-setup.js --require ignore-styles",
-    "npm-build": "rimraf lib && babel --copy-files --no-babelrc --presets es2015,stage-0,react --ignore *.spec.js src/client/components --out-dir lib && webpack --config webpack.production.config.js",
+    "npm-build": "rimraf lib && webpack --config webpack.production.config.js",
     "npm-publish": "update-changelog -- --all && npm run npm-build && npm-publish",
     "publish-release": "npm run npm-publish -- --release"
   },
