@@ -1,3 +1,9 @@
+## [v0.3.0-beta.5](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.4...v0.3.0-beta.5) (Mon, 10 Jul 2017 07:50:12 GMT)
+ - Merge pull request #20 from OpusCapita/bugfix/reset-date-range-value
+    
+     #19 Fix: Can't reset DateRangeInput value if not entered completely (b5d1fd5 2b9d095, 7d7adf7)
+ - #19 Fix: Can't reset DateRangeInput value if not entered completely (Kirill Volkovich <volkovich@scand.com>, 2b9d095)
+
 ## [v0.3.0-beta.4](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.3...v0.3.0-beta.4) (Wed, 05 Jul 2017 15:11:49 GMT)
  - We should have dominion power over jquery-ui selectors. Sadly it's
     always important too (Kirill Volkovich <volkovich@scand.com>, 0935a8c)
