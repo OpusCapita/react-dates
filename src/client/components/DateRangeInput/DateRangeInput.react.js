@@ -7,7 +7,7 @@ import DateInputField from '../DateInputField';
 import { DateUtils } from 'react-day-picker';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
-import moment from '../utils/momentInit';
+import moment from '../moment';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
 

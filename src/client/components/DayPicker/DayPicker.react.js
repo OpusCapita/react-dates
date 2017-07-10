@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDayPicker from 'react-day-picker/lib/src/DayPicker';
 import "react-day-picker/lib/style.css";
-import MomentLocaleUtils from '../utils/MomentLocaleUtils';
+import MomentLocaleUtils from './MomentLocaleUtils';
 import getMessage from '../translations';
 import assign from 'lodash/assign';
 import './DayPicker.less';

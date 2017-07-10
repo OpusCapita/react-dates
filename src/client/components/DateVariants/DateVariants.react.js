@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import VerticalList from '@opuscapita/react-autocompletes/lib/VerticalList';
-import moment from '../utils/momentInit';
+import moment from '../moment';
 import './DateVariants.less';
 
 let propTypes = {
