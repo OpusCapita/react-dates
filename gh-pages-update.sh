@@ -6,7 +6,8 @@ node node_modules/webpack/bin/webpack.js --config ./webpack.docs.config.js &&
 cp -R lib/* .gh-pages-tmp &&
 cp -R www/index.html .gh-pages-tmp &&
 
-git checkout gh-pages &&
+git branch -d gh-pages &&
+git checkout -b gh-pages &&
 git ls-files | grep -v -e "\(^\.gitignore$\|^\.gitattributes$\|^\.gh-pages-tmp$\)" | xargs rm -rf &&
 mv .gh-pages-tmp/* . &&
 rm -rf .gh-pages-tmp &&
