@@ -2,6 +2,9 @@
   "name": "@opuscapita/react-dates",
   "version": "0.3.0-beta.6",
   "description": "Start write new project with no effort.",
+  "keywords": [
+    "react", "datepicker", "date-range", "date-input", "date-range-input", "calendar", "date", "react-component"
+  ],
   "scripts": {
     "link-mode": "webpack --watch --config ./webpack.link.config.js",
     "lint": "eslint src",
