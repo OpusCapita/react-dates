@@ -1,3 +1,10 @@
+## [v0.3.0-beta.6](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.5...v0.3.0-beta.6) (Thu, 13 Jul 2017 13:58:54 GMT)
+ - Add keywords to package.json for better serach at npmjs.com (Kirill Volkovich <volkovich@scand.com>, 07acd42)
+ - Update gh-pages-update.sh (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, 36f94c2)
+ - Making shell scripts executable (Alexey Sergeev <sab@scand.com>, 3fcc649)
+ - Removing all sources babel-ification, leaving webpack call only for production file generation (Alexey Sergeev <sab@scand.com>, 9f2efa7)
+ - Resturcturing 'moment' related code. Adding spec for 'no' locale support. (Alexey Sergeev <sab@scand.com>, 49b3c21)
+
 ## [v0.3.0-beta.5](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.4...v0.3.0-beta.5) (Mon, 10 Jul 2017 07:50:12 GMT)
  - Merge pull request #20 from OpusCapita/bugfix/reset-date-range-value
     
