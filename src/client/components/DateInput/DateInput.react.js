@@ -207,7 +207,7 @@ class DateInput extends Component {
   }
 
   handleInputClick() {
-    if(!this.props.disabled) {
+    if (!this.props.disabled) {
       this.showPicker();
     }
   }
