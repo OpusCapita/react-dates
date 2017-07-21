@@ -1,6 +1,6 @@
 # React Datepicker, DateInput, DateRangeInput 
 
-[![CircleCI](https://circleci.com/gh/OpusCapita/react-dates.svg?style=svg)](https://circleci.com/gh/OpusCapita/react-dates)
+[![CircleCI Status](https://circleci.com/gh/OpusCapita/react-dates/tree/master.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/OpusCapita/react-dates)
 ![badge-npm-version](https://img.shields.io/npm/v/@opuscapita/react-dates.svg) ![badge-license](https://img.shields.io/github/license/OpusCapita/react-dates.svg)
 ![date-input](https://raw.githubusercontent.com/OpusCapita/react-dates/master/docs/DateInput.gif)
 
