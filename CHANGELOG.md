@@ -1,3 +1,16 @@
+## [v0.3.0-beta.7](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.6...v0.3.0-beta.7) (Fri, 21 Jul 2017 15:17:54 GMT)
+ - Merge pull request #22 from OpusCapita/bugfix/#21
+    
+     #21 Bugfix - In some cases "disabled" property not working properly (f7304a7 6c6920a, baed376)
+ - Fix lint errors (Kirill Volkovich <volkovich@scand.com>, 6c6920a)
+ - #21 Bugfix - In some cases "disabled" property not working properly (Kirill Volkovich <volkovich@scand.com>, 722e2a7)
+ - Change CircleCi Status badge (baliunov <baliunov@scand.com>, f7304a7)
+ - Change CircleCi Status badge (baliunov <baliunov@scand.com>, a0e5708)
+ - Add CircleCi Status badge (baliunov <baliunov@scand.com>, 58c558e)
+ - Add circleci (baliunov <baliunov@scand.com>, 60bc9ae)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, a59715a)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, dc593d3)
+
 ## [v0.3.0-beta.6](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.5...v0.3.0-beta.6) (Thu, 13 Jul 2017 13:58:54 GMT)
  - Add keywords to package.json for better serach at npmjs.com (Kirill Volkovich <volkovich@scand.com>, 07acd42)
  - Update gh-pages-update.sh (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, 36f94c2)
