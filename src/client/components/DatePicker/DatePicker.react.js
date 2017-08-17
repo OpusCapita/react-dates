@@ -5,6 +5,7 @@ import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
 import Portal from 'react-portal-minimal';
+import getCoords from '../utils/get-coords';
 
 let overlayOffsetV = 4;
 let springPreset = presets.gentle;
@@ -154,15 +155,7 @@ class DatePicker extends Component {
       />
     );
 
-    let rect = this.container && this.container.getBoundingClientRect();
-
-    let top = showToTop ?
-      rect && (rect.top - overlayOffsetV) :
-      rect && (rect.top + rect.height + overlayOffsetV);
-
-    let left =  showToLeft ?
-      rect && (rect.left + rect.width) :
-      rect && (rect.left);
+    let { top, left, alwaysLeft } = getCoords(this.container, showToTop, showToLeft);
 
     let pickerMotionElement = (
       <Motion

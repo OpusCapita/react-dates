@@ -11,6 +11,7 @@ import moment from '../moment';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
 import Portal from 'react-portal-minimal';
+import getCoords from '../utils/get-coords';
 
 let overlayOffsetV = 4;
 let springPreset = presets.gentle;
@@ -399,15 +400,7 @@ class DateRangeInput extends Component {
       );
     }
 
-    let rect = this.container && this.container.getBoundingClientRect();
-
-    let top = showToTop ?
-      rect && (rect.top - overlayOffsetV) :
-      rect && (rect.top + rect.height + overlayOffsetV);
-
-    let left =  showToLeft ?
-      rect && (rect.left + rect.width) :
-      rect && (rect.left);
+    let { top, left, alwaysLeft } = getCoords(this.container, showToTop, showToLeft);
 
     let pickerMotionElement = (
       <Motion
@@ -433,12 +426,6 @@ class DateRangeInput extends Component {
       </Motion>
     );
 
-    let variantsTop = showToTop ?
-      rect && rect.top - overlayOffsetV :
-      rect && rect.top + rect.height + overlayOffsetV;
-
-    let variantsLeft = rect && rect.left + rect.width;
-
     let variantsMotionElement = variantsElement ? (
       <Motion
         defaultStyle={{ x: showVariants ? 1 : 0 }}
@@ -451,8 +438,8 @@ class DateRangeInput extends Component {
               style={{
                 maxHeight: `${interpolatedStyle.x * 640}px`,
                 opacity: easeOutCubic(interpolatedStyle.x),
-                top: `${variantsTop}px`,
-                left: `${variantsLeft}px`,
+                top: `${top}px`,
+                left: `${alwaysLeft}px`,
                 transform: `translate(-100%, ${showToTop ? '-100%' : '0'})`
               }}
               >
