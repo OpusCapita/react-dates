@@ -1,3 +1,6 @@
+## [v0.3.0-beta.9](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.8...v0.3.0-beta.9) (Thu, 17 Aug 2017 18:24:17 GMT)
+ - Fix - date picker overlay don't close if no date "variants" (Kirill Volkovich <volkovich@scand.com>, 1aabd49)
+
 ## [v0.3.0-beta.8](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.7...v0.3.0-beta.8) (Thu, 17 Aug 2017 17:57:58 GMT)
  - Bloody fight with Bootstrap (Kirill Volkovich <volkovich@scand.com>, 0e4e9ac)
  - Fix styles (Kirill Volkovich <volkovich@scand.com>, 60fdabf)
