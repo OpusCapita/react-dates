@@ -10,7 +10,7 @@ import isEqual from 'lodash/isEqual';
 import moment from '../moment';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
-import Portal from 'react-portal-minimal';
+import Portal from 'react-portal';
 import getCoords from '../utils/get-coords';
 
 let overlayOffsetV = 4;
@@ -162,7 +162,7 @@ class DateRangeInput extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.value[0] !== nextProps.value[0]) {
       let month = nextProps.value[0] || new Date();
-      this.reactDayPicker.showMonth(month);
+      this.reactDayPicker && this.reactDayPicker.showMonth(month);
     }
   }
 
@@ -240,7 +240,11 @@ class DateRangeInput extends Component {
   }
 
   handleBodyClick(event) {
-    let clickedOutside = !this.container.contains(event.target);
+    let clickedOutside = (
+      !this.container.contains(event.target) &&
+      !this.pickerContainer.contains(event.target) &&
+      !this.variantsContainer.contains(event.target)
+    );
     if (clickedOutside) {
       this.hideVariants();
       this.hidePicker();
@@ -385,7 +389,7 @@ class DateRangeInput extends Component {
 
     let variantsElement = null;
 
-    if (showVariants) {
+    if (typeof variants !== 'undefined' && variants.length) {
       let translatedVariants = variants.map(variant => ({
         ...variant,
         label: variant.getLabel(locale)
@@ -408,8 +412,9 @@ class DateRangeInput extends Component {
         style={{ x: showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
       >
         {interpolatedStyle => (
-          <Portal>
+          <Portal isOpened={true}>
             <div
+              ref={ref => (this.pickerContainer = ref)}
               className={`opuscapita_date-range-input__picker-container`}
               style={{
                 maxHeight: `${interpolatedStyle.x * 640}px`,
@@ -432,8 +437,9 @@ class DateRangeInput extends Component {
         style={{ x: showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
         >
         {interpolatedStyle => (
-          <Portal>
+          <Portal isOpened={true}>
             <div
+              ref={ref => (this.variantsContainer = ref)}
               className={`opuscapita_date-range-input__variants-container`}
               style={{
                 maxHeight: `${interpolatedStyle.x * 640}px`,

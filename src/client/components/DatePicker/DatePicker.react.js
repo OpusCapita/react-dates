@@ -4,7 +4,7 @@ import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
-import Portal from 'react-portal-minimal';
+import Portal from 'react-portal';
 import getCoords from '../utils/get-coords';
 
 let overlayOffsetV = 4;
@@ -57,21 +57,20 @@ class DatePicker extends Component {
     this.state = {
       showPicker: false
     };
-    this.handleBodyClick = this.handleBodyClick.bind(this);
+    this.handlePortalClose = this.handlePortalClose.bind(this);
+    this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleToggleClick = this.handleToggleClick.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
   }
 
   componentDidMount() {
-    document.body.addEventListener('click', this.handleBodyClick);
+    document.body.addEventListener('keydown', this.handleBodyKeyDown);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.state.showPicker !== nextState.showPicker ||
-
       this.props.className !== nextProps.className ||
       this.props.disabled !== nextProps.disabled ||
       this.props.locale !== nextProps.locale ||
@@ -83,14 +82,11 @@ class DatePicker extends Component {
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener('click', this.handleBodyClick);
+    document.body.removeEventListener('keydown', this.handlePortalClose);
   }
 
-  handleBodyClick(event) {
-    let clickedOutside = !this.container.contains(event.target);
-    if (clickedOutside) {
-      this.hidePicker();
-    }
+  handlePortalClose(event) {
+    this.hidePicker();
   }
 
   handleDayClick(day) {
@@ -110,8 +106,11 @@ class DatePicker extends Component {
     this.props.onChange(value);
   }
 
-  handleKeyDown(event) {
-    if (event.which === 9) { // TAB key
+  handleBodyKeyDown(event) {
+    if (event.which === 9) {
+      this.hidePicker();
+    }
+    if (event.which === 27) { // ESC key
       this.hidePicker();
     }
   }
@@ -137,6 +136,8 @@ class DatePicker extends Component {
       ...restProps
     } = this.props;
 
+    let { showPicker } = this.state;
+
     let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
     let commonProps = splittedProps[0];
     let dayPickerSpecificProps = splittedProps[1];
@@ -159,11 +160,15 @@ class DatePicker extends Component {
 
     let pickerMotionElement = (
       <Motion
-        defaultStyle={{ x: this.state.showPicker ? 1 : 0 }}
-        style={{ x: this.state.showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
+        defaultStyle={{ x: showPicker ? 1 : 0 }}
+        style={{ x: showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
       >
         {interpolatedStyle => (
-          <Portal>
+          <Portal
+            isOpened={true}
+            closeOnOutsideClick={true}
+            onClose={this.handlePortalClose}
+          >
             <div
               className={`opuscapita_date-picker__picker-container`}
               style={{
@@ -184,7 +189,6 @@ class DatePicker extends Component {
     return (
       <div
         className={`opuscapita_date-picker ${className}`}
-        onKeyDown={this.handleKeyDown}
         ref={el => (this.container = el)}
         { ...commonProps }
       >

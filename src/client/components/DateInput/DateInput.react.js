@@ -9,7 +9,7 @@ import assign from 'lodash/assign';
 import moment from '../moment';
 import getMessage from '../translations';
 import isEqual from 'lodash/isEqual';
-import Portal from 'react-portal-minimal';
+import Portal from 'react-portal';
 import getCoords from '../utils/get-coords';
 
 let springPreset = presets.gentle;
@@ -112,7 +112,7 @@ class DateInput extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.value !== nextProps.value) {
       let month = nextProps.value || new Date();
-      this.reactDayPicker.showMonth(month);
+      this.reactDayPicker && this.reactDayPicker.showMonth(month);
     }
   }
 
@@ -146,7 +146,11 @@ class DateInput extends Component {
   }
 
   handleBodyClick(event) {
-    let clickedOutside = !this.container.contains(event.target);
+    let clickedOutside = (
+      !this.container.contains(event.target) &&
+      !this.pickerContainer.contains(event.target) &&
+      !this.variantsContainer.contains(event.target)
+    );
     if (clickedOutside) {
       this.hideVariants();
       this.hidePicker();
@@ -277,8 +281,9 @@ class DateInput extends Component {
         style={{ x: showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
       >
         {interpolatedStyle => (
-          <Portal>
+          <Portal isOpened={true}>
             <div
+              ref={ref => (this.pickerContainer = ref)}
               className={`opuscapita_date-input__picker-container`}
               style={{
                 maxHeight: `${interpolatedStyle.x * 640}px`,
@@ -308,7 +313,7 @@ class DateInput extends Component {
 
     let variantsElement = null;
 
-    if (showVariants) {
+    if (typeof variants !== 'undefined' && variants.length) {
       let translatedVariants = variants.map(variant => ({
         ...variant,
         label: variant.getLabel(locale)
@@ -329,8 +334,9 @@ class DateInput extends Component {
         style={{ x: showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
       >
         {interpolatedStyle => (
-          <Portal>
+          <Portal isOpened={true}>
             <div
+              ref={ref => (this.variantsContainer = ref)}
               className={`opuscapita_date-input__variants-container`}
               style={{
                 maxHeight: `${interpolatedStyle.x * 640}px`,

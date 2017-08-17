@@ -89,6 +89,6 @@
     "moment": "2.18.1",
     "react-day-picker": "5.2.0",
     "react-maskedinput": "3.3.4",
-    "react-portal-minimal": "4.0.2"
+    "react-portal": "3.1.0"
   }
 }
