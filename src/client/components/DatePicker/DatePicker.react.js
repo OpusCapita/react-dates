@@ -4,6 +4,9 @@ import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
+import Portal from 'react-portal-minimal';
+
+let overlayOffsetV = 4;
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -151,8 +154,15 @@ class DatePicker extends Component {
       />
     );
 
-    let showToTopClassName = showToTop ? 'opuscapita_date-picker__picker-container--to-top' : '';
-    let showToLeftClassName = showToLeft ? 'opuscapita_date-picker__picker-container--to-left' : '';
+    let rect = this.container && this.container.getBoundingClientRect();
+
+    let top = showToTop ?
+      rect && (rect.top - overlayOffsetV) :
+      rect && (rect.top + rect.height + overlayOffsetV);
+
+    let left =  showToLeft ?
+      rect && (rect.left + rect.width) :
+      rect && (rect.left);
 
     let pickerMotionElement = (
       <Motion
@@ -160,15 +170,20 @@ class DatePicker extends Component {
         style={{ x: this.state.showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
       >
         {interpolatedStyle => (
-          <div
-            className={`opuscapita_date-picker__picker-container ${showToTopClassName} ${showToLeftClassName}`}
-            style={{
-              maxHeight: `${interpolatedStyle.x * 640}px`,
-              opacity: easeOutCubic(interpolatedStyle.x)
-            }}
-          >
-            {pickerElement}
-          </div>
+          <Portal>
+            <div
+              className={`opuscapita_date-picker__picker-container`}
+              style={{
+                maxHeight: `${interpolatedStyle.x * 640}px`,
+                opacity: easeOutCubic(interpolatedStyle.x),
+                top: `${top}px`,
+                left: `${left}px`,
+                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%': '0'})`
+              }}
+            >
+              {pickerElement}
+            </div>
+          </Portal>
         )}
       </Motion>
     );

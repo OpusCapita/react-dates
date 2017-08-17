@@ -10,7 +10,9 @@ import isEqual from 'lodash/isEqual';
 import moment from '../moment';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
+import Portal from 'react-portal-minimal';
 
+let overlayOffsetV = 4;
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -356,11 +358,8 @@ class DateRangeInput extends Component {
 
     let from = this.props.value[0];
     let to = this.props.value[1];
-    let { enteredTo, error, focused } = this.state;
+    let { enteredTo, error, focused, showPicker, showVariants } = this.state;
     let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
-
-    let showToTopClassName = showToTop ? 'opuscapita_date-range-input__picker-container--to-top' : '';
-    let showToLeftClassName = showToLeft ? 'opuscapita_date-range-input__picker-container--to-left' : '';
 
     let pickerElement = (
       <DayPicker
@@ -383,7 +382,6 @@ class DateRangeInput extends Component {
       />
     );
 
-    let showVariants = typeof variants === 'undefined' || (variants && variants.length);
     let variantsElement = null;
 
     if (showVariants) {
@@ -401,41 +399,68 @@ class DateRangeInput extends Component {
       );
     }
 
+    let rect = this.container && this.container.getBoundingClientRect();
+
+    let top = showToTop ?
+      rect && (rect.top - overlayOffsetV) :
+      rect && (rect.top + rect.height + overlayOffsetV);
+
+    let left =  showToLeft ?
+      rect && (rect.left + rect.width) :
+      rect && (rect.left);
+
     let pickerMotionElement = (
       <Motion
-        defaultStyle={{ x: this.state.showPicker ? 1 : 0 }}
-        style={{ x: this.state.showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
-      >{interpolatedStyle => (
-          <div
-            className={`opuscapita_date-range-input__picker-container ${showToTopClassName} ${showToLeftClassName}`}
-            style={{
-              maxHeight: `${interpolatedStyle.x * 640}px`,
-              opacity: easeOutCubic(interpolatedStyle.x)
-            }}
-          >
-            {pickerElement}
-          </div>
-      )}</Motion>
+        defaultStyle={{ x: showPicker ? 1 : 0 }}
+        style={{ x: showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
+      >
+        {interpolatedStyle => (
+          <Portal>
+            <div
+              className={`opuscapita_date-range-input__picker-container`}
+              style={{
+                maxHeight: `${interpolatedStyle.x * 640}px`,
+                opacity: easeOutCubic(interpolatedStyle.x),
+                top: `${top}px`,
+                left: `${left}px`,
+                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%': '0'})`
+              }}
+            >
+              {pickerElement}
+            </div>
+          </Portal>
+        )}
+      </Motion>
     );
+
+    let variantsTop = showToTop ?
+      rect && rect.top - overlayOffsetV :
+      rect && rect.top + rect.height + overlayOffsetV;
+
+    let variantsLeft = rect && rect.left + rect.width;
 
     let variantsMotionElement = variantsElement ? (
       <Motion
-        defaultStyle={{ x: this.state.showVariants ? 1 : 0 }}
-        style={{ x: this.state.showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
-      >{interpolatedStyle => (
-          <div
-            className={`
-              opuscapita_date-range-input__variants-container
-              ${showToTop ? 'opuscapita_date-range-input__variants-container--to-top' : ''}
-            `}
-            style={{
-              maxHeight: `${interpolatedStyle.x * 640}px`,
-              opacity: easeOutCubic(interpolatedStyle.x)
-            }}
-          >
-            {variantsElement}
-          </div>
-      )}</Motion>
+        defaultStyle={{ x: showVariants ? 1 : 0 }}
+        style={{ x: showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
+        >
+        {interpolatedStyle => (
+          <Portal>
+            <div
+              className={`opuscapita_date-range-input__variants-container`}
+              style={{
+                maxHeight: `${interpolatedStyle.x * 640}px`,
+                opacity: easeOutCubic(interpolatedStyle.x),
+                top: `${variantsTop}px`,
+                left: `${variantsLeft}px`,
+                transform: `translate(-100%, ${showToTop ? '-100%' : '0'})`
+              }}
+              >
+              {variantsElement}
+            </div>
+          </Portal>
+        )}
+      </Motion>
     ) : null;
 
     let resetButton = (
@@ -449,7 +474,7 @@ class DateRangeInput extends Component {
       </InputAddonButton>
     );
 
-    let variantsButton = variantsElement ? (
+    let variantsButton = (typeof variants !== 'undefined' && variants.length) ? (
       <button
         type="button"
         className="btn btn-default opuscapita_date-range-input__variants-btn"

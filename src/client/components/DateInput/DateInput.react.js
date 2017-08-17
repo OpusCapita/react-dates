@@ -9,7 +9,9 @@ import assign from 'lodash/assign';
 import moment from '../moment';
 import getMessage from '../translations';
 import isEqual from 'lodash/isEqual';
+import Portal from 'react-portal-minimal';
 
+let overlayOffsetV = 4;
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -194,6 +196,7 @@ class DateInput extends Component {
   showPicker() {
     let month = this.props.value || new Date();
     this.reactDayPicker.showMonth(month);
+    this.hideVariants();
     this.setState({ showPicker: true });
   }
 
@@ -244,7 +247,7 @@ class DateInput extends Component {
       ...restProps
     } = this.props;
 
-    let { error } = this.state;
+    let { error, showPicker, showVariants } = this.state;
 
     let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 
@@ -252,38 +255,53 @@ class DateInput extends Component {
     let dayPickerSpecificProps = splittedProps[1];
 
     let pickerElement = (
-      <DayPicker
-        dayPickerRef={el => (this.reactDayPicker = el)}
-        locale={locale}
-        month={value}
-        selectedDays={value}
-        tabIndex={-1}
-        fixedWeeks={true}
-        onChange={this.handleDateChange}
-        onDayClick={this.handleDayClick}
-        { ...dayPickerSpecificProps }
-      />
+        <DayPicker
+          dayPickerRef={el => (this.reactDayPicker = el)}
+          locale={locale}
+          month={value}
+          selectedDays={value}
+          tabIndex={-1}
+          fixedWeeks={true}
+          onChange={this.handleDateChange}
+          onDayClick={this.handleDayClick}
+          { ...dayPickerSpecificProps }
+        />
     );
 
     let showToTopClassName = showToTop ? 'opuscapita_date-input__picker-container--to-top' : '';
     let showToLeftClassName = showToLeft ? 'opuscapita_date-input__picker-container--to-left' : '';
     let hasErrorClassName = (error === null && isValid) ? '' : 'has-error';
 
+    let rect = this.container && this.container.getBoundingClientRect();
+
+    let top = showToTop ?
+      rect && (rect.top - overlayOffsetV) :
+      rect && (rect.top + rect.height + overlayOffsetV);
+
+    let left =  showToLeft ?
+      rect && (rect.left + rect.width) :
+      rect && (rect.left);
+
     let pickerMotionElement = (
       <Motion
-        defaultStyle={{ x: this.state.showPicker ? 1 : 0 }}
-        style={{ x: this.state.showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
+        defaultStyle={{ x: showPicker ? 1 : 0 }}
+        style={{ x: showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
       >
         {interpolatedStyle => (
-          <div
-            className={`opuscapita_date-input__picker-container ${showToTopClassName} ${showToLeftClassName}`}
-            style={{
-              maxHeight: `${interpolatedStyle.x * 640}px`,
-              opacity: easeOutCubic(interpolatedStyle.x)
-            }}
-          >
-            {pickerElement}
-          </div>
+          <Portal>
+            <div
+              className={`opuscapita_date-input__picker-container`}
+              style={{
+                maxHeight: `${interpolatedStyle.x * 640}px`,
+                opacity: easeOutCubic(interpolatedStyle.x),
+                top: `${top}px`,
+                left: `${left}px`,
+                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%': '0'})`
+              }}
+            >
+              {pickerElement}
+            </div>
+          </Portal>
         )}
       </Motion>
     );
@@ -294,12 +312,11 @@ class DateInput extends Component {
         tabIndex="-1"
         onClick={this.handleReset}
         disabled={disabled}
-      >
+        >
         ✕
       </InputAddonButton>
     );
 
-    let showVariants = typeof variants === 'undefined' || (variants && variants.length);
     let variantsElement = null;
 
     if (showVariants) {
@@ -317,28 +334,37 @@ class DateInput extends Component {
       );
     }
 
+    let variantsTop = showToTop ?
+      rect && rect.top - overlayOffsetV :
+      rect && rect.top + rect.height + overlayOffsetV;
+
+    let variantsLeft = rect && rect.left + rect.width;
 
     let variantsMotionElement = variantsElement ? (
       <Motion
-        defaultStyle={{ x: this.state.showVariants ? 1 : 0 }}
-        style={{ x: this.state.showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
-      >{interpolatedStyle => (
-          <div
-            className={`
-              opuscapita_date-input__variants-container
-              ${showToTop ? 'opuscapita_date-input__variants-container--to-top' : ''}
-            `}
-            style={{
-              maxHeight: `${interpolatedStyle.x * 640}px`,
-              opacity: easeOutCubic(interpolatedStyle.x)
-            }}
-          >
-            {variantsElement}
-          </div>
-      )}</Motion>
+        defaultStyle={{ x: showVariants ? 1 : 0 }}
+        style={{ x: showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
+      >
+        {interpolatedStyle => (
+          <Portal>
+            <div
+              className={`opuscapita_date-input__variants-container`}
+              style={{
+                maxHeight: `${interpolatedStyle.x * 640}px`,
+                opacity: easeOutCubic(interpolatedStyle.x),
+                top: `${variantsTop}px`,
+                left: `${variantsLeft}px`,
+                transform: `translate(-100%, ${showToTop ? '-100%' : '0'})`
+              }}
+            >
+              {variantsElement}
+            </div>
+          </Portal>
+        )}
+      </Motion>
     ) : null;
 
-    let variantsButton = variantsElement ? (
+    let variantsButton = (typeof variants !== 'undefined' && variants.length) ? (
       <button
         type="button"
         className="btn btn-default opuscapita_date-input__variants-btn"

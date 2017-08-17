@@ -25,13 +25,14 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 ### Code Example
 
 ```jsx
-<DateInput
-  value={_scope.state.value}
-  dateFormat="dd/MM/yyyy"
-  locale="de"
-  onChange={_scope.handleChange.bind(_scope)}
-/>
-
+<div style={{ height: '50px', overflow: 'hidden'}}>
+  <DateInput
+    value={_scope.state.value}
+    dateFormat="dd/MM/yyyy"
+    locale="de"
+    onChange={_scope.handleChange.bind(_scope)}
+  />
+</div>
 <hr />
 
 <DateInput
