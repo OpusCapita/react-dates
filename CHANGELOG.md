@@ -1,3 +1,13 @@
+## [v0.3.0-beta.8](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.7...v0.3.0-beta.8) (Thu, 17 Aug 2017 17:57:58 GMT)
+ - Bloody fight with Bootstrap (Kirill Volkovich <volkovich@scand.com>, 0e4e9ac)
+ - Fix styles (Kirill Volkovich <volkovich@scand.com>, 60fdabf)
+ - Fix show overlays if parent container has "overfow: hidden" (Kirill Volkovich <volkovich@scand.com>, 2e4bb51)
+ - Fix show overlays if parent container has "overfow: hidden" (Kirill Volkovich <volkovich@scand.com>, 038421e)
+ - Merge branch 'master' of opuscapita.github.com:OpusCapita/react-dates (e7324f0 7579f2b, 1a05965)
+ - Fix show overlays if parent container has "overfow: hidden" (Kirill Volkovich <volkovich@scand.com>, e7324f0)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, 7579f2b)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, 8f1ef63)
+
 ## [v0.3.0-beta.7](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.6...v0.3.0-beta.7) (Fri, 21 Jul 2017 15:17:54 GMT)
  - Merge pull request #22 from OpusCapita/bugfix/#21
     
