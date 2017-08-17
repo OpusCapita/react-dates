@@ -148,9 +148,13 @@ class DateInput extends Component {
   handleBodyClick(event) {
     let clickedOutside = (
       !this.container.contains(event.target) &&
-      !this.pickerContainer.contains(event.target) &&
-      !this.variantsContainer.contains(event.target)
+      !this.pickerContainer.contains(event.target)
     );
+
+    if(this.variantsContainer) {
+      clickedOutside = clickedOutside && !this.variantsContainer.contains(event.target);
+    }
+
     if (clickedOutside) {
       this.hideVariants();
       this.hidePicker();
