@@ -13,8 +13,9 @@
 
 ### Methods Reference
 
-| Name  | Description                 |
-| clear | Forcibly clears input value |
+| Name                           | Description                 |
+| ------------------------------ | :----------------------     |
+| clear                          | Forcibly clears input value |
 
 ### Code Example
 
