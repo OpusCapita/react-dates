@@ -202,6 +202,7 @@ class DayPicker extends Component {
             onMonthChange={this.handleMonthChange}
             captionElement={caption}
             tabIndex={-1}
+            showWeekNumbers={true}
             { ...pickerSpecificProps }
           />
         </div>

@@ -6,7 +6,8 @@ export default (elem, showToTop, showToLeft) => {
   }
 
   let rect = elem.getBoundingClientRect();
-
+  console.log(rect);
+  console.log(rect.left, document.body.scrollLeft);
   return ({
     top: showToTop ?
       rect.top - overlayOffsetV + document.body.scrollTop :
