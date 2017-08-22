@@ -62,6 +62,7 @@ class DateInputField extends Component {
 
   handleInputChange(event) {
     let inputValue = event.target.value;
+    console.log('iv', inputValue);
     this.validate(inputValue, this.props.dateFormat);
     this.setState({ inputValue });
   }
@@ -83,11 +84,23 @@ class DateInputField extends Component {
       ...restProps
     } = this.props;
 
-    let mask = dateFormat.replace(/[a-zA-Z]/g, '1');
-
     let {
       inputValue
     } = this.state;
+
+
+    let mask = dateFormat.replace(/[a-zA-Z]/g, '1');
+    let separators = dateFormat.split('').
+        filter(ch => !ch.match(/[a-zA-Z]/g)).
+        map(sep => '\\' + sep);
+
+    let splitRegExp = new RegExp(`(${separators.join('|')})`);
+
+    // D.M.YYYY
+    // DD.M.YYYY
+    // D.MM.YYYY
+
+    console.log(mask.split(splitRegExp));
 
     return (
       <MaskedInput

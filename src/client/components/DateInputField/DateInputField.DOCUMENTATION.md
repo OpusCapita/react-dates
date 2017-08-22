@@ -28,6 +28,17 @@
   onFocus={() => console.log('focus')}
   value={_scope.state.value}
 />
+
+<br />
+
+<DateInputField
+  dateFormat="D.M.YYYY"
+  onBlur={() => console.log('blur')}
+  onChange={_scope.handleChange.bind(_scope)}
+  onError={(error) => console.log('error:', error)}
+  onFocus={() => console.log('focus')}
+  value={_scope.state.value}
+/>
 ```
 
 ### Component Name
