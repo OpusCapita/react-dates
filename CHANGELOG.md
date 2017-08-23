@@ -1,3 +1,6 @@
+## [v0.3.0-beta.11](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.10...v0.3.0-beta.11) (Wed, 23 Aug 2017 08:02:44 GMT)
+ - Fix "variants" element position. Fix picker caption styles (Kirill Volkovich <volkovich@scand.com>, 2832f62)
+
 ## [v0.3.0-beta.10](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.9...v0.3.0-beta.10) (Wed, 23 Aug 2017 07:35:01 GMT)
  - Fix lint errors (Kirill Volkovich <volkovich@scand.com>, f0544ae)
  - Fix styles (Kirill Volkovich <volkovich@scand.com>, 3049ae0)
