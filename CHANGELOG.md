@@ -1,3 +1,18 @@
+## [v0.3.0-beta.11](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.10...v0.3.0-beta.11) (Wed, 23 Aug 2017 08:02:44 GMT)
+ - Fix "variants" element position. Fix picker caption styles (Kirill Volkovich <volkovich@scand.com>, 2832f62)
+
+## [v0.3.0-beta.10](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.9...v0.3.0-beta.10) (Wed, 23 Aug 2017 07:35:01 GMT)
+ - Fix lint errors (Kirill Volkovich <volkovich@scand.com>, f0544ae)
+ - Fix styles (Kirill Volkovich <volkovich@scand.com>, 3049ae0)
+ - Fix styles (Kirill Volkovich <volkovich@scand.com>, c8e0112)
+ - #24 Show calendar week in date picker
+    
+    Note: Not released because positioning problems in IE11 (Kirill Volkovich <volkovich@scand.com>, 1a912cb)
+ - Merge branch 'master' of opuscapita.github.com:OpusCapita/react-dates (cfeebf7 5350c10, bca132f)
+ - Fix picker popup position (Kirill Volkovich <volkovich@scand.com>, cfeebf7)
+ - Update README.md (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, 5350c10)
+ - Fix docs for DateInputField (Kirill Volkovich <volkovich@scand.com>, 0c5ed8d)
+
 ## [v0.3.0-beta.9](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.8...v0.3.0-beta.9) (Thu, 17 Aug 2017 18:24:17 GMT)
  - Fix - date picker overlay don't close if no date "variants" (Kirill Volkovich <volkovich@scand.com>, 1aabd49)
 

@@ -7,7 +7,6 @@ import isEqual from 'lodash/isEqual';
 import Portal from 'react-portal';
 import getCoords from '../utils/get-coords';
 
-let overlayOffsetV = 4;
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -156,7 +155,7 @@ class DatePicker extends Component {
       />
     );
 
-    let { top, left, alwaysLeft } = getCoords(this.container, showToTop, showToLeft);
+    let { top, left } = getCoords(this.container, showToTop, showToLeft);
 
     let pickerMotionElement = (
       <Motion
@@ -176,7 +175,7 @@ class DatePicker extends Component {
                 opacity: easeOutCubic(interpolatedStyle.x),
                 top: `${top}px`,
                 left: `${left}px`,
-                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%': '0'})`
+                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%' : '0'})`
               }}
             >
               {pickerElement}

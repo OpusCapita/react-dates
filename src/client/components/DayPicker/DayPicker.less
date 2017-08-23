@@ -1,5 +1,5 @@
 .opuscapita_day-picker {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -37,6 +37,20 @@
   }
   &:focus {
     transform: scale(1);
+  }
+}
+
+.opuscapita_day-picker__picker .DayPicker-wrapper {
+  flex-wrap: nowrap;
+}
+
+.opuscapita_day-picker__picker .DayPicker-WeekNumber {
+  &:hover {
+    cursor: default;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 
@@ -78,6 +92,8 @@
   display: flex;
   justify-content: space-between;
   padding: 0 1.6em;
+  position: relative;
+  top: -2px;
 }
 
 .opuscapita_day-picker__caption-select {

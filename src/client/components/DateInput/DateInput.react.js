@@ -112,7 +112,9 @@ class DateInput extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.value !== nextProps.value) {
       let month = nextProps.value || new Date();
-      this.reactDayPicker && this.reactDayPicker.showMonth(month);
+      if (this.reactDayPicker) {
+        this.reactDayPicker.showMonth(month);
+      }
     }
   }
 
@@ -151,7 +153,7 @@ class DateInput extends Component {
       !this.pickerContainer.contains(event.target)
     );
 
-    if(this.variantsContainer) {
+    if (this.variantsContainer) {
       clickedOutside = clickedOutside && !this.variantsContainer.contains(event.target);
     }
 
@@ -294,7 +296,7 @@ class DateInput extends Component {
                 opacity: easeOutCubic(interpolatedStyle.x),
                 top: `${top}px`,
                 left: `${left}px`,
-                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%': '0'})`
+                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%' : '0'})`
               }}
             >
               {pickerElement}

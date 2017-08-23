@@ -13,7 +13,6 @@ import getMessage from '../translations';
 import Portal from 'react-portal';
 import getCoords from '../utils/get-coords';
 
-let overlayOffsetV = 4;
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
 
@@ -162,7 +161,9 @@ class DateRangeInput extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.value[0] !== nextProps.value[0]) {
       let month = nextProps.value[0] || new Date();
-      this.reactDayPicker && this.reactDayPicker.showMonth(month);
+      if (this.reactDayPicker) {
+        this.reactDayPicker.showMonth(month);
+      }
     }
   }
 
@@ -245,7 +246,7 @@ class DateRangeInput extends Component {
       !this.pickerContainer.contains(event.target)
     );
 
-    if(this.variantsContainer) {
+    if (this.variantsContainer) {
       clickedOutside = clickedOutside && !this.variantsContainer.contains(event.target);
     }
 
@@ -425,7 +426,7 @@ class DateRangeInput extends Component {
                 opacity: easeOutCubic(interpolatedStyle.x),
                 top: `${top}px`,
                 left: `${left}px`,
-                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%': '0'})`
+                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%' : '0'})`
               }}
             >
               {pickerElement}
@@ -439,7 +440,7 @@ class DateRangeInput extends Component {
       <Motion
         defaultStyle={{ x: showVariants ? 1 : 0 }}
         style={{ x: showVariants ? spring(1, springPreset) : spring(0, springPreset) }}
-        >
+      >
         {interpolatedStyle => (
           <Portal isOpened={true}>
             <div
@@ -452,7 +453,7 @@ class DateRangeInput extends Component {
                 left: `${alwaysLeft}px`,
                 transform: `translate(-100%, ${showToTop ? '-100%' : '0'})`
               }}
-              >
+            >
               {variantsElement}
             </div>
           </Portal>
