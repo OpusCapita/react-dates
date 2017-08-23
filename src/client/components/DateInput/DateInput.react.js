@@ -112,7 +112,9 @@ class DateInput extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.value !== nextProps.value) {
       let month = nextProps.value || new Date();
-      this.reactDayPicker && this.reactDayPicker.showMonth(month);
+      if (this.reactDayPicker) {
+        this.reactDayPicker.showMonth(month);
+      }
     }
   }
 
@@ -151,7 +153,7 @@ class DateInput extends Component {
       !this.pickerContainer.contains(event.target)
     );
 
-    if(this.variantsContainer) {
+    if (this.variantsContainer) {
       clickedOutside = clickedOutside && !this.variantsContainer.contains(event.target);
     }
 
@@ -277,8 +279,7 @@ class DateInput extends Component {
     );
 
     let hasErrorClassName = (error === null && isValid) ? '' : 'has-error';
-    let { top, left, alwaysLeft } = getCoords(this.container, showToTop, showToLeft);
-    console.log('ords:', top, left, alwaysLeft);
+    let { top, left } = getCoords(this.container, showToTop, showToLeft);
 
     let pickerMotionElement = (
       <Motion
@@ -295,7 +296,7 @@ class DateInput extends Component {
                 opacity: easeOutCubic(interpolatedStyle.x),
                 top: `${top}px`,
                 left: `${left}px`,
-                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%': '0'})`
+                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%' : '0'})`
               }}
             >
               {pickerElement}
@@ -347,7 +348,7 @@ class DateInput extends Component {
                 maxHeight: `${interpolatedStyle.x * 640}px`,
                 opacity: easeOutCubic(interpolatedStyle.x),
                 top: `${top}px`,
-                left: `${alwaysLeft}px`,
+                left: `${left}px`,
                 transform: `translate(-100%, ${showToTop ? '-100%' : '0'})`
               }}
             >
