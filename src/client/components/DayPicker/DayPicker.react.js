@@ -200,6 +200,7 @@ class DayPicker extends Component {
             onDayKeyDown={this.handleDateChange}
             onDayTouchEnd={this.handleDateChange}
             onMonthChange={this.handleMonthChange}
+            onWeekClick={() => {}}
             captionElement={caption}
             tabIndex={-1}
             showWeekNumbers={true}

@@ -1,5 +1,5 @@
 .opuscapita_day-picker {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -42,6 +42,16 @@
 
 .opuscapita_day-picker__picker .DayPicker-wrapper {
   flex-wrap: nowrap;
+}
+
+.opuscapita_day-picker__picker .DayPicker-WeekNumber {
+  &:hover {
+    cursor: default;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .opuscapita_day-picker__picker .DayPicker-Day:not(.DayPicker-Day--outside):hover:after {

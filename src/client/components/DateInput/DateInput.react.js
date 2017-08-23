@@ -278,6 +278,7 @@ class DateInput extends Component {
 
     let hasErrorClassName = (error === null && isValid) ? '' : 'has-error';
     let { top, left, alwaysLeft } = getCoords(this.container, showToTop, showToLeft);
+    console.log('ords:', top, left, alwaysLeft);
 
     let pickerMotionElement = (
       <Motion

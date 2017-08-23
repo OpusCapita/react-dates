@@ -6,9 +6,8 @@ export default (elem, showToTop, showToLeft) => {
   }
 
   let rect = elem.getBoundingClientRect();
-  console.log(rect);
-  console.log(rect.left, document.body.scrollLeft);
-  return ({
+
+  let coords = {
     top: showToTop ?
       rect.top - overlayOffsetV + document.body.scrollTop :
       rect.top + rect.height + overlayOffsetV + document.body.scrollTop,
@@ -18,5 +17,7 @@ export default (elem, showToTop, showToLeft) => {
       rect.left + document.body.scrollLeft,
 
     alwaysLeft: rect.left + rect.width + document.body.scrollLeft
-  });
+  };
+
+  return coords;
 }
