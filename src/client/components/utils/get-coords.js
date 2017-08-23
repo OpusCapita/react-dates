@@ -14,7 +14,9 @@ export default (elem, showToTop, showToLeft) => {
 
     left: showToLeft ?
       rect.left + rect.width + document.body.scrollLeft :
-      rect.left + document.body.scrollLeft
+      rect.left + document.body.scrollLeft,
+
+    alwaysLeft: rect.left + rect.width + document.body.scrollLeft
   };
 
   return coords;

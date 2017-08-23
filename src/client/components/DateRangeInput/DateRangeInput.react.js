@@ -409,7 +409,7 @@ class DateRangeInput extends Component {
       );
     }
 
-    let { top, left } = getCoords(this.container, showToTop, showToLeft);
+    let { top, left, alwaysLeft } = getCoords(this.container, showToTop, showToLeft);
 
     let pickerMotionElement = (
       <Motion
@@ -450,7 +450,7 @@ class DateRangeInput extends Component {
                 maxHeight: `${interpolatedStyle.x * 640}px`,
                 opacity: easeOutCubic(interpolatedStyle.x),
                 top: `${top}px`,
-                left: `${left}px`,
+                left: `${alwaysLeft}px`,
                 transform: `translate(-100%, ${showToTop ? '-100%' : '0'})`
               }}
             >
