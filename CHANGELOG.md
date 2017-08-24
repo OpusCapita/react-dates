@@ -1,3 +1,7 @@
+## [v0.3.0-beta.12](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.11...v0.3.0-beta.12) (Thu, 24 Aug 2017 11:17:50 GMT)
+ - Fix daypicker caption "Next / Prev" buttons (Kirill Volkovich <volkovich@scand.com>, 8d880ac)
+ - Ignore "gh-pages" branch in CircleCI (Kirill Volkovich <volkovich@scand.com>, 500d3ff)
+
 ## [v0.3.0-beta.11](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.10...v0.3.0-beta.11) (Wed, 23 Aug 2017 08:02:44 GMT)
  - Fix "variants" element position. Fix picker caption styles (Kirill Volkovich <volkovich@scand.com>, 2832f62)
 
