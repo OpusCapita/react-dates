@@ -42,6 +42,9 @@
 
 .opuscapita_day-picker__picker .DayPicker-wrapper {
   flex-wrap: nowrap;
+  &:focus {
+    outline: none;
+  }
 }
 
 .opuscapita_day-picker__picker .DayPicker-WeekNumber {
@@ -73,6 +76,14 @@
 .opuscapita_day-picker__picker .DayPicker-Day--today {
   font-weight: 600;
   color: #000;
+}
+
+.opuscapita_day-picker__picker .DayPicker-NavBar {
+  z-index: 9999;
+}
+
+.opuscapita_day-picker__picker .DayPicker-NavButton:focus {
+  outline: none;
 }
 
 .opuscapita_day-picker__footer {
