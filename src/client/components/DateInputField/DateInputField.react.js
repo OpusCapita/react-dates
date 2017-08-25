@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import MaskedInput from 'react-maskedinput';
+import MaskedInput from 'react-text-mask';
 import moment from '../moment';
 import './DateInputField.less';
 
@@ -62,8 +62,9 @@ class DateInputField extends Component {
 
   handleInputChange(event) {
     let inputValue = event.target.value;
+
+    this.validate(inputValue.replace(' ', '0'), this.props.dateFormat);
     console.log('iv', inputValue);
-    this.validate(inputValue, this.props.dateFormat);
     this.setState({ inputValue });
   }
 
@@ -88,29 +89,44 @@ class DateInputField extends Component {
       inputValue
     } = this.state;
 
-
-    let mask = dateFormat.replace(/[a-zA-Z]/g, '1');
     let separators = dateFormat.split('').
-        filter(ch => !ch.match(/[a-zA-Z]/g)).
-        map(sep => '\\' + sep);
+      filter(ch => !ch.match(/[a-zA-Z]/g)).
+      map(sep => sep);
 
     let splitRegExp = new RegExp(`(${separators.join('|')})`);
 
-    // D.M.YYYY
-    // DD.M.YYYY
-    // D.MM.YYYY
+    let splittedDateFormat = dateFormat.split(splitRegExp);
+    let normalizedDateFormat = splittedDateFormat.map(
+      formatPart => (formatPart.length === 1 && !splitRegExp.test(formatPart)) ?
+        formatPart + formatPart :
+        formatPart
+    );
 
-    console.log(mask.split(splitRegExp));
+    let placeholder = normalizedDateFormat.join('');
+
+    let mask = normalizedDateFormat.reduce((result, formatPart) => {
+      let isSeparator = separators.indexOf(formatPart) !== -1;
+      if (isSeparator) {
+        return result.concat([formatPart]);
+      }
+
+      let normalizedFormatPart = formatPart.split('').map(
+        (ch, i) => (i === 0 && formatPart.length === 2) ? /(\d|\ )/ : /\d/
+      );
+
+      return result.concat(normalizedFormatPart);
+    }, []);
 
     return (
       <MaskedInput
         ref={this.handleRef}
         className={`opuscapita_date-input-field form-control ${className}`}
         mask={mask}
+        guide={true}
         placeholderChar="‒"
         disabled={disabled}
         onChange={this.handleInputChange}
-        placeholder={dateFormat}
+        placeholder={placeholder}
         type="text"
         value={inputValue}
         {...restProps}

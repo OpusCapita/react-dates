@@ -88,7 +88,7 @@
     "lodash": "4.17.4",
     "moment": "2.18.1",
     "react-day-picker": "6.1.0",
-    "react-maskedinput": "3.3.4",
-    "react-portal": "3.1.0"
+    "react-portal": "3.1.0",
+    "react-text-mask": "5.0.2"
   }
 }
