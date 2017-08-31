@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import MaskedInput from '../Maskedinput';
+import MaskedInput from '../MaskedInput';
 import moment from '../moment';
 import './DateInputField.less';
 
@@ -106,6 +106,7 @@ class DateInputField extends Component {
         type="text"
         isValid={this.isValid}
         value={inputValue}
+        dateFormat={this.props.dateFormat}
         {...restProps}
       />
     );

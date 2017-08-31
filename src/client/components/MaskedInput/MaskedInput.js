@@ -54,6 +54,14 @@ function setSelection(el, selection) {
   } catch (e) { /* not focused or not visible */ }
 }
 
+function getSeparatorRegExp(dateFormat) {
+  const separators = dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep);
+  const sepRegExpStr = separators.reduce((accum, el) => {
+    return accum + '\\\\' + el;
+  }, '');
+  return new RegExp(`^[${sepRegExpStr}]$`);
+}
+
 class MaskedInput extends React.Component {
   constructor(props) {
     super(props);
@@ -62,6 +70,7 @@ class MaskedInput extends React.Component {
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onPaste = this._onPaste.bind(this);
     this._onKeyPress = this._onKeyPress.bind(this);
+    this._sepRegExp = getSeparatorRegExp(this.props.dateFormat);
   }
 
   componentWillMount() {
@@ -191,15 +200,17 @@ class MaskedInput extends React.Component {
     if (this.mask.input((e.key || e.data))) {
       if (this.props.isValid) {
         let { start, end } = getSelection(this.input);
-        const pattern = this.mask.pattern.pattern;
-        const delta = end - start;
-        const isDelta2 = delta === 2 && pattern[end - 1] === ' ';
-        if (pattern[start] === ' ' && (delta === 0 || delta === 1 || isDelta2)) {
-          const insChar = isDelta2 ? this.props.placeholderChar : '';
-          e.target.value = e.target.value.slice(0, start) + e.key + insChar + e.target.value.slice(start < end ? end : end + 1); // eslint-disable-line
-        } else {
-          e.target.value = this.mask.getValue(); // eslint-disable-line
-        }
+        const insertArr = this.mask.pattern.pattern.
+        slice(start + 1, end).
+        map(el => {
+          return this._sepRegExp.test(el) ? el : this.props.placeholderChar;
+        });
+        e.target.value = [ // eslint-disable-line
+          e.target.value.slice(0, start),
+          e.key
+        ].
+        concat(insertArr, e.target.value.slice(end + (start === end ? 1 : 0))).
+        join('');
       } else {
         e.target.value = this.mask.getValue(); // eslint-disable-line
       }
@@ -276,7 +287,7 @@ class MaskedInput extends React.Component {
     let eventHandlers = this._getEventHandlers();
     let { size = maxLength, placeholder = this.mask.emptyValue } = this.props; // eslint-disable-line
 
-    let { placeholderChar, formatCharacters, isValid, ...cleanedProps } = this.props; // eslint-disable-line
+    let { placeholderChar, formatCharacters, isValid, dateFormat, ...cleanedProps } = this.props; // eslint-disable-line
     let inputProps = { ...cleanedProps, ...eventHandlers, ref, maxLength, value, size, placeholder };
     return <input {...inputProps} />
   }
@@ -289,6 +300,7 @@ MaskedInput.propTypes = {
   placeholderChar: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
+  dateFormat: PropTypes.string,
 };
 
 MaskedInput.defaultProps = {

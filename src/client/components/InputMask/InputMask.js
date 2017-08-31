@@ -372,7 +372,7 @@ InputMask.prototype.paste = function paste(input) {
     this.selection.start = this.pattern.firstEditableIndex;
   }
 
-  for (i = 0, l = input.length;
+  for (let i = 0, l = input.length;
        i < l && this.selection.start <= this.pattern.lastEditableIndex;
        i++) {
     let valid = this.input(input.charAt(i));
