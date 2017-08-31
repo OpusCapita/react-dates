@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import MaskedInput from 'react-maskedinput';
+import MaskedInput from '../Maskedinput';
 import moment from '../moment';
 import './DateInputField.less';
 
@@ -35,6 +35,7 @@ class DateInputField extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleRef = this.handleRef.bind(this);
     this.clear = this.clear.bind(this);
+    this.isValid = false;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,8 +50,10 @@ class DateInputField extends Component {
   }
 
   validate(dateString, dateFormat) {
-    let momentDate = moment(dateString, dateFormat, true);
-    let error = momentDate.isValid() ? null : momentDate.invalidAt();
+    let dateForValidate = dateString.replace(/ /g, '');
+    let momentDate = moment(dateForValidate, dateFormat, true);
+    this.isValid = momentDate.isValid();
+    let error = this.isValid ? null : momentDate.invalidAt();
 
     if (error !== null && dateString.length) {
       this.props.onError(error);
@@ -83,7 +86,9 @@ class DateInputField extends Component {
       ...restProps
     } = this.props;
 
-    let mask = dateFormat.replace(/[a-zA-Z]/g, '1');
+    let placeholder = dateFormat.replace(/\bD(?=\/)/g, ' D').replace(/\bM(?=\/)/g, ' M');
+    let mask = dateFormat.replace(/\bD(?=\/)|\bM(?=\/)/g, '  ');
+    mask = mask.replace(/[a-zA-Z]/g, '1');
 
     let {
       inputValue
@@ -97,8 +102,9 @@ class DateInputField extends Component {
         placeholderChar="‒"
         disabled={disabled}
         onChange={this.handleInputChange}
-        placeholder={dateFormat}
+        placeholder={placeholder}
         type="text"
+        isValid={this.isValid}
         value={inputValue}
         {...restProps}
       />
