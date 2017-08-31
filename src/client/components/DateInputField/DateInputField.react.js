@@ -86,9 +86,13 @@ class DateInputField extends Component {
       ...restProps
     } = this.props;
 
-    let placeholder = dateFormat.replace(/\bD(?=\/)/g, ' D').replace(/\bM(?=\/)/g, ' M');
-    let mask = dateFormat.replace(/\bD(?=\/)|\bM(?=\/)/g, '  ');
-    mask = mask.replace(/[a-zA-Z]/g, '1');
+    const sep = dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep)[0];
+    const regExpD = new RegExp(`\\bD(?=\\${sep})`, 'g');
+    const regExpM = new RegExp(`\\bM(?=\\${sep})`, 'g');
+    const regExpDM = new RegExp(`\\bD(?=\\${sep})|\\bM(?=\\${sep})`, 'g');
+
+    let placeholder = dateFormat.replace(regExpD, ' D').replace(regExpM, ' M');
+    let mask = dateFormat.replace(regExpDM, '  ').replace(/[a-zA-Z]/g, '1');
 
     let {
       inputValue

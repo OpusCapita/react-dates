@@ -55,11 +55,8 @@ function setSelection(el, selection) {
 }
 
 function getSeparatorRegExp(dateFormat) {
-  const separators = dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep);
-  const sepRegExpStr = separators.reduce((accum, el) => {
-    return accum + '\\\\' + el;
-  }, '');
-  return new RegExp(`^[${sepRegExpStr}]$`);
+  const separator = dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep)[0];
+  return new RegExp(`^[\\${separator}]$`);
 }
 
 class MaskedInput extends React.Component {
@@ -70,7 +67,6 @@ class MaskedInput extends React.Component {
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onPaste = this._onPaste.bind(this);
     this._onKeyPress = this._onKeyPress.bind(this);
-    this._sepRegExp = getSeparatorRegExp(this.props.dateFormat);
   }
 
   componentWillMount() {
@@ -195,15 +191,18 @@ class MaskedInput extends React.Component {
     // Ignore enter key to allow form submission
     if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { return; }
 
+    console.log(e.key);
+
     e.preventDefault();
     this._updateMaskSelection();
     if (this.mask.input((e.key || e.data))) {
       if (this.props.isValid) {
+        const sepRegExp = getSeparatorRegExp(this.props.dateFormat);
         let { start, end } = getSelection(this.input);
         const insertArr = this.mask.pattern.pattern.
         slice(start + 1, end).
         map(el => {
-          return this._sepRegExp.test(el) ? el : this.props.placeholderChar;
+          return sepRegExp.test(el) ? el : this.props.placeholderChar;
         });
         e.target.value = [ // eslint-disable-line
           e.target.value.slice(0, start),
