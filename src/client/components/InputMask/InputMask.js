@@ -42,7 +42,7 @@ function extend(dest, src) {
 }
 
 function copy(obj) {
-  return extend({}, obj)
+  return extend({}, obj);
 }
 
 /**
@@ -58,9 +58,9 @@ function mergeFormatCharacters(formatCharacters) {
     for (let i = 0, l = chars.length; i < l; i++) {
       let char = chars[i];
       if (formatCharacters[char] === null) {
-        delete merged[char]
+        delete merged[char];
       } else {
-        merged[char] = formatCharacters[char]
+        merged[char] = formatCharacters[char];
       }
     }
   }
@@ -73,7 +73,7 @@ function mergeFormatCharacters(formatCharacters) {
  */
 function Pattern(source, formatCharacters, placeholderChar, isRevealingMask) {
   if (!(this instanceof Pattern)) {
-    return new Pattern(source, formatCharacters, placeholderChar)
+    return new Pattern(source, formatCharacters, placeholderChar);
   }
 
   /** Placeholder character */
@@ -95,7 +95,7 @@ function Pattern(source, formatCharacters, placeholderChar, isRevealingMask) {
   /** If true, only the pattern before the last valid value character shows. */
   this.isRevealingMask = isRevealingMask || false;
 
-  this._parse()
+  this._parse();
 }
 
 Pattern.prototype._parse = function parse() {
@@ -107,15 +107,15 @@ Pattern.prototype._parse = function parse() {
     let char = sourceChars[i];
     if (char === ESCAPE_CHAR) {
       if (i === l - 1) {
-        throw new Error('InputMask: pattern ends with a raw ' + ESCAPE_CHAR)
+        throw new Error('InputMask: pattern ends with a raw ' + ESCAPE_CHAR);
       }
       char = sourceChars[++i]
     } else if (char in this.formatCharacters) {
       if (this.firstEditableIndex === null) {
-        this.firstEditableIndex = patternIndex
+        this.firstEditableIndex = patternIndex;
       }
       this.lastEditableIndex = patternIndex;
-      this._editableIndices[patternIndex] = true
+      this._editableIndices[patternIndex] = true;
     }
 
     pattern.push(char);
@@ -129,7 +129,7 @@ Pattern.prototype._parse = function parse() {
   }
 
   this.pattern = pattern;
-  this.length = pattern.length
+  this.length = pattern.length;
 };
 
 /**
@@ -145,7 +145,7 @@ Pattern.prototype.formatValue = function format(value) {
       if (this.isRevealingMask &&
         value.length <= valueIndex &&
         !this.isValidAtIndex(value[valueIndex], i)) {
-        break
+        break;
       }
       valueBuffer[i] = (value.length > valueIndex && this.isValidAtIndex(value[valueIndex], i) ?
         this.transform(value[valueIndex], i) :
@@ -156,12 +156,12 @@ Pattern.prototype.formatValue = function format(value) {
       // Also allow the value to contain static values from the pattern by
       // advancing its index.
       if (value.length > valueIndex && value[valueIndex] === this.pattern[i]) {
-        valueIndex++
+        valueIndex++;
       }
     }
   }
 
-  return valueBuffer
+  return valueBuffer;
 };
 
 /**
@@ -169,7 +169,7 @@ Pattern.prototype.formatValue = function format(value) {
  * @return {boolean}
  */
 Pattern.prototype.isEditableIndex = function isEditableIndex(index) {
-  return !!this._editableIndices[index]
+  return !!this._editableIndices[index];
 };
 
 /**
@@ -178,12 +178,12 @@ Pattern.prototype.isEditableIndex = function isEditableIndex(index) {
  * @return {boolean}
  */
 Pattern.prototype.isValidAtIndex = function isValidAtIndex(char, index) {
-  return this.formatCharacters[this.pattern[index]].validate(char)
+  return this.formatCharacters[this.pattern[index]].validate(char);
 };
 
 Pattern.prototype.transform = function transform(char, index) {
   let format = this.formatCharacters[this.pattern[index]];
-  return typeof format.transform === 'function' ? format.transform(char) : char
+  return typeof format.transform === 'function' ? format.transform(char) : char;
 };
 
 function InputMask(options) {
@@ -198,7 +198,7 @@ function InputMask(options) {
   }, options);
 
   if (options.pattern === null) {
-    throw new Error('InputMask: you must provide a pattern.')
+    throw new Error('InputMask: you must provide a pattern.');
   }
 
   if (typeof options.placeholderChar !== 'string' || options.placeholderChar.length > 1) {
@@ -211,7 +211,7 @@ function InputMask(options) {
     value: options.value,
     selection: options.selection,
     isRevealingMask: options.isRevealingMask
-  })
+  });
 }
 
 // Editing
@@ -226,7 +226,7 @@ InputMask.prototype.input = function input(char) {
   // Ignore additional input if the cursor's at the end of the pattern
   if (this.selection.start === this.selection.end &&
     this.selection.start === this.pattern.length) {
-    return false
+    return false;
   }
 
   let selectionBefore = copy(this.selection);
@@ -237,15 +237,15 @@ InputMask.prototype.input = function input(char) {
   // If the cursor or selection is prior to the first editable character, make
   // sure any input given is applied to it.
   if (inputIndex < this.pattern.firstEditableIndex) {
-    inputIndex = this.pattern.firstEditableIndex
+    inputIndex = this.pattern.firstEditableIndex;
   }
 
   // Bail out or add the character to input
   if (this.pattern.isEditableIndex(inputIndex)) {
     if (!this.pattern.isValidAtIndex(char, inputIndex)) {
-      return false
+      return false;
     }
-    this.value[inputIndex] = this.pattern.transform(char, inputIndex)
+    this.value[inputIndex] = this.pattern.transform(char, inputIndex);
   }
 
   // If multiple characters were selected, blank the remainder out based on the
@@ -253,9 +253,9 @@ InputMask.prototype.input = function input(char) {
   let end = this.selection.end - 1;
   while (end > inputIndex) {
     if (this.pattern.isEditableIndex(end)) {
-      this.value[end] = this.placeholderChar
+      this.value[end] = this.placeholderChar;
     }
-    end--
+    end--;
   }
 
   // Advance the cursor to the next character
@@ -317,13 +317,13 @@ InputMask.prototype.backspace = function backspace() {
       }
       end--;
     }
-    this.selection.end = this.selection.start
+    this.selection.end = this.selection.start;
   }
 
   // History
   if (this._historyIndex !== null) {
     // Took more input after undoing, so blow any subsequent history away
-    this._history.splice(this._historyIndex, this._history.length - this._historyIndex)
+    this._history.splice(this._historyIndex, this._history.length - this._historyIndex);
   }
   if (this._lastOp !== 'backspace' ||
     selectionBefore.start !== selectionBefore.end ||
@@ -333,7 +333,7 @@ InputMask.prototype.backspace = function backspace() {
   this._lastOp = 'backspace';
   this._lastSelection = copy(this.selection);
 
-  return true
+  return true;
 };
 
 /**
@@ -362,7 +362,7 @@ InputMask.prototype.paste = function paste(input) {
   if (this.selection.start < this.pattern.firstEditableIndex) {
     for (let i = 0, l = this.pattern.firstEditableIndex - this.selection.start; i < l; i++) {
       if (input.charAt(i) !== this.pattern.pattern[i]) {
-        return false
+        return false;
       }
     }
 
@@ -389,7 +389,7 @@ InputMask.prototype.paste = function paste(input) {
         }
       }
       extend(this, initialState);
-      return false
+      return false;
     }
   }
 
@@ -401,7 +401,7 @@ InputMask.prototype.paste = function paste(input) {
 InputMask.prototype.undo = function undo() {
   // If there is no history, or nothing more on the history stack, we can't undo
   if (this._history.length === 0 || this._historyIndex === 0) {
-    return false
+    return false;
   }
 
   let historyItem;
@@ -415,10 +415,10 @@ InputMask.prototype.undo = function undo() {
     if (historyItem.value !== value ||
       historyItem.selection.start !== this.selection.start ||
       historyItem.selection.end !== this.selection.end) {
-      this._history.push({ value: value, selection: copy(this.selection), lastOp: this._lastOp, startUndo: true })
+      this._history.push({ value: value, selection: copy(this.selection), lastOp: this._lastOp, startUndo: true });
     }
   } else {
-    historyItem = this._history[--this._historyIndex]
+    historyItem = this._history[--this._historyIndex];
   }
 
   this.value = historyItem.value.split('');
@@ -429,7 +429,7 @@ InputMask.prototype.undo = function undo() {
 
 InputMask.prototype.redo = function redo() {
   if (this._history.length === 0 || this._historyIndex === null) {
-    return false
+    return false;
   }
   let historyItem = this._history[++this._historyIndex];
   // If this is the last history item, we're done redoing
@@ -437,7 +437,7 @@ InputMask.prototype.redo = function redo() {
     this._historyIndex = null;
     // If the last history item was only added to start undoing, remove it
     if (historyItem.startUndo) {
-      this._history.pop()
+      this._history.pop();
     }
   }
   this.value = historyItem.value.split('');
@@ -465,7 +465,7 @@ InputMask.prototype.setSelection = function setSelection(selection) {
   if (this.selection.start === this.selection.end) {
     if (this.selection.start < this.pattern.firstEditableIndex) {
       this.selection.start = this.selection.end = this.pattern.firstEditableIndex;
-      return true
+      return true;
     }
     // Set selection to the first editable, non-placeholder character before the selection
     // OR to the beginning of the pattern
@@ -479,9 +479,9 @@ InputMask.prototype.setSelection = function setSelection(selection) {
       }
       index--;
     }
-    return true
+    return true;
   }
-  return false
+  return false;
 };
 
 InputMask.prototype.setValue = function setValue(value) {

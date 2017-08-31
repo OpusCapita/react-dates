@@ -6,11 +6,11 @@ let KEYCODE_Z = 90;
 let KEYCODE_Y = 89;
 
 function isUndo(e) {
-  return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Y : KEYCODE_Z)
+  return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Y : KEYCODE_Z);
 }
 
 function isRedo(e) {
-  return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Z : KEYCODE_Y)
+  return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Z : KEYCODE_Y);
 }
 
 function getSelection(el) {
@@ -18,7 +18,7 @@ function getSelection(el) {
 
   if (el.selectionStart !== undefined) {
     start = el.selectionStart;
-    end = el.selectionEnd
+    end = el.selectionEnd;
   } else {
     try {
       el.focus();
@@ -29,11 +29,11 @@ function getSelection(el) {
       clone.setEndPoint('EndToStart', rangeEl);
 
       start = clone.text.length;
-      end = start + rangeEl.text.length
+      end = start + rangeEl.text.length;
     } catch (e) { /* not focused or not visible */ }
   }
 
-  return { start, end }
+  return { start, end };
 }
 
 function setSelection(el, selection) {
@@ -49,7 +49,7 @@ function setSelection(el, selection) {
       rangeEl.collapse(true);
       rangeEl.moveStart('character', selection.start);
       rangeEl.moveEnd('character', selection.end - selection.start);
-      rangeEl.select()
+      rangeEl.select();
     }
   } catch (e) { /* not focused or not visible */ }
 }
@@ -71,9 +71,9 @@ class MaskedInput extends React.Component {
       formatCharacters: this.props.formatCharacters
     };
     if (this.props.placeholderChar) {
-      options.placeholderChar = this.props.placeholderChar
+      options.placeholderChar = this.props.placeholderChar;
     }
-    this.mask = new InputMask(options)
+    this.mask = new InputMask(options);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -83,26 +83,26 @@ class MaskedInput extends React.Component {
       // - if so use the nextProps value
       // - otherwise the `this.mask` has a value for us (most likely from paste action)
       if (this.mask.getValue() === this.mask.emptyValue) {
-        this.mask.setPattern(nextProps.mask, { value: nextProps.value })
+        this.mask.setPattern(nextProps.mask, { value: nextProps.value });
       } else {
-        this.mask.setPattern(nextProps.mask, { value: this.mask.getRawValue() })
+        this.mask.setPattern(nextProps.mask, { value: this.mask.getRawValue() });
       }
     } else if (this.props.mask !== nextProps.mask) {
-      this.mask.setPattern(nextProps.mask, { value: this.mask.getRawValue() })
+      this.mask.setPattern(nextProps.mask, { value: this.mask.getRawValue() });
     } else if (this.props.value !== nextProps.value) {
-      this.mask.setValue(nextProps.value)
+      this.mask.setValue(nextProps.value);
     }
   }
 
   componentWillUpdate(nextProps, nextState) {
     if (nextProps.mask !== this.props.mask) {
-      this._updatePattern(nextProps)
+      this._updatePattern(nextProps);
     }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.mask !== this.props.mask && this.mask.selection.start) {
-      this._updateInputSelection()
+      this._updateInputSelection();
     }
   }
 
@@ -114,11 +114,11 @@ class MaskedInput extends React.Component {
   }
 
   _updateMaskSelection() {
-    this.mask.selection = getSelection(this.input)
+    this.mask.selection = getSelection(this.input);
   }
 
   _updateInputSelection() {
-    setSelection(this.input, this.mask.selection)
+    setSelection(this.input, this.mask.selection);
   }
 
   _onChange(e) {
@@ -129,16 +129,16 @@ class MaskedInput extends React.Component {
         let sizeDiff = maskValue.length - e.target.value.length;
         this._updateMaskSelection();
         this.mask.selection.end = this.mask.selection.start + sizeDiff;
-        this.mask.backspace()
+        this.mask.backspace();
       }
       let value = this._getDisplayValue();
       e.target.value = value; // eslint-disable-line
       if (value) {
-        this._updateInputSelection()
+        this._updateInputSelection();
       }
     }
     if (this.props.onChange) {
-      this.props.onChange(e)
+      this.props.onChange(e);
     }
   }
 
@@ -149,7 +149,7 @@ class MaskedInput extends React.Component {
         e.target.value = this._getDisplayValue(); // eslint-disable-line
         this._updateInputSelection();
         if (this.props.onChange) {
-          this.props.onChange(e)
+          this.props.onChange(e);
         }
       }
       return
@@ -159,7 +159,7 @@ class MaskedInput extends React.Component {
         e.target.value = this._getDisplayValue(); // eslint-disable-line
         this._updateInputSelection();
         if (this.props.onChange) {
-          this.props.onChange(e)
+          this.props.onChange(e);
         }
       }
       return
@@ -172,10 +172,10 @@ class MaskedInput extends React.Component {
         let value = this._getDisplayValue();
         e.target.value = value; // eslint-disable-line
         if (value) {
-          this._updateInputSelection()
+          this._updateInputSelection();
         }
         if (this.props.onChange) {
-          this.props.onChange(e)
+          this.props.onChange(e);
         }
       }
     }
@@ -184,7 +184,7 @@ class MaskedInput extends React.Component {
   _onKeyPress(e) {
     // Ignore modified key presses
     // Ignore enter key to allow form submission
-    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { return }
+    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { return; }
 
     e.preventDefault();
     this._updateMaskSelection();
@@ -219,7 +219,7 @@ class MaskedInput extends React.Component {
       // Timeout needed for IE
       setTimeout(this._updateInputSelection, 0);
       if (this.props.onChange) {
-        this.props.onChange(e)
+        this.props.onChange(e);
       }
     }
   }
@@ -233,7 +233,7 @@ class MaskedInput extends React.Component {
     if (typeof navigator !== 'undefined') {
       return navigator.userAgent.match(/Android/i) ? 'onBeforeInput' : 'onKeyPress';
     }
-    return 'onKeyPress'
+    return 'onKeyPress';
   }
 
   _getEventHandlers() {
@@ -246,11 +246,11 @@ class MaskedInput extends React.Component {
   }
 
   focus() {
-    this.input.focus()
+    this.input.focus();
   }
 
   blur() {
-    this.input.blur()
+    this.input.blur();
   }
 
   render() {
@@ -295,4 +295,4 @@ MaskedInput.defaultProps = {
   value: ''
 };
 
-export default MaskedInput
+export default MaskedInput;
