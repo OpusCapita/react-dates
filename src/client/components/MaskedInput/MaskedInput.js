@@ -126,6 +126,13 @@ class MaskedInput extends React.Component {
     setSelection(this.input, this.mask.selection);
   }
 
+  _getInsertArr(start, end) {
+    const sepRegExp = getSeparatorRegExp(this.props.dateFormat);
+    return this.mask.pattern.pattern.slice(start, end).map(el => {
+      return sepRegExp.test(el) ? el : this.props.placeholderChar;
+    });
+  }
+
   _onChange(e) {
     let maskValue = this.mask.getValue();
     if (e.target.value !== maskValue) {
@@ -167,7 +174,34 @@ class MaskedInput extends React.Component {
           this.props.onChange(e);
         }
       }
-      return
+      return;
+    }
+
+    if ((e.key === 'Backspace' || e.key === 'Delete') && this.props.isValid) {
+      e.preventDefault();
+      let { start, end } = getSelection(this.input);
+      if (start < end) {
+        const insertArr = this._getInsertArr(start, end);
+        e.target.value = [ // eslint-disable-line
+          e.target.value.slice(0, start),
+        ].concat(insertArr, e.target.value.slice(end)).join('');
+
+        this.input.selectionStart = this.input.selectionEnd = e.key === 'Backspace' ? start : end;
+      } else {
+        if (e.key === 'Backspace' && start > 0 || e.key === 'Delete' && start < this.mask.pattern.pattern.length) {
+          const sepRegExp = getSeparatorRegExp(this.props.dateFormat);
+          let removePosition = e.key === 'Delete' ? start : start - 1;
+          if (!sepRegExp.test(this.mask.pattern.pattern[removePosition])) {
+            e.target.value = [ // eslint-disable-line
+              e.target.value.slice(0, removePosition),
+              this.props.placeholderChar,
+              e.target.value.slice(removePosition + 1),
+            ].join('');
+          }
+          this.input.selectionStart = this.input.selectionEnd = e.key === 'Backspace' ? start - 1 : start + 1;
+        }
+      }
+      return;
     }
 
     if (e.key === 'Backspace') {
@@ -197,13 +231,8 @@ class MaskedInput extends React.Component {
     this._updateMaskSelection();
     if (this.mask.input((e.key || e.data))) {
       if (this.props.isValid) {
-        const sepRegExp = getSeparatorRegExp(this.props.dateFormat);
         let { start, end } = getSelection(this.input);
-        const insertArr = this.mask.pattern.pattern.
-        slice(start + 1, end).
-        map(el => {
-          return sepRegExp.test(el) ? el : this.props.placeholderChar;
-        });
+        const insertArr = this._getInsertArr(start + 1, end);
         e.target.value = [ // eslint-disable-line
           e.target.value.slice(0, start),
           e.key
