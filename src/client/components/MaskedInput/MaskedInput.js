@@ -55,9 +55,14 @@ function setSelection(el, selection) {
   } catch (e) { /* not focused or not visible */ }
 }
 
+function getSeparator(dateFormat) {
+  return dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep)[0];
+}
+
 function getSeparatorRegExp(dateFormat) {
-  const separator = dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep)[0];
-  return new RegExp(`^[\\${separator}]$`);
+  // const separator = dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep)[0];
+  // return new RegExp(`^[\\${separator}]$`);
+  return new RegExp(`^[\\${getSeparator(dateFormat)}]$`);
 }
 
 class MaskedInput extends React.Component {
@@ -221,6 +226,22 @@ class MaskedInput extends React.Component {
     }
   }
 
+  /**
+   * Replace mask value on input value
+   */
+  _setMaskValue() {
+    setTimeout(() => {
+      const defaultValue = this.input.defaultValue;
+      let dateForValidate = defaultValue.replace(/ /g, '');
+      let momentDate = moment(dateForValidate, this.props.dateFormat, true);
+      if (momentDate.isValid()) {
+        for (let i = 0; i < defaultValue.length; i++) {
+          this.mask.value[i] = defaultValue[i];
+        }
+      }
+    }, 0);
+  }
+
   _onKeyPress(e) {
     // Ignore modified key presses
     // Ignore enter key to allow form submission
@@ -253,6 +274,7 @@ class MaskedInput extends React.Component {
             }
           }
         }, 0);
+        this._setMaskValue();
       } else {
         e.target.value = this.mask.getValue(); // eslint-disable-line
       }
@@ -264,19 +286,101 @@ class MaskedInput extends React.Component {
     }
   }
 
+  _getInsText(insText) {
+    const sepRegExp = getSeparatorRegExp(this.props.dateFormat);
+    const separator = getSeparator(this.props.dateFormat);
+    let { start } = getSelection(this.input);
+    const patternPart = this.mask.pattern.pattern.slice(start);
+    let resultPart = [];
+    let patternI = 0;
+    let insI = 0;
+    let isPaste = true;
+    while (isPaste && patternI < patternPart.length && insI < insText.length) {
+      if (sepRegExp.test(insText[insI])) {
+        if (sepRegExp.test(patternPart[patternI])) {
+          resultPart.push(separator);
+          insI++;
+          patternI++;
+          continue;
+        } else {
+          if (patternPart[patternI] === ' ' && patternPart.length > 0 &&
+            patternPart[patternI + 1] && sepRegExp.test(patternPart[patternI + 1])) {
+            const prevChar = resultPart.pop();
+            resultPart.push(' ', prevChar, separator);
+            insI++;
+            patternI += 2;
+            continue;
+          } else {
+            isPaste = false;
+            break;
+          }
+        }
+      }
+
+      if (/^[ \d]$/.test(insText[insI]) && sepRegExp.test(patternPart[patternI])) {
+        resultPart.push(separator);
+        patternI++;
+        continue;
+      }
+
+      if (patternPart[patternI] === ' ' && /^[ \d]$/.test(insText[insI])) {
+        resultPart.push(insText[insI]);
+        insI++;
+        patternI++;
+        continue;
+      }
+
+      if (patternPart[patternI] === '1' && /^[\d]$/.test(insText[insI])) {
+        resultPart.push(insText[insI]);
+        insI++;
+        patternI++;
+        continue;
+      }
+
+      isPaste = false;
+      break;
+    }
+
+    return isPaste ? resultPart.join('') : false;
+  }
+
   _onPaste(e) {
     e.preventDefault();
     this._updateMaskSelection();
-    // getData value needed for IE also works in FF & Chrome
-    if (this.mask.paste(e.clipboardData.getData('Text'))) {
-      e.target.value = this.mask.getValue(); // eslint-disable-line
-      // Timeout needed for IE
-      setTimeout(this._updateInputSelection, 0);
-      if (this.props.onChange) {
-        this.props.onChange(e);
+
+    if (this.mask.pattern.pattern.indexOf(' ') !== - 1) {
+      const insText = this._getInsText(e.clipboardData.getData('Text'));
+      if (insText) {
+        let { start } = getSelection(this.input);
+        // eslint-disable-next-line
+        e.target.value = e.target.value.slice(0, start) + insText + e.target.value.slice(start + insText.length);
+
+        for (let i = 0; i < e.target.value.length; i++) {
+          this.mask.value[i] = e.target.value[i];
+        }
+        this.input.selectionStart = this.input.selectionEnd = start + insText.length;
+        this._updateInputSelection();
+        if (this.props.onChange) {
+          this.props.onChange(e);
+        }
+        this._setMaskValue();
+      }
+    } else {
+      // getData value needed for IE also works in FF & Chrome
+      if (this.mask.paste(e.clipboardData.getData('Text'))) {
+        e.target.value = this.mask.getValue(); // eslint-disable-line
+        // Timeout needed for IE
+        setTimeout(this._updateInputSelection, 0);
+        if (this.props.onChange) {
+          this.props.onChange(e);
+        }
       }
     }
-  }
+  } // 11/10/2017   1/ 2/20175  1/2/20175 2003/10/25 2124545 11.10.2017
+
+  // Условия вставки:
+  // 1. Все вставляемые разделители совпадают по позициям
+  // 2. символы, не вошедшие в границу маски, отбрасываются
 
   _getDisplayValue() {
     let value = this.mask.getValue();
