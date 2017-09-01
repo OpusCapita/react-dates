@@ -5,7 +5,7 @@
 ![badge-license](https://img.shields.io/github/license/OpusCapita/react-dates.svg)
 ![NPM Downloads](https://img.shields.io/npm/dm/@opuscapita/react-dates.svg)
 
-![date-input](https://raw.githubusercontent.com/OpusCapita/react-dates/master/docs/DateInput.gif)
+![date-input](docs/DateInput.gif)
 
 OpusCapita React Components (date inputs/pickers)
 
@@ -14,16 +14,14 @@ This project uses [react-day-picker](https://github.com/gpbl/react-day-picker)
 ## Implemented components
 
 * DateInput
-
 * DateRangeInput
-
 * DatePicker
 
 ## Demo and documentation
 
 Online demo and components reference available here: https://opuscapita.github.io/react-dates
 
-> Demo powered by [react-showroom](https://github.com/OpusCapitaBES/js-react-showroom-client)
+> Demo powered by [react-showroom](https://github.com/OpusCapita/react-showroom-client)
 
 ## Installation
 
