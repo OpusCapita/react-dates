@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import InputMask from '../InputMask'
+import moment from '../moment';
 
 let KEYCODE_Z = 90;
 let KEYCODE_Y = 89;
@@ -224,24 +225,38 @@ class MaskedInput extends React.Component {
     // Ignore modified key presses
     // Ignore enter key to allow form submission
     if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { return; }
-
-    console.log(e.key);
-
     e.preventDefault();
     this._updateMaskSelection();
     if (this.mask.input((e.key || e.data))) {
-      if (this.props.isValid) {
-        let { start, end } = getSelection(this.input);
-        const insertArr = this._getInsertArr(start + 1, end);
-        e.target.value = [ // eslint-disable-line
-          e.target.value.slice(0, start),
-          e.key
-        ].
-        concat(insertArr, e.target.value.slice(end + (start === end ? 1 : 0))).
-        join('');
+      if (this.mask.pattern.pattern.indexOf(' ') !== - 1) {
+        if (this.props.isValid) {
+          let { start, end } = getSelection(this.input);
+          const insertArr = this._getInsertArr(start + 1, end);
+          e.target.value = [ // eslint-disable-line
+            e.target.value.slice(0, start),
+            e.key
+          ].
+          concat(insertArr, e.target.value.slice(end + (start === end ? 1 : 0))).
+          join('');
+        } else {
+          e.target.value = this.mask.getValue(); // eslint-disable-line
+        }
+
+        // Replace mask value on input value
+        setTimeout(() => {
+          const defaultValue = this.input.defaultValue;
+          let dateForValidate = defaultValue.replace(/ /g, '');
+          let momentDate = moment(dateForValidate, this.props.dateFormat, true);
+          if (momentDate.isValid()) {
+            for (let i = 0; i < defaultValue.length; i++) {
+              this.mask.value[i] = defaultValue[i];
+            }
+          }
+        }, 0);
       } else {
         e.target.value = this.mask.getValue(); // eslint-disable-line
       }
+
       this._updateInputSelection();
       if (this.props.onChange) {
         this.props.onChange(e);
