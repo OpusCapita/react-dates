@@ -161,6 +161,15 @@ class MaskedInput extends React.Component {
   }
 
   _onKeyDown(e) {
+
+    // console.log(e);
+    // console.log('key', e.key);
+    // console.log('keyCode', e.keyCode);
+    // console.log('metaKey', e.metaKey);
+    // console.log('shiftKey', e.shiftKey);
+    // console.log('altKey', e.altKey);
+    // console.log('ctrlKey', e.ctrlKey);
+
     if (isUndo(e)) {
       e.preventDefault();
       if (this.mask.undo()) {
@@ -180,6 +189,28 @@ class MaskedInput extends React.Component {
           this.props.onChange(e);
         }
       }
+      return;
+    }
+
+    if (e.key === 'ArrowLeft') {
+      if (this.mask.selection.start > 0) {
+        this.mask.selection.start--;
+      }
+      if (!e.shiftKey) {
+        this.mask.selection.end = this.mask.selection.start;
+      }
+      this._updateInputSelection();
+      return;
+    }
+
+    if (e.key === 'ArrowRight') {
+      if (this.mask.selection.end < this.mask.pattern.length) {
+        this.mask.selection.end++;
+      }
+      if (!e.shiftKey) {
+        this.mask.selection.start = this.mask.selection.end;
+      }
+      this._updateInputSelection();
       return;
     }
 
@@ -344,16 +375,28 @@ class MaskedInput extends React.Component {
     return isPaste ? resultPart.join('') : false;
   }
 
+  /**
+   * Insertion conditions:
+   * 1. All inserted separators match on line items separators in a mask
+   * 2. The characters which did not enter mask boundary are discarded
+   *
+   * example: 11/10/2017, 1/ 2/20175, 1/2/20175, 2003/10/25, 2124545, 11.10.2017, 2/ 3/2015
+   *
+   * @param e - event
+   * @private
+   */
   _onPaste(e) {
     e.preventDefault();
     this._updateMaskSelection();
 
+    // Mask has symbol ' '
     if (this.mask.pattern.pattern.indexOf(' ') !== - 1) {
       const insText = this._getInsText(e.clipboardData.getData('Text'));
       if (insText) {
         let { start } = getSelection(this.input);
         // eslint-disable-next-line
-        e.target.value = e.target.value.slice(0, start) + insText + e.target.value.slice(start + insText.length);
+        e.target.value = e.target.value.slice(0, start) +
+          insText + e.target.value.slice(start + insText.length);
 
         for (let i = 0; i < e.target.value.length; i++) {
           this.mask.value[i] = e.target.value[i];
@@ -376,15 +419,26 @@ class MaskedInput extends React.Component {
         }
       }
     }
-  } // 11/10/2017   1/ 2/20175  1/2/20175 2003/10/25 2124545 11.10.2017
-
-  // Условия вставки:
-  // 1. Все вставляемые разделители совпадают по позициям
-  // 2. символы, не вошедшие в границу маски, отбрасываются
+  }
 
   _getDisplayValue() {
     let value = this.mask.getValue();
     return value === this.mask.emptyValue ? '' : value
+  }
+
+  _getValueForPatternWithSpace(value) {
+    const arrValue = [];
+    const pattern = this.mask.pattern.pattern;
+    for (let i = 0; i < value.length; i++) {
+      if (value[i] === '‒' && pattern[i] === ' ') {
+        let prev = arrValue.pop();
+        arrValue.push(' ');
+        arrValue.push(prev);
+      } else {
+        arrValue.push(value[i]);
+      }
+    }
+    return arrValue.join('');
   }
 
   _keyPressPropName() {
@@ -403,7 +457,8 @@ class MaskedInput extends React.Component {
     }
   }
 
-  focus() {
+  focus(e) {
+    console.dir(e);
     this.input.focus();
   }
 
@@ -416,19 +471,8 @@ class MaskedInput extends React.Component {
     let maxLength = this.mask.pattern.length;
     let value = this._getDisplayValue();
 
-    if (this.props.isValid) {
-      const arrValue = [];
-      const pattern = this.mask.pattern.pattern;
-      for (let i = 0; i < value.length; i++) {
-        if (value[i] === '‒' && pattern[i] === ' ') {
-          let prev = arrValue.pop();
-          arrValue.push(' ');
-          arrValue.push(prev);
-        } else {
-          arrValue.push(value[i]);
-        }
-      }
-      value = arrValue.join('');
+    if (this.props.isValid && this.mask.pattern.pattern.indexOf(' ') !== - 1) {
+      value = this._getValueForPatternWithSpace(value);
     }
 
     let eventHandlers = this._getEventHandlers();

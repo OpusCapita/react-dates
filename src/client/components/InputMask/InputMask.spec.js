@@ -1,9 +1,9 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import DateInput from '.';
+import InputMask from '../InputMask';
 
-describe('<DateInput />', () => {
+describe('<InputMask />', () => {
   /* Recommended test-cases */
   it.skip('should have default props', () => {
     let component = <DateInput />;
