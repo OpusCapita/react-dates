@@ -1,9 +1,21 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import MaskedInput from '../MaskedInput';
 import DateInput from '../DateInput';
 import DateInputField from '../DateInputField';
+
+const setup = () => {
+  const element = document.createElement('div');
+  document.body.appendChild(element);
+  return element;
+};
+
+const cleanup = (element) => {
+  ReactDOM.unmountComponentAtNode(element);
+  document.body.removeChild(element);
+};
 
 function getRegExp(dateFormat = 'dd/MM/yyyy') {
   const sep = dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep)[0];
@@ -177,4 +189,63 @@ describe('<MaskedInput />', () => {
       done();
     }, 0);
   });
+
+  it('should handle a masking workflow', () => {
+    const el = setup();
+    let ref = null;
+    ReactDOM.render(
+      <MaskedInput
+        ref={(r) => {
+          if (r) ref = r;
+        }}
+        mask="11/11/1111"
+      />,
+      el
+    );
+    const input = ReactDOM.findDOMNode(ref);
+
+    // initial state
+    expect(input.value).to.equal('');
+    expect(input.placeholder).to.equal('__/__/____');
+    expect(input.size).to.equal(10);
+
+    cleanup(el);
+  });
+
+  it('should handle updating value', () => {
+    const el = setup();
+    let ref = null;
+    let defaultMask = '11/11/1111';
+
+    function render(props) {
+      ReactDOM.render(
+        <MaskedInput
+          ref={(r) => { ref = r }}
+          {...props}
+        />,
+        el
+      );
+    }
+
+    render({mask: defaultMask, value: ''});
+    let input = ReactDOM.findDOMNode(ref);
+
+    // initial state
+    expect(input.value).to.equal('');
+    expect(input.placeholder).to.equal('__/__/____');
+    expect(input.size).to.equal(10);
+    expect(input.selectionStart).to.equal(0);
+
+    // update value
+    render({mask: defaultMask, value: '02022017'});
+    input = ReactDOM.findDOMNode(ref);
+
+    // initial state
+    expect(input.value).to.equal('02/02/2017');
+    expect(input.size).to.equal(10);
+    expect(input.selectionStart).to.equal(0);
+
+    cleanup(el);
+  })
+
 });

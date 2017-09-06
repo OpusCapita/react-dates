@@ -181,7 +181,8 @@ class MaskedInput extends React.Component {
       return;
     }
 
-    if ((e.key === 'Backspace' || e.key === 'Delete') && this.props.isValid) {
+    if (this.mask.pattern.pattern.indexOf(' ') !== - 1 &&
+      (e.key === 'Backspace' || e.key === 'Delete') && this.props.isValid) {
       e.preventDefault();
       let { start, end } = getSelection(this.input);
       if (start < end) {
