@@ -60,8 +60,6 @@ function getSeparator(dateFormat) {
 }
 
 function getSeparatorRegExp(dateFormat) {
-  // const separator = dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep)[0];
-  // return new RegExp(`^[\\${separator}]$`);
   return new RegExp(`^[\\${getSeparator(dateFormat)}]$`);
 }
 
@@ -161,15 +159,6 @@ class MaskedInput extends React.Component {
   }
 
   _onKeyDown(e) {
-
-    // console.log(e);
-    // console.log('key', e.key);
-    // console.log('keyCode', e.keyCode);
-    // console.log('metaKey', e.metaKey);
-    // console.log('shiftKey', e.shiftKey);
-    // console.log('altKey', e.altKey);
-    // console.log('ctrlKey', e.ctrlKey);
-
     if (isUndo(e)) {
       e.preventDefault();
       if (this.mask.undo()) {
@@ -189,28 +178,6 @@ class MaskedInput extends React.Component {
           this.props.onChange(e);
         }
       }
-      return;
-    }
-
-    if (e.key === 'ArrowLeft') {
-      if (this.mask.selection.start > 0) {
-        this.mask.selection.start--;
-      }
-      if (!e.shiftKey) {
-        this.mask.selection.end = this.mask.selection.start;
-      }
-      this._updateInputSelection();
-      return;
-    }
-
-    if (e.key === 'ArrowRight') {
-      if (this.mask.selection.end < this.mask.pattern.length) {
-        this.mask.selection.end++;
-      }
-      if (!e.shiftKey) {
-        this.mask.selection.start = this.mask.selection.end;
-      }
-      this._updateInputSelection();
       return;
     }
 
