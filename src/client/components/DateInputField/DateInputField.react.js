@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import MaskedInput from '../MaskedInput';
+import MaskedInput from '@opuscapita/react-maskedinput';
 import moment from '../moment';
 import './DateInputField.less';
 
