@@ -85,6 +85,7 @@
     "write-file-webpack-plugin": "4.1.0"
   },
   "dependencies": {
+    "@opuscapita/inputmask-date": "2.2.1",
     "@opuscapita/react-autocompletes": "1.0.8",
     "@opuscapita/react-maskedinput": "4.0.4",
     "lodash": "4.17.4",
