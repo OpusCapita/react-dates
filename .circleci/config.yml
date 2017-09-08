@@ -32,9 +32,9 @@ jobs:
           name: test
           command: npm test
 
-      - run:
-          name: upload-coverage
-          command: npm run upload-coverage
+#      - run:
+#          name: upload-coverage
+#          command: npm run upload-coverage
 
       - store_artifacts:
           path: test-results.xml
