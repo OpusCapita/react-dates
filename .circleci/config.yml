@@ -28,17 +28,17 @@ jobs:
           name: lint
           command: npm run lint
 
-#      - run:
-#          name: test
-#          command: npm test
-#
-#      - run:
-#          name: upload-coverage
-#          command: npm run upload-coverage
-#
-#      - store_artifacts:
-#          path: test-results.xml
-#          prefix: tests
-#
-#      - store_test_results:
-#          path: test-results.xml
+      - run:
+          name: test
+          command: npm test
+
+      - run:
+          name: upload-coverage
+          command: npm run upload-coverage
+
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+
+      - store_test_results:
+          path: test-results.xml
