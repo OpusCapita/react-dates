@@ -85,9 +85,8 @@
     "write-file-webpack-plugin": "4.1.0"
   },
   "dependencies": {
-    "@opuscapita/inputmask-date": "2.2.1",
     "@opuscapita/react-autocompletes": "1.0.8",
-    "@opuscapita/react-maskedinput": "^4.0.4",
+    "@opuscapita/react-maskedinput": "4.0.4",
     "lodash": "4.17.4",
     "moment": "2.18.1",
     "react-day-picker": "6.1.0",
