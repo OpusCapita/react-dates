@@ -61,6 +61,7 @@
     "file-loader": "0.10.1",
     "ignore-styles": "5.0.1",
     "jsdom": "11.0.0",
+    "jsdom-global": "3.0.2",
     "json-loader": "0.5.4",
     "less": "2.7.2",
     "less-loader": "2.2.3",
@@ -84,7 +85,9 @@
     "write-file-webpack-plugin": "4.1.0"
   },
   "dependencies": {
+    "@opuscapita/inputmask-date": "2.2.1",
     "@opuscapita/react-autocompletes": "1.0.8",
+    "@opuscapita/react-maskedinput": "4.0.4",
     "lodash": "4.17.4",
     "moment": "2.18.1",
     "react-day-picker": "6.1.0",

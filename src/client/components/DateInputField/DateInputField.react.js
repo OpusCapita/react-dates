@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import MaskedInput from 'react-maskedinput';
+import MaskedInput from '@opuscapita/react-maskedinput';
 import moment from '../moment';
 import './DateInputField.less';
 
@@ -35,6 +35,7 @@ class DateInputField extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleRef = this.handleRef.bind(this);
     this.clear = this.clear.bind(this);
+    this.isValid = false;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,8 +50,10 @@ class DateInputField extends Component {
   }
 
   validate(dateString, dateFormat) {
-    let momentDate = moment(dateString, dateFormat, true);
-    let error = momentDate.isValid() ? null : momentDate.invalidAt();
+    let dateForValidate = dateString.replace(/ /g, '');
+    let momentDate = moment(dateForValidate, dateFormat, true);
+    this.isValid = momentDate.isValid();
+    let error = this.isValid ? null : momentDate.invalidAt();
 
     if (error !== null && dateString.length) {
       this.props.onError(error);
@@ -83,7 +86,13 @@ class DateInputField extends Component {
       ...restProps
     } = this.props;
 
-    let mask = dateFormat.replace(/[a-zA-Z]/g, '1');
+    const sep = dateFormat.split('').filter(ch => !ch.match(/[a-zA-Z]/g)).map(sep => sep)[0];
+    const regExpD = new RegExp(`\\bD(?=\\${sep})`, 'g');
+    const regExpM = new RegExp(`\\bM(?=\\${sep})`, 'g');
+    const regExpDM = new RegExp(`\\bD(?=\\${sep})|\\bM(?=\\${sep})`, 'g');
+
+    let placeholder = dateFormat.replace(regExpD, ' D').replace(regExpM, ' M');
+    let mask = dateFormat.replace(regExpDM, '  ').replace(/[a-zA-Z]/g, '1');
 
     let {
       inputValue
@@ -97,9 +106,11 @@ class DateInputField extends Component {
         placeholderChar="‒"
         disabled={disabled}
         onChange={this.handleInputChange}
-        placeholder={dateFormat}
+        placeholder={placeholder}
         type="text"
+        isValid={this.isValid}
         value={inputValue}
+        dateFormat={this.props.dateFormat}
         {...restProps}
       />
     );
