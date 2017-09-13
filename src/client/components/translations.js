@@ -17,13 +17,26 @@ const translations = {
     today: 'Heute',
     yesterday: 'Gestern',
     tomorrow: 'Morgen',
-    previousWeek: 'Vorige week',
-    nextWeek: 'Volgende week',
-    thisWeek: 'Deze week',
-    previousMonth: 'Vorige maand',
-    last30Days: 'Laatste 30 dagen',
-    thisMonth: 'Deze maand',
-    nextMonth: 'Volgende maand'
+    previousWeek: 'Vorherige Woche',
+    nextWeek: 'Nächste Woche',
+    thisWeek: 'Diese Woche',
+    previousMonth: 'Vorheriger Monat',
+    last30Days: 'Letzte 30 Tagen',
+    thisMonth: 'Dieser Monat',
+    nextMonth: 'Nächster Monat'
+  },
+  ru: {
+    selectDateRange: 'Выберите диапазон дат',
+    today: 'Сегодня',
+    yesterday: 'Вчера',
+    tomorrow: 'Завтра',
+    previousWeek: 'Предыдущая неделя',
+    nextWeek: 'Следующая неделя',
+    thisWeek: 'Эта неделя',
+    previousMonth: 'Предыдущий месяц',
+    last30Days: 'Последние 30 дней',
+    thisMonth: 'Этот месяц',
+    nextMonth: 'Следующий месяц'
   }
 };
 
