@@ -1,3 +1,8 @@
+## [v0.3.0-beta.13](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.12...v0.3.0-beta.13) (Wed, 13 Sep 2017 12:33:42 GMT)
+ - Update "de" locale. Add "ru" locale (Kirill Volkovich <kirill.volkovich@jcatalog.com>, 74393f3)
+ - Update README.md (Alexey Sergeev <asergeev-sc@users.noreply.github.com>, c168164)
+ - Update README.md (Alexey Sergeev <asergeev-sc@users.noreply.github.com>, 08cbe66)
+
 ## [v0.3.0-beta.12](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.11...v0.3.0-beta.12) (Thu, 24 Aug 2017 11:17:50 GMT)
  - Fix daypicker caption "Next / Prev" buttons (Kirill Volkovich <volkovich@scand.com>, 8d880ac)
  - Ignore "gh-pages" branch in CircleCI (Kirill Volkovich <volkovich@scand.com>, 500d3ff)
