@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import MaskedInput from 'react-maskedinput';
 import moment from '../moment';
 import './DateInputField.less';
 
@@ -83,25 +82,27 @@ class DateInputField extends Component {
       ...restProps
     } = this.props;
 
-    let mask = dateFormat.replace(/[a-zA-Z]/g, '1');
-
     let {
       inputValue
     } = this.state;
 
     return (
-      <MaskedInput
+      <div
         ref={this.handleRef}
         className={`opuscapita_date-input-field form-control ${className}`}
-        mask={mask}
-        placeholderChar="‒"
         disabled={disabled}
         onChange={this.handleInputChange}
-        placeholder={dateFormat}
         type="text"
-        value={inputValue}
-        {...restProps}
-      />
+      >
+        <input
+          ref={ref => { this.dateInputFieldRef = ref }}
+          type="text"
+          value={inputValue}
+          placeholder={dateFormat}
+          disabled={disabled}
+          {...restProps}
+        />
+      </div>
     );
   }
 }
