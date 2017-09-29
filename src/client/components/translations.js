@@ -64,7 +64,7 @@ const translations = {
     thisMonth: 'Denne måneden',
     nextMonth: 'Neste måned'
   },
-   sv: {
+  sv: {
     selectDateRange: 'Välj datumintervall',
     today: 'Idag',
     yesterday: 'Igår',
