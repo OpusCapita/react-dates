@@ -14,14 +14,7 @@ config.plugins = config.plugins.concat([
       'NODE_ENV': '"production"'
     }
   }),
-  new webpack.optimize.OccurrenceOrderPlugin(),
-  new webpack.optimize.UglifyJsPlugin({
-    compressor: {
-      warnings: false,
-      screw_ie8: true
-    },
-    comments: false
-  })
+  new webpack.optimize.OccurrenceOrderPlugin()
   // ,
   // new BundleAnalyzerPlugin({
   //   analyzerMode: 'server',
