@@ -13,11 +13,11 @@
     "react-component"
   ],
   "scripts": {
-    "link-mode": "webpack --watch --config ./webpack.link.config.js",
+    "link-mode": "cross-env NODE_ENV=link webpack --config ./config/webpack.config.js",
     "lint": "eslint src",
-    "start": "node www/index",
+    "start": "cross-env NODE_ENV=development && node www/index",
     "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/mocha-setup.js --require ignore-styles",
-    "npm-build": "rimraf lib && webpack --config webpack.production.config.js",
+    "npm-build": "rimraf lib && cross-env NODE_ENV=production && webpack --config ./config/webpack.config.js",
     "npm-publish": "update-changelog -- --all && npm run npm-build && npm-publish",
     "publish-release": "npm run npm-publish -- --release"
   },
