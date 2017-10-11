@@ -502,7 +502,7 @@ class DateRangeInput extends Component {
           `}
         >
           <DateInputField
-            className="opuscapita_date-range-input__input-field"
+            className="opuscapita_date-range-input__input-field left"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'from')}
@@ -516,7 +516,7 @@ class DateRangeInput extends Component {
           />
           <div className="opuscapita_date-range-input__dash">―</div>
           <DateInputField
-            className="opuscapita_date-range-input__input-field"
+            className="opuscapita_date-range-input__input-field right"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'to')}
