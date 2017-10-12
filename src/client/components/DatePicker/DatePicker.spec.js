@@ -13,7 +13,7 @@ describe('<DatePicker />', () => {
     expect(component.props.disabled).to.equal(false);
     expect(component.props.tabIndex).to.equal(0);
     expect(component.props.onChange).to.be.a('function');
-    expect(component.props.locale).to.equal('en-GB');
+    expect(component.props.locale).to.equal('en');
   });
 
   it('should have the right class name', () => {
@@ -36,7 +36,7 @@ describe('<DatePicker />', () => {
     let wrapper = mount(
       <DatePicker
         aria-label="day-picker"
-        locale="en-GB"
+        locale="en"
         tabIndex={4}
         className="container"
         pickerClassName="picker"
@@ -54,7 +54,7 @@ describe('<DatePicker />', () => {
     expect(dayPickerElement.prop('container')).to.be.undefined;
     expect(dayPickerElement.prop('aria-label')).to.be.undefined;
     expect(dayPickerElement.prop('tabIndex')).to.be.equal(-1);
-    expect(dayPickerElement.prop('locale')).to.equal('en-GB');
+    expect(dayPickerElement.prop('locale')).to.equal('en');
     expect(dayPickerElement.prop('enableOutsideDays')).to.be.true;
     expect(dayPickerElement.prop('fixedWeeks')).to.be.true;
   });
@@ -63,7 +63,7 @@ describe('<DatePicker />', () => {
     let wrapper = mount(
       <DatePicker
         aria-label="day-picker"
-        locale="en-GB"
+        locale="en"
         tabIndex={4}
         className="container"
         pickerClassName="picker"
@@ -254,7 +254,7 @@ describe('<DatePicker />', () => {
   });
 
   it('should show current month if date prop not specified', () => {
-    let wrapper = mount(<DatePicker locale="en-GB" />);
+    let wrapper = mount(<DatePicker locale="en" />);
     const portal = new ReactWrapper(
       wrapper.instance().datePickerRef,
       true
@@ -273,7 +273,7 @@ describe('<DatePicker />', () => {
   });
 
   it('should change date if new date prop passed', () => {
-    let wrapper = mount(<DatePicker locale="en-GB" value={new Date(1945, 6, 16)} />);
+    let wrapper = mount(<DatePicker locale="en" value={new Date(1945, 6, 16)} />);
     const portal = new ReactWrapper(
       wrapper.instance().datePickerRef,
       true
@@ -289,7 +289,7 @@ describe('<DatePicker />', () => {
   });
 
   it('should react on locale change', () => {
-    let wrapper = mount(<DatePicker locale="en-GB" value={new Date(1945, 6, 16)} />);
+    let wrapper = mount(<DatePicker locale="en" value={new Date(1945, 6, 16)} />);
     const portal = new ReactWrapper(
       wrapper.instance().datePickerRef,
       true
@@ -309,7 +309,7 @@ describe('<DatePicker />', () => {
   });
 
   it('should show date from prop after reopen picker', () => {
-    let wrapper = mount(<DatePicker locale="en-GB" value={new Date(1945, 6, 16)} />);
+    let wrapper = mount(<DatePicker locale="en" value={new Date(1945, 6, 16)} />);
     const portal = new ReactWrapper(
       wrapper.instance().datePickerRef,
       true

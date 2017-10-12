@@ -17,7 +17,7 @@ let defaultProps = {
   className: '',
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
-  locale: 'en-GB',
+  locale: 'en',
   onChange: () => {},
   onError: () => {},
   onRef: () => {},

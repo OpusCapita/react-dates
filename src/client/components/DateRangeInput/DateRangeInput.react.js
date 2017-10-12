@@ -72,7 +72,7 @@ let defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   isValid: true,
-  locale: 'en-GB',
+  locale: 'en',
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},

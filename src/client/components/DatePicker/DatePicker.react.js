@@ -41,7 +41,7 @@ let propTypes = {
 let defaultProps = {
   className: '',
   disabled: false,
-  locale: 'en-GB',
+  locale: 'en',
   onChange: () => {},
   showToLeft: false,
   showToTop: false,
