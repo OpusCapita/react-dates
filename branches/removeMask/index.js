@@ -6836,7 +6836,7 @@ var defaultProps = {
   className: '',
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
-  locale: 'en-GB',
+  locale: 'en',
   onChange: function onChange() {},
   onError: function onError() {},
   onRef: function onRef() {},
@@ -7043,7 +7043,7 @@ var defaultProps = {
     }
   }],
   onChange: function onChange() {},
-  locale: 'en-GB'
+  locale: 'en'
 };
 
 var DateVariants = function (_Component) {
@@ -21620,7 +21620,7 @@ var propTypes = {
 var defaultProps = {
   className: '',
   disabled: false,
-  locale: 'en-GB',
+  locale: 'en',
   onChange: function onChange() {},
   showToLeft: false,
   showToTop: false,
@@ -22040,7 +22040,7 @@ var defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   isValid: true,
-  locale: 'en-GB',
+  locale: 'en',
   onBlur: function onBlur() {},
   onChange: function onChange() {},
   onFocus: function onFocus() {},
