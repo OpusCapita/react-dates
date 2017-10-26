@@ -16,7 +16,7 @@
     "link-mode": "cross-env NODE_ENV=link webpack --config ./config/webpack.config.js",
     "lint": "eslint src",
     "start": "cross-env NODE_ENV=development && showroom-scan src && babel-node www/index",
-    "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/mocha-setup.js --require ignore-styles",
+    "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/test/mocha-setup.js --require ignore-styles",
     "npm-build": "rimraf lib && cross-env NODE_ENV=production && webpack --config ./config/webpack.config.js",
     "npm-publish": "update-changelog -- --all && npm run npm-build && npm-publish",
     "publish-release": "npm run npm-publish -- --release"

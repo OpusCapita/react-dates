@@ -72,7 +72,7 @@ let defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   isValid: true,
-  locale: 'en-GB',
+  locale: 'en',
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
@@ -502,7 +502,7 @@ class DateRangeInput extends Component {
           `}
         >
           <DateInputField
-            className="opuscapita_date-range-input__input-field"
+            className="opuscapita_date-range-input__input-field opuscapita_date-range-input__left-input-field"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'from')}
@@ -516,7 +516,7 @@ class DateRangeInput extends Component {
           />
           <div className="opuscapita_date-range-input__dash">―</div>
           <DateInputField
-            className="opuscapita_date-range-input__input-field"
+            className="opuscapita_date-range-input__input-field opuscapita_date-range-input__right-input-field"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'to')}

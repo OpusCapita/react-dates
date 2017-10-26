@@ -41,7 +41,7 @@ let propTypes = {
 let defaultProps = {
   className: '',
   disabled: false,
-  locale: 'en-GB',
+  locale: 'en',
   onChange: () => {},
   showToLeft: false,
   showToTop: false,
@@ -169,6 +169,7 @@ class DatePicker extends Component {
             onClose={this.handlePortalClose}
           >
             <div
+              ref={ref => { this.datePickerRef = ref }}
               className={`opuscapita_date-picker__picker-container`}
               style={{
                 maxHeight: `${interpolatedStyle.x * 640}px`,
