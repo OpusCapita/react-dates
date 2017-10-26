@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 401);
+/******/ 	return __webpack_require__(__webpack_require__.s = 399);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1915,7 +1915,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(363)("./" + name);
+            __webpack_require__(362)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4550,7 +4550,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(400)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(398)(module)))
 
 /***/ }),
 /* 2 */
@@ -4999,7 +4999,7 @@ if (false) {
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(365)();
+  module.exports = __webpack_require__(364)();
 }
 
 
@@ -5610,11 +5610,11 @@ module.exports = assocIndexOf;
 /***/ (function(module, exports, __webpack_require__) {
 
 var assignValue = __webpack_require__(84),
-    copyObject = __webpack_require__(336),
-    createAssigner = __webpack_require__(337),
-    isArrayLike = __webpack_require__(355),
-    isPrototype = __webpack_require__(346),
-    keys = __webpack_require__(362);
+    copyObject = __webpack_require__(335),
+    createAssigner = __webpack_require__(336),
+    isArrayLike = __webpack_require__(354),
+    isPrototype = __webpack_require__(345),
+    keys = __webpack_require__(361);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -6161,7 +6161,7 @@ module.exports = function (key) {
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsEqual = __webpack_require__(332);
+var baseIsEqual = __webpack_require__(331);
 
 /**
  * Performs a deep comparison between two values to determine if they are
@@ -6241,7 +6241,7 @@ module.exports = isEqual;
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(367)
+/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__(366)
   , root = typeof window === 'undefined' ? global : window
   , vendors = ['moz', 'webkit']
   , suffix = 'AnimationFrame'
@@ -6317,7 +6317,7 @@ module.exports.polyfill = function(object) {
   object.cancelAnimationFrame = caf
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(399)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(397)))
 
 /***/ }),
 /* 50 */
@@ -6411,19 +6411,19 @@ exports.__esModule = true;
 
 function _interopRequire(obj) { return obj && obj.__esModule ? obj['default'] : obj; }
 
-var _Motion = __webpack_require__(382);
+var _Motion = __webpack_require__(380);
 
 exports.Motion = _interopRequire(_Motion);
 
-var _StaggeredMotion = __webpack_require__(383);
+var _StaggeredMotion = __webpack_require__(381);
 
 exports.StaggeredMotion = _interopRequire(_StaggeredMotion);
 
-var _TransitionMotion = __webpack_require__(384);
+var _TransitionMotion = __webpack_require__(382);
 
 exports.TransitionMotion = _interopRequire(_TransitionMotion);
 
-var _spring = __webpack_require__(387);
+var _spring = __webpack_require__(385);
 
 exports.spring = _interopRequire(_spring);
 
@@ -6433,7 +6433,7 @@ exports.presets = _interopRequire(_presets);
 
 // deprecated, dummy warning function
 
-var _reorderKeys = __webpack_require__(386);
+var _reorderKeys = __webpack_require__(384);
 
 exports.reorderKeys = _interopRequire(_reorderKeys);
 
@@ -6805,15 +6805,11 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactMaskedinput = __webpack_require__(381);
-
-var _reactMaskedinput2 = _interopRequireDefault(_reactMaskedinput);
-
 var _moment = __webpack_require__(20);
 
 var _moment2 = _interopRequireDefault(_moment);
 
-__webpack_require__(392);
+__webpack_require__(390);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6840,7 +6836,7 @@ var defaultProps = {
   className: '',
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
-  locale: 'en-GB',
+  locale: 'en',
   onChange: function onChange() {},
   onError: function onError() {},
   onRef: function onRef() {},
@@ -6905,6 +6901,8 @@ var DateInputField = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var _props = this.props,
           className = _props.className,
           dateFormat = _props.dateFormat,
@@ -6916,22 +6914,28 @@ var DateInputField = function (_Component) {
           value = _props.value,
           restProps = _objectWithoutProperties(_props, ['className', 'dateFormat', 'disabled', 'locale', 'onChange', 'onError', 'onRef', 'value']);
 
-      var mask = dateFormat.replace(/[a-zA-Z]/g, '1');
-
       var inputValue = this.state.inputValue;
 
 
-      return _react2.default.createElement(_reactMaskedinput2.default, _extends({
-        ref: this.handleRef,
-        className: 'opuscapita_date-input-field form-control ' + className,
-        mask: mask,
-        placeholderChar: '\u2012',
-        disabled: disabled,
-        onChange: this.handleInputChange,
-        placeholder: dateFormat,
-        type: 'text',
-        value: inputValue
-      }, restProps));
+      return _react2.default.createElement(
+        'div',
+        {
+          ref: this.handleRef,
+          className: 'opuscapita_date-input-field form-control ' + className,
+          disabled: disabled,
+          onChange: this.handleInputChange,
+          type: 'text'
+        },
+        _react2.default.createElement('input', _extends({
+          ref: function ref(_ref) {
+            _this2.dateInputFieldRef = _ref;
+          },
+          type: 'text',
+          value: inputValue,
+          placeholder: dateFormat,
+          disabled: disabled
+        }, restProps))
+      );
     }
   }]);
 
@@ -6982,7 +6986,7 @@ var _moment = __webpack_require__(20);
 
 var _moment2 = _interopRequireDefault(_moment);
 
-__webpack_require__(395);
+__webpack_require__(393);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7039,7 +7043,7 @@ var defaultProps = {
     }
   }],
   onChange: function onChange() {},
-  locale: 'en-GB'
+  locale: 'en'
 };
 
 var DateVariants = function (_Component) {
@@ -7135,7 +7139,7 @@ var _DayPicker = __webpack_require__(205);
 
 var _DayPicker2 = _interopRequireDefault(_DayPicker);
 
-__webpack_require__(390);
+__webpack_require__(388);
 
 var _MomentLocaleUtils = __webpack_require__(228);
 
@@ -7149,7 +7153,7 @@ var _assign3 = __webpack_require__(33);
 
 var _assign4 = _interopRequireDefault(_assign3);
 
-__webpack_require__(396);
+__webpack_require__(394);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7428,7 +7432,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(397);
+__webpack_require__(395);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7983,7 +7987,7 @@ module.exports = assignValue;
 /* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var defineProperty = __webpack_require__(338);
+var defineProperty = __webpack_require__(337);
 
 /**
  * The base implementation of `assignValue` and `assignMergeValue` without
@@ -19399,7 +19403,7 @@ var _propTypes = __webpack_require__(9);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Caption = __webpack_require__(376);
+var _Caption = __webpack_require__(375);
 
 var _Caption2 = _interopRequireDefault(_Caption);
 
@@ -19407,7 +19411,7 @@ var _Navbar = __webpack_require__(207);
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
-var _Month = __webpack_require__(378);
+var _Month = __webpack_require__(377);
 
 var _Month2 = _interopRequireDefault(_Month);
 
@@ -20377,9 +20381,9 @@ var _reactShowroomClient = __webpack_require__(10);
 
 var _reactShowroomClient2 = _interopRequireDefault(_reactShowroomClient);
 
-__webpack_require__(388);
+__webpack_require__(386);
 
-__webpack_require__(389);
+__webpack_require__(387);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20461,7 +20465,7 @@ module.exports = [
       {
         "name": "readme",
         "path": "/home/circleci/repo/src/client/components/DateInput/DateInput.DOCUMENTATION.md",
-        "content": __webpack_require__(368)
+        "content": __webpack_require__(367)
       }
     ],
     "componentClass": __webpack_require__(220).default,
@@ -20476,7 +20480,7 @@ module.exports = [
       {
         "name": "readme",
         "path": "/home/circleci/repo/src/client/components/DateInputField/DateInputField.DOCUMENTATION.md",
-        "content": __webpack_require__(369)
+        "content": __webpack_require__(368)
       }
     ],
     "componentClass": __webpack_require__(58).default,
@@ -20491,7 +20495,7 @@ module.exports = [
       {
         "name": "readme",
         "path": "/home/circleci/repo/src/client/components/DatePicker/DatePicker.DOCUMENTATION.md",
-        "content": __webpack_require__(370)
+        "content": __webpack_require__(369)
       }
     ],
     "componentClass": __webpack_require__(223).default,
@@ -20506,7 +20510,7 @@ module.exports = [
       {
         "name": "readme",
         "path": "/home/circleci/repo/src/client/components/DateRangeInput/DateRangeInput.DOCUMENTATION.md",
-        "content": __webpack_require__(371)
+        "content": __webpack_require__(370)
       }
     ],
     "componentClass": __webpack_require__(225).default,
@@ -20521,7 +20525,7 @@ module.exports = [
       {
         "name": "readme",
         "path": "/home/circleci/repo/src/client/components/DateVariants/DateVariants.DOCUMENTATION.md",
-        "content": __webpack_require__(372)
+        "content": __webpack_require__(371)
       }
     ],
     "componentClass": __webpack_require__(60).default,
@@ -20536,7 +20540,7 @@ module.exports = [
       {
         "name": "readme",
         "path": "/home/circleci/repo/src/client/components/DayPicker/DayPicker.DOCUMENTATION.md",
-        "content": __webpack_require__(373)
+        "content": __webpack_require__(372)
       }
     ],
     "componentClass": __webpack_require__(62).default,
@@ -20551,7 +20555,7 @@ module.exports = [
       {
         "name": "readme",
         "path": "/home/circleci/repo/src/client/components/InputAddonButton/InputAddonButton.DOCUMENTATION.md",
-        "content": __webpack_require__(374)
+        "content": __webpack_require__(373)
       }
     ],
     "componentClass": __webpack_require__(63).default,
@@ -20582,7 +20586,7 @@ module.exports = [
             "link-mode": "cross-env NODE_ENV=link webpack --config ./config/webpack.config.js",
             "lint": "eslint src",
             "start": "cross-env NODE_ENV=development && showroom-scan src && babel-node www/index",
-            "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/mocha-setup.js --require ignore-styles",
+            "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/test/mocha-setup.js --require ignore-styles",
             "npm-build": "rimraf lib && cross-env NODE_ENV=production && webpack --config ./config/webpack.config.js",
             "npm-publish": "update-changelog -- --all && npm run npm-build && npm-publish",
             "publish-release": "npm run npm-publish -- --release"
@@ -20685,7 +20689,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _VerticalListModule = __webpack_require__(398);
+var _VerticalListModule = __webpack_require__(396);
 
 var _VerticalListModule2 = _interopRequireDefault(_VerticalListModule);
 
@@ -20877,7 +20881,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(391);
+__webpack_require__(389);
 
 var _DateInputField = __webpack_require__(59);
 
@@ -21542,7 +21546,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(393);
+__webpack_require__(391);
 
 var _DayPicker = __webpack_require__(36);
 
@@ -21616,7 +21620,7 @@ var propTypes = {
 var defaultProps = {
   className: '',
   disabled: false,
-  locale: 'en-GB',
+  locale: 'en',
   onChange: function onChange() {},
   showToLeft: false,
   showToTop: false,
@@ -21761,6 +21765,9 @@ var DatePicker = function (_Component) {
             _react2.default.createElement(
               'div',
               {
+                ref: function ref(_ref) {
+                  _this2.datePickerRef = _ref;
+                },
                 className: 'opuscapita_date-picker__picker-container',
                 style: {
                   maxHeight: interpolatedStyle.x * 640 + 'px',
@@ -21912,7 +21919,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(394);
+__webpack_require__(392);
 
 var _DayPicker = __webpack_require__(36);
 
@@ -21930,7 +21937,7 @@ var _DateInputField = __webpack_require__(59);
 
 var _DateInputField2 = _interopRequireDefault(_DateInputField);
 
-var _reactDayPicker = __webpack_require__(375);
+var _reactDayPicker = __webpack_require__(374);
 
 var _assign3 = __webpack_require__(33);
 
@@ -22033,7 +22040,7 @@ var defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   isValid: true,
-  locale: 'en-GB',
+  locale: 'en',
   onBlur: function onBlur() {},
   onChange: function onChange() {},
   onFocus: function onFocus() {},
@@ -22493,7 +22500,7 @@ var DateRangeInput = function (_Component) {
             className: '\n            opuscapita_date-range-input__input-field-container\n            form-control\n            ' + hasErrorClassName + '\n            ' + focusedClassName + '\n          '
           },
           _react2.default.createElement(_DateInputField2.default, {
-            className: 'opuscapita_date-range-input__input-field',
+            className: 'opuscapita_date-range-input__input-field opuscapita_date-range-input__left-input-field',
             dateFormat: momentCompatibleDateFormat,
             disabled: disabled,
             onBlur: function onBlur(e) {
@@ -22519,7 +22526,7 @@ var DateRangeInput = function (_Component) {
             '\u2015'
           ),
           _react2.default.createElement(_DateInputField2.default, {
-            className: 'opuscapita_date-range-input__input-field',
+            className: 'opuscapita_date-range-input__input-field opuscapita_date-range-input__right-input-field',
             dateFormat: momentCompatibleDateFormat,
             disabled: disabled,
             onBlur: function onBlur(e) {
@@ -24414,7 +24421,7 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, ".opuscapita_date-input {\n  display: -webkit-box !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n  padding: 0 !important;\n  border: none !important;\n  position: relative !important;\n}\n.opuscapita_date-input::-ms-clear {\n  display: none !important;\n}\n.opuscapita_date-input__input-container {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.opuscapita_date-input .opuscapita_date-input-field {\n  padding-right: 4ch;\n}\n.opuscapita_date-input__picker-container,\n.opuscapita_date-input__variants-container {\n  will-change: opacity, max-height;\n  background: #fff;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);\n  position: absolute;\n  overflow: hidden;\n  z-index: 900;\n}\n.opuscapita_date-input__variants-container {\n  white-space: nowrap;\n}\n.opuscapita_date-input__variants-btn {\n  border-left: none;\n}\n.opuscapita_date-input__picker-container:focus {\n  outline: none;\n}\n.opuscapita_date-input__reset-btn {\n  position: absolute;\n  top: 0;\n  right: 1ch;\n  z-index: 3;\n}\n", ""]);
+exports.push([module.i, ".opuscapita_date-input {\n  display: -webkit-box !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n  padding: 0 !important;\n  border: none !important;\n  position: relative !important;\n}\n.opuscapita_date-input::-ms-clear {\n  display: none !important;\n}\n.opuscapita_date-input__input-container {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.opuscapita_date-input .opuscapita_date-input-field {\n  padding-right: 4ch;\n}\n.opuscapita_date-input-field input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  outline: none;\n}\n.opuscapita_date-input-field input:disabled {\n  background: transparent;\n}\n.opuscapita_date-input__picker-container,\n.opuscapita_date-input__variants-container {\n  will-change: opacity, max-height;\n  background: #fff;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);\n  position: absolute;\n  overflow: hidden;\n  z-index: 900;\n}\n.opuscapita_date-input__variants-container {\n  white-space: nowrap;\n}\n.opuscapita_date-input__variants-btn {\n  border-left: none;\n}\n.opuscapita_date-input__picker-container:focus {\n  outline: none;\n}\n.opuscapita_date-input__reset-btn {\n  position: absolute;\n  top: 0;\n  right: 1ch;\n  z-index: 3;\n}\n", ""]);
 
 // exports
 
@@ -24456,7 +24463,7 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, ".opuscapita_date-range-input {\n  position: relative !important;\n  display: -webkit-inline-box !important;\n  display: -ms-inline-flexbox !important;\n  display: inline-flex !important;\n  padding: 0 !important;\n  border: none !important;\n}\n.opuscapita_date-range-input__picker-container,\n.opuscapita_date-range-input__variants-container {\n  will-change: opacity, max-height;\n  background: #fff;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);\n  overflow: hidden;\n  position: absolute;\n  z-index: 900;\n}\n.opuscapita_date-range-input__variants-container {\n  white-space: nowrap;\n}\n.opuscapita_date-range-input__picker-container:focus {\n  outline: none;\n}\n.opuscapita_date-range-input__picker-container .DayPicker {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: nowrap;\n      flex-wrap: nowrap;\n}\n.opuscapita_date-range-input__reset-btn {\n  position: absolute;\n  top: 0;\n  right: 1ch;\n  z-index: 10;\n}\n.opuscapita_date-range-input__input-field {\n  width: 100% !important;\n  height: 100% !important;\n  padding-right: 3ch;\n  border: none !important;\n  text-align: center;\n  box-shadow: none !important;\n}\n.opuscapita_date-range-input__input-field:first-of-type {\n  text-align: left;\n  padding-right: 12px;\n}\n.opuscapita_date-range-input__input-field:last-of-type {\n  text-align: right;\n  padding-right: 36px;\n}\n.opuscapita_date-range-input__input-field[placeholder] {\n  text-overflow: ellipsis;\n  overflow: hidden;\n}\n.opuscapita_date-range-input__input-field-container {\n  position: relative !important;\n  display: -webkit-box !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n  -webkit-box-flex: 1 !important;\n      -ms-flex: 1 !important;\n          flex: 1 !important;\n  padding: 0 !important;\n}\n.opuscapita_date-range-input__input-field-container--focused {\n  border-color: #369 !important;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(51, 102, 153, 0.6) !important;\n}\n.opuscapita_date-range-input__input-field-container.has-error {\n  border-color: #a94442 !important;\n}\n.opuscapita_date-range-input__input-field-container--focused.has-error {\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483 !important;\n}\n.opuscapita_date-range-input__variants-btn {\n  border-left: none;\n}\n.opuscapita_date-range-input__humanized-duration {\n  position: absolute;\n  left: 0;\n  font-size: 0.8em;\n  opacity: 0.6;\n  bottom: -2px;\n  -webkit-transform: translate(0, 100%);\n          transform: translate(0, 100%);\n}\n.opuscapita_date-range-input__dash {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  z-index: 10;\n  pointer-events: none;\n  color: #aaa;\n  padding-right: 24px;\n}\n", ""]);
+exports.push([module.i, ".opuscapita_date-range-input {\n  position: relative !important;\n  display: -webkit-inline-box !important;\n  display: -ms-inline-flexbox !important;\n  display: inline-flex !important;\n  padding: 0 !important;\n  border: none !important;\n}\n.opuscapita_date-range-input__picker-container,\n.opuscapita_date-range-input__variants-container {\n  will-change: opacity, max-height;\n  background: #fff;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);\n  overflow: hidden;\n  position: absolute;\n  z-index: 900;\n}\n.opuscapita_date-range-input__variants-container {\n  white-space: nowrap;\n}\n.opuscapita_date-range-input__picker-container:focus {\n  outline: none;\n}\n.opuscapita_date-range-input__picker-container .DayPicker {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: nowrap;\n      flex-wrap: nowrap;\n}\n.opuscapita_date-range-input__reset-btn {\n  position: absolute;\n  top: 0;\n  right: 1ch;\n  z-index: 10;\n}\n.opuscapita_date-range-input__input-field {\n  width: 100% !important;\n  height: 100% !important;\n  border: none !important;\n  text-align: center;\n  box-shadow: none !important;\n}\n.opuscapita_date-range-input__left-input-field {\n  padding-right: 24px;\n}\n.opuscapita_date-range-input__left-input-field input {\n  text-align: left;\n}\n.opuscapita_date-range-input__right-input-field {\n  padding-right: 36px;\n}\n.opuscapita_date-range-input__right-input-field input {\n  text-align: right;\n}\n.opuscapita_date-range-input__input-field[placeholder] {\n  text-overflow: ellipsis;\n  overflow: hidden;\n}\n.opuscapita_date-range-input__input-field-container {\n  position: relative !important;\n  display: -webkit-box !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n  -webkit-box-flex: 1 !important;\n      -ms-flex: 1 !important;\n          flex: 1 !important;\n  padding: 0 !important;\n}\n.opuscapita_date-range-input__input-field-container--focused {\n  border-color: #369 !important;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(51, 102, 153, 0.6) !important;\n}\n.opuscapita_date-range-input__input-field-container.has-error {\n  border-color: #a94442 !important;\n}\n.opuscapita_date-range-input__input-field-container--focused.has-error {\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483 !important;\n}\n.opuscapita_date-range-input__variants-btn {\n  border-left: none;\n}\n.opuscapita_date-range-input__humanized-duration {\n  position: absolute;\n  left: 0;\n  font-size: 0.8em;\n  opacity: 0.6;\n  bottom: -2px;\n  -webkit-transform: translate(0, 100%);\n          transform: translate(0, 100%);\n}\n.opuscapita_date-range-input__dash {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  z-index: 10;\n  pointer-events: none;\n  color: #aaa;\n  padding-right: 24px;\n}\n", ""]);
 
 // exports
 
@@ -24729,536 +24736,12 @@ module.exports = __webpack_require__.p + "47da44498fc073d9fff9ab0cdb0bef8e.ttf";
 module.exports = __webpack_require__.p + "5eae1f7217b606d3580dd70ac840fea1.woff";
 
 /***/ }),
-/* 320 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function extend(dest, src) {
-  if (src) {
-    var props = Object.keys(src)
-    for (var i = 0, l = props.length; i < l ; i++) {
-      dest[props[i]] = src[props[i]]
-    }
-  }
-  return dest
-}
-
-function copy(obj) {
-  return extend({}, obj)
-}
-
-/**
- * Merge an object defining format characters into the defaults.
- * Passing null/undefined for en existing format character removes it.
- * Passing a definition for an existing format character overrides it.
- * @param {?Object} formatCharacters.
- */
-function mergeFormatCharacters(formatCharacters) {
-  var merged = copy(DEFAULT_FORMAT_CHARACTERS)
-  if (formatCharacters) {
-    var chars = Object.keys(formatCharacters)
-    for (var i = 0, l = chars.length; i < l ; i++) {
-      var char = chars[i]
-      if (formatCharacters[char] == null) {
-        delete merged[char]
-      }
-      else {
-        merged[char] = formatCharacters[char]
-      }
-    }
-  }
-  return merged
-}
-
-var ESCAPE_CHAR = '\\'
-
-var DIGIT_RE = /^\d$/
-var LETTER_RE = /^[A-Za-z]$/
-var ALPHANNUMERIC_RE = /^[\dA-Za-z]$/
-
-var DEFAULT_PLACEHOLDER_CHAR = '_'
-var DEFAULT_FORMAT_CHARACTERS = {
-  '*': {
-    validate: function(char) { return ALPHANNUMERIC_RE.test(char) }
-  },
-  '1': {
-    validate: function(char) { return DIGIT_RE.test(char) }
-  },
-  'a': {
-    validate: function(char) { return LETTER_RE.test(char) }
-  },
-  'A': {
-    validate: function(char) { return LETTER_RE.test(char) },
-    transform: function(char) { return char.toUpperCase() }
-  },
-  '#': {
-    validate: function(char) { return ALPHANNUMERIC_RE.test(char) },
-    transform: function(char) { return char.toUpperCase() }
-  }
-}
-
-/**
- * @param {string} source
- * @patam {?Object} formatCharacters
- */
-function Pattern(source, formatCharacters, placeholderChar, isRevealingMask) {
-  if (!(this instanceof Pattern)) {
-    return new Pattern(source, formatCharacters, placeholderChar)
-  }
-
-  /** Placeholder character */
-  this.placeholderChar = placeholderChar || DEFAULT_PLACEHOLDER_CHAR
-  /** Format character definitions. */
-  this.formatCharacters = formatCharacters || DEFAULT_FORMAT_CHARACTERS
-  /** Pattern definition string with escape characters. */
-  this.source = source
-  /** Pattern characters after escape characters have been processed. */
-  this.pattern = []
-  /** Length of the pattern after escape characters have been processed. */
-  this.length = 0
-  /** Index of the first editable character. */
-  this.firstEditableIndex = null
-  /** Index of the last editable character. */
-  this.lastEditableIndex = null
-  /** Lookup for indices of editable characters in the pattern. */
-  this._editableIndices = {}
-  /** If true, only the pattern before the last valid value character shows. */
-  this.isRevealingMask = isRevealingMask || false
-
-  this._parse()
-}
-
-Pattern.prototype._parse = function parse() {
-  var sourceChars = this.source.split('')
-  var patternIndex = 0
-  var pattern = []
-
-  for (var i = 0, l = sourceChars.length; i < l; i++) {
-    var char = sourceChars[i]
-    if (char === ESCAPE_CHAR) {
-      if (i === l - 1) {
-        throw new Error('InputMask: pattern ends with a raw ' + ESCAPE_CHAR)
-      }
-      char = sourceChars[++i]
-    }
-    else if (char in this.formatCharacters) {
-      if (this.firstEditableIndex === null) {
-        this.firstEditableIndex = patternIndex
-      }
-      this.lastEditableIndex = patternIndex
-      this._editableIndices[patternIndex] = true
-    }
-
-    pattern.push(char)
-    patternIndex++
-  }
-
-  if (this.firstEditableIndex === null) {
-    throw new Error(
-      'InputMask: pattern "' + this.source + '" does not contain any editable characters.'
-    )
-  }
-
-  this.pattern = pattern
-  this.length = pattern.length
-}
-
-/**
- * @param {Array<string>} value
- * @return {Array<string>}
- */
-Pattern.prototype.formatValue = function format(value) {
-  var valueBuffer = new Array(this.length)
-  var valueIndex = 0
-
-  for (var i = 0, l = this.length; i < l ; i++) {
-    if (this.isEditableIndex(i)) {
-      if (this.isRevealingMask &&
-          value.length <= valueIndex &&
-          !this.isValidAtIndex(value[valueIndex], i)) {
-        break
-      }
-      valueBuffer[i] = (value.length > valueIndex && this.isValidAtIndex(value[valueIndex], i)
-                        ? this.transform(value[valueIndex], i)
-                        : this.placeholderChar)
-      valueIndex++
-    }
-    else {
-      valueBuffer[i] = this.pattern[i]
-      // Also allow the value to contain static values from the pattern by
-      // advancing its index.
-      if (value.length > valueIndex && value[valueIndex] === this.pattern[i]) {
-        valueIndex++
-      }
-    }
-  }
-
-  return valueBuffer
-}
-
-/**
- * @param {number} index
- * @return {boolean}
- */
-Pattern.prototype.isEditableIndex = function isEditableIndex(index) {
-  return !!this._editableIndices[index]
-}
-
-/**
- * @param {string} char
- * @param {number} index
- * @return {boolean}
- */
-Pattern.prototype.isValidAtIndex = function isValidAtIndex(char, index) {
-  return this.formatCharacters[this.pattern[index]].validate(char)
-}
-
-Pattern.prototype.transform = function transform(char, index) {
-  var format = this.formatCharacters[this.pattern[index]]
-  return typeof format.transform == 'function' ? format.transform(char) : char
-}
-
-function InputMask(options) {
-  if (!(this instanceof InputMask)) { return new InputMask(options) }
-  options = extend({
-    formatCharacters: null,
-    pattern: null,
-    isRevealingMask: false,
-    placeholderChar: DEFAULT_PLACEHOLDER_CHAR,
-    selection: {start: 0, end: 0},
-    value: ''
-  }, options)
-
-  if (options.pattern == null) {
-    throw new Error('InputMask: you must provide a pattern.')
-  }
-
-  if (typeof options.placeholderChar !== 'string' || options.placeholderChar.length > 1) {
-    throw new Error('InputMask: placeholderChar should be a single character or an empty string.')
-  }
-
-  this.placeholderChar = options.placeholderChar
-  this.formatCharacters = mergeFormatCharacters(options.formatCharacters)
-  this.setPattern(options.pattern, {
-    value: options.value,
-    selection: options.selection,
-    isRevealingMask: options.isRevealingMask
-  })
-}
-
-// Editing
-
-/**
- * Applies a single character of input based on the current selection.
- * @param {string} char
- * @return {boolean} true if a change has been made to value or selection as a
- *   result of the input, false otherwise.
- */
-InputMask.prototype.input = function input(char) {
-  // Ignore additional input if the cursor's at the end of the pattern
-  if (this.selection.start === this.selection.end &&
-      this.selection.start === this.pattern.length) {
-    return false
-  }
-
-  var selectionBefore = copy(this.selection)
-  var valueBefore = this.getValue()
-
-  var inputIndex = this.selection.start
-
-  // If the cursor or selection is prior to the first editable character, make
-  // sure any input given is applied to it.
-  if (inputIndex < this.pattern.firstEditableIndex) {
-    inputIndex = this.pattern.firstEditableIndex
-  }
-
-  // Bail out or add the character to input
-  if (this.pattern.isEditableIndex(inputIndex)) {
-    if (!this.pattern.isValidAtIndex(char, inputIndex)) {
-      return false
-    }
-    this.value[inputIndex] = this.pattern.transform(char, inputIndex)
-  }
-
-  // If multiple characters were selected, blank the remainder out based on the
-  // pattern.
-  var end = this.selection.end - 1
-  while (end > inputIndex) {
-    if (this.pattern.isEditableIndex(end)) {
-      this.value[end] = this.placeholderChar
-    }
-    end--
-  }
-
-  // Advance the cursor to the next character
-  this.selection.start = this.selection.end = inputIndex + 1
-
-  // Skip over any subsequent static characters
-  while (this.pattern.length > this.selection.start &&
-         !this.pattern.isEditableIndex(this.selection.start)) {
-    this.selection.start++
-    this.selection.end++
-  }
-
-  // History
-  if (this._historyIndex != null) {
-    // Took more input after undoing, so blow any subsequent history away
-    this._history.splice(this._historyIndex, this._history.length - this._historyIndex)
-    this._historyIndex = null
-  }
-  if (this._lastOp !== 'input' ||
-      selectionBefore.start !== selectionBefore.end ||
-      this._lastSelection !== null && selectionBefore.start !== this._lastSelection.start) {
-    this._history.push({value: valueBefore, selection: selectionBefore, lastOp: this._lastOp})
-  }
-  this._lastOp = 'input'
-  this._lastSelection = copy(this.selection)
-
-  return true
-}
-
-/**
- * Attempts to delete from the value based on the current cursor position or
- * selection.
- * @return {boolean} true if the value or selection changed as the result of
- *   backspacing, false otherwise.
- */
-InputMask.prototype.backspace = function backspace() {
-  // If the cursor is at the start there's nothing to do
-  if (this.selection.start === 0 && this.selection.end === 0) {
-    return false
-  }
-
-  var selectionBefore = copy(this.selection)
-  var valueBefore = this.getValue()
-
-  // No range selected - work on the character preceding the cursor
-  if (this.selection.start === this.selection.end) {
-    if (this.pattern.isEditableIndex(this.selection.start - 1)) {
-      this.value[this.selection.start - 1] = this.placeholderChar
-    }
-    this.selection.start--
-    this.selection.end--
-  }
-  // Range selected - delete characters and leave the cursor at the start of the selection
-  else {
-    var end = this.selection.end - 1
-    while (end >= this.selection.start) {
-      if (this.pattern.isEditableIndex(end)) {
-        this.value[end] = this.placeholderChar
-      }
-      end--
-    }
-    this.selection.end = this.selection.start
-  }
-
-  // History
-  if (this._historyIndex != null) {
-    // Took more input after undoing, so blow any subsequent history away
-    this._history.splice(this._historyIndex, this._history.length - this._historyIndex)
-  }
-  if (this._lastOp !== 'backspace' ||
-      selectionBefore.start !== selectionBefore.end ||
-      this._lastSelection !== null && selectionBefore.start !== this._lastSelection.start) {
-    this._history.push({value: valueBefore, selection: selectionBefore, lastOp: this._lastOp})
-  }
-  this._lastOp = 'backspace'
-  this._lastSelection = copy(this.selection)
-
-  return true
-}
-
-/**
- * Attempts to paste a string of input at the current cursor position or over
- * the top of the current selection.
- * Invalid content at any position will cause the paste to be rejected, and it
- * may contain static parts of the mask's pattern.
- * @param {string} input
- * @return {boolean} true if the paste was successful, false otherwise.
- */
-InputMask.prototype.paste = function paste(input) {
-  // This is necessary because we're just calling input() with each character
-  // and rolling back if any were invalid, rather than checking up-front.
-  var initialState = {
-    value: this.value.slice(),
-    selection: copy(this.selection),
-    _lastOp: this._lastOp,
-    _history: this._history.slice(),
-    _historyIndex: this._historyIndex,
-    _lastSelection: copy(this._lastSelection)
-  }
-
-  // If there are static characters at the start of the pattern and the cursor
-  // or selection is within them, the static characters must match for a valid
-  // paste.
-  if (this.selection.start < this.pattern.firstEditableIndex) {
-    for (var i = 0, l = this.pattern.firstEditableIndex - this.selection.start; i < l; i++) {
-      if (input.charAt(i) !== this.pattern.pattern[i]) {
-        return false
-      }
-    }
-
-    // Continue as if the selection and input started from the editable part of
-    // the pattern.
-    input = input.substring(this.pattern.firstEditableIndex - this.selection.start)
-    this.selection.start = this.pattern.firstEditableIndex
-  }
-
-  for (i = 0, l = input.length;
-       i < l && this.selection.start <= this.pattern.lastEditableIndex;
-       i++) {
-    var valid = this.input(input.charAt(i))
-    // Allow static parts of the pattern to appear in pasted input - they will
-    // already have been stepped over by input(), so verify that the value
-    // deemed invalid by input() was the expected static character.
-    if (!valid) {
-      if (this.selection.start > 0) {
-        // XXX This only allows for one static character to be skipped
-        var patternIndex = this.selection.start - 1
-        if (!this.pattern.isEditableIndex(patternIndex) &&
-            input.charAt(i) === this.pattern.pattern[patternIndex]) {
-          continue
-        }
-      }
-      extend(this, initialState)
-      return false
-    }
-  }
-
-  return true
-}
-
-// History
-
-InputMask.prototype.undo = function undo() {
-  // If there is no history, or nothing more on the history stack, we can't undo
-  if (this._history.length === 0 || this._historyIndex === 0) {
-    return false
-  }
-
-  var historyItem
-  if (this._historyIndex == null) {
-    // Not currently undoing, set up the initial history index
-    this._historyIndex = this._history.length - 1
-    historyItem = this._history[this._historyIndex]
-    // Add a new history entry if anything has changed since the last one, so we
-    // can redo back to the initial state we started undoing from.
-    var value = this.getValue()
-    if (historyItem.value !== value ||
-        historyItem.selection.start !== this.selection.start ||
-        historyItem.selection.end !== this.selection.end) {
-      this._history.push({value: value, selection: copy(this.selection), lastOp: this._lastOp, startUndo: true})
-    }
-  }
-  else {
-    historyItem = this._history[--this._historyIndex]
-  }
-
-  this.value = historyItem.value.split('')
-  this.selection = historyItem.selection
-  this._lastOp = historyItem.lastOp
-  return true
-}
-
-InputMask.prototype.redo = function redo() {
-  if (this._history.length === 0 || this._historyIndex == null) {
-    return false
-  }
-  var historyItem = this._history[++this._historyIndex]
-  // If this is the last history item, we're done redoing
-  if (this._historyIndex === this._history.length - 1) {
-    this._historyIndex = null
-    // If the last history item was only added to start undoing, remove it
-    if (historyItem.startUndo) {
-      this._history.pop()
-    }
-  }
-  this.value = historyItem.value.split('')
-  this.selection = historyItem.selection
-  this._lastOp = historyItem.lastOp
-  return true
-}
-
-// Getters & setters
-
-InputMask.prototype.setPattern = function setPattern(pattern, options) {
-  options = extend({
-    selection: {start: 0, end: 0},
-    value: ''
-  }, options)
-  this.pattern = new Pattern(pattern, this.formatCharacters, this.placeholderChar, options.isRevealingMask)
-  this.setValue(options.value)
-  this.emptyValue = this.pattern.formatValue([]).join('')
-  this.selection = options.selection
-  this._resetHistory()
-}
-
-InputMask.prototype.setSelection = function setSelection(selection) {
-  this.selection = copy(selection)
-  if (this.selection.start === this.selection.end) {
-    if (this.selection.start < this.pattern.firstEditableIndex) {
-      this.selection.start = this.selection.end = this.pattern.firstEditableIndex
-      return true
-    }
-    // Set selection to the first editable, non-placeholder character before the selection
-    // OR to the beginning of the pattern
-    var index = this.selection.start
-    while (index >= this.pattern.firstEditableIndex) {
-      if (this.pattern.isEditableIndex(index - 1) &&
-          this.value[index - 1] !== this.placeholderChar ||
-          index === this.pattern.firstEditableIndex) {
-        this.selection.start = this.selection.end = index
-        break
-      }
-      index--
-    }
-    return true
-  }
-  return false
-}
-
-InputMask.prototype.setValue = function setValue(value) {
-  if (value == null) {
-    value = ''
-  }
-  this.value = this.pattern.formatValue(value.split(''))
-}
-
-InputMask.prototype.getValue = function getValue() {
-  return this.value.join('')
-}
-
-InputMask.prototype.getRawValue = function getRawValue() {
-  var rawValue = []
-  for (var i = 0; i < this.value.length; i++) {
-    if (this.pattern._editableIndices[i] === true) {
-      rawValue.push(this.value[i])
-    }
-  }
-  return rawValue.join('')
-}
-
-InputMask.prototype._resetHistory = function _resetHistory() {
-  this._history = []
-  this._historyIndex = null
-  this._lastOp = null
-  this._lastSelection = copy(this.selection)
-}
-
-InputMask.Pattern = Pattern
-
-module.exports = InputMask
-
-
-/***/ }),
+/* 320 */,
 /* 321 */,
 /* 322 */,
 /* 323 */,
 /* 324 */,
-/* 325 */,
-/* 326 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArray = __webpack_require__(88);
@@ -25308,14 +24791,14 @@ module.exports = castArray;
 
 
 /***/ }),
-/* 327 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var listCacheClear = __webpack_require__(347),
-    listCacheDelete = __webpack_require__(348),
-    listCacheGet = __webpack_require__(349),
-    listCacheHas = __webpack_require__(350),
-    listCacheSet = __webpack_require__(351);
+var listCacheClear = __webpack_require__(346),
+    listCacheDelete = __webpack_require__(347),
+    listCacheGet = __webpack_require__(348),
+    listCacheHas = __webpack_require__(349),
+    listCacheSet = __webpack_require__(350);
 
 /**
  * Creates an list cache object.
@@ -25346,7 +24829,7 @@ module.exports = ListCache;
 
 
 /***/ }),
-/* 328 */
+/* 327 */
 /***/ (function(module, exports) {
 
 /**
@@ -25373,7 +24856,7 @@ module.exports = apply;
 
 
 /***/ }),
-/* 329 */
+/* 328 */
 /***/ (function(module, exports) {
 
 /**
@@ -25402,7 +24885,7 @@ module.exports = arraySome;
 
 
 /***/ }),
-/* 330 */
+/* 329 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -25430,7 +24913,7 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 331 */
+/* 330 */
 /***/ (function(module, exports) {
 
 /**
@@ -25459,11 +24942,11 @@ module.exports = strictIndexOf;
 
 
 /***/ }),
-/* 332 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsEqualDeep = __webpack_require__(333),
-    isObjectLike = __webpack_require__(360);
+var baseIsEqualDeep = __webpack_require__(332),
+    isObjectLike = __webpack_require__(359);
 
 /**
  * The base implementation of `_.isEqual` which supports partial comparisons
@@ -25493,17 +24976,17 @@ module.exports = baseIsEqual;
 
 
 /***/ }),
-/* 333 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Stack = __webpack_require__(327),
-    equalArrays = __webpack_require__(339),
-    equalByTag = __webpack_require__(340),
-    equalObjects = __webpack_require__(341),
-    getTag = __webpack_require__(344),
+var Stack = __webpack_require__(326),
+    equalArrays = __webpack_require__(338),
+    equalByTag = __webpack_require__(339),
+    equalObjects = __webpack_require__(340),
+    getTag = __webpack_require__(343),
     isArray = __webpack_require__(88),
-    isBuffer = __webpack_require__(356),
-    isTypedArray = __webpack_require__(361);
+    isBuffer = __webpack_require__(355),
+    isTypedArray = __webpack_require__(360);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1;
@@ -25582,12 +25065,12 @@ module.exports = baseIsEqualDeep;
 
 
 /***/ }),
-/* 334 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var identity = __webpack_require__(354),
-    overRest = __webpack_require__(352),
-    setToString = __webpack_require__(353);
+var identity = __webpack_require__(353),
+    overRest = __webpack_require__(351),
+    setToString = __webpack_require__(352);
 
 /**
  * The base implementation of `_.rest` which doesn't validate or coerce arguments.
@@ -25605,10 +25088,10 @@ module.exports = baseRest;
 
 
 /***/ }),
-/* 335 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIndexOf = __webpack_require__(331);
+var baseIndexOf = __webpack_require__(330);
 
 /**
  * A specialized version of `_.includes` for arrays without support for
@@ -25628,7 +25111,7 @@ module.exports = arrayIncludes;
 
 
 /***/ }),
-/* 336 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assignValue = __webpack_require__(84),
@@ -25674,11 +25157,11 @@ module.exports = copyObject;
 
 
 /***/ }),
-/* 337 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseRest = __webpack_require__(334),
-    isIterateeCall = __webpack_require__(345);
+var baseRest = __webpack_require__(333),
+    isIterateeCall = __webpack_require__(344);
 
 /**
  * Creates a function like `_.assign`.
@@ -25717,10 +25200,10 @@ module.exports = createAssigner;
 
 
 /***/ }),
-/* 338 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(343);
+var getNative = __webpack_require__(342);
 
 var defineProperty = (function() {
   try {
@@ -25734,12 +25217,12 @@ module.exports = defineProperty;
 
 
 /***/ }),
-/* 339 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var SetCache = __webpack_require__(326),
-    arraySome = __webpack_require__(329),
-    cacheHas = __webpack_require__(335);
+var SetCache = __webpack_require__(325),
+    arraySome = __webpack_require__(328),
+    cacheHas = __webpack_require__(334);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1,
@@ -25823,7 +25306,7 @@ module.exports = equalArrays;
 
 
 /***/ }),
-/* 340 */
+/* 339 */
 /***/ (function(module, exports) {
 
 /**
@@ -25866,10 +25349,10 @@ module.exports = eq;
 
 
 /***/ }),
-/* 341 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getAllKeys = __webpack_require__(342);
+var getAllKeys = __webpack_require__(341);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1;
@@ -25961,7 +25444,7 @@ module.exports = equalObjects;
 
 
 /***/ }),
-/* 342 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var overArg = __webpack_require__(86);
@@ -25973,7 +25456,7 @@ module.exports = nativeKeys;
 
 
 /***/ }),
-/* 343 */
+/* 342 */
 /***/ (function(module, exports) {
 
 /**
@@ -25992,7 +25475,7 @@ module.exports = getValue;
 
 
 /***/ }),
-/* 344 */
+/* 343 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -26017,6 +25500,30 @@ function objectToString(value) {
 }
 
 module.exports = objectToString;
+
+
+/***/ }),
+/* 344 */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = stubFalse;
 
 
 /***/ }),
@@ -26048,30 +25555,6 @@ module.exports = stubFalse;
 /***/ (function(module, exports) {
 
 /**
- * This method returns `false`.
- *
- * @static
- * @memberOf _
- * @since 4.13.0
- * @category Util
- * @returns {boolean} Returns `false`.
- * @example
- *
- * _.times(2, _.stubFalse);
- * // => [false, false]
- */
-function stubFalse() {
-  return false;
-}
-
-module.exports = stubFalse;
-
-
-/***/ }),
-/* 347 */
-/***/ (function(module, exports) {
-
-/**
  * Removes all key-value entries from the list cache.
  *
  * @private
@@ -26087,7 +25570,7 @@ module.exports = listCacheClear;
 
 
 /***/ }),
-/* 348 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(32);
@@ -26128,7 +25611,7 @@ module.exports = listCacheDelete;
 
 
 /***/ }),
-/* 349 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(32);
@@ -26153,7 +25636,7 @@ module.exports = listCacheGet;
 
 
 /***/ }),
-/* 350 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(32);
@@ -26175,7 +25658,7 @@ module.exports = listCacheHas;
 
 
 /***/ }),
-/* 351 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(32);
@@ -26207,10 +25690,10 @@ module.exports = listCacheSet;
 
 
 /***/ }),
-/* 352 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var apply = __webpack_require__(328);
+var apply = __webpack_require__(327);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeMax = Math.max;
@@ -26249,6 +25732,33 @@ module.exports = overRest;
 
 
 /***/ }),
+/* 352 */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
+
+
+/***/ }),
 /* 353 */
 /***/ (function(module, exports) {
 
@@ -26277,37 +25787,10 @@ module.exports = identity;
 
 /***/ }),
 /* 354 */
-/***/ (function(module, exports) {
-
-/**
- * This method returns the first argument it receives.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Util
- * @param {*} value Any value.
- * @returns {*} Returns `value`.
- * @example
- *
- * var object = { 'a': 1 };
- *
- * console.log(_.identity(object) === object);
- * // => true
- */
-function identity(value) {
-  return value;
-}
-
-module.exports = identity;
-
-
-/***/ }),
-/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(357),
-    isLength = __webpack_require__(358);
+var isFunction = __webpack_require__(356),
+    isLength = __webpack_require__(357);
 
 /**
  * Checks if `value` is array-like. A value is considered array-like if it's
@@ -26342,7 +25825,7 @@ module.exports = isArrayLike;
 
 
 /***/ }),
-/* 356 */
+/* 355 */
 /***/ (function(module, exports) {
 
 /**
@@ -26366,11 +25849,11 @@ module.exports = stubFalse;
 
 
 /***/ }),
-/* 357 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(330),
-    isObject = __webpack_require__(359);
+var baseGetTag = __webpack_require__(329),
+    isObject = __webpack_require__(358);
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -26409,7 +25892,7 @@ module.exports = isFunction;
 
 
 /***/ }),
-/* 358 */
+/* 357 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -26450,7 +25933,7 @@ module.exports = isLength;
 
 
 /***/ }),
-/* 359 */
+/* 358 */
 /***/ (function(module, exports) {
 
 /**
@@ -26487,7 +25970,7 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 360 */
+/* 359 */
 /***/ (function(module, exports) {
 
 /**
@@ -26522,7 +26005,7 @@ module.exports = isObjectLike;
 
 
 /***/ }),
-/* 361 */
+/* 360 */
 /***/ (function(module, exports) {
 
 /**
@@ -26546,7 +26029,7 @@ module.exports = stubFalse;
 
 
 /***/ }),
-/* 362 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var overArg = __webpack_require__(86);
@@ -26558,7 +26041,7 @@ module.exports = nativeKeys;
 
 
 /***/ }),
-/* 363 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -26807,10 +26290,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 363;
+webpackContext.id = 362;
 
 /***/ }),
-/* 364 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26907,7 +26390,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 365 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26922,7 +26405,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 var emptyFunction = __webpack_require__(300);
 var invariant = __webpack_require__(301);
-var ReactPropTypesSecret = __webpack_require__(366);
+var ReactPropTypesSecret = __webpack_require__(365);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -26972,7 +26455,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 366 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26991,7 +26474,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 367 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Generated by CoffeeScript 1.12.2
@@ -27034,49 +26517,49 @@ module.exports = ReactPropTypesSecret;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(204)))
 
 /***/ }),
-/* 368 */
+/* 367 */
 /***/ (function(module, exports) {
 
 module.exports = "### Synopsis\n\nAllows select date using mouse or keyboard.\n\nBased on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                                |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |\n| className                      | string                  | Default behavior                                                                                                                                                           |\n| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |\n| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |\n| onBlur                         | func                    | Callback fired on input blur `(e) => {}`                                                                                                                                   |\n| onChange                       | func                    | Callback fired on date change `Date date => {}`                                                                                                                            |\n| onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                                                                                                                  |\n| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |\n| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |\n| tabIndex                       | number                  | Default behavior                                                                                                                                                           |\n| value                          | object                  | Instance of `Date`                                                                                                                                                         |\n| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |\n\n### Code Example\n\n```jsx\n<div style={{ height: '50px', overflow: 'hidden'}}>\n  <DateInput\n    value={_scope.state.value}\n    dateFormat=\"dd/MM/yyyy\"\n    locale=\"de\"\n    onChange={_scope.handleChange.bind(_scope)}\n  />\n</div>\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  disabled={true}\n  locale=\"en\"\n  onChange={_scope.handleChange.bind(_scope)}\n/>\n\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  locale=\"hu\"\n  onBlur={(e) => console.log('Blur!', e)}\n  onChange={_scope.handleChange.bind(_scope)}\n  onFocus={(e) => console.log('Focus!', e)}\n  showToLeft={true}\n  showToTop={true}\n/>\n```\n\n### Component Name\n\nDateInput\n\n### License\n\nLicensed by © 2017 OpusCapita\n\n"
 
 /***/ }),
-/* 369 */
+/* 368 */
 /***/ (function(module, exports) {
 
 module.exports = "### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                   |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                   |\n| className                      | string                  | Default behavior                                                                                                              |\n| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                              |\n| disabled                       | bool                    | If true - became inactive                                                                                                     |\n| locale                         | string                  | `en`, `de`, etc.                                                                                                              |\n| onChange                       | func                    | Callback fired on date change `Date date => {}`                                                                               |\n| onError                        | func                    | Callback fired on validation error and return MomentJS [validation error code](https://momentjs.com/docs/#/parsing/is-valid/) |\n| onRef                          | func                    | Fires after component mount. Retrurns `this` of `DateInputField`                                                              |\n| value                          | object                  | Instance of `Date`                                                                                                            |\n\n### Methods Reference\n\n| Name                           | Description                 |\n| ------------------------------ | :----------------------     |\n| clear                          | Forcibly clears input value |\n\n### Code Example\n\n```jsx\n<DateInputField\n  dateFormat=\"DD.MM.YYYY\"\n  onBlur={() => console.log('blur')}\n  onChange={_scope.handleChange.bind(_scope)}\n  onError={(error) => console.log('error:', error)}\n  onFocus={() => console.log('focus')}\n  value={_scope.state.value}\n/>\n```\n\n### Component Name\n\nDateInputField\n\n### License\n\nLicensed by © 2017 OpusCapita\n\n"
 
 /***/ }),
-/* 370 */
+/* 369 */
 /***/ (function(module, exports) {
 
 module.exports = "### Synopsis\n\nDatePicker shows the calendar button. When you click it, calendar appears. Allows select date using mouse.\n\nBased on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                     |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                     |\n| className                      | string                  | Default HTML behavior                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                       |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property |\n| onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                      |\n| showToLeft                     | bool                    | Show picker popup to left relative to button                                                    |\n| showToTop                      | bool                    | Show picker popup to top relative to button                                                     |\n| tabIndex                       | number                  | Default HTML behavior                                                                           |\n| value                          | instanceOf(Date)        | Instance of `Date`                                                                              |\n\n***\n\nSee react-day-picker [props reference](http://react-day-picker.js.org/APIProps.html) if you need more customization\n\n### Methods reference\n\nSee react-day-picker [methods reference](http://react-day-picker.js.org/APIMethods.html)\n\n### Code Example\n\n```jsx\n<div style={{ height: '50px', overflow: 'hidden' }}>\n  <DatePicker\n    locale=\"de\"\n    onChange={_scope.handleChange.bind(_scope)}\n    value={_scope.state.value}\n  />\n</div>\n\n<DatePicker\n  locale=\"de\"\n  onChange={_scope.handleChange.bind(_scope)}\n  value={_scope.state.value}\n  showToTop={true}\n  showToLeft={true}\n/>\n```\n\n### Component Name\n\nDatePicker\n\n### License\n\nLicensed by © 2017 OpusCapita\n"
 
 /***/ }),
-/* 371 */
+/* 370 */
 /***/ (function(module, exports) {
 
 module.exports = "### Synopsis\n\nAllows select date range using mouse.\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                                |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |\n| className                      | string                  | Default behavior                                                                                                                                                           |\n| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |\n| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |\n| onFocus                        | func                    | Callback fired on input focus `(e, inputName) => {}` where `inputName === 'from                                                                                            |\n| onBlur                         | func                    | Callback fired on input blur `(e, inputName) => {}`  where `inputName === 'from                                                                                            |\n| onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                                                                                                 |\n| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |\n| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |\n| tabIndex                       | number                  | Default behavior                                                                                                                                                           |\n| value                          | array                   | `[Date from, Date to]`                                                                                                                                                     |\n| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |\n\n### Code Example\n\n```jsx\n<DateRangeInput\n  dateFormat=\"MM.dd.yyyy\"\n  locale={'de'}\n  onChange={_scope.handleChange1.bind(_scope)}\n  value={_scope.state.value1}\n/>\n\n<hr />\n\n<DateRangeInput\n  dateFormat=\"dd.MM.yyyy\"\n  disabled={true}\n  locale={'de'}\n  onChange={_scope.handleChange3.bind(_scope)}\n  value={_scope.state.value2}\n/>\n\n<hr />\n\n<div className=\"row\">\n  <div className=\"col-xs-6\">\n    <DateRangeInput\n      dateFormat=\"dd.MM.yyyy\"\n      locale={'ru'}\n      onChange={_scope.handleChange3.bind(_scope)}\n      placeholder=\"Выберите диапазон дат\"\n      showToLeft={false}\n      showToTop={true}\n      value={_scope.state.value3}\n    />\n  </div>\n\n  <div className=\"col-xs-6\">\n    <DateRangeInput\n      dateFormat=\"dd.MM.yyyy\"\n      locale={'ru'}\n      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}\n      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}\n      onChange={_scope.handleChange4.bind(_scope)}\n      placeholder=\"Выберите диапазон дат\"\n      showToLeft={true}\n      showToTop={true}\n      value={_scope.state.value4}\n    />\n  </div>\n</div>\n```\n\n### Component Name\n\nDateRangeInput\n\n### License\n\nLicensed by © 2017 OpusCapita\n"
 
 /***/ }),
-/* 372 */
+/* 371 */
 /***/ (function(module, exports) {
 
 module.exports = "### Synopsis\n\nDateVariants is\n*Write here a short introduction and/or overview that explains **what** component is.*\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                 |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                 |\n| variants                       | array                   | `[ { label: string, getValue: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined values. Examples: current month, last week, next week, etc. |\n| onChange                       | func                    | `([Date from, Date to]) => {}`                                                                                                                              |\n| locale                         | string                  |                                                                                                                                                             |\n\n### Code Example\n\n```jsx\n<DateVariants\n  onChange={value => console.log(value)}\n/>\n```\n\n### Component Name\n\nDateVariants\n\n### License\n\nLicensed by © 2017 OpusCapita\n\n"
 
 /***/ }),
-/* 373 */
+/* 372 */
 /***/ (function(module, exports) {
 
 module.exports = "### Synopsis\n\nDayPicker is a styled to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)\n\n* [Props Reference](http://react-day-picker.js.org/APIProps.html)\n* [Methods Reference](http://react-day-picker.js.org/APIMethods.html)\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                                                                                                                      |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                                                                                                      |\n| className                      | string                  | Default behavior                                                                                                                                                                                                                                                 |\n| dayPickerRef                   | func                    | Callback with [react ref](https://facebook.github.io/react/docs/refs-and-the-dom.html) behavior, but returns [react-day-picker](http://react-day-picker.js.org/) element. Useful if you want call some [methods](http://react-day-picker.js.org/APIMethods.html) |\n| isRange                        | bool                    |                                                                                                                                                                                                                                                                  |\n| hideTodayButton                | bool                    |                                                                                                                                                                                                                                                                  |\n| onChange                       | func                    | Callback fired when new date selected `Date date => {}`                                                                                                                                                                                                          |\n| locale                         | string                  | `de`, `en`, etc.                                                                                                                                                                                                                                                 |\n| pickerClassName                | string                  | Class name passed to react day picker                                                                                                                                                                                                                            |\n| getTodayButtonLabel            | string                  |                                                                                                                                                                                                                                                                  |\n\n***\n\nSee react-day-picker [props reference](http://react-day-picker.js.org/APIProps.html) if you need more customization\n\n### Methods reference\n\nSee react-day-picker [methods reference](http://react-day-picker.js.org/APIMethods.html)\n\n### Code Example\n\n```jsx\n<DayPicker\n  dayPickerRef={ref => (window.picker = ref)}\n  onChange={ day => console.log('day:', day) }\n  locale=\"de\"\n/>\n```\n\n### Component Name\n\nDayPicker\n\n### License\n\nLicensed by © 2017 OpusCapita\n\n"
 
 /***/ }),
-/* 374 */
+/* 373 */
 /***/ (function(module, exports) {
 
 module.exports = "### Synopsis\n\nInputAddonButton is \n*Write here a short introduction and/or overview that explains **what** component is.*\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                 |\n| ------------------------------ | :---------------------- | ----------------------------------------------------------- |\n| demoProp                       | string                  | Write a description of the property                         |\n\n### Code Example\n\n```jsx\n<InputAddonButton />\n```\n\n### Component Name\n\nInputAddonButton\n\n### License\n\nLicensed by © 2017 OpusCapita\n\n"
 
 /***/ }),
-/* 375 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable no-var */
@@ -27088,7 +26571,7 @@ var LocaleUtils = __webpack_require__(50);
 var ModifiersUtils = __webpack_require__(206);
 var Weekday = __webpack_require__(208).default;
 var Navbar = __webpack_require__(207).default;
-var PropTypes = __webpack_require__(379);
+var PropTypes = __webpack_require__(378);
 
 module.exports = DayPicker.default || DayPicker;
 module.exports.DateUtils = DateUtils.default || DateUtils;
@@ -27100,7 +26583,7 @@ module.exports.PropTypes = PropTypes;
 
 
 /***/ }),
-/* 376 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27182,7 +26665,7 @@ exports.default = Caption;
 //# sourceMappingURL=Caption.js.map
 
 /***/ }),
-/* 377 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27198,7 +26681,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _objectAssign = __webpack_require__(364);
+var _objectAssign = __webpack_require__(363);
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
@@ -27382,7 +26865,7 @@ exports.default = Day;
 //# sourceMappingURL=Day.js.map
 
 /***/ }),
-/* 378 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27402,11 +26885,11 @@ var _propTypes = __webpack_require__(9);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Weekdays = __webpack_require__(380);
+var _Weekdays = __webpack_require__(379);
 
 var _Weekdays2 = _interopRequireDefault(_Weekdays);
 
-var _Day = __webpack_require__(377);
+var _Day = __webpack_require__(376);
 
 var _Day2 = _interopRequireDefault(_Day);
 
@@ -27639,7 +27122,7 @@ exports.default = Month;
 //# sourceMappingURL=Month.js.map
 
 /***/ }),
-/* 379 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27681,7 +27164,7 @@ exports.default = PrimitiveTypes;
 //# sourceMappingURL=PropTypes.js.map
 
 /***/ }),
-/* 380 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27782,303 +27265,7 @@ exports.default = Weekdays;
 //# sourceMappingURL=Weekdays.js.map
 
 /***/ }),
-/* 381 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var React = __webpack_require__(2);
-var InputMask = __webpack_require__(320);
-
-var KEYCODE_Z = 90;
-var KEYCODE_Y = 89;
-
-function isUndo(e) {
-  return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Y : KEYCODE_Z);
-}
-
-function isRedo(e) {
-  return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Z : KEYCODE_Y);
-}
-
-function getSelection(el) {
-  var start, end, rangeEl, clone;
-
-  if (el.selectionStart !== undefined) {
-    start = el.selectionStart;
-    end = el.selectionEnd;
-  } else {
-    try {
-      el.focus();
-      rangeEl = el.createTextRange();
-      clone = rangeEl.duplicate();
-
-      rangeEl.moveToBookmark(document.selection.createRange().getBookmark());
-      clone.setEndPoint('EndToStart', rangeEl);
-
-      start = clone.text.length;
-      end = start + rangeEl.text.length;
-    } catch (e) {/* not focused or not visible */}
-  }
-
-  return { start: start, end: end };
-}
-
-function setSelection(el, selection) {
-  var rangeEl;
-
-  try {
-    if (el.selectionStart !== undefined) {
-      el.focus();
-      el.setSelectionRange(selection.start, selection.end);
-    } else {
-      el.focus();
-      rangeEl = el.createTextRange();
-      rangeEl.collapse(true);
-      rangeEl.moveStart('character', selection.start);
-      rangeEl.moveEnd('character', selection.end - selection.start);
-      rangeEl.select();
-    }
-  } catch (e) {/* not focused or not visible */}
-}
-
-var MaskedInput = React.createClass({
-  displayName: 'MaskedInput',
-
-  propTypes: {
-    mask: React.PropTypes.string.isRequired,
-
-    formatCharacters: React.PropTypes.object,
-    placeholderChar: React.PropTypes.string
-  },
-
-  getDefaultProps: function getDefaultProps() {
-    return {
-      value: ''
-    };
-  },
-
-  componentWillMount: function componentWillMount() {
-    var options = {
-      pattern: this.props.mask,
-      value: this.props.value,
-      formatCharacters: this.props.formatCharacters
-    };
-    if (this.props.placeholderChar) {
-      options.placeholderChar = this.props.placeholderChar;
-    }
-    this.mask = new InputMask(options);
-  },
-
-  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    if (this.props.mask !== nextProps.mask && this.props.value !== nextProps.mask) {
-      // if we get a new value and a new mask at the same time
-      // check if the mask.value is still the initial value
-      // - if so use the nextProps value
-      // - otherwise the `this.mask` has a value for us (most likely from paste action)
-      if (this.mask.getValue() === this.mask.emptyValue) {
-        this.mask.setPattern(nextProps.mask, { value: nextProps.value });
-      } else {
-        this.mask.setPattern(nextProps.mask, { value: this.mask.getRawValue() });
-      }
-    } else if (this.props.mask !== nextProps.mask) {
-      this.mask.setPattern(nextProps.mask, { value: this.mask.getRawValue() });
-    } else if (this.props.value !== nextProps.value) {
-      this.mask.setValue(nextProps.value);
-    }
-  },
-
-  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
-    if (nextProps.mask !== this.props.mask) {
-      this._updatePattern(nextProps);
-    }
-  },
-
-  componentDidUpdate: function componentDidUpdate(prevProps) {
-    if (prevProps.mask !== this.props.mask && this.mask.selection.start) {
-      this._updateInputSelection();
-    }
-  },
-
-  _updatePattern: function _updatePattern(props) {
-    this.mask.setPattern(props.mask, {
-      value: this.mask.getRawValue(),
-      selection: getSelection(this.input)
-    });
-  },
-
-  _updateMaskSelection: function _updateMaskSelection() {
-    this.mask.selection = getSelection(this.input);
-  },
-
-  _updateInputSelection: function _updateInputSelection() {
-    setSelection(this.input, this.mask.selection);
-  },
-
-  _onChange: function _onChange(e) {
-    // console.log('onChange', JSON.stringify(getSelection(this.input)), e.target.value)
-
-    var maskValue = this.mask.getValue();
-    if (e.target.value !== maskValue) {
-      // Cut or delete operations will have shortened the value
-      if (e.target.value.length < maskValue.length) {
-        var sizeDiff = maskValue.length - e.target.value.length;
-        this._updateMaskSelection();
-        this.mask.selection.end = this.mask.selection.start + sizeDiff;
-        this.mask.backspace();
-      }
-      var value = this._getDisplayValue();
-      e.target.value = value;
-      if (value) {
-        this._updateInputSelection();
-      }
-    }
-    if (this.props.onChange) {
-      this.props.onChange(e);
-    }
-  },
-
-  _onKeyDown: function _onKeyDown(e) {
-    // console.log('onKeyDown', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
-
-    if (isUndo(e)) {
-      e.preventDefault();
-      if (this.mask.undo()) {
-        e.target.value = this._getDisplayValue();
-        this._updateInputSelection();
-        if (this.props.onChange) {
-          this.props.onChange(e);
-        }
-      }
-      return;
-    } else if (isRedo(e)) {
-      e.preventDefault();
-      if (this.mask.redo()) {
-        e.target.value = this._getDisplayValue();
-        this._updateInputSelection();
-        if (this.props.onChange) {
-          this.props.onChange(e);
-        }
-      }
-      return;
-    }
-
-    if (e.key === 'Backspace') {
-      e.preventDefault();
-      this._updateMaskSelection();
-      if (this.mask.backspace()) {
-        var value = this._getDisplayValue();
-        e.target.value = value;
-        if (value) {
-          this._updateInputSelection();
-        }
-        if (this.props.onChange) {
-          this.props.onChange(e);
-        }
-      }
-    }
-  },
-
-  _onKeyPress: function _onKeyPress(e) {
-    // console.log('onKeyPress', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
-
-    // Ignore modified key presses
-    // Ignore enter key to allow form submission
-    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') {
-      return;
-    }
-
-    e.preventDefault();
-    this._updateMaskSelection();
-    if (this.mask.input(e.key || e.data)) {
-      e.target.value = this.mask.getValue();
-      this._updateInputSelection();
-      if (this.props.onChange) {
-        this.props.onChange(e);
-      }
-    }
-  },
-
-  _onPaste: function _onPaste(e) {
-    // console.log('onPaste', JSON.stringify(getSelection(this.input)), e.clipboardData.getData('Text'), e.target.value)
-
-    e.preventDefault();
-    this._updateMaskSelection();
-    // getData value needed for IE also works in FF & Chrome
-    if (this.mask.paste(e.clipboardData.getData('Text'))) {
-      e.target.value = this.mask.getValue();
-      // Timeout needed for IE
-      setTimeout(this._updateInputSelection, 0);
-      if (this.props.onChange) {
-        this.props.onChange(e);
-      }
-    }
-  },
-
-  _getDisplayValue: function _getDisplayValue() {
-    var value = this.mask.getValue();
-    return value === this.mask.emptyValue ? '' : value;
-  },
-
-  _keyPressPropName: function _keyPressPropName() {
-    if (typeof navigator !== 'undefined') {
-      return navigator.userAgent.match(/Android/i) ? 'onBeforeInput' : 'onKeyPress';
-    }
-    return 'onKeyPress';
-  },
-
-  _getEventHandlers: function _getEventHandlers() {
-    return _defineProperty({
-      onChange: this._onChange,
-      onKeyDown: this._onKeyDown,
-      onPaste: this._onPaste
-    }, this._keyPressPropName(), this._onKeyPress);
-  },
-
-  focus: function focus() {
-    this.input.focus();
-  },
-
-  blur: function blur() {
-    this.input.blur();
-  },
-
-  render: function render() {
-    var _this = this;
-
-    var ref = function ref(r) {
-      return _this.input = r;
-    };
-    var maxLength = this.mask.pattern.length;
-    var value = this._getDisplayValue();
-    var eventHandlers = this._getEventHandlers();
-    var _props = this.props;
-    var _props$size = _props.size;
-    var size = _props$size === undefined ? maxLength : _props$size;
-    var _props$placeholder = _props.placeholder;
-    var placeholder = _props$placeholder === undefined ? this.mask.emptyValue : _props$placeholder;
-    var _props2 = this.props;
-    var placeholderChar = _props2.placeholderChar;
-    var formatCharacters = _props2.formatCharacters;
-
-    var cleanedProps = _objectWithoutProperties(_props2, ['placeholderChar', 'formatCharacters']);
-
-    var inputProps = _extends({}, cleanedProps, eventHandlers, { ref: ref, maxLength: maxLength, value: value, size: size, placeholder: placeholder });
-    return React.createElement('input', inputProps);
-  }
-});
-
-module.exports = MaskedInput;
-
-/***/ }),
-/* 382 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28325,7 +27512,7 @@ exports['default'] = Motion;
 module.exports = exports['default'];
 
 /***/ }),
-/* 383 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28593,7 +27780,7 @@ exports['default'] = StaggeredMotion;
 module.exports = exports['default'];
 
 /***/ }),
-/* 384 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28617,7 +27804,7 @@ var _stepper3 = __webpack_require__(54);
 
 var _stepper4 = _interopRequireDefault(_stepper3);
 
-var _mergeDiff = __webpack_require__(385);
+var _mergeDiff = __webpack_require__(383);
 
 var _mergeDiff2 = _interopRequireDefault(_mergeDiff);
 
@@ -29085,7 +28272,7 @@ module.exports = exports['default'];
 // that you've unmounted but that's still animating. This is where it lives
 
 /***/ }),
-/* 385 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29199,7 +28386,7 @@ module.exports = exports['default'];
 // to loop through and find a key's index each time), but I no longer care
 
 /***/ }),
-/* 386 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29222,7 +28409,7 @@ function reorderKeys() {
 module.exports = exports['default'];
 
 /***/ }),
-/* 387 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29251,7 +28438,7 @@ function spring(val, config) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 388 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29277,7 +28464,7 @@ if(false) {
 }
 
 /***/ }),
-/* 389 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29303,7 +28490,7 @@ if(false) {
 }
 
 /***/ }),
-/* 390 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29329,7 +28516,7 @@ if(false) {
 }
 
 /***/ }),
-/* 391 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29355,7 +28542,7 @@ if(false) {
 }
 
 /***/ }),
-/* 392 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29381,7 +28568,7 @@ if(false) {
 }
 
 /***/ }),
-/* 393 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29407,7 +28594,7 @@ if(false) {
 }
 
 /***/ }),
-/* 394 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29433,7 +28620,7 @@ if(false) {
 }
 
 /***/ }),
-/* 395 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29459,7 +28646,7 @@ if(false) {
 }
 
 /***/ }),
-/* 396 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29485,7 +28672,7 @@ if(false) {
 }
 
 /***/ }),
-/* 397 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29511,7 +28698,7 @@ if(false) {
 }
 
 /***/ }),
-/* 398 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29537,7 +28724,7 @@ if(false) {
 }
 
 /***/ }),
-/* 399 */
+/* 397 */
 /***/ (function(module, exports) {
 
 var g;
@@ -29564,7 +28751,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 400 */
+/* 398 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -29592,7 +28779,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 401 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(213);
