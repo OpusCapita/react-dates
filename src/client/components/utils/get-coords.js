@@ -1,16 +1,17 @@
 const overlayOffsetV = 4;
 
-export default (elem, showToTop, showToLeft) => {
+export const getCoords = (elem, showToTop, showToLeft) => {
   if (!elem) {
     return ({ top: 0, left: 0 });
   }
 
   let rect = elem.getBoundingClientRect();
+  let elemTop = elem.offsetTop === 0 && elem.offsetParent ? elem.offsetParent.offsetTop : elem.offsetTop;
 
-  let coords = {
+  return {
     top: showToTop ?
-      rect.top - overlayOffsetV + document.body.scrollTop :
-      rect.top + rect.height + overlayOffsetV + document.body.scrollTop,
+      elemTop - overlayOffsetV :
+      elemTop + rect.height + overlayOffsetV,
 
     left: showToLeft ?
       rect.left + rect.width + document.body.scrollLeft :
@@ -18,6 +19,4 @@ export default (elem, showToTop, showToLeft) => {
 
     alwaysLeft: rect.left + rect.width + document.body.scrollLeft
   };
-
-  return coords;
-}
+};
