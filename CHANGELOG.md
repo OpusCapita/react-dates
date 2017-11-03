@@ -1,3 +1,10 @@
+## [v0.3.0-beta.15](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.14...v0.3.0-beta.15) (Fri, 03 Nov 2017 12:46:55 GMT)
+ - Merge pull request #34 from OpusCapita/bug/popup_position/#31
+    
+    The component position is corrected (44476f9 854f96f, cc5eebf)
+ - Change DateInput.DOCUMENTATION.md (baliunov <baliunov@scand.com>, 854f96f)
+ - The widget position is corrected (baliunov <baliunov@scand.com>, a991380)
+
 ## [v0.3.0-beta.14](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.13...v0.3.0-beta.14) (Thu, 26 Oct 2017 06:12:40 GMT)
  - Fix build (Kirill Volkovich <kirill.volkovich@jcatalog.com>, 947cee1)
  - Merge pull request #27 from OpusCapita/removeMask
