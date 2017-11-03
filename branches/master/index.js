@@ -20458,7 +20458,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInput",
-    "version": "0.3.0-beta.15",
+    "version": "0.3.0-beta.16",
     "tags": "",
     "relatedFiles": [
       {
@@ -20473,7 +20473,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInputField",
-    "version": "0.3.0-beta.15",
+    "version": "0.3.0-beta.16",
     "tags": "",
     "relatedFiles": [
       {
@@ -20488,7 +20488,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DatePicker",
-    "version": "0.3.0-beta.15",
+    "version": "0.3.0-beta.16",
     "tags": "",
     "relatedFiles": [
       {
@@ -20503,7 +20503,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateRangeInput",
-    "version": "0.3.0-beta.15",
+    "version": "0.3.0-beta.16",
     "tags": "",
     "relatedFiles": [
       {
@@ -20518,7 +20518,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateVariants",
-    "version": "0.3.0-beta.15",
+    "version": "0.3.0-beta.16",
     "tags": "",
     "relatedFiles": [
       {
@@ -20533,7 +20533,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DayPicker",
-    "version": "0.3.0-beta.15",
+    "version": "0.3.0-beta.16",
     "tags": "",
     "relatedFiles": [
       {
@@ -20548,7 +20548,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "InputAddonButton",
-    "version": "0.3.0-beta.15",
+    "version": "0.3.0-beta.16",
     "tags": "",
     "relatedFiles": [
       {
@@ -20569,7 +20569,7 @@ module.exports = [
 module.exports = [
     {
         "name": "@opuscapita/react-dates",
-        "version": "0.3.0-beta.15",
+        "version": "0.3.0-beta.16",
         "description": "Start write new project with no effort.",
         "keywords": [
             "react",
@@ -24512,11 +24512,11 @@ exports = module.exports = __webpack_require__(7)();
 
 
 // module
-exports.push([module.i, ".VerticalList-module__item__0-3-0-beta-15_3_3 {\n  position: relative;\n  padding: 6px 12px;\n}\n.VerticalList-module__item__0-3-0-beta-15_3_3:focus {\n  outline: none;\n}\n.VerticalList-module__item__0-3-0-beta-15_3_3:hover:after {\n  content: '';\n  cursor: pointer;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.08);\n}\n", ""]);
+exports.push([module.i, ".VerticalList-module__item__0-3-0-beta-16_3_3 {\n  position: relative;\n  padding: 6px 12px;\n}\n.VerticalList-module__item__0-3-0-beta-16_3_3:focus {\n  outline: none;\n}\n.VerticalList-module__item__0-3-0-beta-16_3_3:hover:after {\n  content: '';\n  cursor: pointer;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.08);\n}\n", ""]);
 
 // exports
 exports.locals = {
-	"item": "VerticalList-module__item__0-3-0-beta-15_3_3"
+	"item": "VerticalList-module__item__0-3-0-beta-16_3_3"
 };
 
 /***/ }),
