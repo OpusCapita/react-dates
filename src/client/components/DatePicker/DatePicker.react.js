@@ -5,7 +5,7 @@ import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
 import Portal from 'react-portal';
-import getCoords from '../utils/get-coords';
+import { getCoords } from '../utils/get-coords';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
