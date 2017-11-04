@@ -69,6 +69,1116 @@ Allows select date range using mouse.
     />
   </div>
 </div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={true}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={true}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
+
+<hr />
+
+<div className="row">
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onChange={_scope.handleChange3.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={false}
+      showToTop={false}
+      value={_scope.state.value3}
+    />
+  </div>
+
+  <div className="col-xs-6">
+    <DateRangeInput
+      dateFormat="dd.MM.yyyy"
+      locale={'ru'}
+      onFocus={(e, inputName) => console.log('Focus!', e, inputName)}
+      onBlur={(e, inputName) => console.log('Blur!', e, inputName)}
+      onChange={_scope.handleChange4.bind(_scope)}
+      placeholder="Выберите диапазон дат"
+      showToLeft={true}
+      showToTop={false}
+      value={_scope.state.value4}
+    />
+  </div>
+</div>
 ```
 
 ### Component Name

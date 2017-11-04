@@ -6,12 +6,11 @@ export const getCoords = (elem, showToTop, showToLeft) => {
   }
 
   let rect = elem.getBoundingClientRect();
-  let elemTop = elem.offsetTop === 0 && elem.offsetParent ? elem.offsetParent.offsetTop : elem.offsetTop;
 
   return {
     top: showToTop ?
-      elemTop - overlayOffsetV :
-      elemTop + rect.height + overlayOffsetV,
+      rect.top - overlayOffsetV + window.pageYOffset :
+      rect.top + rect.height + overlayOffsetV + window.pageYOffset,
 
     left: showToLeft ?
       rect.left + rect.width + document.body.scrollLeft :
