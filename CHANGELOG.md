@@ -1,3 +1,10 @@
+## [v0.3.0-beta.16](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.15...v0.3.0-beta.16) (Sat, 04 Nov 2017 09:56:14 GMT)
+ - Bug/popup position/#31 (#35)
+    
+    * Fix bug with widget top position
+    
+    * Remove tons of inputs from DateRangeInput docs (Aleksandr Baliunov <abaliunov-sc@users.noreply.github.com>, 0ee367c)
+
 ## [v0.3.0-beta.15](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.14...v0.3.0-beta.15) (Fri, 03 Nov 2017 12:46:55 GMT)
  - Merge pull request #34 from OpusCapita/bug/popup_position/#31
     
