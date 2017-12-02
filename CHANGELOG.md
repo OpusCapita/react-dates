@@ -1,3 +1,10 @@
+## [v0.3.0-beta.17](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.16...v0.3.0-beta.17) (Sat, 02 Dec 2017 11:31:47 GMT)
+ - Remove billions of "<DateInput />" on demo-page (Kirill Volkovich <kirill.volkovich@opuscapita.com>, abd984b)
+ - Remove unused "react-maskedinput" (Kirill Volkovich <kirill.volkovich@opuscapita.com>, bbcbd12)
+ - Fix run test (Kirill Volkovich <kirill.volkovich@opuscapita.com>, d143b18)
+ - Merge branch 'master' of opuscapita.github.com:OpusCapita/react-dates (0ab8d12 f002752, 0152289)
+ - React 16.x.x support (Kirill Volkovich <kirill.volkovich@opuscapita.com>, 0ab8d12)
+
 ## [v0.3.0-beta.16](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.15...v0.3.0-beta.16) (Sat, 04 Nov 2017 09:56:14 GMT)
  - Bug/popup position/#31 (#35)
     
