@@ -55,6 +55,318 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
   showToLeft={true}
   showToTop={true}
 />
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+  showToTop={true}
+/>
+
+<hr />
+
+<DateInput
+  value={_scope.state.value}
+  dateFormat="dd/MM/yyyy"
+  locale="hu"
+  onBlur={(e) => console.log('Blur!', e)}
+  onChange={_scope.handleChange.bind(_scope)}
+  onFocus={(e) => console.log('Focus!', e)}
+  showToLeft={true}
+/>
 ```
 
 ### Component Name

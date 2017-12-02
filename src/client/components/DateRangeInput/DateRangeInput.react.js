@@ -12,7 +12,7 @@ import moment from '../moment';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
 import Portal from 'react-portal';
-import getCoords from '../utils/get-coords';
+import { getCoords } from '../utils/get-coords';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
@@ -73,7 +73,7 @@ let defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   isValid: true,
-  locale: 'en-GB',
+  locale: 'en',
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
@@ -490,7 +490,7 @@ class DateRangeInput extends Component {
           `}
         >
           <DateInputField
-            className="opuscapita_date-range-input__input-field"
+            className="opuscapita_date-range-input__input-field opuscapita_date-range-input__left-input-field"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'from')}
@@ -504,7 +504,7 @@ class DateRangeInput extends Component {
           />
           <div className="opuscapita_date-range-input__dash">―</div>
           <DateInputField
-            className="opuscapita_date-range-input__input-field"
+            className="opuscapita_date-range-input__input-field opuscapita_date-range-input__right-input-field"
             dateFormat={momentCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'to')}

@@ -6,7 +6,7 @@ import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
 import Portal from 'react-portal';
-import getCoords from '../utils/get-coords';
+import { getCoords } from '../utils/get-coords';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
@@ -42,7 +42,7 @@ let propTypes = {
 let defaultProps = {
   className: '',
   disabled: false,
-  locale: 'en-GB',
+  locale: 'en',
   onChange: () => {},
   showToLeft: false,
   showToTop: false,
@@ -165,6 +165,7 @@ class DatePicker extends Component {
             onClose={this.handlePortalClose}
           >
             <div
+              ref={ref => { this.datePickerRef = ref }}
               className={`opuscapita_date-picker__picker-container`}
               style={{
                 maxHeight: `${interpolatedStyle.x * 640}px`,

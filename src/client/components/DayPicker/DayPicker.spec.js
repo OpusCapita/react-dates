@@ -18,7 +18,7 @@ describe('<DayPicker />', () => {
     let wrapper = mount(
       <DayPicker
         aria-label="day-picker"
-        locale="en-GB"
+        locale="en"
         tabIndex={4}
         className="container"
         pickerClassName="picker"
@@ -31,7 +31,7 @@ describe('<DayPicker />', () => {
     expect(reactDayPickerElement.hasClass('container')).to.be.false;
     expect(reactDayPickerElement.prop('aria-label')).to.be.undefined;
     expect(reactDayPickerElement.prop('tabIndex')).to.equal(4);
-    expect(reactDayPickerElement.prop('locale')).to.equal('en-GB');
+    expect(reactDayPickerElement.prop('locale')).to.equal('en');
     expect(reactDayPickerElement.prop('enableOutsideDays')).to.equal(true);
     expect(reactDayPickerElement.prop('fixedWeeks')).to.equal(true);
   });
@@ -40,7 +40,7 @@ describe('<DayPicker />', () => {
     let wrapper = mount(
       <DayPicker
         aria-label="day-picker"
-        locale="en-GB"
+        locale="en"
         tabIndex={4}
         pickerClassName="picker"
         className="container"

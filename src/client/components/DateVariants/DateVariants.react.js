@@ -66,7 +66,7 @@ let defaultProps = {
     }
   ],
   onChange: () => {},
-  locale: 'en-GB'
+  locale: 'en'
 };
 
 export default
