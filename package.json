@@ -57,6 +57,7 @@
     "cross-env": "5.0.5",
     "css-loader": "0.26.2",
     "enzyme": "3.2.0",
+    "enzyme-adapter-react-16": "1.1.0",
     "eslint": "3.17.0",
     "eslint-config-opuscapita": "1.0.7",
     "eslint-plugin-react": "6.10.0",
@@ -89,7 +90,6 @@
   },
   "dependencies": {
     "@opuscapita/react-autocompletes": "2.0.3",
-    "enzyme-adapter-react-16": "1.1.0",
     "lodash": "4.17.4",
     "moment": "2.18.1",
     "prop-types": "15.6.0",
