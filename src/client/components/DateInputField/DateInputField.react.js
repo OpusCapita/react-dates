@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import MaskedInput from 'react-maskedinput';
 import moment from '../moment';
 import './DateInputField.less';
@@ -32,9 +33,6 @@ class DateInputField extends Component {
     this.state = {
       inputValue: props.value ? moment(props.value.toISOString()).format(props.dateFormat) : ''
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleRef = this.handleRef.bind(this);
-    this.clear = this.clear.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,9 +42,9 @@ class DateInputField extends Component {
     }
   }
 
-  clear() {
+  clear = () => {
     this.setState({ inputValue: '' });
-  }
+  };
 
   validate(dateString, dateFormat) {
     let momentDate = moment(dateString, dateFormat, true);
@@ -60,15 +58,15 @@ class DateInputField extends Component {
     }
   }
 
-  handleInputChange(event) {
+  handleInputChange = event => {
     let inputValue = event.target.value;
     this.validate(inputValue, this.props.dateFormat);
     this.setState({ inputValue });
-  }
+  };
 
-  handleRef() {
+  handleRef = () => {
     this.props.onRef(this);
-  }
+  };
 
   render() {
     let {

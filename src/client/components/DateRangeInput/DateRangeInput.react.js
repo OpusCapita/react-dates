@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import './DateRangeInput.less';
 import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
@@ -138,19 +139,6 @@ class DateRangeInput extends Component {
   constructor(props) {
     super(props);
     this.state = initialState;
-    this.handleReset = this.handleReset.bind(this);
-    this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
-    this.handleDayMouseLeave = this.handleDayMouseLeave.bind(this);
-    this.handleBodyClick = this.handleBodyClick.bind(this);
-    this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
-    this.handleVariantsButtonClick = this.handleVariantsButtonClick.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-    this.handleError = this.handleError.bind(this);
-    this.handleVariantSelect = this.handleVariantSelect.bind(this);
-    this.handleInputClick = this.handleInputClick.bind(this);
-    this.handleRangeChange = this.handleRangeChange.bind(this);
   }
 
   componentDidMount() {
@@ -211,13 +199,13 @@ class DateRangeInput extends Component {
     return range;
   }
 
-  handleRangeChange(range) {
+  handleRangeChange = range => {
     this.setState({ enteredTo: null, error: false });
     let normalizedRange = this.normalizeRange(range);
     this.props.onChange(normalizedRange);
-  }
+  };
 
-  handleDayClick(day) {
+  handleDayClick = day => {
     let from = this.props.value[0];
     let to = this.props.value[1];
 
@@ -238,9 +226,9 @@ class DateRangeInput extends Component {
         showPicker: false
       });
     }
-  }
+  };
 
-  handleBodyClick(event) {
+  handleBodyClick = event => {
     let clickedOutside = (
       !this.container.contains(event.target) &&
       !this.pickerContainer.contains(event.target)
@@ -254,9 +242,9 @@ class DateRangeInput extends Component {
       this.hideVariants();
       this.hidePicker();
     }
-  }
+  };
 
-  handleBodyKeyDown(event) {
+  handleBodyKeyDown = event => {
     if (event.which === 9) { // TAB key
       this.hideVariants();
       this.hidePicker();
@@ -265,7 +253,7 @@ class DateRangeInput extends Component {
       this.hidePicker();
       this.hideVariants();
     }
-  }
+  };
 
   showPicker() {
     let month = this.props.value[0] || new Date();
@@ -285,44 +273,44 @@ class DateRangeInput extends Component {
     this.setState({ showVariants: false });
   }
 
-  handleVariantsButtonClick() {
+  handleVariantsButtonClick = () => {
     if (this.state.showVariants) {
       return this.hideVariants();
     }
     return this.showVariants();
-  }
+  };
 
-  handleVariantSelect(range) {
+  handleVariantSelect = range => {
     this.hideVariants();
     this.setState({ enteredTo: range[1] });
     this.handleRangeChange(range);
-  }
+  };
 
-  handleFocus(e, inputName) {
+  handleFocus = (e, inputName) => {
     this.props.onFocus(e, inputName);
     this.showPicker();
 
     this.setState({ focused: true });
-  }
+  };
 
-  handleBlur(e, inputName) {
+  handleBlur = (e, inputName) => {
     this.props.onBlur(e, inputName);
     this.hideVariants();
 
     this.setState({ focused: false });
-  }
+  };
 
-  handleError() {
+  handleError = () => {
     this.setState({ error: true });
-  }
+  };
 
-  handleInputClick() {
+  handleInputClick = () => {
     if (!this.props.disabled) {
       this.showPicker();
     }
-  }
+  };
 
-  handleDayMouseEnter(day) {
+  handleDayMouseEnter = day => {
     let from = this.props.value[0];
     let to = this.props.value[1];
 
@@ -331,18 +319,18 @@ class DateRangeInput extends Component {
         enteredTo: day
       });
     }
-  }
+  };
 
-  handleDayMouseLeave(day) {
+  handleDayMouseLeave = day => {
     this.setState({ enteredTo: null });
-  }
+  };
 
-  handleReset() {
+  handleReset = () => {
     this.setState(initialState);
     this.handleRangeChange([null, null]);
     this.dateInputFieldTo.clear();
     this.dateInputFieldFrom.clear();
-  }
+  };
 
   render() {
     let {

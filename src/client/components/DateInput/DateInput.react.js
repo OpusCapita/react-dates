@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import './DateInput.less';
 import DateInputField from '../DateInputField';
 import DayPicker from '../DayPicker';
@@ -91,17 +92,6 @@ class DateInput extends Component {
       showPicker: false,
       showVariants: false
     };
-    this.handleBodyClick = this.handleBodyClick.bind(this);
-    this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleError = this.handleError.bind(this);
-    this.handleInputFocus = this.handleInputFocus.bind(this);
-    this.handleInputClick = this.handleInputClick.bind(this);
-    this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleVariantSelect = this.handleVariantSelect.bind(this);
-    this.handleVariantsButtonClick = this.handleVariantsButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -142,12 +132,12 @@ class DateInput extends Component {
     document.body.removeEventListener('keydown', this.handleBodyKeyDown);
   }
 
-  handleDayClick(day) {
+  handleDayClick = day => {
     this.setState({ showPicker: false });
     this.handleDateChange(day);
-  }
+  };
 
-  handleBodyClick(event) {
+  handleBodyClick = event => {
     let clickedOutside = (
       !this.container.contains(event.target) &&
       !this.pickerContainer.contains(event.target)
@@ -161,9 +151,9 @@ class DateInput extends Component {
       this.hideVariants();
       this.hidePicker();
     }
-  }
+  };
 
-  handleBodyKeyDown(event) {
+  handleBodyKeyDown = event => {
     if (event.which === 9) {
       this.hideVariants();
       this.hidePicker();
@@ -172,7 +162,7 @@ class DateInput extends Component {
       this.hideVariants();
       this.hidePicker();
     }
-  }
+  };
 
   showVariants() {
     this.setState({ showVariants: true, showPicker: false });
@@ -182,26 +172,26 @@ class DateInput extends Component {
     this.setState({ showVariants: false });
   }
 
-  handleVariantsButtonClick() {
+  handleVariantsButtonClick = () => {
     if (this.state.showVariants) {
       return this.hideVariants();
     }
     return this.showVariants();
-  }
+  };
 
-  handleVariantSelect(value) {
+  handleVariantSelect = value => {
     this.hideVariants();
     this.handleDateChange(value);
-  }
+  };
 
-  handleError(error) {
+  handleError = error => {
     this.setState({ error });
-  }
+  };
 
-  handleDateChange(value) {
+  handleDateChange = value => {
     this.props.onChange(value);
     this.setState({ error: null });
-  }
+  };
 
   showPicker() {
     let month = this.props.value || new Date();
@@ -214,30 +204,30 @@ class DateInput extends Component {
     this.setState({ showPicker: false });
   }
 
-  handleInputFocus(event) {
+  handleInputFocus = event => {
     this.props.onFocus(event);
     this.showPicker();
-  }
+  };
 
-  handleInputClick() {
+  handleInputClick = () => {
     if (!this.props.disabled) {
       this.showPicker();
     }
-  }
+  };
 
-  handleReset() {
+  handleReset = () => {
     this.setState({ error: null });
     this.dateInputField.clear();
     this.hidePicker();
     this.props.onChange(null);
-  }
+  };
 
-  handleBlur(e) {
+  handleBlur = e => {
     if (this.state.error) {
       this.handleReset();
     }
     this.props.onBlur(e);
-  }
+  };
 
   render() {
     let {

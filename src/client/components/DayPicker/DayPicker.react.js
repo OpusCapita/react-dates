@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import ReactDayPicker from 'react-day-picker/lib/src/DayPicker';
 import "react-day-picker/lib/style.css";
 import MomentLocaleUtils from './MomentLocaleUtils';
@@ -119,12 +120,9 @@ class DayPicker extends Component {
       date: props.date,
       currentMonth: null
     };
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleMonthChange = this.handleMonthChange.bind(this);
-    this.handleTodayClick = this.handleTodayClick.bind(this);
   }
 
-  handleDateChange(date, captionIndex) {
+  handleDateChange = (date, captionIndex) => {
     if (this.props.isRange) {
       let range = this.props.selectedDays[1];
       let fromChanged = captionIndex === 0;
@@ -138,15 +136,15 @@ class DayPicker extends Component {
     } else {
       this.props.onChange(date);
     }
-  }
+  };
 
-  handleMonthChange(month) {
+  handleMonthChange = month => {
     this.setState({ currentMonth: month });
-  }
+  };
 
-  handleTodayClick() {
+  handleTodayClick = () => {
     this.props.onChange(new Date());
-  }
+  };
 
   render() {
     let {

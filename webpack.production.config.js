@@ -21,8 +21,7 @@ config.plugins = config.plugins.concat([
       screw_ie8: true
     },
     comments: false
-  })
-  // ,
+  }),
   // new BundleAnalyzerPlugin({
   //   analyzerMode: 'server',
   //   analyzerHost: '127.0.0.1',

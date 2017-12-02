@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import './DatePicker.less';
 import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
@@ -56,11 +57,6 @@ class DatePicker extends Component {
     this.state = {
       showPicker: false
     };
-    this.handlePortalClose = this.handlePortalClose.bind(this);
-    this.handleBodyKeyDown = this.handleBodyKeyDown.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleToggleClick = this.handleToggleClick.bind(this);
-    this.handleDayClick = this.handleDayClick.bind(this);
   }
 
   componentDidMount() {
@@ -84,35 +80,35 @@ class DatePicker extends Component {
     document.body.removeEventListener('keydown', this.handlePortalClose);
   }
 
-  handlePortalClose(event) {
+  handlePortalClose = event => {
     this.hidePicker();
-  }
+  };
 
-  handleDayClick(day) {
+  handleDayClick = day => {
     this.handleDateChange(day);
     this.setState({ showPicker: false });
-  }
+  };
 
-  handleToggleClick() {
+  handleToggleClick = () => {
     if (this.state.showPicker) {
       this.hidePicker();
     } else {
       this.showPicker();
     }
-  }
+  };
 
-  handleDateChange(value) {
+  handleDateChange = value => {
     this.props.onChange(value);
-  }
+  };
 
-  handleBodyKeyDown(event) {
+  handleBodyKeyDown = event => {
     if (event.which === 9) {
       this.hidePicker();
     }
     if (event.which === 27) { // ESC key
       this.hidePicker();
     }
-  }
+  };
 
   showPicker() {
     this.setState({ showPicker: true });
