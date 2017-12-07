@@ -6918,8 +6918,7 @@ var DateInputField = function (_Component) {
           ref: this.handleRef,
           className: 'opuscapita_date-input-field form-control ' + className,
           disabled: disabled,
-          onChange: this.handleInputChange,
-          type: 'text'
+          onChange: this.handleInputChange
         },
         _react2.default.createElement('input', _extends({
           ref: function ref(_ref) {
