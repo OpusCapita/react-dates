@@ -14,7 +14,7 @@ describe('<DateInputField />', () => {
       wrapper_1_1.detach();
     });
 
-    it('should call onBlur if all format inputs being unfocused', () => {
+    it.skip('+ should call onBlur if all format inputs being unfocused', () => {
       let inputFocusSpy_1 = sinon.spy();
       let inputFocusSpy_2 = sinon.spy();
       let formatInputFocusSpy = sinon.spy();
