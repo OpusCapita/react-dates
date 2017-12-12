@@ -88,6 +88,7 @@ class DateInputField extends Component {
       <div
         ref={this.handleRef}
         className={`opuscapita_date-input-field form-control ${className}`}
+        disabled={disabled}
       >
         <input
           ref={ref => { this.dateInputFieldRef = ref }}
