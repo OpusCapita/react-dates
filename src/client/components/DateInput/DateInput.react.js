@@ -10,7 +10,7 @@ import assign from 'lodash/assign';
 import moment from '../moment';
 import getMessage from '../translations';
 import isEqual from 'lodash/isEqual';
-import Portal from 'react-portal';
+import { Portal } from 'react-portal';
 import { getCoords } from '../utils/get-coords';
 
 let springPreset = presets.gentle;

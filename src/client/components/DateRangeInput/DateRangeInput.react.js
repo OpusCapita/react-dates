@@ -11,7 +11,7 @@ import isEqual from 'lodash/isEqual';
 import moment from '../moment';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
-import Portal from 'react-portal';
+import { Portal } from 'react-portal';
 import { getCoords } from '../utils/get-coords';
 
 let springPreset = presets.gentle;
