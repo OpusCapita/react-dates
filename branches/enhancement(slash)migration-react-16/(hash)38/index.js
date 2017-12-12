@@ -25174,10 +25174,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _class;
 
-var _propTypes = __webpack_require__(3);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
@@ -25219,14 +25215,6 @@ var DateVariantsScope = (0, _reactShowroomClient.showroomScopeDecorator)(_class 
 }(_react.Component)) || _class;
 
 exports.default = DateVariantsScope;
-
-
-DateVariantsScope.contextTypes = {
-  i18n: _propTypes2.default.object
-};
-DateVariantsScope.childContextTypes = {
-  i18n: _propTypes2.default.object
-};
 
 /***/ }),
 /* 227 */
@@ -25380,10 +25368,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _class;
 
-var _propTypes = __webpack_require__(3);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
@@ -25425,14 +25409,6 @@ var InputAddonButtonScope = (0, _reactShowroomClient.showroomScopeDecorator)(_cl
 }(_react.Component)) || _class;
 
 exports.default = InputAddonButtonScope;
-
-
-InputAddonButtonScope.contextTypes = {
-  i18n: _propTypes2.default.object
-};
-InputAddonButtonScope.childContextTypes = {
-  i18n: _propTypes2.default.object
-};
 
 /***/ }),
 /* 230 */
