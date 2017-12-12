@@ -3,8 +3,6 @@
    https://github.com/OpusCapitaBES/js-react-showroom-client/blob/master/docs/scope-component.md
 */
 
-import PropTypes from 'prop-types';
-
 import React, { Component } from 'react';
 import { showroomScopeDecorator } from '@opuscapita/react-showroom-client';
 
@@ -25,10 +23,3 @@ class DateVariantsScope extends Component {
     );
   }
 }
-
-DateVariantsScope.contextTypes = {
-  i18n: PropTypes.object
-};
-DateVariantsScope.childContextTypes = {
-  i18n: PropTypes.object
-};

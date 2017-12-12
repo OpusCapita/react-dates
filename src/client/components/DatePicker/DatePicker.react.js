@@ -5,7 +5,7 @@ import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
-import Portal from 'react-portal';
+import { Portal } from 'react-portal';
 import { getCoords } from '../utils/get-coords';
 
 let springPreset = presets.gentle;
