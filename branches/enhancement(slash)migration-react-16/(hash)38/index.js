@@ -19539,7 +19539,93 @@ var DayPicker = function (_Component) {
   return DayPicker;
 }(_react.Component);
 
-DayPicker.VERSION = '6.1.1';
+DayPicker.VERSION = '6.1.0';
+DayPicker.propTypes = {
+  // Rendering months
+  initialMonth: _propTypes2.default.instanceOf(Date),
+  month: _propTypes2.default.instanceOf(Date),
+  numberOfMonths: _propTypes2.default.number,
+  fromMonth: _propTypes2.default.instanceOf(Date),
+  toMonth: _propTypes2.default.instanceOf(Date),
+  canChangeMonth: _propTypes2.default.bool,
+  reverseMonths: _propTypes2.default.bool,
+  pagedNavigation: _propTypes2.default.bool,
+  todayButton: _propTypes2.default.string,
+  showWeekNumbers: _propTypes2.default.bool,
+
+  // Modifiers
+  selectedDays: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func, _propTypes2.default.array]),
+  disabledDays: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func, _propTypes2.default.array]),
+
+  modifiers: _propTypes2.default.object,
+  modifiersStyles: _propTypes2.default.object,
+
+  // Localization
+  dir: _propTypes2.default.string,
+  firstDayOfWeek: _propTypes2.default.oneOf([0, 1, 2, 3, 4, 5, 6]),
+  labels: _propTypes2.default.shape({
+    nextMonth: _propTypes2.default.string.isRequired,
+    previousMonth: _propTypes2.default.string.isRequired
+  }).isRequired,
+  locale: _propTypes2.default.string,
+  localeUtils: _propTypes2.default.shape({
+    formatMonthTitle: _propTypes2.default.func,
+    formatWeekdayShort: _propTypes2.default.func,
+    formatWeekdayLong: _propTypes2.default.func,
+    getFirstDayOfWeek: _propTypes2.default.func
+  }),
+  months: _propTypes2.default.arrayOf(_propTypes2.default.string),
+  weekdaysLong: _propTypes2.default.arrayOf(_propTypes2.default.string),
+  weekdaysShort: _propTypes2.default.arrayOf(_propTypes2.default.string),
+
+  // Customization
+  enableOutsideDays: _propTypes2.default.bool,
+  fixedWeeks: _propTypes2.default.bool,
+
+  // CSS and HTML
+  classNames: _propTypes2.default.shape({
+    body: _propTypes2.default.string,
+    container: _propTypes2.default.string,
+    day: _propTypes2.default.string.isRequired,
+    disabled: _propTypes2.default.string.isRequired,
+    footer: _propTypes2.default.string,
+    interactionDisabled: _propTypes2.default.string,
+    month: _propTypes2.default.string,
+    navBar: _propTypes2.default.string,
+    outside: _propTypes2.default.string.isRequired,
+    selected: _propTypes2.default.string.isRequired,
+    today: _propTypes2.default.string.isRequired,
+    todayButton: _propTypes2.default.string,
+    week: _propTypes2.default.string,
+    wrapper: _propTypes2.default.string
+  }),
+  className: _propTypes2.default.string,
+  containerProps: _propTypes2.default.object,
+  tabIndex: _propTypes2.default.number,
+
+  // Custom elements
+  renderDay: _propTypes2.default.func,
+  weekdayElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func, _propTypes2.default.instanceOf(_react.Component)]),
+  navbarElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func, _propTypes2.default.instanceOf(_react.Component)]),
+  captionElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func, _propTypes2.default.instanceOf(_react.Component)]),
+
+  // Events
+  onBlur: _propTypes2.default.func,
+  onFocus: _propTypes2.default.func,
+  onKeyDown: _propTypes2.default.func,
+  onDayClick: _propTypes2.default.func,
+  onDayKeyDown: _propTypes2.default.func,
+  onDayMouseEnter: _propTypes2.default.func,
+  onDayMouseLeave: _propTypes2.default.func,
+  onDayMouseDown: _propTypes2.default.func,
+  onDayMouseUp: _propTypes2.default.func,
+  onDayTouchStart: _propTypes2.default.func,
+  onDayTouchEnd: _propTypes2.default.func,
+  onDayFocus: _propTypes2.default.func,
+  onMonthChange: _propTypes2.default.func,
+  onCaptionClick: _propTypes2.default.func,
+  onWeekClick: _propTypes2.default.func
+};
 DayPicker.defaultProps = {
   classNames: _classNames2.default,
   tabIndex: 0,
@@ -19675,92 +19761,6 @@ var _initialiseProps = function _initialiseProps() {
 };
 
 exports.default = DayPicker;
-DayPicker.propTypes =  false ? {
-  // Rendering months
-  initialMonth: _propTypes2.default.instanceOf(Date),
-  month: _propTypes2.default.instanceOf(Date),
-  numberOfMonths: _propTypes2.default.number,
-  fromMonth: _propTypes2.default.instanceOf(Date),
-  toMonth: _propTypes2.default.instanceOf(Date),
-  canChangeMonth: _propTypes2.default.bool,
-  reverseMonths: _propTypes2.default.bool,
-  pagedNavigation: _propTypes2.default.bool,
-  todayButton: _propTypes2.default.string,
-  showWeekNumbers: _propTypes2.default.bool,
-
-  // Modifiers
-  selectedDays: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func, _propTypes2.default.array]),
-  disabledDays: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func, _propTypes2.default.array]),
-
-  modifiers: _propTypes2.default.object,
-  modifiersStyles: _propTypes2.default.object,
-
-  // Localization
-  dir: _propTypes2.default.string,
-  firstDayOfWeek: _propTypes2.default.oneOf([0, 1, 2, 3, 4, 5, 6]),
-  labels: _propTypes2.default.shape({
-    nextMonth: _propTypes2.default.string.isRequired,
-    previousMonth: _propTypes2.default.string.isRequired
-  }).isRequired,
-  locale: _propTypes2.default.string,
-  localeUtils: _propTypes2.default.shape({
-    formatMonthTitle: _propTypes2.default.func,
-    formatWeekdayShort: _propTypes2.default.func,
-    formatWeekdayLong: _propTypes2.default.func,
-    getFirstDayOfWeek: _propTypes2.default.func
-  }),
-  months: _propTypes2.default.arrayOf(_propTypes2.default.string),
-  weekdaysLong: _propTypes2.default.arrayOf(_propTypes2.default.string),
-  weekdaysShort: _propTypes2.default.arrayOf(_propTypes2.default.string),
-
-  // Customization
-  enableOutsideDays: _propTypes2.default.bool,
-  fixedWeeks: _propTypes2.default.bool,
-
-  // CSS and HTML
-  classNames: _propTypes2.default.shape({
-    body: _propTypes2.default.string,
-    container: _propTypes2.default.string,
-    day: _propTypes2.default.string.isRequired,
-    disabled: _propTypes2.default.string.isRequired,
-    footer: _propTypes2.default.string,
-    interactionDisabled: _propTypes2.default.string,
-    month: _propTypes2.default.string,
-    navBar: _propTypes2.default.string,
-    outside: _propTypes2.default.string.isRequired,
-    selected: _propTypes2.default.string.isRequired,
-    today: _propTypes2.default.string.isRequired,
-    todayButton: _propTypes2.default.string,
-    week: _propTypes2.default.string,
-    wrapper: _propTypes2.default.string
-  }),
-  className: _propTypes2.default.string,
-  containerProps: _propTypes2.default.object,
-  tabIndex: _propTypes2.default.number,
-
-  // Custom elements
-  renderDay: _propTypes2.default.func,
-  weekdayElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func, _propTypes2.default.instanceOf(_react.Component)]),
-  navbarElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func, _propTypes2.default.instanceOf(_react.Component)]),
-  captionElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func, _propTypes2.default.instanceOf(_react.Component)]),
-
-  // Events
-  onBlur: _propTypes2.default.func,
-  onFocus: _propTypes2.default.func,
-  onKeyDown: _propTypes2.default.func,
-  onDayClick: _propTypes2.default.func,
-  onDayKeyDown: _propTypes2.default.func,
-  onDayMouseEnter: _propTypes2.default.func,
-  onDayMouseLeave: _propTypes2.default.func,
-  onDayMouseDown: _propTypes2.default.func,
-  onDayMouseUp: _propTypes2.default.func,
-  onDayTouchStart: _propTypes2.default.func,
-  onDayTouchEnd: _propTypes2.default.func,
-  onDayFocus: _propTypes2.default.func,
-  onMonthChange: _propTypes2.default.func,
-  onCaptionClick: _propTypes2.default.func,
-  onWeekClick: _propTypes2.default.func
-} : {};
 //# sourceMappingURL=DayPicker.js.map
 
 /***/ }),
@@ -19926,7 +19926,7 @@ var Navbar = function (_Component) {
   _createClass(Navbar, [{
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps) {
-      return nextProps.labels !== this.props.labels || nextProps.dir !== this.props.dir || this.props.showPreviousButton !== nextProps.showPreviousButton || this.props.showNextButton !== nextProps.showNextButton;
+      return nextProps.labels !== this.props.labels || this.props.showPreviousButton !== nextProps.showPreviousButton || this.props.showNextButton !== nextProps.showNextButton;
     }
   }, {
     key: 'render',
@@ -19944,28 +19944,22 @@ var Navbar = function (_Component) {
       var nextClickHandler = void 0;
       var previousKeyDownHandler = void 0;
       var nextKeyDownHandler = void 0;
-      var shouldShowPrevious = void 0;
-      var shouldShowNext = void 0;
 
       if (dir === 'rtl') {
         previousClickHandler = this.handleNextClick;
         nextClickHandler = this.handlePreviousClick;
         previousKeyDownHandler = this.handleNextKeyDown;
         nextKeyDownHandler = this.handlePreviousKeyDown;
-        shouldShowNext = showPreviousButton;
-        shouldShowPrevious = showNextButton;
       } else {
         previousClickHandler = this.handlePreviousClick;
         nextClickHandler = this.handleNextClick;
         previousKeyDownHandler = this.handlePreviousKeyDown;
         nextKeyDownHandler = this.handleNextKeyDown;
-        shouldShowNext = showNextButton;
-        shouldShowPrevious = showPreviousButton;
       }
 
-      var previousClassName = shouldShowPrevious ? classNames.navButtonPrev : classNames.navButtonPrev + ' ' + classNames.navButtonInteractionDisabled;
+      var previousClassName = showPreviousButton ? classNames.navButtonPrev : classNames.navButtonPrev + ' ' + classNames.navButtonInteractionDisabled;
 
-      var nextClassName = shouldShowNext ? classNames.navButtonNext : classNames.navButtonNext + ' ' + classNames.navButtonInteractionDisabled;
+      var nextClassName = showNextButton ? classNames.navButtonNext : classNames.navButtonNext + ' ' + classNames.navButtonInteractionDisabled;
 
       var previousButton = _react2.default.createElement('span', {
         tabIndex: '0',
@@ -19973,8 +19967,8 @@ var Navbar = function (_Component) {
         'aria-label': labels.previousMonth,
         key: 'previous',
         className: previousClassName,
-        onKeyDown: shouldShowPrevious ? previousKeyDownHandler : undefined,
-        onClick: shouldShowPrevious ? previousClickHandler : undefined
+        onKeyDown: showPreviousButton ? previousKeyDownHandler : undefined,
+        onClick: showPreviousButton ? previousClickHandler : undefined
       });
 
       var nextButton = _react2.default.createElement('span', {
@@ -19983,8 +19977,8 @@ var Navbar = function (_Component) {
         'aria-label': labels.nextMonth,
         key: 'right',
         className: nextClassName,
-        onKeyDown: shouldShowNext ? nextKeyDownHandler : undefined,
-        onClick: shouldShowNext ? nextClickHandler : undefined
+        onKeyDown: showNextButton ? nextKeyDownHandler : undefined,
+        onClick: showNextButton ? nextClickHandler : undefined
       });
 
       return _react2.default.createElement(
@@ -20008,8 +20002,7 @@ Navbar.defaultProps = {
   showPreviousButton: true,
   showNextButton: true
 };
-exports.default = Navbar;
-Navbar.propTypes =  false ? {
+Navbar.propTypes = {
   classNames: _propTypes2.default.shape({
     navBar: _propTypes2.default.string.isRequired,
     navButtonPrev: _propTypes2.default.string.isRequired,
@@ -20025,7 +20018,8 @@ Navbar.propTypes =  false ? {
     previousMonth: _propTypes2.default.string.isRequired,
     nextMonth: _propTypes2.default.string.isRequired
   })
-} : {};
+};
+exports.default = Navbar;
 //# sourceMappingURL=Navbar.js.map
 
 /***/ }),
@@ -20105,8 +20099,7 @@ var Weekday = function (_PureComponent) {
   return Weekday;
 }(_react.PureComponent);
 
-exports.default = Weekday;
-Weekday.propTypes =  false ? {
+Weekday.propTypes = {
   weekday: _propTypes2.default.number,
   className: _propTypes2.default.string,
   locale: _propTypes2.default.string,
@@ -20114,7 +20107,8 @@ Weekday.propTypes =  false ? {
 
   weekdaysLong: _propTypes2.default.arrayOf(_propTypes2.default.string),
   weekdaysShort: _propTypes2.default.arrayOf(_propTypes2.default.string)
-} : {};
+};
+exports.default = Weekday;
 //# sourceMappingURL=Weekday.js.map
 
 /***/ }),
@@ -20477,7 +20471,7 @@ module.exports = [
             "lodash": "4.17.4",
             "moment": "2.18.1",
             "prop-types": "15.6.0",
-            "react-day-picker": "6.1.1",
+            "react-day-picker": "6.1.0",
             "react-portal": "4.1.0"
         }
     }
@@ -29207,8 +29201,7 @@ var Caption = function (_Component) {
   return Caption;
 }(_react.Component);
 
-exports.default = Caption;
-Caption.propTypes =  false ? {
+Caption.propTypes = {
   date: _propTypes2.default.instanceOf(Date),
   months: _propTypes2.default.arrayOf(_propTypes2.default.string),
   locale: _propTypes2.default.string,
@@ -29217,7 +29210,8 @@ Caption.propTypes =  false ? {
   classNames: _propTypes2.default.shape({
     caption: _propTypes2.default.string.isRequired
   }).isRequired
-} : {};
+};
+exports.default = Caption;
 //# sourceMappingURL=Caption.js.map
 
 /***/ }),
@@ -29384,16 +29378,7 @@ var Day = function (_Component) {
   return Day;
 }(_react.Component);
 
-Day.defaultProps = {
-  tabIndex: -1
-};
-Day.defaultProps = {
-  modifiers: {},
-  modifiersStyles: {},
-  empty: false
-};
-exports.default = Day;
-Day.propTypes =  false ? {
+Day.propTypes = {
   classNames: _propTypes2.default.shape({
     day: _propTypes2.default.string.isRequired
   }).isRequired,
@@ -29417,7 +29402,16 @@ Day.propTypes =  false ? {
   onTouchStart: _propTypes2.default.func,
   onFocus: _propTypes2.default.func,
   tabIndex: _propTypes2.default.number
-} : {};
+};
+Day.defaultProps = {
+  tabIndex: -1
+};
+Day.defaultProps = {
+  modifiers: {},
+  modifiersStyles: {},
+  empty: false
+};
+exports.default = Day;
 //# sourceMappingURL=Day.js.map
 
 /***/ }),
@@ -29630,8 +29624,7 @@ var Month = function (_Component) {
   return Month;
 }(_react.Component);
 
-exports.default = Month;
-Month.propTypes =  false ? {
+Month.propTypes = {
   classNames: _propTypes2.default.shape({
     body: _propTypes2.default.string.isRequired,
     month: _propTypes2.default.string.isRequired,
@@ -29674,7 +29667,8 @@ Month.propTypes =  false ? {
   onDayTouchEnd: _propTypes2.default.func,
   onDayTouchStart: _propTypes2.default.func,
   onWeekClick: _propTypes2.default.func
-} : {};
+};
+exports.default = Month;
 //# sourceMappingURL=Month.js.map
 
 /***/ }),
@@ -29802,8 +29796,7 @@ var Weekdays = function (_PureComponent) {
   return Weekdays;
 }(_react.PureComponent);
 
-exports.default = Weekdays;
-Weekdays.propTypes =  false ? {
+Weekdays.propTypes = {
   classNames: _propTypes2.default.shape({
     weekday: _propTypes2.default.string.isRequired,
     weekdays: _propTypes2.default.string.isRequired,
@@ -29817,7 +29810,8 @@ Weekdays.propTypes =  false ? {
   locale: _propTypes2.default.string.isRequired,
   localeUtils: _propTypes2.default.object.isRequired,
   weekdayElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.func, _propTypes2.default.instanceOf(_react2.default.Component)])
-} : {};
+};
+exports.default = Weekdays;
 //# sourceMappingURL=Weekdays.js.map
 
 /***/ }),
