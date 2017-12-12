@@ -1,3 +1,26 @@
+## [v0.4.0-beta.0](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.17...v0.4.0-beta.0) (Tue, 12 Dec 2017 12:05:22 GMT)
+ - Update minor package version (still in beta) (Kirill Volkovich <kirill.volkovich@jcatalog.com>, 60e09c1)
+ - Enhancement/migration react 16/#38 (#40)
+    
+    * Migrate to React v.16
+    
+    * Migrate to React v.16
+    
+    * Fix "react-portal" TypeError
+    
+    Error message: "Cannot read property 'contains' of null
+        at Portal.handleOutsideMouseClick"
+    
+    * Remove childContextTypes from scopes
+    
+    *  #38 Add missing "disabled" prop to "DateInputField"
+    
+    * Change react-day-picker version to 6.1.0 (Aleksandr Baliunov <abaliunov-sc@users.noreply.github.com>, 7a28136)
+ - #39 Fix (Kirill Volkovich <kvolkovich-sc@users.noreply.github.com>, f003cf7)
+ - Update "shoroom" version (Kirill Volkovich <kirill.volkovich@opuscapita.com>, d51cd40)
+ - Avoid es6 "import" in mocha-setup (Kirill Volkovich <kirill.volkovich@opuscapita.com>, 86e0985)
+ - Move "enzyme-adapter-react-16" dependency to "devDependencies" (Kirill Volkovich <kirill.volkovich@opuscapita.com>, 29e8c79)
+
 ## [v0.3.0-beta.17](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.16...v0.3.0-beta.17) (Sat, 02 Dec 2017 11:31:47 GMT)
  - Remove billions of "<DateInput />" on demo-page (Kirill Volkovich <kirill.volkovich@opuscapita.com>, abd984b)
  - Remove unused "react-maskedinput" (Kirill Volkovich <kirill.volkovich@opuscapita.com>, bbcbd12)
