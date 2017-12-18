@@ -1,3 +1,6 @@
+## [v0.4.0-beta.1](https://github.com/OpusCapita/react-dates/compare/v0.4.0-beta.0...v0.4.0-beta.1) (Mon, 18 Dec 2017 13:47:19 GMT)
+ - Fix styles for IE11 (ms-clear) (Kirill Volkovich <kirill.volkovich@jcatalog.com>, 0fa000d)
+
 ## [v0.4.0-beta.0](https://github.com/OpusCapita/react-dates/compare/v0.3.0-beta.17...v0.4.0-beta.0) (Tue, 12 Dec 2017 12:05:22 GMT)
  - Update minor package version (still in beta) (Kirill Volkovich <kirill.volkovich@jcatalog.com>, 60e09c1)
  - Enhancement/migration react 16/#38 (#40)
