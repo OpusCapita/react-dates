@@ -6710,6 +6710,7 @@ var DateInputField = function (_Component) {
             _this2.dateInputFieldRef = _ref;
           },
           type: 'text',
+          className: 'opuscapita_date-input-field__input',
           value: inputValue,
           placeholder: dateFormat,
           disabled: disabled,
@@ -26987,7 +26988,7 @@ exports = module.exports = __webpack_require__(8)();
 
 
 // module
-exports.push([module.i, ".opuscapita_date-input {\n  display: -webkit-box !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n  padding: 0 !important;\n  border: none !important;\n  position: relative !important;\n}\n.opuscapita_date-input::-ms-clear {\n  display: none !important;\n}\n.opuscapita_date-input__input-container {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.opuscapita_date-input .opuscapita_date-input-field {\n  padding-right: 4ch;\n}\n.opuscapita_date-input-field input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  outline: none;\n}\n.opuscapita_date-input-field input:disabled {\n  background: transparent;\n}\n.opuscapita_date-input__picker-container,\n.opuscapita_date-input__variants-container {\n  will-change: opacity, max-height;\n  background: #fff;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);\n  position: absolute;\n  overflow: hidden;\n  z-index: 900;\n}\n.opuscapita_date-input__variants-container {\n  white-space: nowrap;\n}\n.opuscapita_date-input__variants-btn {\n  border-left: none;\n}\n.opuscapita_date-input__picker-container:focus {\n  outline: none;\n}\n.opuscapita_date-input__reset-btn {\n  position: absolute;\n  top: 0;\n  right: 1ch;\n  z-index: 3;\n}\n", ""]);
+exports.push([module.i, ".opuscapita_date-input {\n  display: -webkit-box !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n  padding: 0 !important;\n  border: none !important;\n  position: relative !important;\n}\n.opuscapita_date-input__input-container {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.opuscapita_date-input .opuscapita_date-input-field {\n  padding-right: 4ch;\n}\n.opuscapita_date-input-field input {\n  width: 100%;\n  height: 100%;\n  border: none;\n  outline: none;\n}\n.opuscapita_date-input-field input:disabled {\n  background: transparent;\n}\n.opuscapita_date-input__picker-container,\n.opuscapita_date-input__variants-container {\n  will-change: opacity, max-height;\n  background: #fff;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);\n  position: absolute;\n  overflow: hidden;\n  z-index: 900;\n}\n.opuscapita_date-input__variants-container {\n  white-space: nowrap;\n}\n.opuscapita_date-input__variants-btn {\n  border-left: none;\n}\n.opuscapita_date-input__picker-container:focus {\n  outline: none;\n}\n.opuscapita_date-input__reset-btn {\n  position: absolute;\n  top: 0;\n  right: 1ch;\n  z-index: 3;\n}\n", ""]);
 
 // exports
 
@@ -27001,7 +27002,7 @@ exports = module.exports = __webpack_require__(8)();
 
 
 // module
-exports.push([module.i, ".opuscapita_date-input-field {\n  z-index: 1 !important;\n  display: -webkit-box !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n}\n.opuscapita_date-input-field::-ms-clear {\n  display: none !important;\n}\n", ""]);
+exports.push([module.i, ".opuscapita_date-input-field {\n  z-index: 1 !important;\n  display: -webkit-box !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n}\n.opuscapita_date-input-field__input::-ms-clear {\n  display: none !important;\n}\n", ""]);
 
 // exports
 
