@@ -20473,7 +20473,7 @@ module.exports = [
             "moment": "2.18.1",
             "prop-types": "15.6.0",
             "react-day-picker": "6.1.0",
-            "react-portal": "4.1.0"
+            "react-portal": "4.1.2"
         }
     }
 ]
@@ -24279,6 +24279,14 @@ var DatePicker = function (_Component) {
       _this.props.onChange(value);
     };
 
+    _this.handleBodyClick = function (event) {
+      var clickedOutside = !_this.container.contains(event.target) && !_this.datePickerRef.contains(event.target);
+
+      if (clickedOutside) {
+        _this.hidePicker();
+      }
+    };
+
     _this.handleBodyKeyDown = function (event) {
       if (event.which === 9) {
         _this.hidePicker();
@@ -24298,6 +24306,7 @@ var DatePicker = function (_Component) {
   _createClass(DatePicker, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      document.body.addEventListener('click', this.handleBodyClick);
       document.body.addEventListener('keydown', this.handleBodyKeyDown);
     }
   }, {
@@ -24308,6 +24317,7 @@ var DatePicker = function (_Component) {
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
+      document.body.removeEventListener('click', this.handleBodyClick);
       document.body.removeEventListener('keydown', this.handlePortalClose);
     }
   }, {
@@ -24371,7 +24381,6 @@ var DatePicker = function (_Component) {
             _reactPortal.Portal,
             {
               isOpened: true,
-              closeOnOutsideClick: true,
               onClose: _this2.handlePortalClose
             },
             _react2.default.createElement(
@@ -31117,16 +31126,13 @@ var Portal = function (_React$Component) {
       this.renderPortal();
     }
   }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(props) {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(props) {
       this.renderPortal();
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      if (this.props.node) {
-        document.body.removeChild(this.props.node);
-      }
       if (this.defaultNode) {
         document.body.removeChild(this.defaultNode);
       }
@@ -31342,7 +31348,7 @@ var PortalWithState = function (_React$Component) {
       if (!this.state.active) {
         return;
       }
-      var root = this.portalNode.defaultNode;
+      var root = this.portalNode.props.node || this.portalNode.defaultNode;
       if (!root || root.contains(e.target) || e.button && e.button !== 0) {
         return;
       }
