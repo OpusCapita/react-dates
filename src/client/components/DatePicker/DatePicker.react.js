@@ -60,6 +60,7 @@ class DatePicker extends Component {
   }
 
   componentDidMount() {
+    document.body.addEventListener('click', this.handleBodyClick);
     document.body.addEventListener('keydown', this.handleBodyKeyDown);
   }
 
@@ -77,6 +78,7 @@ class DatePicker extends Component {
   }
 
   componentWillUnmount() {
+    document.body.removeEventListener('click', this.handleBodyClick);
     document.body.removeEventListener('keydown', this.handlePortalClose);
   }
 
@@ -99,6 +101,17 @@ class DatePicker extends Component {
 
   handleDateChange = value => {
     this.props.onChange(value);
+  };
+
+  handleBodyClick = event => {
+    let clickedOutside = (
+      !this.container.contains(event.target) &&
+      !this.datePickerRef.contains(event.target)
+    );
+
+    if (clickedOutside) {
+      this.hidePicker();
+    }
   };
 
   handleBodyKeyDown = event => {
@@ -161,7 +174,6 @@ class DatePicker extends Component {
         {interpolatedStyle => (
           <Portal
             isOpened={true}
-            closeOnOutsideClick={true}
             onClose={this.handlePortalClose}
           >
             <div
