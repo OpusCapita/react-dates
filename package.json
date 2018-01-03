@@ -94,6 +94,6 @@
     "moment": "2.18.1",
     "prop-types": "15.6.0",
     "react-day-picker": "6.1.0",
-    "react-portal": "4.1.0"
+    "react-portal": "4.1.2"
   }
 }
