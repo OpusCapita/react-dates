@@ -1,3 +1,6 @@
+## [v0.4.0-beta.2](https://github.com/OpusCapita/react-dates/compare/v0.4.0-beta.1...v0.4.0-beta.2) (Wed, 03 Jan 2018 14:04:35 GMT)
+ - Fix bug "Click outside of DayPicker popup" (#44) (Aleksandr Baliunov <abaliunov-sc@users.noreply.github.com>, ed68cb0)
+
 ## [v0.4.0-beta.1](https://github.com/OpusCapita/react-dates/compare/v0.4.0-beta.0...v0.4.0-beta.1) (Mon, 18 Dec 2017 13:47:19 GMT)
  - Fix styles for IE11 (ms-clear) (Kirill Volkovich <kirill.volkovich@jcatalog.com>, 0fa000d)
 
