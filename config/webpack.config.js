@@ -6,6 +6,7 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 
 const PACKAGE_VERSION = require('../package.json').version;
 const PACKAGE_NAME = require('../package.json').name;
@@ -63,6 +64,29 @@ entries.push(
     path.resolve(__dirname, '../www/index-page.js')
 );
 
+const externals = [{
+  react: {
+    root: 'React',
+    commonjs2: 'react',
+    commonjs: 'react',
+    amd: 'react'
+  },
+  'react-dom': {
+    root: 'ReactDOM',
+    commonjs2: 'react-dom',
+    commonjs: 'react-dom',
+    amd: 'react-dom'
+  }
+}];
+
+if (IS_PRODUCTION_MODE || IS_LINK_MODE) {
+  externals.push(
+    nodeExternals({
+      modulesFromFile: true
+    })
+  )
+}
+
 module.exports = {
   entry: entries,
   context: path.resolve(__dirname),
@@ -77,20 +101,7 @@ module.exports = {
   watch: !IS_PRODUCTION_MODE,
   bail: true,
   plugins: plugins,
-  externals: {
-    react: {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react'
-    },
-    'react-dom': {
-      root: 'ReactDOM',
-      commonjs2: 'react-dom',
-      commonjs: 'react-dom',
-      amd: 'react-dom'
-    }
-  },
+  externals,
   resolve: {
     modules: ['node_modules'],
     extensions: ['.json', '.js']
