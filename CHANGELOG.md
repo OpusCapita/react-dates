@@ -1,3 +1,10 @@
+## [v0.4.0-beta.3](Mon, 15 Jan 2018 13:47:45 GMT)
+ - Made node_modules external in production mode. (#48)
+    
+    * Made node_modules external in production mode.
+    
+    * Added link_mode check (Egor Stambakio <31243790+estambakio-sc@users.noreply.github.com>, b1f0b59)
+
 ## [v0.4.0-beta.2](https://github.com/OpusCapita/react-dates/compare/v0.4.0-beta.1...v0.4.0-beta.2) (Wed, 03 Jan 2018 14:04:35 GMT)
  - Fix bug "Click outside of DayPicker popup" (#44) (Aleksandr Baliunov <abaliunov-sc@users.noreply.github.com>, ed68cb0)
 
