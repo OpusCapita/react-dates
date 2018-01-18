@@ -19321,7 +19321,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInput",
-    "version": "0.4.0-beta.4",
+    "version": "0.4.0-beta.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -19336,7 +19336,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInputField",
-    "version": "0.4.0-beta.4",
+    "version": "0.4.0-beta.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -19351,7 +19351,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DatePicker",
-    "version": "0.4.0-beta.4",
+    "version": "0.4.0-beta.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -19366,7 +19366,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateRangeInput",
-    "version": "0.4.0-beta.4",
+    "version": "0.4.0-beta.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -19381,7 +19381,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateVariants",
-    "version": "0.4.0-beta.4",
+    "version": "0.4.0-beta.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -19396,7 +19396,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DayPicker",
-    "version": "0.4.0-beta.4",
+    "version": "0.4.0-beta.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -19411,7 +19411,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "InputAddonButton",
-    "version": "0.4.0-beta.4",
+    "version": "0.4.0-beta.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -19432,7 +19432,7 @@ module.exports = [
 module.exports = [
     {
         "name": "@opuscapita/react-dates",
-        "version": "0.4.0-beta.4",
+        "version": "0.4.0-beta.5",
         "description": "Start write new project with no effort.",
         "keywords": [
             "react",
