@@ -1,3 +1,10 @@
+## [v0.4.0-beta.4](https://github.com/OpusCapita/react-dates/compare/v0.4.0-beta.3...v0.4.0-beta.4) (Thu, 18 Jan 2018 13:35:10 GMT)
+ - Merge pull request #51 from OpusCapita/issue-45/date-range-one-day
+    
+    Choice of one date in DateRangeInput (Issue-#45) (6a94cd8 183e958, 99722e7)
+ - Add CODEOWNERS file (Issue-#49) (PR-#50) (Aleksandr Baliunov <abaliunov-sc@users.noreply.github.com>, 6a94cd8)
+ - (#45) Choice of one date in DateRangeInput (baliunov <baliunov@scand.com>, 183e958)
+
 ## [v0.4.0-beta.3](Mon, 15 Jan 2018 13:47:45 GMT)
  - Made node_modules external in production mode. (#48)
     
