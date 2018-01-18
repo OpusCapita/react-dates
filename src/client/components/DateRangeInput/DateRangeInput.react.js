@@ -5,7 +5,6 @@ import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
 import DateVariants from '../DateVariants';
 import DateInputField from '../DateInputField';
-import { DateUtils } from 'react-day-picker';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
 import moment from '../moment';
@@ -208,11 +207,6 @@ class DateRangeInput extends Component {
   handleDayClick = day => {
     let from = this.props.value[0];
     let to = this.props.value[1];
-
-    if (DateUtils.isSameDay(day, from)) {
-      this.handleReset();
-      return;
-    }
 
     if (isSelectingFirstDay(from, to, day)) {
       this.handleRangeChange([day, null]);
