@@ -7,7 +7,7 @@ import DateVariants from '../DateVariants';
 import InputAddonButton from '../InputAddonButton';
 import { spring, presets, Motion } from 'react-motion';
 import assign from 'lodash/assign';
-import moment from '../moment';
+import dayjs from '../../dayjs';
 import getMessage from '../translations';
 import isEqual from 'lodash/isEqual';
 import { Portal } from 'react-portal';
@@ -70,15 +70,15 @@ let defaultProps = {
   variants: [
     {
       getLabel: (locale) => getMessage(locale, 'yesterday'),
-      getValue: (locale) => moment().locale(locale).subtract(1, 'days').toDate()
+      getValue: (locale) => dayjs().locale(locale).subtract(1, 'days').toDate()
     },
     {
       getLabel: (locale) => getMessage(locale, 'today'),
-      getValue: (locale) => moment().locale(locale).toDate()
+      getValue: (locale) => dayjs().locale(locale).toDate()
     },
     {
       getLabel: (locale) => getMessage(locale, 'tomorrow'),
-      getValue: (locale) => moment().locale(locale).add(1, 'days').toDate()
+      getValue: (locale) => dayjs().locale(locale).add(1, 'days').toDate()
     }
   ]
 };

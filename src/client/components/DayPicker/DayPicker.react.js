@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDayPicker from 'react-day-picker/lib/src/DayPicker';
 import "react-day-picker/lib/style.css";
-import MomentLocaleUtils from './MomentLocaleUtils';
+import localeUtils from '../../dayjs/reactDayPickerUtils';
 import getMessage from '../translations';
 import assign from 'lodash/assign';
 import './DayPicker.less';
@@ -192,7 +192,7 @@ class DayPicker extends Component {
           <ReactDayPicker
             ref={el => dayPickerRef(el)}
             className={pickerClassName}
-            localeUtils={MomentLocaleUtils}
+            localeUtils={localeUtils}
             locale={locale}
             onDayClick={this.handleDateChange}
             onDayKeyDown={this.handleDateChange}

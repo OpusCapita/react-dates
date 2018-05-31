@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import moment from '../moment';
+import dayjs from '../../dayjs';
 import './DateInputField.less';
 
 let propTypes = {
@@ -30,13 +30,13 @@ class DateInputField extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: props.value ? moment(props.value.toISOString()).format(props.dateFormat) : ''
+      inputValue: props.value ? dayjs(props.value.toISOString()).format(props.dateFormat) : ''
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.value !== nextProps.value || this.props.dateFormat !== nextProps.dateFormat) {
-      let inputValue = nextProps.value ? moment(nextProps.value.toISOString()).format(nextProps.dateFormat) : '';
+      let inputValue = nextProps.value ? dayjs(nextProps.value.toISOString()).format(nextProps.dateFormat) : '';
       this.setState({ inputValue });
     }
   }
@@ -46,7 +46,7 @@ class DateInputField extends Component {
   };
 
   validate(dateString, dateFormat) {
-    let momentDate = moment(dateString, dateFormat, true);
+    let momentDate = dayjs(dateString, dateFormat, true);
     let error = momentDate.isValid() ? null : momentDate.invalidAt();
 
     if (error !== null && dateString.length) {

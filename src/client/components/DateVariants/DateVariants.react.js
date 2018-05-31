@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { VerticalList } from '@opuscapita/react-autocompletes';
-import moment from '../moment';
+import dayjs from '../../dayjs';
 import './DateVariants.less';
 
 let propTypes = {
@@ -18,50 +18,50 @@ let defaultProps = {
     {
       label: 'Previous week',
       getValue: (locale) => [
-        moment().locale(locale).subtract(7, 'days').startOf('week').toDate(),
-        moment().locale(locale).subtract(7, 'days').endOf('week').toDate()
+        dayjs().locale(locale).subtract(7, 'days').startOf('week').toDate(),
+        dayjs().locale(locale).subtract(7, 'days').endOf('week').toDate()
       ]
     },
     {
       label: 'This week',
       getValue: (locale) => [
-        moment().locale(locale).startOf('week').toDate(),
-        moment().locale(locale).endOf('week').toDate()
+        dayjs().locale(locale).startOf('week').toDate(),
+        dayjs().locale(locale).endOf('week').toDate()
       ]
     },
     {
       label: 'Next week',
       getValue: (locale) => [
-        moment().locale(locale).add(7, 'days').startOf('week').toDate(),
-        moment().locale(locale).add(7, 'days').endOf('week').toDate()
+        dayjs().locale(locale).add(7, 'days').startOf('week').toDate(),
+        dayjs().locale(locale).add(7, 'days').endOf('week').toDate()
       ]
     },
     {
       label: 'Previous month',
       getValue: (locale) => [
-        moment().locale(locale).subtract(1, 'month').startOf('month').toDate(),
-        moment().locale(locale).subtract(1, 'month').endOf('month').toDate()
+        dayjs().locale(locale).subtract(1, 'month').startOf('month').toDate(),
+        dayjs().locale(locale).subtract(1, 'month').endOf('month').toDate()
       ]
     },
     {
       label: 'Last 30 days',
       getValue: (locale) => [
-        moment().locale(locale).subtract(30, 'days').toDate(),
-        moment().locale(locale).toDate()
+        dayjs().locale(locale).subtract(30, 'days').toDate(),
+        dayjs().locale(locale).toDate()
       ]
     },
     {
       label: 'This month',
       getValue: (locale) => [
-        moment().locale(locale).startOf('month').toDate(),
-        moment().locale(locale).endOf('month').toDate()
+        dayjs().locale(locale).startOf('month').toDate(),
+        dayjs().locale(locale).endOf('month').toDate()
       ]
     },
     {
       label: 'Next month',
       getValue: (locale) => [
-        moment().locale(locale).add(1, 'month').startOf('month').toDate(),
-        moment().locale(locale).add(1, 'month').endOf('month').toDate()
+        dayjs().locale(locale).add(1, 'month').startOf('month').toDate(),
+        dayjs().locale(locale).add(1, 'month').endOf('month').toDate()
       ]
     }
   ],

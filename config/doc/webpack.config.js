@@ -4,7 +4,7 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 const PACKAGE_VERSION = require('../../package.json').version;
 const PACKAGE_NAME = require('../../package.json').name;
-const {HOST, PORT} = require('../../.env');
+const { HOST, PORT } = require('../../.env');
 const NODE_ENV = process.env.NODE_ENV;
 
 module.exports = {
@@ -27,10 +27,10 @@ module.exports = {
   },
   bail: true,
   plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': '"production"'
-      }),
-      new LodashModuleReplacementPlugin()
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"'
+    }),
+    new LodashModuleReplacementPlugin()
   ],
   externals: {
     react: {
@@ -56,8 +56,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test   : /\.(png|jpg|jpeg|gif|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-        use : ['file-loader']
+        test: /\.(png|jpg|jpeg|gif|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+        use: ['file-loader']
       },
       {
         test: /\.md$/,

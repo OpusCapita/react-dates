@@ -7,7 +7,7 @@ import DateVariants from '../DateVariants';
 import DateInputField from '../DateInputField';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
-import moment from '../moment';
+import dayjs from '../../dayjs';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
 import { Portal } from 'react-portal';
@@ -84,50 +84,50 @@ let defaultProps = {
     {
       getLabel: (locale) => getMessage(locale, 'previousWeek'),
       getValue: (locale) => [
-        moment().locale(locale).subtract(7, 'days').startOf('week').toDate(),
-        moment().locale(locale).subtract(7, 'days').endOf('week').toDate()
+        dayjs().locale(locale).subtract(7, 'days').startOf('week').toDate(),
+        dayjs().locale(locale).subtract(7, 'days').endOf('week').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'thisWeek'),
       getValue: (locale) => [
-        moment().locale(locale).startOf('week').toDate(),
-        moment().locale(locale).endOf('week').toDate()
+        dayjs().locale(locale).startOf('week').toDate(),
+        dayjs().locale(locale).endOf('week').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'nextWeek'),
       getValue: (locale) => [
-        moment().locale(locale).add(7, 'days').startOf('week').toDate(),
-        moment().locale(locale).add(7, 'days').endOf('week').toDate()
+        dayjs().locale(locale).add(7, 'days').startOf('week').toDate(),
+        dayjs().locale(locale).add(7, 'days').endOf('week').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'previousMonth'),
       getValue: (locale) => [
-        moment().locale(locale).subtract(1, 'month').startOf('month').toDate(),
-        moment().locale(locale).subtract(1, 'month').endOf('month').toDate()
+        dayjs().locale(locale).subtract(1, 'month').startOf('month').toDate(),
+        dayjs().locale(locale).subtract(1, 'month').endOf('month').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'last30Days'),
       getValue: (locale) => [
-        moment().locale(locale).subtract(30, 'days').toDate(),
-        moment().locale(locale).toDate()
+        dayjs().locale(locale).subtract(30, 'days').toDate(),
+        dayjs().locale(locale).toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'thisMonth'),
       getValue: (locale) => [
-        moment().locale(locale).startOf('month').toDate(),
-        moment().locale(locale).endOf('month').toDate()
+        dayjs().locale(locale).startOf('month').toDate(),
+        dayjs().locale(locale).endOf('month').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'nextMonth'),
       getValue: (locale) => [
-        moment().locale(locale).add(1, 'month').startOf('month').toDate(),
-        moment().locale(locale).add(1, 'month').endOf('month').toDate()
+        dayjs().locale(locale).add(1, 'month').startOf('month').toDate(),
+        dayjs().locale(locale).add(1, 'month').endOf('month').toDate()
       ]
     }
   ]
