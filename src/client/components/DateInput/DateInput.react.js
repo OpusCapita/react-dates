@@ -249,7 +249,7 @@ class DateInput extends Component {
 
     let { error, showPicker, showVariants } = this.state;
 
-    let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
+    let dayjsCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 
     let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
     let dayPickerSpecificProps = splittedProps[1];
@@ -368,7 +368,7 @@ class DateInput extends Component {
       >
         <div className={`opuscapita_date-input__input-container`}>
           <DateInputField
-            dateFormat={momentCompatibleDateFormat}
+            dateFormat={dayjsCompatibleDateFormat}
             disabled={disabled}
             onBlur={this.handleBlur}
             onChange={this.handleDateChange}

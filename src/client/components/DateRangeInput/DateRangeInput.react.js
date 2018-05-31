@@ -351,7 +351,7 @@ class DateRangeInput extends Component {
     let from = this.props.value[0];
     let to = this.props.value[1];
     let { enteredTo, error, focused, showPicker, showVariants } = this.state;
-    let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
+    let dayjsCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 
     let pickerElement = (
       <DayPicker
@@ -485,7 +485,7 @@ class DateRangeInput extends Component {
         >
           <DateInputField
             className="opuscapita_date-range-input__input-field opuscapita_date-range-input__left-input-field"
-            dateFormat={momentCompatibleDateFormat}
+            dateFormat={dayjsCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'from')}
             onFocus={(e) => this.handleFocus(e, 'from')}
@@ -499,7 +499,7 @@ class DateRangeInput extends Component {
           <div className="opuscapita_date-range-input__dash">―</div>
           <DateInputField
             className="opuscapita_date-range-input__input-field opuscapita_date-range-input__right-input-field"
-            dateFormat={momentCompatibleDateFormat}
+            dateFormat={dayjsCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'to')}
             onFocus={(e) => this.handleFocus(e, 'to')}

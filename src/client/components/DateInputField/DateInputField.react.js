@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import DateConverter from '@opuscapita/i18n/lib/converters/DateConverter';
 import dayjs from '../../dayjs';
 import './DateInputField.less';
 
@@ -46,14 +47,14 @@ class DateInputField extends Component {
   };
 
   validate(dateString, dateFormat) {
-    let momentDate = dayjs(dateString, dateFormat, true);
-    let error = momentDate.isValid() ? null : momentDate.invalidAt();
-
-    if (error !== null && dateString.length) {
-      this.props.onError(error);
-    } else {
-      let value = !dateString.length ? null : momentDate.toDate();
+    const i18nCompatibleFormat = dateFormat.replace(/D/g, 'd').replace(/Y/g, 'y');
+    const dc = new DateConverter(i18nCompatibleFormat);
+    try {
+      const date = dc.stringToValue(dateString);
+      const value = !dateString.length ? null : date;
       this.props.onChange(value);
+    } catch (err) {
+      this.props.onError(err.message);
     }
   }
 
