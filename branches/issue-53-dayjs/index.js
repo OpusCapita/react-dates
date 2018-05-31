@@ -9793,12 +9793,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.formatDay = formatDay;
-exports.formatMonthTitle = formatMonthTitle;
-exports.formatWeekdayShort = formatWeekdayShort;
-exports.formatWeekdayLong = formatWeekdayLong;
-exports.getFirstDayOfWeek = getFirstDayOfWeek;
-exports.getMonths = getMonths;
 
 var _ = __webpack_require__(19);
 
@@ -9806,42 +9800,45 @@ var _2 = _interopRequireDefault(_);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function safeName(locale) {
+  // if locale is not defined - use 'en'
+  return _.locales[locale] ? locale : 'en';
+}
+
 function formatDay(day) {
   var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en';
 
-  return (0, _2.default)(day).locale(locale).format('ddd ll');
+  return (0, _2.default)(day).locale(safeName(locale)).format('ddd ll');
 }
 
 function formatMonthTitle(date) {
   var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en';
 
-  return (0, _2.default)(date).locale(locale).format('MMMM YYYY');
+  return (0, _2.default)(date).locale(safeName(locale)).format('MMMM YYYY');
 }
 
 function formatWeekdayShort(day) {
   var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en';
 
-  // return dayjs().locale(locale)._locale.weekdaysMin()[day];
-  return _.locales[locale].weekdaysMin[day];
+  return _.locales[safeName(locale)].weekdaysMin[day];
 }
 
 function formatWeekdayLong(day) {
   var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en';
 
-  // return dayjs().locale(locale)._locale.weekdays()[day];
-  return _.locales[locale].weekdays[day];
+  return _.locales[safeName(locale)].weekdays[day];
 }
 
 function getFirstDayOfWeek() {
   var locale = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'en';
 
-  return _.locales[locale].week.dow;
+  return _.locales[safeName(locale)].week.dow;
 }
 
 function getMonths() {
   var locale = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'en';
 
-  return _.locales[locale].months;
+  return _.locales[safeName(locale)].months;
 }
 
 exports.default = {
