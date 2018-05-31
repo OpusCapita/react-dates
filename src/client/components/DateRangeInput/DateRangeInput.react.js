@@ -5,33 +5,15 @@ import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
 import DateVariants from '../DateVariants';
 import DateInputField from '../DateInputField';
-import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
 import dayjs from '../../dayjs';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
 import { Portal } from 'react-portal';
-import { getCoords } from '../utils/get-coords';
+import { getCoords, splitProps } from '../utils';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
-
-function splitProps(props, specificPropNames = []) {
-  let result = Object.keys(props).reduce((result, propName) => {
-    let isPropSpecific = specificPropNames.indexOf(propName) >= 0;
-    if (isPropSpecific) {
-      let commonProps = assign({}, result[0]);
-      let specificProps = assign({}, result[1], { [propName]: props[propName] });
-      return [commonProps, specificProps];
-    }
-
-    let commonProps = assign({}, result[0], { [propName]: props[propName] });
-    let specificProps = assign({}, result[1]);
-    return [commonProps, specificProps];
-  }, [{}, {}]);
-
-  return result;
-}
 
 let initialState = {
   enteredTo: null,

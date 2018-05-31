@@ -47,7 +47,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 <DateInput
   value={_scope.state.value}
   dateFormat="dd/MM/yyyy"
-  locale="hu"
+  locale="fi"
   onBlur={(e) => console.log('Blur!', e)}
   onChange={_scope.handleChange.bind(_scope)}
   onFocus={(e) => console.log('Focus!', e)}
