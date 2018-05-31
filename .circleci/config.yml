@@ -20,18 +20,23 @@ jobs:
             - react-showroom
 
       - run:
-          name: "Installing dependencies."
-          command: yarn install
+          name: Installing dependencies.
+          command: npm install
 
       - save_cache:
           key: react-showroom-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
               - ./node_modules
+              - ./package-lock.json
               - ./yarn.lock
 
       - run:
-          name: "Running lint."
+          name: Running lint.
           command: npm run lint
+
+      - run:
+          name: Running tests.
+          command: npm test
 
   update-gh-pages:
     docker:
