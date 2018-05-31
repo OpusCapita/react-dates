@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@opuscapita/i18n": "1.2.4",
-    "@opuscapita/react-autocompletes": "2.0.3",
+    "@opuscapita/react-autocompletes": "3.0.1",
     "dayjs": "1.6.4",
     "lodash": "4.17.4",
     "prop-types": "15.6.0",
@@ -78,7 +78,6 @@
     "json-loader": "0.5.4",
     "less": "2.7.2",
     "less-loader": "2.2.3",
-    "lodash": "4.17.4",
     "lodash-webpack-plugin": "0.11.4",
     "mocha": "3.3.0",
     "postcss-loader": "1.3.3",
