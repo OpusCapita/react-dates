@@ -1,29 +1,32 @@
 import dayjs, { locales } from './';
 
-export function formatDay(day, locale = 'en') {
-  return dayjs(day).locale(locale).format('ddd ll');
+function safeName(locale) {
+  // if locale is not defined - use 'en'
+  return locales[locale] ? locale : 'en';
 }
 
-export function formatMonthTitle(date, locale = 'en') {
-  return dayjs(date).locale(locale).format('MMMM YYYY');
+function formatDay(day, locale = 'en') {
+  return dayjs(day).locale(safeName(locale)).format('ddd ll');
 }
 
-export function formatWeekdayShort(day, locale = 'en') {
-  // return dayjs().locale(locale)._locale.weekdaysMin()[day];
-  return locales[locale].weekdaysMin[day];
+function formatMonthTitle(date, locale = 'en') {
+  return dayjs(date).locale(safeName(locale)).format('MMMM YYYY');
 }
 
-export function formatWeekdayLong(day, locale = 'en') {
-  // return dayjs().locale(locale)._locale.weekdays()[day];
-  return locales[locale].weekdays[day];
+function formatWeekdayShort(day, locale = 'en') {
+  return locales[safeName(locale)].weekdaysMin[day];
 }
 
-export function getFirstDayOfWeek(locale = 'en') {
-  return locales[locale].week.dow;
+function formatWeekdayLong(day, locale = 'en') {
+  return locales[safeName(locale)].weekdays[day];
 }
 
-export function getMonths(locale = 'en') {
-  return locales[locale].months;
+function getFirstDayOfWeek(locale = 'en') {
+  return locales[safeName(locale)].week.dow;
+}
+
+function getMonths(locale = 'en') {
+  return locales[safeName(locale)].months;
 }
 
 export default {

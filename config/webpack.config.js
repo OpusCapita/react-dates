@@ -78,13 +78,13 @@ const externals = [{
   }
 }];
 
-// if (IS_PRODUCTION_MODE || IS_LINK_MODE) {
-//   externals.push(
-//     nodeExternals({
-//       modulesFromFile: true
-//     })
-//   )
-// }
+if (IS_PRODUCTION_MODE || IS_LINK_MODE) {
+  externals.push(
+    nodeExternals({
+      modulesFromFile: true
+    })
+  )
+}
 
 module.exports = {
   entry: entries,
