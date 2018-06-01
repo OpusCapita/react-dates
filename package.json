@@ -38,7 +38,7 @@
     "react-dom": "^15.6.2 || ^16.2.0"
   },
   "dependencies": {
-    "@opuscapita/i18n": "1.2.4",
+    "@opuscapita/i18n": "1.2.5",
     "@opuscapita/react-autocompletes": "3.0.1",
     "dayjs": "1.6.4",
     "lodash": "4.17.4",
