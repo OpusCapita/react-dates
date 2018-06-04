@@ -9,7 +9,6 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 const PACKAGE_VERSION = require('../package.json').version;
-const PACKAGE_NAME = require('../package.json').name;
 const HOST = require('../.env').HOST;
 const PORT = require('../.env').PORT;
 const NODE_ENV = process.env.NODE_ENV;
@@ -18,21 +17,21 @@ const IS_LINK_MODE = NODE_ENV === 'link';
 const WEBPACK_BUNDLE_ANALYZE = process.env.WEBPACK_BUNDLE_ANALYZE;
 
 let plugins = [
-    new ProgressBarPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.HOST': JSON.stringify(HOST),
-      'process.env.PORT': JSON.stringify(PORT),
-      'process.env.NODE_ENV': `"${NODE_ENV}"`
-    }),
-    new LodashModuleReplacementPlugin()
+  new ProgressBarPlugin(),
+  new webpack.NoEmitOnErrorsPlugin(),
+  new webpack.DefinePlugin({
+    'process.env.HOST': JSON.stringify(HOST),
+    'process.env.PORT': JSON.stringify(PORT),
+    'process.env.NODE_ENV': `"${NODE_ENV}"`
+  }),
+  new LodashModuleReplacementPlugin()
 ];
 
-if(IS_LINK_MODE) {
+if (IS_LINK_MODE) {
   plugins.push(new WriteFilePlugin());
 }
 
-if(WEBPACK_BUNDLE_ANALYZE && IS_PRODUCTION_MODE) {
+if (WEBPACK_BUNDLE_ANALYZE && IS_PRODUCTION_MODE) {
   let bundleAnalyzerPlugin = new BundleAnalyzerPlugin({
     analyzerMode: 'static',
     analyzerHost: '127.0.0.1',
@@ -94,7 +93,7 @@ module.exports = {
     publicPath: '/',
     path: path.resolve(__dirname, '../lib'),
     filename: `index.js`,
-    library: `MarkdownInput`,
+    library: `ReactDates`,
     libraryTarget: 'umd'
   },
   devtool: IS_PRODUCTION_MODE ? false : 'inline-source-map',
@@ -112,8 +111,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test   : /\.(png|jpg|jpeg|gif|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-        use : ['file-loader']
+        test: /\.(png|jpg|jpeg|gif|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+        use: ['file-loader']
       },
       {
         test: /\.md$/,

@@ -2,25 +2,10 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDayPicker from 'react-day-picker/lib/src/DayPicker';
 import "react-day-picker/lib/style.css";
-import MomentLocaleUtils from './MomentLocaleUtils';
+import localeUtils from '../../dayjs/reactDayPickerUtils';
 import getMessage from '../translations';
-import assign from 'lodash/assign';
+import { splitProps } from '../utils';
 import './DayPicker.less';
-
-function splitProps(props, specificPropNames = []) {
-  return Object.keys(props).reduce((result, propName) => {
-    let isPropSpecific = specificPropNames.indexOf(propName) >= 0;
-    if (isPropSpecific) {
-      let commonProps = assign({}, result[0]);
-      let specificProps = assign({}, result[1], { [propName]: props[propName] });
-      return [commonProps, specificProps];
-    }
-
-    let commonProps = assign({}, result[0], { [propName]: props[propName] });
-    let specificProps = assign({}, result[1]);
-    return [commonProps, specificProps];
-  }, [{}, {}]);
-}
 
 function Caption(props) {
   let {
@@ -192,7 +177,7 @@ class DayPicker extends Component {
           <ReactDayPicker
             ref={el => dayPickerRef(el)}
             className={pickerClassName}
-            localeUtils={MomentLocaleUtils}
+            localeUtils={localeUtils}
             locale={locale}
             onDayClick={this.handleDateChange}
             onDayKeyDown={this.handleDateChange}

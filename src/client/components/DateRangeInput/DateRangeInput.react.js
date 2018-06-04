@@ -5,33 +5,15 @@ import DayPicker from '../DayPicker';
 import InputAddonButton from '../InputAddonButton';
 import DateVariants from '../DateVariants';
 import DateInputField from '../DateInputField';
-import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
-import moment from '../moment';
+import dayjs from '../../dayjs';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
 import { Portal } from 'react-portal';
-import { getCoords } from '../utils/get-coords';
+import { getCoords, splitProps } from '../utils';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
-
-function splitProps(props, specificPropNames = []) {
-  let result = Object.keys(props).reduce((result, propName) => {
-    let isPropSpecific = specificPropNames.indexOf(propName) >= 0;
-    if (isPropSpecific) {
-      let commonProps = assign({}, result[0]);
-      let specificProps = assign({}, result[1], { [propName]: props[propName] });
-      return [commonProps, specificProps];
-    }
-
-    let commonProps = assign({}, result[0], { [propName]: props[propName] });
-    let specificProps = assign({}, result[1]);
-    return [commonProps, specificProps];
-  }, [{}, {}]);
-
-  return result;
-}
 
 let initialState = {
   enteredTo: null,
@@ -84,50 +66,50 @@ let defaultProps = {
     {
       getLabel: (locale) => getMessage(locale, 'previousWeek'),
       getValue: (locale) => [
-        moment().locale(locale).subtract(7, 'days').startOf('week').toDate(),
-        moment().locale(locale).subtract(7, 'days').endOf('week').toDate()
+        dayjs().locale(locale).subtract(7, 'days').startOf('week').toDate(),
+        dayjs().locale(locale).subtract(7, 'days').endOf('week').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'thisWeek'),
       getValue: (locale) => [
-        moment().locale(locale).startOf('week').toDate(),
-        moment().locale(locale).endOf('week').toDate()
+        dayjs().locale(locale).startOf('week').toDate(),
+        dayjs().locale(locale).endOf('week').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'nextWeek'),
       getValue: (locale) => [
-        moment().locale(locale).add(7, 'days').startOf('week').toDate(),
-        moment().locale(locale).add(7, 'days').endOf('week').toDate()
+        dayjs().locale(locale).add(7, 'days').startOf('week').toDate(),
+        dayjs().locale(locale).add(7, 'days').endOf('week').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'previousMonth'),
       getValue: (locale) => [
-        moment().locale(locale).subtract(1, 'month').startOf('month').toDate(),
-        moment().locale(locale).subtract(1, 'month').endOf('month').toDate()
+        dayjs().locale(locale).subtract(1, 'month').startOf('month').toDate(),
+        dayjs().locale(locale).subtract(1, 'month').endOf('month').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'last30Days'),
       getValue: (locale) => [
-        moment().locale(locale).subtract(30, 'days').toDate(),
-        moment().locale(locale).toDate()
+        dayjs().locale(locale).subtract(30, 'days').toDate(),
+        dayjs().locale(locale).toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'thisMonth'),
       getValue: (locale) => [
-        moment().locale(locale).startOf('month').toDate(),
-        moment().locale(locale).endOf('month').toDate()
+        dayjs().locale(locale).startOf('month').toDate(),
+        dayjs().locale(locale).endOf('month').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'nextMonth'),
       getValue: (locale) => [
-        moment().locale(locale).add(1, 'month').startOf('month').toDate(),
-        moment().locale(locale).add(1, 'month').endOf('month').toDate()
+        dayjs().locale(locale).add(1, 'month').startOf('month').toDate(),
+        dayjs().locale(locale).add(1, 'month').endOf('month').toDate()
       ]
     }
   ]
@@ -351,7 +333,7 @@ class DateRangeInput extends Component {
     let from = this.props.value[0];
     let to = this.props.value[1];
     let { enteredTo, error, focused, showPicker, showVariants } = this.state;
-    let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
+    let dayjsCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 
     let pickerElement = (
       <DayPicker
@@ -485,7 +467,7 @@ class DateRangeInput extends Component {
         >
           <DateInputField
             className="opuscapita_date-range-input__input-field opuscapita_date-range-input__left-input-field"
-            dateFormat={momentCompatibleDateFormat}
+            dateFormat={dayjsCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'from')}
             onFocus={(e) => this.handleFocus(e, 'from')}
@@ -499,7 +481,7 @@ class DateRangeInput extends Component {
           <div className="opuscapita_date-range-input__dash">―</div>
           <DateInputField
             className="opuscapita_date-range-input__input-field opuscapita_date-range-input__right-input-field"
-            dateFormat={momentCompatibleDateFormat}
+            dateFormat={dayjsCompatibleDateFormat}
             disabled={disabled}
             onBlur={(e) => this.handleBlur(e, 'to')}
             onFocus={(e) => this.handleFocus(e, 'to')}

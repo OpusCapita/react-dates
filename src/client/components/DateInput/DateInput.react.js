@@ -6,33 +6,14 @@ import DayPicker from '../DayPicker';
 import DateVariants from '../DateVariants';
 import InputAddonButton from '../InputAddonButton';
 import { spring, presets, Motion } from 'react-motion';
-import assign from 'lodash/assign';
-import moment from '../moment';
+import dayjs from '../../dayjs';
 import getMessage from '../translations';
 import isEqual from 'lodash/isEqual';
 import { Portal } from 'react-portal';
-import { getCoords } from '../utils/get-coords';
+import { getCoords, splitProps } from '../utils';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
-
-function splitProps(props, specificPropNames = []) {
-  let result = Object.keys(props).reduce((result, propName) => {
-    let isPropSpecific = specificPropNames.indexOf(propName) >= 0;
-    if (isPropSpecific) {
-      let commonProps = assign({}, result[0]);
-      let specificProps = assign({}, result[1], { [propName]: props[propName] });
-      return [commonProps, specificProps];
-    }
-
-    let commonProps = assign({}, result[0], { [propName]: props[propName] });
-    let specificProps = assign({}, result[1]);
-    return [commonProps, specificProps];
-  }, [{}, {}]);
-
-  return result;
-}
-
 
 let propTypes = {
   className: PropTypes.string,
@@ -70,15 +51,15 @@ let defaultProps = {
   variants: [
     {
       getLabel: (locale) => getMessage(locale, 'yesterday'),
-      getValue: (locale) => moment().locale(locale).subtract(1, 'days').toDate()
+      getValue: (locale) => dayjs().locale(locale).subtract(1, 'days').toDate()
     },
     {
       getLabel: (locale) => getMessage(locale, 'today'),
-      getValue: (locale) => moment().locale(locale).toDate()
+      getValue: (locale) => dayjs().locale(locale).toDate()
     },
     {
       getLabel: (locale) => getMessage(locale, 'tomorrow'),
-      getValue: (locale) => moment().locale(locale).add(1, 'days').toDate()
+      getValue: (locale) => dayjs().locale(locale).add(1, 'days').toDate()
     }
   ]
 };
@@ -249,7 +230,7 @@ class DateInput extends Component {
 
     let { error, showPicker, showVariants } = this.state;
 
-    let momentCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
+    let dayjsCompatibleDateFormat = dateFormat.replace(/d/g, 'D').replace(/y/g, 'Y');
 
     let splittedProps = splitProps(restProps, Object.keys(DayPicker.propTypes));
     let dayPickerSpecificProps = splittedProps[1];
@@ -368,7 +349,7 @@ class DateInput extends Component {
       >
         <div className={`opuscapita_date-input__input-container`}>
           <DateInputField
-            dateFormat={momentCompatibleDateFormat}
+            dateFormat={dayjsCompatibleDateFormat}
             disabled={disabled}
             onBlur={this.handleBlur}
             onChange={this.handleDateChange}
