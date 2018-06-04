@@ -1,3 +1,13 @@
+
+Release 0.4.1 Mon Jun 04 2018 17:07:35 GMT+0300 (MSK)
+=======================================================
+
+- Removed moment.js (swapped to dayjs) ([#54](https://github.com/OpusCapita/react-dates/issues/54)) (GitHub 31243790+estambakio-sc@users.noreply.github.com, 2018-06-04 16:57:47 +0300)
+- Adding an issue template file [ci skip] (Egor Stambakio egor.stambakio@opuscapita.com, 2018-05-02 12:26:19 +0300)
+- Updated build config. (Dmitry Shienok dshienok@scand.com, 2018-04-25 13:39:53 +0300)
+- Updated build config. (Dmitry Shienok dshienok@scand.com, 2018-04-25 13:37:55 +0300)
+- Update "@opuscapita/react-showroom-client" version (Kirill Volkovich kirill.volkovich@opuscapita.com, 2018-01-31 12:56:44 +0300)
+- Updating to a version to  0.4.0-beta.5 (Kirill Volkovich kirill.volkovich@opuscapita.com, 2018-01-18 16:35:26 +0300)
 ## [v0.4.0-beta.4](https://github.com/OpusCapita/react-dates/compare/v0.4.0-beta.3...v0.4.0-beta.4) (Thu, 18 Jan 2018 13:35:10 GMT)
  - Merge pull request #51 from OpusCapita/issue-45/date-range-one-day
     
