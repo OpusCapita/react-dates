@@ -4,6 +4,8 @@ DatePicker shows the calendar button. When you click it, calendar appears. Allow
 
 Based on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)
 
+**Important:** `DatePicker` returns `Date` object with 00:00:00 time.
+
 ### Props Reference
 
 | Name                           | Type                    | Description                                                                                     |

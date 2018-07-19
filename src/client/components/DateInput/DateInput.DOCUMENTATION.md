@@ -4,6 +4,8 @@ Allows select date using mouse or keyboard.
 
 Based on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)
 
+**Important:** `DatePicker` returns `Date` object with 00:00:00 time.
+
 ### Props Reference
 
 | Name                           | Type                    | Description                                                                                                                                                                |
@@ -29,7 +31,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
   value={_scope.state.value}
   dateFormat="dd/MM/yyyy"
   locale="de"
-  onChange={_scope.handleChange.bind(_scope)}
+  onChange={_scope.handleChange}
 />
 
 <hr />
@@ -39,7 +41,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
   dateFormat="dd/MM/yyyy"
   disabled={true}
   locale="en"
-  onChange={_scope.handleChange.bind(_scope)}
+  onChange={_scope.handleChange}
 />
 
 <hr />
@@ -49,7 +51,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
   dateFormat="dd/MM/yyyy"
   locale="fi"
   onBlur={(e) => console.log('Blur!', e)}
-  onChange={_scope.handleChange.bind(_scope)}
+  onChange={_scope.handleChange}
   onFocus={(e) => console.log('Focus!', e)}
   showToLeft={true}
   showToTop={true}

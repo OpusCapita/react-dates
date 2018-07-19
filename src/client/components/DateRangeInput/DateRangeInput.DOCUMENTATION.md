@@ -2,6 +2,8 @@
 
 Allows select date range using mouse.
 
+**Important:** `DatePicker` returns `Date` object with 00:00:00 time.
+
 ### Props Reference
 
 | Name                           | Type                    | Description                                                                                                                                                                |
