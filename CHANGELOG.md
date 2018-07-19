@@ -1,4 +1,9 @@
 
+[Release 0.4.3](https://github.com/OpusCapita/react-dates/releases/tag/v0.4.3) Thu Jul 19 2018 17:08:36 GMT+0300 (MSK)
+=======================================================
+
+- Ensure components return Date objects with 00:00:00 time [#56](https://github.com/OpusCapita/react-dates/issues/56) ([#57](https://github.com/OpusCapita/react-dates/issues/57)) (GitHub 31243790+estambakio-sc@users.noreply.github.com, 2018-07-19 17:06:22 +0300)
+
 Release 0.4.2 Tue Jun 05 2018 08:37:14 GMT+0300 (MSK)
 =======================================================
 
