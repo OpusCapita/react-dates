@@ -1188,6 +1188,13 @@ var splitProps = exports.splitProps = function splitProps(props) {
   }, [{}, {}]);
 };
 
+var zeroTime = exports.zeroTime = function zeroTime(date) {
+  if (date instanceof Date) {
+    date.setHours(0, 0, 0);
+  }
+  return date;
+};
+
 /***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2745,7 +2752,8 @@ var DayPicker = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (DayPicker.__proto__ || Object.getPrototypeOf(DayPicker)).call(this, props));
 
-    _this.handleDateChange = function (date, captionIndex) {
+    _this.handleDateChange = function (dateValue, captionIndex) {
+      var date = (0, _utils.zeroTime)(dateValue);
       if (_this.props.isRange) {
         var range = _this.props.selectedDays[1];
         var fromChanged = captionIndex === 0;
@@ -2766,7 +2774,7 @@ var DayPicker = function (_Component) {
     };
 
     _this.handleTodayClick = function () {
-      _this.props.onChange(new Date());
+      _this.props.onChange((0, _utils.zeroTime)(new Date()));
     };
 
     _this.state = {
@@ -3862,7 +3870,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInput",
-    "version": "0.4.0-beta.5",
+    "version": "0.4.3",
     "tags": "",
     "relatedFiles": [
       {
@@ -3877,7 +3885,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInputField",
-    "version": "0.4.0-beta.5",
+    "version": "0.4.3",
     "tags": "",
     "relatedFiles": [
       {
@@ -3892,7 +3900,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DatePicker",
-    "version": "0.4.0-beta.5",
+    "version": "0.4.3",
     "tags": "",
     "relatedFiles": [
       {
@@ -3907,7 +3915,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateRangeInput",
-    "version": "0.4.0-beta.5",
+    "version": "0.4.3",
     "tags": "",
     "relatedFiles": [
       {
@@ -3922,7 +3930,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateVariants",
-    "version": "0.4.0-beta.5",
+    "version": "0.4.3",
     "tags": "",
     "relatedFiles": [
       {
@@ -3937,7 +3945,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DayPicker",
-    "version": "0.4.0-beta.5",
+    "version": "0.4.3",
     "tags": "",
     "relatedFiles": [
       {
@@ -3952,7 +3960,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "InputAddonButton",
-    "version": "0.4.0-beta.5",
+    "version": "0.4.3",
     "tags": "",
     "relatedFiles": [
       {
@@ -3973,7 +3981,7 @@ module.exports = [
 module.exports = [
     {
         "name": "@opuscapita/react-dates",
-        "version": "0.4.0-beta.5",
+        "version": "0.4.3",
         "description": "Start write new project with no effort.",
         "keywords": [
             "react",
@@ -5531,6 +5539,10 @@ var DateInputScope = (0, _reactShowroomClient.showroomScopeDecorator)(_class = f
 
     var _this = _possibleConstructorReturn(this, (DateInputScope.__proto__ || Object.getPrototypeOf(DateInputScope)).call(this, props));
 
+    _this.handleChange = function (value) {
+      _this.setState({ value: value });
+    };
+
     _this.state = {
       value: null
     };
@@ -5538,11 +5550,6 @@ var DateInputScope = (0, _reactShowroomClient.showroomScopeDecorator)(_class = f
   }
 
   _createClass(DateInputScope, [{
-    key: 'handleChange',
-    value: function handleChange(value) {
-      this.setState({ value: value });
-    }
-  }, {
     key: 'render',
     value: function render() {
       var value = this.state.value ? this.state.value.toString() : 'not selected yet';
@@ -5766,7 +5773,7 @@ var DateInput = function (_Component) {
     };
 
     _this.handleDateChange = function (value) {
-      _this.props.onChange(value);
+      _this.props.onChange((0, _utils.zeroTime)(value));
       _this.setState({ error: null });
     };
 
@@ -6300,7 +6307,7 @@ var DatePicker = function (_Component) {
     };
 
     _this.handleDateChange = function (value) {
-      _this.props.onChange(value);
+      _this.props.onChange((0, _utils.zeroTime)(value));
     };
 
     _this.handleBodyClick = function (event) {
@@ -6732,7 +6739,9 @@ var DateRangeInput = function (_Component) {
       _this.props.onChange(normalizedRange);
     };
 
-    _this.handleDayClick = function (day) {
+    _this.handleDayClick = function (dayValue) {
+      var day = (0, _utils.zeroTime)(dayValue);
+
       var from = _this.props.value[0];
       var to = _this.props.value[1];
 
@@ -10391,7 +10400,7 @@ module.exports = ReactPropTypesSecret;
 /* 240 */
 /***/ (function(module, exports) {
 
-module.exports = "### Synopsis\n\nAllows select date using mouse or keyboard.\n\nBased on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                                |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |\n| className                      | string                  | Default behavior                                                                                                                                                           |\n| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |\n| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |\n| onBlur                         | func                    | Callback fired on input blur `(e) => {}`                                                                                                                                   |\n| onChange                       | func                    | Callback fired on date change `Date date => {}`                                                                                                                            |\n| onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                                                                                                                  |\n| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |\n| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |\n| tabIndex                       | number                  | Default behavior                                                                                                                                                           |\n| value                          | object                  | Instance of `Date`                                                                                                                                                         |\n| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |\n\n### Code Example\n\n```jsx\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  locale=\"de\"\n  onChange={_scope.handleChange.bind(_scope)}\n/>\n\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  disabled={true}\n  locale=\"en\"\n  onChange={_scope.handleChange.bind(_scope)}\n/>\n\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  locale=\"fi\"\n  onBlur={(e) => console.log('Blur!', e)}\n  onChange={_scope.handleChange.bind(_scope)}\n  onFocus={(e) => console.log('Focus!', e)}\n  showToLeft={true}\n  showToTop={true}\n/>\n```\n\n### Component Name\n\nDateInput\n\n### License\n\nLicensed by © 2017 OpusCapita\n\n"
+module.exports = "### Synopsis\n\nAllows select date using mouse or keyboard.\n\nBased on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)\n\n**Important:** `DatePicker` returns `Date` object with 00:00:00 time.\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                                |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |\n| className                      | string                  | Default behavior                                                                                                                                                           |\n| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |\n| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |\n| onBlur                         | func                    | Callback fired on input blur `(e) => {}`                                                                                                                                   |\n| onChange                       | func                    | Callback fired on date change `Date date => {}`                                                                                                                            |\n| onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                                                                                                                  |\n| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |\n| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |\n| tabIndex                       | number                  | Default behavior                                                                                                                                                           |\n| value                          | object                  | Instance of `Date`                                                                                                                                                         |\n| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |\n\n### Code Example\n\n```jsx\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  locale=\"de\"\n  onChange={_scope.handleChange}\n/>\n\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  disabled={true}\n  locale=\"en\"\n  onChange={_scope.handleChange}\n/>\n\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  locale=\"fi\"\n  onBlur={(e) => console.log('Blur!', e)}\n  onChange={_scope.handleChange}\n  onFocus={(e) => console.log('Focus!', e)}\n  showToLeft={true}\n  showToTop={true}\n/>\n```\n\n### Component Name\n\nDateInput\n\n### License\n\nLicensed by © 2017 OpusCapita\n\n"
 
 /***/ }),
 /* 241 */
@@ -10403,13 +10412,13 @@ module.exports = "### Props Reference\n\n| Name                           | Type
 /* 242 */
 /***/ (function(module, exports) {
 
-module.exports = "### Synopsis\n\nDatePicker shows the calendar button. When you click it, calendar appears. Allows select date using mouse.\n\nBased on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                     |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                     |\n| className                      | string                  | Default HTML behavior                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                       |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property |\n| onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                      |\n| showToLeft                     | bool                    | Show picker popup to left relative to button                                                    |\n| showToTop                      | bool                    | Show picker popup to top relative to button                                                     |\n| tabIndex                       | number                  | Default HTML behavior                                                                           |\n| value                          | instanceOf(Date)        | Instance of `Date`                                                                              |\n\n***\n\nSee react-day-picker [props reference](http://react-day-picker.js.org/APIProps.html) if you need more customization\n\n### Methods reference\n\nSee react-day-picker [methods reference](http://react-day-picker.js.org/APIMethods.html)\n\n### Code Example\n\n```jsx\n<div style={{ height: '50px', overflow: 'hidden' }}>\n  <DatePicker\n    locale=\"de\"\n    onChange={_scope.handleChange.bind(_scope)}\n    value={_scope.state.value}\n  />\n</div>\n\n<DatePicker\n  locale=\"de\"\n  onChange={_scope.handleChange.bind(_scope)}\n  value={_scope.state.value}\n  showToTop={true}\n  showToLeft={true}\n/>\n```\n\n### Component Name\n\nDatePicker\n\n### License\n\nLicensed by © 2017 OpusCapita\n"
+module.exports = "### Synopsis\n\nDatePicker shows the calendar button. When you click it, calendar appears. Allows select date using mouse.\n\nBased on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)\n\n**Important:** `DatePicker` returns `Date` object with 00:00:00 time.\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                     |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                     |\n| className                      | string                  | Default HTML behavior                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                       |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property |\n| onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                      |\n| showToLeft                     | bool                    | Show picker popup to left relative to button                                                    |\n| showToTop                      | bool                    | Show picker popup to top relative to button                                                     |\n| tabIndex                       | number                  | Default HTML behavior                                                                           |\n| value                          | instanceOf(Date)        | Instance of `Date`                                                                              |\n\n***\n\nSee react-day-picker [props reference](http://react-day-picker.js.org/APIProps.html) if you need more customization\n\n### Methods reference\n\nSee react-day-picker [methods reference](http://react-day-picker.js.org/APIMethods.html)\n\n### Code Example\n\n```jsx\n<div style={{ height: '50px', overflow: 'hidden' }}>\n  <DatePicker\n    locale=\"de\"\n    onChange={_scope.handleChange.bind(_scope)}\n    value={_scope.state.value}\n  />\n</div>\n\n<DatePicker\n  locale=\"de\"\n  onChange={_scope.handleChange.bind(_scope)}\n  value={_scope.state.value}\n  showToTop={true}\n  showToLeft={true}\n/>\n```\n\n### Component Name\n\nDatePicker\n\n### License\n\nLicensed by © 2017 OpusCapita\n"
 
 /***/ }),
 /* 243 */
 /***/ (function(module, exports) {
 
-module.exports = "### Synopsis\n\nAllows select date range using mouse.\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                                |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |\n| className                      | string                  | Default behavior                                                                                                                                                           |\n| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |\n| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |\n| onFocus                        | func                    | Callback fired on input focus `(e, inputName) => {}` where `inputName === 'from                                                                                            |\n| onBlur                         | func                    | Callback fired on input blur `(e, inputName) => {}`  where `inputName === 'from                                                                                            |\n| onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                                                                                                 |\n| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |\n| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |\n| tabIndex                       | number                  | Default behavior                                                                                                                                                           |\n| value                          | array                   | `[Date from, Date to]`                                                                                                                                                     |\n| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |\n\n### Code Example\n\n```jsx\n<DateRangeInput\n  dateFormat=\"MM.dd.yyyy\"\n  locale={'de'}\n  onChange={_scope.handleChange1.bind(_scope)}\n  value={_scope.state.value1}\n/>\n\n<hr />\n\n<DateRangeInput\n  dateFormat=\"dd.MM.yyyy\"\n  disabled={true}\n  locale={'de'}\n  onChange={_scope.handleChange3.bind(_scope)}\n  value={_scope.state.value2}\n/>\n```\n\n### Component Name\n\nDateRangeInput\n\n### License\n\nLicensed by © 2017 OpusCapita\n"
+module.exports = "### Synopsis\n\nAllows select date range using mouse.\n\n**Important:** `DatePicker` returns `Date` object with 00:00:00 time.\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                                |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |\n| className                      | string                  | Default behavior                                                                                                                                                           |\n| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |\n| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |\n| onFocus                        | func                    | Callback fired on input focus `(e, inputName) => {}` where `inputName === 'from                                                                                            |\n| onBlur                         | func                    | Callback fired on input blur `(e, inputName) => {}`  where `inputName === 'from                                                                                            |\n| onChange                       | func                    | Callback fired on date change `[Date from, Date to] => {}`                                                                                                                 |\n| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |\n| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |\n| tabIndex                       | number                  | Default behavior                                                                                                                                                           |\n| value                          | array                   | `[Date from, Date to]`                                                                                                                                                     |\n| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |\n\n### Code Example\n\n```jsx\n<DateRangeInput\n  dateFormat=\"MM.dd.yyyy\"\n  locale={'de'}\n  onChange={_scope.handleChange1.bind(_scope)}\n  value={_scope.state.value1}\n/>\n\n<hr />\n\n<DateRangeInput\n  dateFormat=\"dd.MM.yyyy\"\n  disabled={true}\n  locale={'de'}\n  onChange={_scope.handleChange3.bind(_scope)}\n  value={_scope.state.value2}\n/>\n```\n\n### Component Name\n\nDateRangeInput\n\n### License\n\nLicensed by © 2017 OpusCapita\n"
 
 /***/ }),
 /* 244 */
