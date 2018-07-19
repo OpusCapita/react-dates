@@ -5,7 +5,7 @@ import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
 import isEqual from 'lodash/isEqual';
 import { Portal } from 'react-portal';
-import { getCoords, splitProps } from '../utils';
+import { getCoords, splitProps, zeroTime } from '../utils';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
@@ -82,7 +82,7 @@ class DatePicker extends Component {
   };
 
   handleDateChange = value => {
-    this.props.onChange(value);
+    this.props.onChange(zeroTime(value));
   };
 
   handleBodyClick = event => {

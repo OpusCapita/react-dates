@@ -34,3 +34,10 @@ export const splitProps = (props, specificPropNames = []) => {
     return [commonProps, specificProps];
   }, [{}, {}]);
 }
+
+export const zeroTime = date => {
+  if (date instanceof Date) {
+    date.setHours(0, 0, 0);
+  }
+  return date;
+}

@@ -4,7 +4,7 @@ import ReactDayPicker from 'react-day-picker/lib/src/DayPicker';
 import "react-day-picker/lib/style.css";
 import localeUtils from '../../dayjs/reactDayPickerUtils';
 import getMessage from '../translations';
-import { splitProps } from '../utils';
+import { splitProps, zeroTime } from '../utils';
 import './DayPicker.less';
 
 function Caption(props) {
@@ -107,7 +107,8 @@ class DayPicker extends Component {
     };
   }
 
-  handleDateChange = (date, captionIndex) => {
+  handleDateChange = (dateValue, captionIndex) => {
+    const date = zeroTime(dateValue);
     if (this.props.isRange) {
       let range = this.props.selectedDays[1];
       let fromChanged = captionIndex === 0;
@@ -128,7 +129,7 @@ class DayPicker extends Component {
   };
 
   handleTodayClick = () => {
-    this.props.onChange(new Date());
+    this.props.onChange(zeroTime(new Date()));
   };
 
   render() {

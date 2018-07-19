@@ -10,7 +10,7 @@ import dayjs from '../../dayjs';
 import getMessage from '../translations';
 import isEqual from 'lodash/isEqual';
 import { Portal } from 'react-portal';
-import { getCoords, splitProps } from '../utils';
+import { getCoords, splitProps, zeroTime } from '../utils';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
@@ -170,7 +170,7 @@ class DateInput extends Component {
   };
 
   handleDateChange = value => {
-    this.props.onChange(value);
+    this.props.onChange(zeroTime(value));
     this.setState({ error: null });
   };
 

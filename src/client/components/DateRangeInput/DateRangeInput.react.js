@@ -10,7 +10,7 @@ import dayjs from '../../dayjs';
 import { spring, presets, Motion } from 'react-motion';
 import getMessage from '../translations';
 import { Portal } from 'react-portal';
-import { getCoords, splitProps } from '../utils';
+import { getCoords, splitProps, zeroTime } from '../utils';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
@@ -186,7 +186,9 @@ class DateRangeInput extends Component {
     this.props.onChange(normalizedRange);
   };
 
-  handleDayClick = day => {
+  handleDayClick = dayValue => {
+    const day = zeroTime(dayValue);
+
     let from = this.props.value[0];
     let to = this.props.value[1];
 
