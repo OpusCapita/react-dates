@@ -1,4 +1,9 @@
 
+[Release 0.4.4](https://github.com/OpusCapita/react-dates/releases/tag/v0.4.4) Wed Jul 25 2018 14:21:23 GMT+0300 (MSK)
+=======================================================
+
+-  [#58](https://github.com/OpusCapita/react-dates/issues/58) Restrict enter invalid value for DateInput and DateRangeInput (PR [#59](https://github.com/OpusCapita/react-dates/issues/59)) (GitHub kvolkovich-sc@users.noreply.github.com, 2018-07-25 14:19:18 +0300)
+
 [Release 0.4.3](https://github.com/OpusCapita/react-dates/releases/tag/v0.4.3) Thu Jul 19 2018 17:08:36 GMT+0300 (MSK)
 =======================================================
 
