@@ -1701,7 +1701,8 @@ var translations = {
     previousMonth: 'Previous month',
     last30Days: 'Last 30 days',
     thisMonth: 'This month',
-    nextMonth: 'Next month'
+    nextMonth: 'Next month',
+    clearValue: 'Clear value'
   },
   de: {
     selectDateRange: 'Datumsbereich auswählen',
@@ -1714,7 +1715,8 @@ var translations = {
     previousMonth: 'Vorheriger Monat',
     last30Days: 'Letzte 30 Tagen',
     thisMonth: 'Dieser Monat',
-    nextMonth: 'Nächster Monat'
+    nextMonth: 'Nächster Monat',
+    clearValue: 'Inhalt löschen'
   },
   ru: {
     selectDateRange: 'Выберите диапазон дат',
@@ -1727,7 +1729,8 @@ var translations = {
     previousMonth: 'Предыдущий месяц',
     last30Days: 'Последние 30 дней',
     thisMonth: 'Этот месяц',
-    nextMonth: 'Следующий месяц'
+    nextMonth: 'Следующий месяц',
+    clearValue: ''
   },
   fi: {
     selectDateRange: 'Valitse päivämääräväli',
@@ -1740,7 +1743,8 @@ var translations = {
     previousMonth: 'Edellinen kuukausi',
     last30Days: 'Edelliset 30 päivää',
     thisMonth: 'Tämä kuukausi',
-    nextMonth: 'Seuraava kuukausi'
+    nextMonth: 'Seuraava kuukausi',
+    clearValue: ''
   },
   no: {
     selectDateRange: 'Velg datoområde',
@@ -1753,7 +1757,8 @@ var translations = {
     previousMonth: 'Foregående måned',
     last30Days: 'Siste 30 dager',
     thisMonth: 'Denne måneden',
-    nextMonth: 'Neste måned'
+    nextMonth: 'Neste måned',
+    clearValue: ''
   },
   sv: {
     selectDateRange: 'Välj datumintervall',
@@ -1766,7 +1771,8 @@ var translations = {
     previousMonth: 'Föregående månad',
     last30Days: 'SSenaste 30 dagarna',
     thisMonth: 'Denna månad',
-    nextMonth: 'Nästa månad'
+    nextMonth: 'Nästa månad',
+    clearValue: ''
   }
 };
 
@@ -2305,6 +2311,7 @@ var propTypes = {
   dateFormat: _propTypes2.default.string,
   disabled: _propTypes2.default.bool,
   locale: _propTypes2.default.string,
+  error: _propTypes2.default.bool,
   onChange: _propTypes2.default.func,
   onError: _propTypes2.default.func,
   onRef: _propTypes2.default.func,
@@ -2316,6 +2323,7 @@ var defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   locale: 'en',
+  error: false,
   onChange: function onChange() {},
   onError: function onError() {},
   onRef: function onRef() {},
@@ -2353,7 +2361,7 @@ var DateInputField = function (_Component) {
   _createClass(DateInputField, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      if (this.props.value !== nextProps.value || this.props.dateFormat !== nextProps.dateFormat) {
+      if (this.props.error || this.props.value !== nextProps.value || this.props.dateFormat !== nextProps.dateFormat) {
         var inputValue = nextProps.value ? (0, _dayjs2.default)(nextProps.value.toISOString()).format(nextProps.dateFormat) : '';
         this.setState({ inputValue: inputValue });
       }
@@ -2363,6 +2371,7 @@ var DateInputField = function (_Component) {
     value: function validate(dateString, dateFormat) {
       var i18nCompatibleFormat = dateFormat.replace(/D/g, 'd').replace(/Y/g, 'y');
       var dc = new _DateConverter2.default(i18nCompatibleFormat);
+
       try {
         var date = dc.stringToValue(dateString);
         var value = !dateString.length ? null : date;
@@ -2380,12 +2389,13 @@ var DateInputField = function (_Component) {
           className = _props.className,
           dateFormat = _props.dateFormat,
           disabled = _props.disabled,
+          error = _props.error,
           locale = _props.locale,
           onChange = _props.onChange,
           onError = _props.onError,
           onRef = _props.onRef,
           value = _props.value,
-          restProps = _objectWithoutProperties(_props, ['className', 'dateFormat', 'disabled', 'locale', 'onChange', 'onError', 'onRef', 'value']);
+          restProps = _objectWithoutProperties(_props, ['className', 'dateFormat', 'disabled', 'error', 'locale', 'onChange', 'onError', 'onRef', 'value']);
 
       var inputValue = this.state.inputValue;
 
@@ -3870,7 +3880,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInput",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "tags": "",
     "relatedFiles": [
       {
@@ -3885,7 +3895,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInputField",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "tags": "",
     "relatedFiles": [
       {
@@ -3900,7 +3910,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DatePicker",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "tags": "",
     "relatedFiles": [
       {
@@ -3915,7 +3925,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateRangeInput",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "tags": "",
     "relatedFiles": [
       {
@@ -3930,7 +3940,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateVariants",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "tags": "",
     "relatedFiles": [
       {
@@ -3945,7 +3955,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DayPicker",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "tags": "",
     "relatedFiles": [
       {
@@ -3960,7 +3970,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "InputAddonButton",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "tags": "",
     "relatedFiles": [
       {
@@ -3981,7 +3991,7 @@ module.exports = [
 module.exports = [
     {
         "name": "@opuscapita/react-dates",
-        "version": "0.4.3",
+        "version": "0.4.4",
         "description": "Start write new project with no effort.",
         "keywords": [
             "react",
@@ -5949,7 +5959,8 @@ var DateInput = function (_Component) {
           className: 'opuscapita_date-input__reset-btn',
           tabIndex: '-1',
           onClick: this.handleReset,
-          disabled: disabled
+          disabled: disabled,
+          title: (0, _translations2.default)(locale, 'clearValue')
         },
         '\u2715'
       );
@@ -6538,9 +6549,18 @@ var DateRangeInputScope = (0, _reactShowroomClient.showroomScopeDecorator)(_clas
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this2.setState({ value1: [null, null] });
+            } },
+          'Reset'
+        ),
         this._renderChildren()
       );
     }
@@ -7066,7 +7086,8 @@ var DateRangeInput = function (_Component) {
           className: 'opuscapita_date-range-input__reset-btn',
           tabIndex: '-1',
           onClick: this.handleReset,
-          disabled: disabled
+          disabled: disabled,
+          title: (0, _translations2.default)(locale, 'clearValue')
         },
         '\u2715'
       );
@@ -7103,6 +7124,7 @@ var DateRangeInput = function (_Component) {
             className: 'opuscapita_date-range-input__input-field opuscapita_date-range-input__left-input-field',
             dateFormat: dayjsCompatibleDateFormat,
             disabled: disabled,
+            error: error,
             onBlur: function onBlur(e) {
               return _this2.handleBlur(e, 'from');
             },
@@ -7129,6 +7151,7 @@ var DateRangeInput = function (_Component) {
             className: 'opuscapita_date-range-input__input-field opuscapita_date-range-input__right-input-field',
             dateFormat: dayjsCompatibleDateFormat,
             disabled: disabled,
+            error: error,
             onBlur: function onBlur(e) {
               return _this2.handleBlur(e, 'to');
             },
