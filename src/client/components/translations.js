@@ -10,7 +10,8 @@ const translations = {
     previousMonth: 'Previous month',
     last30Days: 'Last 30 days',
     thisMonth: 'This month',
-    nextMonth: 'Next month'
+    nextMonth: 'Next month',
+    clearValue: 'Clear value'
   },
   de: {
     selectDateRange: 'Datumsbereich auswählen',
@@ -23,7 +24,8 @@ const translations = {
     previousMonth: 'Vorheriger Monat',
     last30Days: 'Letzte 30 Tagen',
     thisMonth: 'Dieser Monat',
-    nextMonth: 'Nächster Monat'
+    nextMonth: 'Nächster Monat',
+    clearValue: 'Inhalt löschen'
   },
   ru: {
     selectDateRange: 'Выберите диапазон дат',
@@ -36,7 +38,8 @@ const translations = {
     previousMonth: 'Предыдущий месяц',
     last30Days: 'Последние 30 дней',
     thisMonth: 'Этот месяц',
-    nextMonth: 'Следующий месяц'
+    nextMonth: 'Следующий месяц',
+    clearValue: ''
   },
   fi: {
     selectDateRange: 'Valitse päivämääräväli',
@@ -49,7 +52,8 @@ const translations = {
     previousMonth: 'Edellinen kuukausi',
     last30Days: 'Edelliset 30 päivää',
     thisMonth: 'Tämä kuukausi',
-    nextMonth: 'Seuraava kuukausi'
+    nextMonth: 'Seuraava kuukausi',
+    clearValue: ''
   },
   no: {
     selectDateRange: 'Velg datoområde',
@@ -62,7 +66,8 @@ const translations = {
     previousMonth: 'Foregående måned',
     last30Days: 'Siste 30 dager',
     thisMonth: 'Denne måneden',
-    nextMonth: 'Neste måned'
+    nextMonth: 'Neste måned',
+    clearValue: ''
   },
   sv: {
     selectDateRange: 'Välj datumintervall',
@@ -75,7 +80,8 @@ const translations = {
     previousMonth: 'Föregående månad',
     last30Days: 'SSenaste 30 dagarna',
     thisMonth: 'Denna månad',
-    nextMonth: 'Nästa månad'
+    nextMonth: 'Nästa månad',
+    clearValue: ''
   }
 };
 

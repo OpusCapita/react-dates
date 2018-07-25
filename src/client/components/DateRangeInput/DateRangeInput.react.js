@@ -433,6 +433,7 @@ class DateRangeInput extends Component {
         tabIndex="-1"
         onClick={this.handleReset}
         disabled={disabled}
+        title={getMessage(locale, 'clearValue')}
       >
         ✕
       </InputAddonButton>
@@ -471,6 +472,7 @@ class DateRangeInput extends Component {
             className="opuscapita_date-range-input__input-field opuscapita_date-range-input__left-input-field"
             dateFormat={dayjsCompatibleDateFormat}
             disabled={disabled}
+            error={error}
             onBlur={(e) => this.handleBlur(e, 'from')}
             onFocus={(e) => this.handleFocus(e, 'from')}
             onChange={(date) => this.handleRangeChange([date, value[1]])}
@@ -485,6 +487,7 @@ class DateRangeInput extends Component {
             className="opuscapita_date-range-input__input-field opuscapita_date-range-input__right-input-field"
             dateFormat={dayjsCompatibleDateFormat}
             disabled={disabled}
+            error={error}
             onBlur={(e) => this.handleBlur(e, 'to')}
             onFocus={(e) => this.handleFocus(e, 'to')}
             onChange={(date) => this.handleRangeChange([value[0], date])}
