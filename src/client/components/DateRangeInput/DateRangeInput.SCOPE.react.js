@@ -39,6 +39,7 @@ class DateRangeInputScope extends Component {
   render() {
     return (
       <div>
+        <button onClick={() => this.setState({ value1: [null, null] })}>Reset</button>
         {this._renderChildren()}
       </div>
     );

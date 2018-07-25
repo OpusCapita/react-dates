@@ -9,6 +9,7 @@ let propTypes = {
   dateFormat: PropTypes.string,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
+  error: PropTypes.bool,
   onChange: PropTypes.func,
   onError: PropTypes.func,
   onRef: PropTypes.func,
@@ -20,6 +21,7 @@ let defaultProps = {
   dateFormat: 'dd/MM/yyyy',
   disabled: false,
   locale: 'en',
+  error: false,
   onChange: () => {},
   onError: () => {},
   onRef: () => {},
@@ -36,7 +38,7 @@ class DateInputField extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.value !== nextProps.value || this.props.dateFormat !== nextProps.dateFormat) {
+    if (this.props.error || this.props.value !== nextProps.value || this.props.dateFormat !== nextProps.dateFormat) {
       let inputValue = nextProps.value ? dayjs(nextProps.value.toISOString()).format(nextProps.dateFormat) : '';
       this.setState({ inputValue });
     }
@@ -49,6 +51,7 @@ class DateInputField extends Component {
   validate(dateString, dateFormat) {
     const i18nCompatibleFormat = dateFormat.replace(/D/g, 'd').replace(/Y/g, 'y');
     const dc = new DateConverter(i18nCompatibleFormat);
+
     try {
       const date = dc.stringToValue(dateString);
       const value = !dateString.length ? null : date;
@@ -73,6 +76,7 @@ class DateInputField extends Component {
       className,
       dateFormat,
       disabled,
+      error, // eslint-disable-line no-unused-vars
       locale, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onError, // eslint-disable-line no-unused-vars
