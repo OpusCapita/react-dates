@@ -433,6 +433,7 @@ class DateRangeInput extends Component {
         tabIndex="-1"
         onClick={this.handleReset}
         disabled={disabled}
+        title={getMessage(locale, 'clearValue')}
       >
         ✕
       </InputAddonButton>
