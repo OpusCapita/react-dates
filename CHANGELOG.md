@@ -1,4 +1,9 @@
 
+[Release 0.4.5](https://github.com/OpusCapita/react-dates/releases/tag/v0.4.5) Mon Aug 06 2018 14:29:19 GMT+0300 (MSK)
+=======================================================
+
+-  [#60](https://github.com/OpusCapita/react-dates/issues/60) Start week from sunday for "en" locale ([#61](https://github.com/OpusCapita/react-dates/issues/61)) (GitHub kvolkovich-sc@users.noreply.github.com, 2018-08-06 14:27:46 +0300)
+
 [Release 0.4.4](https://github.com/OpusCapita/react-dates/releases/tag/v0.4.4) Wed Jul 25 2018 14:21:23 GMT+0300 (MSK)
 =======================================================
 
