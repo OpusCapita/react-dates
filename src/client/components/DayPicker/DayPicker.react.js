@@ -180,6 +180,7 @@ class DayPicker extends Component {
             className={pickerClassName}
             localeUtils={localeUtils}
             locale={locale}
+            firstDayOfWeek={locale === 'en' ? 0 : 1}
             onDayClick={this.handleDateChange}
             onDayKeyDown={this.handleDateChange}
             onDayTouchEnd={this.handleDateChange}

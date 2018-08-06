@@ -65,23 +65,35 @@ let defaultProps = {
   variants: [
     {
       getLabel: (locale) => getMessage(locale, 'previousWeek'),
-      getValue: (locale) => [
+      // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
+      getValue: (locale) => locale === 'en' ? [
         dayjs().locale(locale).subtract(7, 'days').startOf('week').toDate(),
         dayjs().locale(locale).subtract(7, 'days').endOf('week').toDate()
+      ] : [
+        dayjs().locale(locale).subtract(7, 'days').startOf('week').add(1, 'day').toDate(),
+        dayjs().locale(locale).subtract(7, 'days').endOf('week').add(1, 'day').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'thisWeek'),
-      getValue: (locale) => [
+      // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
+      getValue: (locale) => locale === 'en' ? [
         dayjs().locale(locale).startOf('week').toDate(),
         dayjs().locale(locale).endOf('week').toDate()
+      ] : [
+        dayjs().locale(locale).startOf('week').add(1, 'day').toDate(),
+        dayjs().locale(locale).endOf('week').add(1, 'day').toDate()
       ]
     },
     {
       getLabel: (locale) => getMessage(locale, 'nextWeek'),
-      getValue: (locale) => [
+      // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
+      getValue: (locale) => locale === 'en' ? [
         dayjs().locale(locale).add(7, 'days').startOf('week').toDate(),
         dayjs().locale(locale).add(7, 'days').endOf('week').toDate()
+      ] : [
+        dayjs().locale(locale).add(7, 'days').startOf('week').add(1, 'day').toDate(),
+        dayjs().locale(locale).add(7, 'days').endOf('week').add(1, 'day').toDate()
       ]
     },
     {

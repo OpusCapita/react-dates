@@ -39,7 +39,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 <DateInput
   value={_scope.state.value}
   dateFormat="dd/MM/yyyy"
-  disabled={true}
+  disabled={false}
   locale="en"
   onChange={_scope.handleChange}
 />
