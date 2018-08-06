@@ -2847,6 +2847,7 @@ var DayPicker = function (_Component) {
             className: pickerClassName,
             localeUtils: _reactDayPickerUtils2.default,
             locale: locale,
+            firstDayOfWeek: locale === 'en' ? 0 : 1,
             onDayClick: this.handleDateChange,
             onDayKeyDown: this.handleDateChange,
             onDayTouchEnd: this.handleDateChange,
@@ -3880,7 +3881,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInput",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -3895,7 +3896,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInputField",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -3910,7 +3911,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DatePicker",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -3925,7 +3926,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateRangeInput",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -3940,7 +3941,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateVariants",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -3955,7 +3956,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DayPicker",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -3970,7 +3971,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "InputAddonButton",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "tags": "",
     "relatedFiles": [
       {
@@ -3991,7 +3992,7 @@ module.exports = [
 module.exports = [
     {
         "name": "@opuscapita/react-dates",
-        "version": "0.4.4",
+        "version": "0.4.5",
         "description": "Start write new project with no effort.",
         "keywords": [
             "react",
@@ -6697,22 +6698,25 @@ var defaultProps = {
     getLabel: function getLabel(locale) {
       return (0, _translations2.default)(locale, 'previousWeek');
     },
+    // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
     getValue: function getValue(locale) {
-      return [(0, _dayjs2.default)().locale(locale).subtract(7, 'days').startOf('week').toDate(), (0, _dayjs2.default)().locale(locale).subtract(7, 'days').endOf('week').toDate()];
+      return locale === 'en' ? [(0, _dayjs2.default)().locale(locale).subtract(7, 'days').startOf('week').toDate(), (0, _dayjs2.default)().locale(locale).subtract(7, 'days').endOf('week').toDate()] : [(0, _dayjs2.default)().locale(locale).subtract(7, 'days').startOf('week').add(1, 'day').toDate(), (0, _dayjs2.default)().locale(locale).subtract(7, 'days').endOf('week').add(1, 'day').toDate()];
     }
   }, {
     getLabel: function getLabel(locale) {
       return (0, _translations2.default)(locale, 'thisWeek');
     },
+    // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
     getValue: function getValue(locale) {
-      return [(0, _dayjs2.default)().locale(locale).startOf('week').toDate(), (0, _dayjs2.default)().locale(locale).endOf('week').toDate()];
+      return locale === 'en' ? [(0, _dayjs2.default)().locale(locale).startOf('week').toDate(), (0, _dayjs2.default)().locale(locale).endOf('week').toDate()] : [(0, _dayjs2.default)().locale(locale).startOf('week').add(1, 'day').toDate(), (0, _dayjs2.default)().locale(locale).endOf('week').add(1, 'day').toDate()];
     }
   }, {
     getLabel: function getLabel(locale) {
       return (0, _translations2.default)(locale, 'nextWeek');
     },
+    // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
     getValue: function getValue(locale) {
-      return [(0, _dayjs2.default)().locale(locale).add(7, 'days').startOf('week').toDate(), (0, _dayjs2.default)().locale(locale).add(7, 'days').endOf('week').toDate()];
+      return locale === 'en' ? [(0, _dayjs2.default)().locale(locale).add(7, 'days').startOf('week').toDate(), (0, _dayjs2.default)().locale(locale).add(7, 'days').endOf('week').toDate()] : [(0, _dayjs2.default)().locale(locale).add(7, 'days').startOf('week').add(1, 'day').toDate(), (0, _dayjs2.default)().locale(locale).add(7, 'days').endOf('week').add(1, 'day').toDate()];
     }
   }, {
     getLabel: function getLabel(locale) {
@@ -10423,7 +10427,7 @@ module.exports = ReactPropTypesSecret;
 /* 240 */
 /***/ (function(module, exports) {
 
-module.exports = "### Synopsis\n\nAllows select date using mouse or keyboard.\n\nBased on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)\n\n**Important:** `DatePicker` returns `Date` object with 00:00:00 time.\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                                |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |\n| className                      | string                  | Default behavior                                                                                                                                                           |\n| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |\n| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |\n| onBlur                         | func                    | Callback fired on input blur `(e) => {}`                                                                                                                                   |\n| onChange                       | func                    | Callback fired on date change `Date date => {}`                                                                                                                            |\n| onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                                                                                                                  |\n| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |\n| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |\n| tabIndex                       | number                  | Default behavior                                                                                                                                                           |\n| value                          | object                  | Instance of `Date`                                                                                                                                                         |\n| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |\n\n### Code Example\n\n```jsx\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  locale=\"de\"\n  onChange={_scope.handleChange}\n/>\n\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  disabled={true}\n  locale=\"en\"\n  onChange={_scope.handleChange}\n/>\n\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  locale=\"fi\"\n  onBlur={(e) => console.log('Blur!', e)}\n  onChange={_scope.handleChange}\n  onFocus={(e) => console.log('Focus!', e)}\n  showToLeft={true}\n  showToTop={true}\n/>\n```\n\n### Component Name\n\nDateInput\n\n### License\n\nLicensed by © 2017 OpusCapita\n\n"
+module.exports = "### Synopsis\n\nAllows select date using mouse or keyboard.\n\nBased on configured to OpusCapita defaults [react-day-picker](https://github.com/gpbl/react-day-picker)\n\n**Important:** `DatePicker` returns `Date` object with 00:00:00 time.\n\n### Props Reference\n\n| Name                           | Type                    | Description                                                                                                                                                                |\n| ------------------------------ | :---------------------- | -----------------------------------------------------------                                                                                                                |\n| className                      | string                  | Default behavior                                                                                                                                                           |\n| dateFormat                     | string                  | `dd/MM/yyyy`, `MM.dd.yyyy`, etc.                                                                                                                                           |\n| disabled                       | bool                    | If true - became inactive                                                                                                                                                  |\n| isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |\n| locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |\n| onBlur                         | func                    | Callback fired on input blur `(e) => {}`                                                                                                                                   |\n| onChange                       | func                    | Callback fired on date change `Date date => {}`                                                                                                                            |\n| onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                                                                                                                  |\n| showToLeft                     | bool                    | Show picker popup to left relative to input                                                                                                                                |\n| showToTop                      | bool                    | Show picker popup to top relative to input                                                                                                                                 |\n| tabIndex                       | number                  | Default behavior                                                                                                                                                           |\n| value                          | object                  | Instance of `Date`                                                                                                                                                         |\n| variants                       | array                   | `[ { getLabel: (locale) => string, getRange: (locale) => [ from<Date>, to<Date>] } ]` List of pre-defined date-ranges. Examples: current month, last week, next week, etc. |\n\n### Code Example\n\n```jsx\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  locale=\"de\"\n  onChange={_scope.handleChange}\n/>\n\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  disabled={false}\n  locale=\"en\"\n  onChange={_scope.handleChange}\n/>\n\n<hr />\n\n<DateInput\n  value={_scope.state.value}\n  dateFormat=\"dd/MM/yyyy\"\n  locale=\"fi\"\n  onBlur={(e) => console.log('Blur!', e)}\n  onChange={_scope.handleChange}\n  onFocus={(e) => console.log('Focus!', e)}\n  showToLeft={true}\n  showToTop={true}\n/>\n```\n\n### Component Name\n\nDateInput\n\n### License\n\nLicensed by © 2017 OpusCapita\n\n"
 
 /***/ }),
 /* 241 */
