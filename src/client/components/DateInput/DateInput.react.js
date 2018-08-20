@@ -113,11 +113,6 @@ class DateInput extends Component {
     document.body.removeEventListener('keydown', this.handleBodyKeyDown);
   }
 
-  handleDayClick = day => {
-    this.setState({ showPicker: false });
-    this.handleDateChange(day);
-  };
-
   handleBodyClick = event => {
     let clickedOutside = (
       !this.container.contains(event.target) &&
@@ -171,6 +166,7 @@ class DateInput extends Component {
 
   handleDateChange = value => {
     this.props.onChange(zeroTime(value));
+    this.hidePicker();
     this.setState({ error: null });
   };
 
@@ -244,7 +240,6 @@ class DateInput extends Component {
           tabIndex={-1}
           fixedWeeks={true}
           onChange={this.handleDateChange}
-          onDayClick={this.handleDayClick}
           { ...dayPickerSpecificProps }
         />
     );

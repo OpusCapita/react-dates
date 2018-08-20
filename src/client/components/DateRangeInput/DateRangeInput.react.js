@@ -357,7 +357,7 @@ class DateRangeInput extends Component {
         month={from}
         hideTodayButton={true}
         locale={locale}
-        modifiers={ { start: from, end: enteredTo || to }}
+        modifiers={{ start: from, end: enteredTo || to }}
         numberOfMonths={2}
         isRange={true}
         onChange={this.handleRangeChange}

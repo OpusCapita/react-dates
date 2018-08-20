@@ -31,11 +31,11 @@
   position: relative;
   transition: transform 0.1s ease;
 
-  &:active:focus {
+  &:active:focus:not(.DayPicker-Day--disabled) {
     z-index: 10;
     transform: scale(1.4);
   }
-  &:focus {
+  &:focus:not(.DayPicker-Day--disabled) {
     transform: scale(1);
   }
 }

@@ -32,7 +32,17 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
 <DayPicker
   dayPickerRef={ref => (window.picker = ref)}
   onChange={ day => console.log('day:', day) }
-  locale="de"
+  locale="en"
+  disabledDays={{ after: new Date() }}
+/>
+
+<DayPicker
+  dayPickerRef={ref => (window.picker = ref)}
+  onChange={ day => console.log('day:', day) }
+  numberOfMonths={2}
+  isRange={true}
+  locale="en"
+  disabledDays={{ after: new Date() }}
 />
 ```
 

@@ -41,6 +41,16 @@ Allows select date range using mouse.
   onChange={_scope.handleChange3.bind(_scope)}
   value={_scope.state.value2}
 />
+
+<hr />
+
+<DateRangeInput
+  dateFormat="dd.MM.yyyy"
+  locale={'de'}
+  onChange={_scope.handleChange1.bind(_scope)}
+  value={_scope.state.value1}
+  disabledDays={{ after: new Date() }}
+/>
 ```
 
 ### Component Name

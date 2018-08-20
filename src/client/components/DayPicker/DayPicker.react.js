@@ -9,8 +9,8 @@ import './DayPicker.less';
 
 function Caption(props) {
   let {
-    date,  // eslint-disable-line react/prop-types
-    locale,  // eslint-disable-line react/prop-types
+    date, // eslint-disable-line react/prop-types
+    locale, // eslint-disable-line react/prop-types
     localeUtils, // eslint-disable-line react/prop-types
     isRange, // eslint-disable-line react/prop-types
     onChange, // eslint-disable-line react/prop-types
@@ -107,15 +107,27 @@ class DayPicker extends Component {
     };
   }
 
-  handleDateChange = (dateValue, captionIndex) => {
-    const date = zeroTime(dateValue);
+  handleDayClick = (date, modifiers) => {
+    if (modifiers.disabled) {
+      return null;
+    }
+    this.handleDateChange(date, modifiers);
+  }
+
+  handleDateChange = (date, modifiers, captionIndex) => {
+    if (modifiers.disabled) {
+      return null;
+    }
+
     if (this.props.isRange) {
       let range = this.props.selectedDays[1];
       let fromChanged = captionIndex === 0;
       let toChanged = captionIndex === 1;
+
       if (fromChanged) {
         this.props.onChange([date, range.to]);
       }
+
       if (toChanged) {
         this.props.onChange([range.from, date]);
       }
@@ -165,7 +177,7 @@ class DayPicker extends Component {
     let caption = (
       <Caption
         locale={locale}
-        onChange={this.handleDateChange}
+        onChange={(date, captionIndex) => this.handleDateChange(date, {}, captionIndex)}
         isRange={isRange}
         currentMonth={currentMonth}
       />
@@ -181,7 +193,7 @@ class DayPicker extends Component {
             localeUtils={localeUtils}
             locale={locale}
             firstDayOfWeek={locale === 'en' ? 0 : 1}
-            onDayClick={this.handleDateChange}
+            onDayClick={this.handleDayClick}
             onDayKeyDown={this.handleDateChange}
             onDayTouchEnd={this.handleDateChange}
             onMonthChange={this.handleMonthChange}
