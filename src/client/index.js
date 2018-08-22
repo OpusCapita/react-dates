@@ -3,5 +3,6 @@
 module.exports = {
   DateInput: require('./components/DateInput').default,
   DateRangeInput: require('./components/DateRangeInput').default,
-  DatePicker: require('./components/DatePicker').default
+  DatePicker: require('./components/DatePicker').default,
+  ModifiersUtils: require('react-day-picker').ModifiersUtils
 };
