@@ -14,10 +14,13 @@ function Caption(props) {
     localeUtils, // eslint-disable-line react/prop-types
     isRange, // eslint-disable-line react/prop-types
     onChange, // eslint-disable-line react/prop-types
-    currentMonth // eslint-disable-line react/prop-types
+    monthToDisplay // eslint-disable-line react/prop-types
   } = props;
-
+  console.log('date!', date);
+  console.log('monthToDisplay!', monthToDisplay);
   let months = localeUtils.getMonths(locale);
+
+  // Fill years selectbox
   let dateNow = new Date();
   let years = [];
   for (let i = dateNow.getFullYear() - 100; i <= dateNow.getFullYear() + 100; i += 1) {
@@ -25,13 +28,12 @@ function Caption(props) {
   }
 
   let handleChange = (year, month) => {
-    let newDate = new Date(year, month);
     if (isRange) {
-      let isCaptionFrom = date.getMonth() === currentMonth.getMonth();
+      let isCaptionFrom = date.getMonth() === monthToDisplay.getMonth();
       let captionIndex = isCaptionFrom ? 0 : 1;
-      onChange(newDate, captionIndex);
+      onChange({ month, year, captionIndex });
     } else {
-      onChange(newDate);
+      onChange({ month, year, captionIndex: 0 });
     }
   };
 
@@ -43,6 +45,10 @@ function Caption(props) {
     handleChange(date.getFullYear(), event.target.value);
   };
 
+  if (!monthToDisplay) {
+    return null;
+  }
+
   return (
     <div className="DayPicker-Caption">
       <div className={`form-group opuscapita_day-picker__caption`}>
@@ -50,7 +56,7 @@ function Caption(props) {
           className="opuscapita_day-picker__caption-select"
           onChange={handleMonthChange}
           name="month"
-          value={date.getMonth()}
+          value={monthToDisplay.getMonth()}
           tabIndex={-1}
         >
           {months.map((month, index) =>
@@ -61,7 +67,7 @@ function Caption(props) {
           className="opuscapita_day-picker__caption-select"
           onChange={handleYearChange}
           name="year"
-          value={date.getFullYear()}
+          value={monthToDisplay.getFullYear()}
           tabIndex={-1}
         >
           {years.map((year, index) =>
@@ -103,41 +109,17 @@ class DayPicker extends Component {
     super(props);
     this.state = {
       date: props.date,
-      currentMonth: null
+      monthToDisplay: props.date
     };
   }
 
-  handleDayClick = (date, modifiers) => {
-    if (modifiers.disabled) {
-      return null;
-    }
-    this.handleDateChange(date, modifiers);
+  handleCaptionChange = ({ month, year }) => {
+    let monthToDisplay = new Date(year, month);
+    this.setState({ monthToDisplay });
   }
 
-  handleDateChange = (date, modifiers, captionIndex) => {
-    if (modifiers.disabled) {
-      return null;
-    }
-
-    if (this.props.isRange) {
-      let range = this.props.selectedDays[1];
-      let fromChanged = captionIndex === 0;
-      let toChanged = captionIndex === 1;
-
-      if (fromChanged) {
-        this.props.onChange([date, range.to]);
-      }
-
-      if (toChanged) {
-        this.props.onChange([range.from, date]);
-      }
-    } else {
-      this.props.onChange(date);
-    }
-  };
-
-  handleMonthChange = month => {
-    this.setState({ currentMonth: month });
+  handleMonthChange = date => {
+    this.setState({ monthToDisplay: date });
   };
 
   handleTodayClick = () => {
@@ -157,7 +139,7 @@ class DayPicker extends Component {
       ...restProps
     } = this.props;
 
-    let { currentMonth } = this.state;
+    let { monthToDisplay } = this.state;
 
     let splittedProps = splitProps(restProps, Object.keys(ReactDayPicker.propTypes));
     let commonProps = splittedProps[0];
@@ -174,12 +156,15 @@ class DayPicker extends Component {
       </button>
     );
 
+
+    console.log('month to display', monthToDisplay);
+
     let caption = (
       <Caption
         locale={locale}
-        onChange={(date, captionIndex) => this.handleDateChange(date, {}, captionIndex)}
+        onChange={(date, captionIndex) => this.handleCaptionChange(date, captionIndex)}
         isRange={isRange}
-        currentMonth={currentMonth}
+        monthToDisplay={monthToDisplay}
       />
     );
 
@@ -193,9 +178,6 @@ class DayPicker extends Component {
             localeUtils={localeUtils}
             locale={locale}
             firstDayOfWeek={locale === 'en' ? 0 : 1}
-            onDayClick={this.handleDayClick}
-            onDayKeyDown={this.handleDateChange}
-            onDayTouchEnd={this.handleDateChange}
             onMonthChange={this.handleMonthChange}
             onWeekClick={() => {}}
             captionElement={caption}
