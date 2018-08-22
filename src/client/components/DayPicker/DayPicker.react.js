@@ -84,8 +84,8 @@ let propTypes = {
   ...ReactDayPicker.propTypes,
   className: PropTypes.string,
   dayPickerRef: PropTypes.func,
-  hideTodayButton: PropTypes.bool,
   getTodayButtonLabel: PropTypes.func,
+  hideTodayButton: PropTypes.bool,
   isRange: PropTypes.bool,
   onChange: PropTypes.func,
   pickerClassName: PropTypes.string
@@ -94,10 +94,10 @@ let propTypes = {
 let defaultProps = {
   className: '',
   dayPickerRef: () => {},
+  getTodayButtonLabel: (locale) => getMessage(locale, 'today'),
   hideTodayButton: false,
   isRange: false,
   labels: ReactDayPicker.defaultProps.labels,
-  getTodayButtonLabel: (locale) => getMessage(locale, 'today'),
   onChange: () => {},
   pickerClassName: ''
 };
