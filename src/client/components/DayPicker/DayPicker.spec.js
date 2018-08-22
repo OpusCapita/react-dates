@@ -78,12 +78,12 @@ describe('<DayPicker />', () => {
     expect(spy.args[0][0]).to.be.instanceOf(ReactDayPicker);
   });
 
-  it('should call onChange when new date selected', () => {
+  it('should call onChange when clicked on "Today" button', () => {
     let spy = sinon.spy();
     let wrapper = mount(<DayPicker onChange={spy} />);
 
-    let dayElement = wrapper.find('.DayPicker-Day[aria-selected]').first();
-    dayElement.simulate('click');
+    let todayButton = wrapper.find('.opuscapita_day-picker__today-button').first();
+    todayButton.simulate('click');
 
     expect(spy).to.have.been.called;
     expect(spy.args[0][0]).to.be.instanceOf(Date);
