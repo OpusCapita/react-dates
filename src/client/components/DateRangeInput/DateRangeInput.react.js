@@ -198,23 +198,25 @@ class DateRangeInput extends Component {
     this.props.onChange(normalizedRange);
   };
 
-  handleDayClick = dayValue => {
-    const day = zeroTime(dayValue);
+  handleDayClick = (dayValue, modifiers) => {
+    if (!modifiers.disabled) {
+      const day = zeroTime(dayValue);
 
-    let from = this.props.value[0];
-    let to = this.props.value[1];
+      let from = this.props.value[0];
+      let to = this.props.value[1];
 
-    if (isSelectingFirstDay(from, to, day)) {
-      this.handleRangeChange([day, null]);
-      this.setState({
-        enteredTo: null
-      });
-    } else {
-      this.handleRangeChange([from, day]);
-      this.setState({
-        enteredTo: day,
-        showPicker: false
-      });
+      if (isSelectingFirstDay(from, to, day)) {
+        this.handleRangeChange([day, null]);
+        this.setState({
+          enteredTo: null
+        });
+      } else {
+        this.handleRangeChange([from, day]);
+        this.setState({
+          enteredTo: day,
+          showPicker: false
+        });
+      }
     }
   };
 
@@ -521,25 +523,3 @@ class DateRangeInput extends Component {
 
 DateRangeInput.propTypes = propTypes;
 DateRangeInput.defaultProps = defaultProps;
-
-// handleDateChange = (date, modifiers, captionIndex) => {
-//   if (modifiers.disabled) {
-//     return null;
-//   }
-
-//   if (this.props.isRange) {
-//     let range = this.props.selectedDays[1];
-//     let fromChanged = captionIndex === 0;
-//     let toChanged = captionIndex === 1;
-
-//     if (fromChanged) {
-//       this.props.onChange([date, range.to]);
-//     }
-
-//     if (toChanged) {
-//       this.props.onChange([range.from, date]);
-//     }
-//   } else {
-//     this.props.onChange(date);
-//   }
-// };
