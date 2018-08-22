@@ -170,6 +170,12 @@ class DateInput extends Component {
     this.setState({ error: null });
   };
 
+  handleDayClick = (value, modifiers) => {
+    if (!modifiers.disabled) {
+      this.handleDateChange(value);
+    }
+  }
+
   showPicker() {
     let month = this.props.value || new Date();
     this.reactDayPicker.showMonth(month);
@@ -206,28 +212,6 @@ class DateInput extends Component {
     this.props.onBlur(e);
   };
 
-  handleDateChange = (date, modifiers, captionIndex) => {
-    if (modifiers.disabled) {
-      return null;
-    }
-
-    if (this.props.isRange) {
-      let range = this.props.selectedDays[1];
-      let fromChanged = captionIndex === 0;
-      let toChanged = captionIndex === 1;
-
-      if (fromChanged) {
-        this.props.onChange([date, range.to]);
-      }
-
-      if (toChanged) {
-        this.props.onChange([range.from, date]);
-      }
-    } else {
-      this.props.onChange(date);
-    }
-  };
-
   render() {
     let {
       className,
@@ -261,6 +245,7 @@ class DateInput extends Component {
           selectedDays={value}
           tabIndex={-1}
           fixedWeeks={true}
+          onDayClick={this.handleDayClick}
           onDayKeyDown={this.handleDateChange}
           onDayTouchEnd={this.handleDateChange}
           onChange={this.handleDateChange}

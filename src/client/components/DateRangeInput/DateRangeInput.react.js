@@ -521,3 +521,25 @@ class DateRangeInput extends Component {
 
 DateRangeInput.propTypes = propTypes;
 DateRangeInput.defaultProps = defaultProps;
+
+// handleDateChange = (date, modifiers, captionIndex) => {
+//   if (modifiers.disabled) {
+//     return null;
+//   }
+
+//   if (this.props.isRange) {
+//     let range = this.props.selectedDays[1];
+//     let fromChanged = captionIndex === 0;
+//     let toChanged = captionIndex === 1;
+
+//     if (fromChanged) {
+//       this.props.onChange([date, range.to]);
+//     }
+
+//     if (toChanged) {
+//       this.props.onChange([range.from, date]);
+//     }
+//   } else {
+//     this.props.onChange(date);
+//   }
+// };

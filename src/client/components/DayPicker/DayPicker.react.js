@@ -16,8 +16,7 @@ function Caption(props) {
     onChange, // eslint-disable-line react/prop-types
     monthToDisplay // eslint-disable-line react/prop-types
   } = props;
-  console.log('date!', date);
-  console.log('monthToDisplay!', monthToDisplay);
+
   let months = localeUtils.getMonths(locale);
 
   // Fill years selectbox
@@ -156,9 +155,6 @@ class DayPicker extends Component {
       </button>
     );
 
-
-    console.log('month to display', monthToDisplay);
-
     let caption = (
       <Caption
         locale={locale}
@@ -184,6 +180,7 @@ class DayPicker extends Component {
             tabIndex={-1}
             showWeekNumbers={true}
             { ...pickerSpecificProps }
+            month={monthToDisplay}
           />
         </div>
         <div className={`opuscapita_day-picker__footer`}>

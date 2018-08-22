@@ -55,7 +55,9 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
   onFocus={(e) => console.log('Focus!', e)}
   showToLeft={true}
   showToTop={true}
-  disabledDays={{ after: new Date() }}
+  modifiers={{
+    disabled: { after: new Date() }
+  }}
 />
 ```
 

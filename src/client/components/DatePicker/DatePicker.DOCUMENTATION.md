@@ -35,6 +35,9 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
     locale="de"
     onChange={_scope.handleChange.bind(_scope)}
     value={_scope.state.value}
+    modifiers={{
+      disabled: { after: new Date() }
+    }}
   />
 </div>
 
