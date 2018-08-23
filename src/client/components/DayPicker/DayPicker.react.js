@@ -7,8 +7,6 @@ import getMessage from '../translations';
 import { splitProps, zeroTime } from '../utils';
 import dayjs from 'dayjs';
 import './DayPicker.less';
-window.dayjs = dayjs;
-
 
 function Caption(props) {
   let {
