@@ -3331,7 +3331,7 @@ module.exports = [
             "lint-fix": "eslint src --fix",
             "start": "cross-env NODE_ENV=development && showroom-scan src && babel-node www/index",
             "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/test/mocha-setup.js --require ignore-styles",
-            "npm-build": "rimraf lib && cross-env NODE_ENV=production WEBPACK_BUNDLE_ANALYZE=true webpack --config ./config/webpack.config.js",
+            "npm-build": "rimraf lib && cross-env NODE_ENV=production webpack --config ./config/webpack.config.js",
             "npm-publish": "npm run npm-build && npm publish",
             "publish-release": "npm run npm-publish"
         },
@@ -5108,9 +5108,11 @@ var DateInput = function (_Component) {
     };
 
     _this.handleDayClick = function (value, modifiers) {
-      if (!modifiers.disabled) {
-        _this.handleDateChange(value);
+      if (modifiers.disabled) {
+        return _possibleConstructorReturn(_this);
       }
+
+      _this.handleDateChange(value);
     };
 
     _this.handleInputFocus = function (event) {
@@ -5635,10 +5637,12 @@ var DatePicker = function (_Component) {
     };
 
     _this.handleDayClick = function (value, modifiers) {
-      if (!modifiers.disabled) {
-        _this.handleDateChange(value);
-        _this.hidePicker();
+      if (modifiers.disabled) {
+        return _possibleConstructorReturn(_this);
       }
+
+      _this.handleDateChange(value);
+      _this.hidePicker();
     };
 
     _this.handleToggleClick = function () {
@@ -6097,24 +6101,26 @@ var DateRangeInput = function (_Component) {
     };
 
     _this.handleDayClick = function (dayValue, modifiers) {
-      if (!modifiers.disabled) {
-        var day = (0, _utils.zeroTime)(dayValue);
+      if (modifiers.disabled) {
+        return _possibleConstructorReturn(_this);
+      }
 
-        var from = _this.props.value[0];
-        var to = _this.props.value[1];
+      var day = (0, _utils.zeroTime)(dayValue);
 
-        if (isSelectingFirstDay(from, to, day)) {
-          _this.handleRangeChange([day, null]);
-          _this.setState({
-            enteredTo: null
-          });
-        } else {
-          _this.handleRangeChange([from, day]);
-          _this.setState({
-            enteredTo: day,
-            showPicker: false
-          });
-        }
+      var from = _this.props.value[0];
+      var to = _this.props.value[1];
+
+      if (isSelectingFirstDay(from, to, day)) {
+        _this.handleRangeChange([day, null]);
+        _this.setState({
+          enteredTo: null
+        });
+      } else {
+        _this.handleRangeChange([from, day]);
+        _this.setState({
+          enteredTo: day,
+          showPicker: false
+        });
       }
     };
 
