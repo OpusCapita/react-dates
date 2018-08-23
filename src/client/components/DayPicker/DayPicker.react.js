@@ -5,7 +5,10 @@ import "react-day-picker/lib/style.css";
 import localeUtils from '../../dayjs/reactDayPickerUtils';
 import getMessage from '../translations';
 import { splitProps, zeroTime } from '../utils';
+import dayjs from 'dayjs';
 import './DayPicker.less';
+window.dayjs = dayjs;
+
 
 function Caption(props) {
   let {
@@ -26,10 +29,11 @@ function Caption(props) {
     years.push(i);
   }
 
+  let isCaptionFrom = (date && date.getMonth()) === (monthToDisplay && monthToDisplay.getMonth());
+  let captionIndex = isCaptionFrom ? 0 : 1;
+
   let handleChange = (year, month) => {
     if (isRange) {
-      let isCaptionFrom = date.getMonth() === monthToDisplay.getMonth();
-      let captionIndex = isCaptionFrom ? 0 : 1;
       onChange({ month, year, captionIndex });
     } else {
       onChange({ month, year, captionIndex: 0 });
@@ -55,7 +59,7 @@ function Caption(props) {
           className="opuscapita_day-picker__caption-select"
           onChange={handleMonthChange}
           name="month"
-          value={monthToDisplay.getMonth()}
+          value={isCaptionFrom ? monthToDisplay.getMonth() : dayjs(monthToDisplay).add(1, 'month').toDate().getMonth()}
           tabIndex={-1}
         >
           {months.map((month, index) =>
@@ -66,7 +70,7 @@ function Caption(props) {
           className="opuscapita_day-picker__caption-select"
           onChange={handleYearChange}
           name="year"
-          value={monthToDisplay.getFullYear()}
+          value={isCaptionFrom ? monthToDisplay.getFullYear() : dayjs(monthToDisplay).add(1, 'month').toDate().getFullYear()}
           tabIndex={-1}
         >
           {years.map((year, index) =>
@@ -112,8 +116,11 @@ class DayPicker extends Component {
     };
   }
 
-  handleCaptionChange = ({ month, year }) => {
-    let monthToDisplay = new Date(year, month);
+  handleCaptionChange = ({ month, year, captionIndex }) => {
+    let monthToDisplay = captionIndex === 0 ?
+      new Date(year, month) :
+      dayjs(new Date(year, month)).subtract(1, 'month').toDate();
+
     this.setState({ monthToDisplay });
   }
 
@@ -158,7 +165,7 @@ class DayPicker extends Component {
     let caption = (
       <Caption
         locale={locale}
-        onChange={(date, captionIndex) => this.handleCaptionChange(date, captionIndex)}
+        onChange={(captionData) => this.handleCaptionChange(captionData)}
         isRange={isRange}
         monthToDisplay={monthToDisplay}
       />
