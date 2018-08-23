@@ -358,7 +358,6 @@ class DateRangeInput extends Component {
     let pickerElement = (
       <DayPicker
         className="Range"
-        disabledDays={{ before: from }}
         fixedWeeks={true}
         month={from}
         hideTodayButton={true}
