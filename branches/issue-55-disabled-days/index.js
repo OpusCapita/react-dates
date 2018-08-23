@@ -6324,7 +6324,6 @@ var DateRangeInput = function (_Component) {
 
       var pickerElement = _react2.default.createElement(_DayPicker2.default, _extends({
         className: 'Range',
-        disabledDays: { before: from },
         fixedWeeks: true,
         month: from,
         hideTodayButton: true,
