@@ -59,7 +59,11 @@ function Caption(props) {
           className="opuscapita_day-picker__caption-select"
           onChange={handleMonthChange}
           name="month"
-          value={isCaptionFrom ? monthToDisplay.getMonth() : dayjs(monthToDisplay).add(1, 'month').toDate().getMonth()}
+          value={
+            isCaptionFrom ?
+            monthToDisplay.getMonth() :
+            dayjs(monthToDisplay).add(1, 'month').toDate().getMonth()
+          }
           tabIndex={-1}
         >
           {months.map((month, index) =>
