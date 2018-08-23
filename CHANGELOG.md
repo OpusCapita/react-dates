@@ -1,4 +1,9 @@
 
+[Release 0.5.5](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.5) Thu Aug 23 2018 16:09:24 GMT+0300 (MSK)
+=======================================================
+
+- Add possibility to define disabled days (PR [#62](https://github.com/OpusCapita/react-dates/issues/62), ISSUE [#55](https://github.com/OpusCapita/react-dates/issues/55)) (GitHub kvolkovich-sc@users.noreply.github.com, 2018-08-23 16:07:44 +0300)
+
 [Release 0.4.5](https://github.com/OpusCapita/react-dates/releases/tag/v0.4.5) Mon Aug 06 2018 14:29:19 GMT+0300 (MSK)
 =======================================================
 
