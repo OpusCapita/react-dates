@@ -70,7 +70,11 @@ function Caption(props) {
           className="opuscapita_day-picker__caption-select"
           onChange={handleYearChange}
           name="year"
-          value={isCaptionFrom ? monthToDisplay.getFullYear() : dayjs(monthToDisplay).add(1, 'month').toDate().getFullYear()}
+          value={
+            isCaptionFrom ?
+            monthToDisplay.getFullYear() :
+            dayjs(monthToDisplay).add(1, 'month').toDate().getFullYear()
+          }
           tabIndex={-1}
         >
           {years.map((year, index) =>
