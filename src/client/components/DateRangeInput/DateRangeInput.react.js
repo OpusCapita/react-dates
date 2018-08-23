@@ -201,24 +201,26 @@ class DateRangeInput extends Component {
   };
 
   handleDayClick = (dayValue, modifiers) => {
-    if (!modifiers.disabled) {
-      const day = zeroTime(dayValue);
+    if (modifiers.disabled) {
+      return;
+    }
 
-      let from = this.props.value[0];
-      let to = this.props.value[1];
+    const day = zeroTime(dayValue);
 
-      if (isSelectingFirstDay(from, to, day)) {
-        this.handleRangeChange([day, null]);
-        this.setState({
-          enteredTo: null
-        });
-      } else {
-        this.handleRangeChange([from, day]);
-        this.setState({
-          enteredTo: day,
-          showPicker: false
-        });
-      }
+    let from = this.props.value[0];
+    let to = this.props.value[1];
+
+    if (isSelectingFirstDay(from, to, day)) {
+      this.handleRangeChange([day, null]);
+      this.setState({
+        enteredTo: null
+      });
+    } else {
+      this.handleRangeChange([from, day]);
+      this.setState({
+        enteredTo: day,
+        showPicker: false
+      });
     }
   };
 

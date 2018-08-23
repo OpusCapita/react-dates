@@ -71,10 +71,12 @@ class DatePicker extends Component {
   };
 
   handleDayClick = (value, modifiers) => {
-    if (!modifiers.disabled) {
-      this.handleDateChange(value);
-      this.hidePicker();
+    if (modifiers.disabled) {
+      return;
     }
+
+    this.handleDateChange(value);
+    this.hidePicker();
   };
 
   handleToggleClick = () => {

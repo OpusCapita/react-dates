@@ -18,7 +18,7 @@
     "lint-fix": "eslint src --fix",
     "start": "cross-env NODE_ENV=development && showroom-scan src && babel-node www/index",
     "test": "mocha src/**/*.spec.js --compilers js:babel-register --require config/test/mocha-setup.js --require ignore-styles",
-    "npm-build": "rimraf lib && cross-env NODE_ENV=production WEBPACK_BUNDLE_ANALYZE=true webpack --config ./config/webpack.config.js",
+    "npm-build": "rimraf lib && cross-env NODE_ENV=production webpack --config ./config/webpack.config.js",
     "npm-publish": "npm run npm-build && npm publish",
     "publish-release": "npm run npm-publish"
   },

@@ -173,9 +173,11 @@ class DateInput extends Component {
   };
 
   handleDayClick = (value, modifiers) => {
-    if (!modifiers.disabled) {
-      this.handleDateChange(value);
+    if (modifiers.disabled) {
+      return;
     }
+
+    this.handleDateChange(value);
   }
 
   showPicker() {
