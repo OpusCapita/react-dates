@@ -14,6 +14,7 @@ let propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   locale: PropTypes.string,
+  modifiers: PropTypes.object,
   onChange: PropTypes.func,
   showToLeft: PropTypes.bool,
   showToTop: PropTypes.bool,
@@ -25,6 +26,7 @@ let defaultProps = {
   className: '',
   disabled: false,
   locale: 'en',
+  modifiers: {},
   onChange: () => {},
   showToLeft: false,
   showToTop: false,
@@ -68,9 +70,13 @@ class DatePicker extends Component {
     this.hidePicker();
   };
 
-  handleDayClick = day => {
-    this.handleDateChange(day);
-    this.setState({ showPicker: false });
+  handleDayClick = (value, modifiers) => {
+    if (modifiers.disabled) {
+      return;
+    }
+
+    this.handleDateChange(value);
+    this.hidePicker();
   };
 
   handleToggleClick = () => {

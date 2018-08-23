@@ -36,6 +36,7 @@ let propTypes = {
   disabled: PropTypes.bool,
   isValid: PropTypes.bool,
   locale: PropTypes.string,
+  modifiers: PropTypes.object,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
@@ -55,6 +56,7 @@ let defaultProps = {
   disabled: false,
   isValid: true,
   locale: 'en',
+  modifiers: {},
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
@@ -198,7 +200,11 @@ class DateRangeInput extends Component {
     this.props.onChange(normalizedRange);
   };
 
-  handleDayClick = dayValue => {
+  handleDayClick = (dayValue, modifiers) => {
+    if (modifiers.disabled) {
+      return;
+    }
+
     const day = zeroTime(dayValue);
 
     let from = this.props.value[0];
@@ -352,12 +358,11 @@ class DateRangeInput extends Component {
     let pickerElement = (
       <DayPicker
         className="Range"
-        disabledDays={{ before: from }}
         fixedWeeks={true}
         month={from}
         hideTodayButton={true}
         locale={locale}
-        modifiers={ { start: from, end: enteredTo || to }}
+        modifiers={{ start: from, end: enteredTo || to }}
         numberOfMonths={2}
         isRange={true}
         onChange={this.handleRangeChange}

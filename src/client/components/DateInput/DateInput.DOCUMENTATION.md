@@ -15,6 +15,7 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 | disabled                       | bool                    | If true - became inactive                                                                                                                                                  |
 | isValid                        | bool                    | If false - highlight input as error                                                                                                                                        |
 | locale                         | string                  | `en`, `de`, etc. Days and months translations, first day of week, etc. depends on this property                                                                            |
+| modifiers                      | object                  | [Info](https://github.com/gpbl/react-day-picker/blob/v6.1.0/docs/docs/modifiers.md). Use `disabled` modifier to select disabled days. Check, is it using [`import { ModifiersUtils } from @opuscapita/react-dates`](https://github.com/gpbl/react-day-picker/blob/v6.1.0/docs/docs/utils-modifiers.md) |
 | onBlur                         | func                    | Callback fired on input blur `(e) => {}`                                                                                                                                   |
 | onChange                       | func                    | Callback fired on date change `Date date => {}`                                                                                                                            |
 | onFocus                        | func                    | Callback fired on input focus `(e) => {}`                                                                                                                                  |
@@ -55,6 +56,9 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
   onFocus={(e) => console.log('Focus!', e)}
   showToLeft={true}
   showToTop={true}
+  modifiers={{
+    disabled: { after: new Date() }
+  }}
 />
 ```
 

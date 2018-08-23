@@ -31,13 +31,18 @@
   position: relative;
   transition: transform 0.1s ease;
 
-  &:active:focus {
+  &:active:focus:not(.DayPicker-Day--disabled) {
     z-index: 10;
     transform: scale(1.4);
   }
-  &:focus {
+  &:focus:not(.DayPicker-Day--disabled) {
     transform: scale(1);
   }
+}
+
+
+.DayPicker-Day--disabled.DayPicker-Day--outside {
+  pointer-events: none;
 }
 
 .opuscapita_day-picker__picker .DayPicker-wrapper {

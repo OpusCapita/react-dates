@@ -15,6 +15,7 @@ DayPicker is a styled to OpusCapita defaults [react-day-picker](https://github.c
 | hideTodayButton                | bool                    |                                                                                                                                                                                                                                                                  |
 | onChange                       | func                    | Callback fired when new date selected `Date date => {}`                                                                                                                                                                                                          |
 | locale                         | string                  | `de`, `en`, etc.                                                                                                                                                                                                                                                 |
+| modifiers                      | object                  | [Info](https://github.com/gpbl/react-day-picker/blob/v6.1.0/docs/docs/modifiers.md). Use `disabled` modifier to select disabled days. Check, is it using [`import { ModifiersUtils } from @opuscapita/react-dates`](https://github.com/gpbl/react-day-picker/blob/v6.1.0/docs/docs/utils-modifiers.md) |
 | pickerClassName                | string                  | Class name passed to react day picker                                                                                                                                                                                                                            |
 | getTodayButtonLabel            | string                  |                                                                                                                                                                                                                                                                  |
 
@@ -32,7 +33,18 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
 <DayPicker
   dayPickerRef={ref => (window.picker = ref)}
   onChange={ day => console.log('day:', day) }
-  locale="de"
+  locale="en"
+/>
+
+<DayPicker
+  dayPickerRef={ref => (window.picker = ref)}
+  onChange={ day => console.log('day:', day) }
+  numberOfMonths={2}
+  isRange={true}
+  locale="en"
+  modifiers={{
+    disabled: { after: new Date() }
+  }}
 />
 ```
 

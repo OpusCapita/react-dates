@@ -21,6 +21,7 @@ let propTypes = {
   disabled: PropTypes.bool,
   isValid: PropTypes.bool,
   locale: PropTypes.string,
+  modifiers: PropTypes.object,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
@@ -41,6 +42,7 @@ let defaultProps = {
   disabled: false,
   isValid: true,
   locale: 'en',
+  modifiers: {},
   onBlur: () => {},
   onFocus: () => {},
   onChange: () => {},
@@ -113,11 +115,6 @@ class DateInput extends Component {
     document.body.removeEventListener('keydown', this.handleBodyKeyDown);
   }
 
-  handleDayClick = day => {
-    this.setState({ showPicker: false });
-    this.handleDateChange(day);
-  };
-
   handleBodyClick = event => {
     let clickedOutside = (
       !this.container.contains(event.target) &&
@@ -171,8 +168,17 @@ class DateInput extends Component {
 
   handleDateChange = value => {
     this.props.onChange(zeroTime(value));
+    this.hidePicker();
     this.setState({ error: null });
   };
+
+  handleDayClick = (value, modifiers) => {
+    if (modifiers.disabled) {
+      return;
+    }
+
+    this.handleDateChange(value);
+  }
 
   showPicker() {
     let month = this.props.value || new Date();
@@ -243,8 +249,10 @@ class DateInput extends Component {
           selectedDays={value}
           tabIndex={-1}
           fixedWeeks={true}
-          onChange={this.handleDateChange}
           onDayClick={this.handleDayClick}
+          onDayKeyDown={this.handleDateChange}
+          onDayTouchEnd={this.handleDateChange}
+          onChange={this.handleDateChange}
           { ...dayPickerSpecificProps }
         />
     );
