@@ -1,4 +1,10 @@
 
+[Release 0.5.6](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.6) Mon Nov 12 2018 17:37:47 GMT+0300 (MSK)
+=======================================================
+
+- Components don't work properly inside modal dialog (Issue [#64](https://github.com/OpusCapita/react-dates/issues/64), PR [#65](https://github.com/OpusCapita/react-dates/issues/65)) (GitHub kvolkovich-sc@users.noreply.github.com, 2018-11-12 17:23:21 +0300)
+- Using docker image opuscapita/minsk-core-ci tag grails-2.4.4-jdk-8u131-nodejs-6.9.4-maven-3.3.9 [ci skip] (Alexey Sergeev alexey.sergeev@opuscapita.com, 2018-09-07 09:08:30 +0300)
+
 [Release 0.5.5](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.5) Thu Aug 23 2018 16:09:24 GMT+0300 (MSK)
 =======================================================
 
