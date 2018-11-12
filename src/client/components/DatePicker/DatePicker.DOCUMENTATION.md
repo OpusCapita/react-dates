@@ -51,7 +51,7 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
 />
 
 <button onClick={_scope.handleOpenModal}>Open in modal</button>
-<Modal show={_scope.state.openModal} onHide={_scope.handleHideModal}>
+<Modal show={_scope.state.openModal} onHide={_scope.handleHideModal} enforceFocus={false}>
   <Modal.Body>
     <DatePicker
       locale="de"

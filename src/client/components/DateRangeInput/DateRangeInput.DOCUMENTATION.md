@@ -27,7 +27,7 @@ Allows select date range using mouse.
 
 ```jsx
 <button onClick={_scope.handleOpenModal}>Open in modal</button>
-<Modal show={_scope.state.openModal} onHide={_scope.handleHideModal}>
+<Modal show={_scope.state.openModal} onHide={_scope.handleHideModal} enforceFocus={false}>
   <Modal.Body>
     <DateRangeInput
       dateFormat="MM.dd.yyyy"
