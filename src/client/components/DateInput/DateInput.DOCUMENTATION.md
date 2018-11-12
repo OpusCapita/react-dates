@@ -28,12 +28,17 @@ Based on configured to OpusCapita defaults [react-day-picker](https://github.com
 ### Code Example
 
 ```jsx
-<DateInput
-  value={_scope.state.value}
-  dateFormat="dd/MM/yyyy"
-  locale="de"
-  onChange={_scope.handleChange}
-/>
+<button onClick={_scope.handleOpenModal}>Open in modal</button>
+<Modal show={_scope.state.openModal} onHide={_scope.handleHideModal} enforceFocus={false}>
+  <Modal.Body>
+    <DateInput
+      value={_scope.state.value}
+      dateFormat="dd/MM/yyyy"
+      locale="de"
+      onChange={_scope.handleChange}
+    />
+  </Modal.Body>
+</Modal>
 
 <hr />
 

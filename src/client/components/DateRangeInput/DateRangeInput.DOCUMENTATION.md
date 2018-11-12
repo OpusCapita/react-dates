@@ -26,12 +26,17 @@ Allows select date range using mouse.
 ### Code Example
 
 ```jsx
-<DateRangeInput
-  dateFormat="MM.dd.yyyy"
-  locale={'de'}
-  onChange={_scope.handleChange1.bind(_scope)}
-  value={_scope.state.value1}
-/>
+<button onClick={_scope.handleOpenModal}>Open in modal</button>
+<Modal show={_scope.state.openModal} onHide={_scope.handleHideModal} enforceFocus={false}>
+  <Modal.Body>
+    <DateRangeInput
+      dateFormat="MM.dd.yyyy"
+      locale={'de'}
+      onChange={_scope.handleChange1.bind(_scope)}
+      value={_scope.state.value1}
+    />
+  </Modal.Body>
+</Modal>
 
 <hr />
 
