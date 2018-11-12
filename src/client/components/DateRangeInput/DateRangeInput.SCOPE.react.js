@@ -5,6 +5,9 @@
 
 import React, { Component } from 'react';
 import { showroomScopeDecorator } from '@opuscapita/react-showroom-client';
+import { Modal } from 'react-bootstrap';
+
+window.Modal = Modal;
 
 
 @showroomScopeDecorator
@@ -16,8 +19,17 @@ class DateRangeInputScope extends Component {
       value1: [null, null],
       value2: [new Date(), new Date()],
       value3: [null, null],
-      value4: [null, null]
+      value4: [null, null],
+      openModal: false,
     };
+  }
+
+  handleOpenModal = () => {
+    this.setState({ openModal: true });
+  }
+
+  handleHideModal = () => {
+    this.setState({ openModal: false });
   }
 
   handleChange1(value) {

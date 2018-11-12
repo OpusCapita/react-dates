@@ -49,6 +49,17 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
   showToTop={true}
   showToLeft={true}
 />
+
+<button onClick={_scope.handleOpenModal}>Open in modal</button>
+<Modal show={_scope.state.openModal} onHide={_scope.handleHideModal}>
+  <Modal.Body>
+    <DatePicker
+      locale="de"
+      onChange={_scope.handleChange.bind(_scope)}
+      value={_scope.state.value}
+    />
+  </Modal.Body>
+</Modal>
 ```
 
 ### Component Name
