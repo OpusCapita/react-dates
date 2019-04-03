@@ -31,17 +31,6 @@ See react-day-picker [methods reference](http://react-day-picker.js.org/APIMetho
 ### Code Example
 
 ```jsx
-<div style={{ height: '50px', overflow: 'hidden' }}>
-  <DatePicker
-    locale="de"
-    onChange={_scope.handleChange.bind(_scope)}
-    value={_scope.state.value}
-    modifiers={{
-      disabled: { after: new Date() }
-    }}
-  />
-</div>
-
 <DatePicker
   locale="de"
   onChange={_scope.handleChange.bind(_scope)}
