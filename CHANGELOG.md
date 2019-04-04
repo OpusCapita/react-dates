@@ -1,4 +1,9 @@
 
+[Release 0.5.7](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.7) Thu Apr 04 2019 15:40:46 GMT+0300 (MSK)
+=======================================================
+
+- ([#67](https://github.com/OpusCapita/react-dates/issues/67)) Remove portal usage from drop down popup (Dmitry Divin divin@scand.com, 2019-04-04 15:39:22 +0300)
+
 [Release 0.5.6](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.6) Mon Nov 12 2018 17:37:47 GMT+0300 (MSK)
 =======================================================
 
