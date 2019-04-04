@@ -13,6 +13,11 @@
   overflow: hidden;
   position: absolute;
   z-index: 9999;
+
+  display: inline-flex;
+  left: 0;
+  bottom: -4px;
+  transform: translate(0, 100%);
 }
 
 .opuscapita_date-range-input__variants-container {
@@ -109,4 +114,16 @@
   pointer-events: none;
   color: #aaa;
   padding-right: 24px;
+}
+
+.opuscapita_date-range-input__picker-container--to-left {
+  left: auto;
+  right: 0;
+}
+
+.opuscapita_date-range-input__picker-container--to-top,
+.opuscapita_date-range-input__variants-container--to-top {
+  bottom: auto;
+  top: -4px;
+  transform: translate(0, -100%);
 }

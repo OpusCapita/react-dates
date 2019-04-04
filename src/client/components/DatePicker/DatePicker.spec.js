@@ -22,12 +22,6 @@ describe('<DatePicker />', () => {
     expect(wrapper.hasClass('test-class-name')).to.be.true;
   });
 
-  it('should have picker-container', () => {
-    let wrapper = mount(<DatePicker />);
-    let pickerContainers = document.getElementsByClassName('opuscapita_date-picker__picker-container');
-    expect(pickerContainers).to.have.lengthOf(1);
-  });
-
   it.skip('+ should pass specific DayPicker props to it', () => {
     let wrapper = mount(
       <DatePicker

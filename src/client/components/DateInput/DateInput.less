@@ -31,13 +31,31 @@
   will-change: opacity, max-height;
   background: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-  position: fixed;
+  position: absolute;
   overflow: hidden;
   z-index: 9999;
+
+  display: inline-flex;
+  left: 0;
+  bottom: -4px;
+  transform: translate(0, 100%);
 }
 
 .opuscapita_date-input__variants-container {
   white-space: nowrap;
+  right: 0;
+}
+
+.opuscapita_date-input__variants-container--to-top,
+.opuscapita_date-input__picker-container--to-top {
+  bottom: auto;
+  top: -4px;
+  transform: translate(0, -100%);
+}
+
+.opuscapita_date-input__picker-container--to-left {
+  left: auto;
+  right: 0;
 }
 
 .opuscapita_date-input__variants-btn {

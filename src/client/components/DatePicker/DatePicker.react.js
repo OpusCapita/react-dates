@@ -4,8 +4,7 @@ import './DatePicker.less';
 import DayPicker from '../DayPicker';
 import { spring, presets, Motion } from 'react-motion';
 import isEqual from 'lodash/isEqual';
-import { Portal } from 'react-portal';
-import { getCoords, splitProps, zeroTime } from '../utils';
+import { splitProps, zeroTime } from '../utils';
 
 let springPreset = presets.gentle;
 let easeOutCubic = (t) => (--t) * t * t + 1; // eslint-disable-line no-param-reassign
@@ -48,6 +47,15 @@ class DatePicker extends Component {
     document.body.addEventListener('keydown', this.handleBodyKeyDown);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      let month = nextProps.value || new Date();
+      if (this.reactDayPicker) {
+        this.reactDayPicker.showMonth(month);
+      }
+    }
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.state.showPicker !== nextState.showPicker ||
@@ -63,10 +71,10 @@ class DatePicker extends Component {
 
   componentWillUnmount() {
     document.body.removeEventListener('click', this.handleBodyClick);
-    document.body.removeEventListener('keydown', this.handlePortalClose);
+    document.body.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handlePortalClose = event => {
+  handleKeyDown = event => {
     this.hidePicker();
   };
 
@@ -112,6 +120,8 @@ class DatePicker extends Component {
   };
 
   showPicker() {
+    let month = this.props.value || new Date();
+    this.reactDayPicker.showMonth(month);
     this.setState({ showPicker: true });
   }
 
@@ -152,7 +162,8 @@ class DatePicker extends Component {
       />
     );
 
-    let { top, left } = getCoords(this.container, showToTop, showToLeft);
+    let showToTopClassName = showToTop ? 'opuscapita_date-picker__picker-container--to-top' : '';
+    let showToLeftClassName = showToLeft ? 'opuscapita_date-picker__picker-container--to-left' : '';
 
     let pickerMotionElement = (
       <Motion
@@ -160,24 +171,19 @@ class DatePicker extends Component {
         style={{ x: showPicker ? spring(1, springPreset) : spring(0, springPreset) }}
       >
         {interpolatedStyle => (
-          <Portal
-            isOpened={true}
-            onClose={this.handlePortalClose}
+          <div
+            ref={ref => { this.datePickerRef = ref }}
+            className={`
+              opuscapita_date-picker__picker-container
+              ${showToTopClassName} ${showToLeftClassName}
+            `}
+            style={{
+              maxHeight: `${interpolatedStyle.x * 640}px`,
+              opacity: easeOutCubic(interpolatedStyle.x)
+            }}
           >
-            <div
-              ref={ref => { this.datePickerRef = ref }}
-              className={`opuscapita_date-picker__picker-container`}
-              style={{
-                maxHeight: `${interpolatedStyle.x * 640}px`,
-                opacity: easeOutCubic(interpolatedStyle.x),
-                top: `${top}px`,
-                left: `${left}px`,
-                transform: `translate(${showToLeft ? '-100%' : '0'}, ${showToTop ? '-100%' : '0'})`
-              }}
-            >
-              {pickerElement}
-            </div>
-          </Portal>
+            {pickerElement}
+          </div>
         )}
       </Motion>
     );
@@ -185,6 +191,7 @@ class DatePicker extends Component {
     return (
       <div
         className={`opuscapita_date-picker ${className}`}
+        onKeyDown={this.handleKeyDown}
         ref={el => (this.container = el)}
         { ...commonProps }
       >
