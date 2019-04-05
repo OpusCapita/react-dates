@@ -1,4 +1,9 @@
 
+[Release 0.5.8](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.8) Fri Apr 05 2019 19:11:51 GMT+0300 (MSK)
+=======================================================
+
+- Fix z-index conflict with react-select (kvolkovich-sc kirill.volkovich@opuscapita.com, 2019-04-05 19:09:49 +0300)
+
 [Release 0.5.7](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.7) Thu Apr 04 2019 15:40:46 GMT+0300 (MSK)
 =======================================================
 

@@ -1,6 +1,6 @@
 {
   "name": "jcatalog-bootstrap",
-  "version": "0.5.8-SNAPSHOT",
+  "version": "0.5.8",
   "description": "Bootstrap npm module customized for jCatalog.",
   "main": "dist/js/bootstrap.min.js",
   "files": [
