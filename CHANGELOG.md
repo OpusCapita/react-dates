@@ -1,4 +1,9 @@
 
+[Release 0.5.9](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.9) Mon May 27 2019 09:32:22 GMT+0300 (MSK)
+=======================================================
+
+- Stick variants picker to the right ([#70](https://github.com/OpusCapita/react-dates/issues/70)) (GitHub 31243790+estambakio-sc@users.noreply.github.com, 2019-05-27 08:21:06 +0200)
+
 [Release 0.5.8](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.8) Fri Apr 05 2019 19:11:51 GMT+0300 (MSK)
 =======================================================
 
