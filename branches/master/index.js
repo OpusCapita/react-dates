@@ -943,7 +943,7 @@ module.exports = warning;
 /* 19 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.8' };
+var core = module.exports = { version: '2.6.9' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -1589,7 +1589,7 @@ c=i(l),e.parser.validateLink(l)?(t||(e.push({type:"link_open",href:c,level:e.lev
 /* 29 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.8' };
+var core = module.exports = { version: '2.6.9' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -11725,7 +11725,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInput",
-    "version": "0.5.9-SNAPSHOT",
+    "version": "0.5.10",
     "tags": "",
     "relatedFiles": [
       {
@@ -11740,7 +11740,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInputField",
-    "version": "0.5.9-SNAPSHOT",
+    "version": "0.5.10",
     "tags": "",
     "relatedFiles": [
       {
@@ -11755,7 +11755,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DatePicker",
-    "version": "0.5.9-SNAPSHOT",
+    "version": "0.5.10",
     "tags": "",
     "relatedFiles": [
       {
@@ -11770,7 +11770,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateRangeInput",
-    "version": "0.5.9-SNAPSHOT",
+    "version": "0.5.10",
     "tags": "",
     "relatedFiles": [
       {
@@ -11785,7 +11785,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateVariants",
-    "version": "0.5.9-SNAPSHOT",
+    "version": "0.5.10",
     "tags": "",
     "relatedFiles": [
       {
@@ -11800,7 +11800,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DayPicker",
-    "version": "0.5.9-SNAPSHOT",
+    "version": "0.5.10",
     "tags": "",
     "relatedFiles": [
       {
@@ -11815,7 +11815,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "InputAddonButton",
-    "version": "0.5.9-SNAPSHOT",
+    "version": "0.5.10",
     "tags": "",
     "relatedFiles": [
       {
@@ -11836,7 +11836,7 @@ module.exports = [
 module.exports = [
     {
         "name": "@opuscapita/react-dates",
-        "version": "0.5.9-SNAPSHOT",
+        "version": "0.5.10",
         "description": "Start write new project with no effort.",
         "keywords": [
             "react",
@@ -18211,7 +18211,7 @@ exports = module.exports = __webpack_require__(25)();
 
 
 // module
-exports.push([module.i, ".opuscapita_date-input-field {\n  z-index: 1 !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n}\n.opuscapita_date-input-field__input::-ms-clear {\n  display: none !important;\n}\n", ""]);
+exports.push([module.i, ".opuscapita_date-input-field {\n  z-index: 1 !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n}\n.opuscapita_date-input-field__input::-ms-clear {\n  display: none !important;\n}\n.opuscapita_date-input-field__input:-ms-input-placeholder {\n  color: #999;\n}\n", ""]);
 
 // exports
 
