@@ -1,4 +1,9 @@
 
+[Release 0.5.10](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.10) Mon Jul 29 2019 13:41:42 GMT+0300 (MSK)
+=======================================================
+
+-  [#71](https://github.com/OpusCapita/react-dates/issues/71) Fix input placeholder color under IE/Edge (kvolkovich-sc volkovich@scand.com, 2019-07-29 13:38:52 +0300)
+
 [Release 0.5.9](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.9) Mon May 27 2019 09:32:22 GMT+0300 (MSK)
 =======================================================
 
