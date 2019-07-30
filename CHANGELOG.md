@@ -1,4 +1,10 @@
 
+[Release 0.5.11](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.11) Tue Jul 30 2019 14:10:01 GMT+0300 (MSK)
+=======================================================
+
+- Merge branch 'master' of github.com:OpusCapita/react-dates (kvolkovich-sc volkovich@scand.com, 2019-07-30 14:08:39 +0300)
+-  [#71](https://github.com/OpusCapita/react-dates/issues/71) Fix input placeholder color (kvolkovich-sc volkovich@scand.com, 2019-07-30 14:08:24 +0300)
+
 [Release 0.5.10](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.10) Mon Jul 29 2019 13:41:42 GMT+0300 (MSK)
 =======================================================
 
