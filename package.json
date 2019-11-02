@@ -41,7 +41,7 @@
     "@opuscapita/i18n": "1.2.5",
     "@opuscapita/react-autocompletes": "3.0.1",
     "dayjs": "1.6.4",
-    "lodash": "4.17.4",
+    "lodash": "4.17.15",
     "prop-types": "15.6.0",
     "react-day-picker": "6.1.0"
   },
