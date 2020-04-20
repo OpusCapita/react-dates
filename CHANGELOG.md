@@ -1,4 +1,9 @@
 
+[Release 0.5.14](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.14) Mon Apr 20 2020 09:34:48 GMT+0300 (MSK)
+=======================================================
+
+- Adjusting build process [skip ci] (Alexey Sergeev alexey.sergeev@opuscapita.com, 2020-04-20 09:33:02 +0300)
+
 [Release 0.5.13](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.13) Mon Apr 20 2020 09:23:41 GMT+0300 (MSK)
 =======================================================
 
