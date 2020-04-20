@@ -3,43 +3,9 @@ defaults: &defaults
     - image: opuscapita/minsk-core-ci:grails-2.4.4-jdk-8u131-nodejs-8.9.4-maven-3.3.9
   working_directory: ~/build
 
-version: 2
+version: 2.1
 jobs:
-  build:
-    <<: *defaults
-    steps:
-      - run:
-          name: Environment inject.
-          command: env_inject.sh
-
-      - checkout
-      - restore_cache:
-          keys:
-            - react-showroom-{{ .Branch }}-{{ checksum "package.json" }}
-            - react-showroom-{{ .Branch }}
-            - react-showroom
-
-      - run:
-          name: Installing dependencies.
-          command: npm install
-
-      - save_cache:
-          key: react-showroom-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-              - ./node_modules
-              - ./package-lock.json
-              - ./yarn.lock
-
-      - run:
-          name: Running lint.
-          command: npm run lint
-
-      - run:
-          name: Running tests.
-          command: npm test
-
   update-gh-pages:
-    docker:
     <<: *defaults
     steps:
       - run:
@@ -55,13 +21,12 @@ jobs:
 
       - run:
           name: "Installing dependencies."
-          command: yarn install
+          command: npm install
 
       - save_cache:
           key: react-showroom-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
               - ./node_modules
-              - ./yarn.lock
 
       - run:
           name: build-gh-pages
@@ -70,79 +35,42 @@ jobs:
       - run:
           name: deploy-gh-pages
           command: ./scripts/gh-pages/deploy.sh .gh-pages-tmp
-  build_release:
+  build:
     <<: *defaults
     steps:
       - run:
           name: Environment inject
           command: /bin/env_inject.sh
-
       - checkout
-
       - restore_cache:
           keys:
             - react-showroom-{{ .Branch }}-{{ checksum "package.json" }}
             - react-showroom-{{ .Branch }}
             - react-showroom
-
-      - run:
-          name: "Installing dependencies."
-          command: yarn install
-
+      - run: npm install
       - save_cache:
           key: react-showroom-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
               - ./node_modules
-              - ./yarn.lock
-
+      - run: npm run lint
       - run:
-          name: "Running lint."
-          command: npm run lint
-
-      - run:
-          name: "Deploy."
-          command: npm run publish-release
-
-
-  release:
-    <<: *defaults
-    steps:
-
-      - run:
-          name: Environment inject
-          command: env_inject.sh
-
-      - checkout
-
-      - run:
-          name: Executing release scrtipt.
-          command: .circleci/release.sh
+          name: Publish package
+          command: |
+            # we do it only if tag is here (release process is run)
+            if [ ! -z "${CIRCLE_TAG}" ]; then
+              npm run publish-release
+            fi
 
 workflows:
-  version: 2
+  version: 2.1
   release-and-build:
     jobs:
-      - release:
-          filters:
-            branches:
-              only: release
       - build:
-          filters:
-            branches:
-              ignore:
-                - gh-pages
-                - release
-      - update-gh-pages:
-          requires:
-            - build
-          filters:
-            branches:
-              ignore:
-                - gh-pages
-                - release
-      - build_release:
           filters:
             tags:
               only: /.*/
             branches:
-              ignore: /.*/
+              only: /.*/
+      - update-gh-pages:
+          requires:
+            - build
