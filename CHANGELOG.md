@@ -1,4 +1,9 @@
 
+[Release 0.5.13](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.13) Mon Apr 20 2020 09:23:41 GMT+0300 (MSK)
+=======================================================
+
+- Lowering z-index of reset button (3 -> 2) (Alexey Sergeev alexey.sergeev@opuscapita.com, 2020-04-20 09:01:35 +0300)
+
 [Release 0.5.12](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.12) Mon Apr 20 2020 09:03:41 GMT+0300 (MSK)
 =======================================================
 
