@@ -1,4 +1,8 @@
 
+[Release 0.5.12](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.12) Mon Apr 20 2020 09:03:41 GMT+0300 (MSK)
+=======================================================
+
+
 [Release 0.5.11](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.11) Tue Jul 30 2019 14:10:01 GMT+0300 (MSK)
 =======================================================
 
