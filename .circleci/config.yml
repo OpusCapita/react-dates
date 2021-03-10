@@ -4,6 +4,10 @@ defaults: &defaults
   working_directory: ~/build
 
 version: 2.1
+
+orbs:
+  jira: circleci/jira@1.2.2
+
 jobs:
   update-gh-pages:
     <<: *defaults
@@ -71,6 +75,8 @@ workflows:
               only: /.*/
             branches:
               only: /.*/
+          post-steps:
+            - jira/notify
       - update-gh-pages:
           requires:
             - build
