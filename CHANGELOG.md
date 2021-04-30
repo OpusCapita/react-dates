@@ -1,4 +1,13 @@
 
+[Release 0.5.15](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.15) Fri Apr 30 2021 08:58:08 GMT+0300 (MSK)
+=======================================================
+
+- Added Spanish to available languages ([#75](https://github.com/OpusCapita/react-dates/issues/75)) (GitHub santiago_vital@outlook.com, 2021-04-30 00:56:43 -0500)
+- (EPROC-20383) Used jdk zulu (GitHub ashestak-sc@users.noreply.github.com, 2021-04-06 16:28:54 +0300)
+- (EPROC-20383) Used jdk zulu (GitHub ashestak-sc@users.noreply.github.com, 2021-04-06 13:09:04 +0300)
+- (EPROC-20252) Added circleci builds jira integration (GitHub ashestak-sc@users.noreply.github.com, 2021-03-10 16:02:04 +0300)
+- Update CI image to opuscapita/minsk-core-ci:grails-2.4.4-jdk-8u192-nodejs-8.17.0-maven-3.3.9 [ci skip] (Egor Stambakio egor.stambakio@opuscapita.com, 2020-05-07 16:14:10 +0300)
+
 [Release 0.5.14](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.14) Mon Apr 20 2020 09:34:48 GMT+0300 (MSK)
 =======================================================
 
