@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import en from './locales/en';
+import es from './locales/es';
 import de from './locales/de';
 import fi from './locales/fi';
 import no from './locales/no';
@@ -8,6 +9,7 @@ import sv from './locales/sv';
 
 const locales = {
   en,
+  es,
   de,
   fi,
   no,
