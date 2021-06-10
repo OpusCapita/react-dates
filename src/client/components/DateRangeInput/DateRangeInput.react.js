@@ -65,7 +65,7 @@ let defaultProps = {
   value: [null, null],
   variants: [
     {
-      getLabel: (locale) => getMessage(locale, 'previousWeek'),
+      getLabel: (locale) => getMessage(locale, 'common.DateRangeInput.previousWeek'),
       // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
       getValue: (locale) => locale === 'en' ? [
         dayjs().locale(locale).subtract(7, 'days').startOf('week').toDate(),
@@ -76,7 +76,7 @@ let defaultProps = {
       ]
     },
     {
-      getLabel: (locale) => getMessage(locale, 'thisWeek'),
+      getLabel: (locale) => getMessage(locale, 'common.DateRangeInput.thisWeek'),
       // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
       getValue: (locale) => locale === 'en' ? [
         dayjs().locale(locale).startOf('week').toDate(),
@@ -87,7 +87,7 @@ let defaultProps = {
       ]
     },
     {
-      getLabel: (locale) => getMessage(locale, 'nextWeek'),
+      getLabel: (locale) => getMessage(locale, 'common.DateRangeInput.nextWeek'),
       // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
       getValue: (locale) => locale === 'en' ? [
         dayjs().locale(locale).add(7, 'days').startOf('week').toDate(),
@@ -98,28 +98,28 @@ let defaultProps = {
       ]
     },
     {
-      getLabel: (locale) => getMessage(locale, 'previousMonth'),
+      getLabel: (locale) => getMessage(locale, 'common.DateRangeInput.previousMonth'),
       getValue: (locale) => [
         dayjs().locale(locale).subtract(1, 'month').startOf('month').toDate(),
         dayjs().locale(locale).subtract(1, 'month').endOf('month').toDate()
       ]
     },
     {
-      getLabel: (locale) => getMessage(locale, 'last30Days'),
+      getLabel: (locale) => getMessage(locale, 'common.DateRangeInput.last30Days'),
       getValue: (locale) => [
         dayjs().locale(locale).subtract(30, 'days').toDate(),
         dayjs().locale(locale).toDate()
       ]
     },
     {
-      getLabel: (locale) => getMessage(locale, 'thisMonth'),
+      getLabel: (locale) => getMessage(locale, 'common.DateRangeInput.thisMonth'),
       getValue: (locale) => [
         dayjs().locale(locale).startOf('month').toDate(),
         dayjs().locale(locale).endOf('month').toDate()
       ]
     },
     {
-      getLabel: (locale) => getMessage(locale, 'nextMonth'),
+      getLabel: (locale) => getMessage(locale, 'common.DateRangeInput.nextMonth'),
       getValue: (locale) => [
         dayjs().locale(locale).add(1, 'month').startOf('month').toDate(),
         dayjs().locale(locale).add(1, 'month').endOf('month').toDate()
@@ -443,7 +443,7 @@ class DateRangeInput extends Component {
         tabIndex="-1"
         onClick={this.handleReset}
         disabled={disabled}
-        title={getMessage(locale, 'clearValue')}
+        title={getMessage(locale, 'common.DateInput.clearValue')}
       >
         ✕
       </InputAddonButton>
