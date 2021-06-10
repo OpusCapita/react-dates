@@ -1,4 +1,9 @@
 
+[Release 0.5.16-EPROC-20549-SNAPSHOT](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.16-EPROC-20549-SNAPSHOT) Thu Jun 10 2021 10:30:28 GMT+0300 (MSK)
+=======================================================
+
+- Make translation keys unique (Dmitriy Sanko dmitriy.sanko@opuscapita.com, 2021-06-10 10:19:00 +0300)
+
 [Release 0.5.15](https://github.com/OpusCapita/react-dates/releases/tag/v0.5.15) Fri Apr 30 2021 08:58:08 GMT+0300 (MSK)
 =======================================================
 
