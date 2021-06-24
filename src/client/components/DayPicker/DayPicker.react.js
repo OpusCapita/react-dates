@@ -23,7 +23,7 @@ let propTypes = {
 let defaultProps = {
   className: '',
   dayPickerRef: () => {},
-  getTodayButtonLabel: (locale) => getMessage(locale, 'today'),
+  getTodayButtonLabel: (locale) => getMessage(locale, 'common.DateInput.today'),
   hideTodayButton: false,
   isRange: false,
   labels: ReactDayPicker.defaultProps.labels,

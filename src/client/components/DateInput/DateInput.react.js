@@ -51,15 +51,15 @@ let defaultProps = {
   value: null,
   variants: [
     {
-      getLabel: (locale) => getMessage(locale, 'yesterday'),
+      getLabel: (locale) => getMessage(locale, 'common.DateInput.yesterday'),
       getValue: (locale) => dayjs().locale(locale).subtract(1, 'days').toDate()
     },
     {
-      getLabel: (locale) => getMessage(locale, 'today'),
+      getLabel: (locale) => getMessage(locale, 'common.DateInput.today'),
       getValue: (locale) => dayjs().locale(locale).toDate()
     },
     {
-      getLabel: (locale) => getMessage(locale, 'tomorrow'),
+      getLabel: (locale) => getMessage(locale, 'common.DateInput.tomorrow'),
       getValue: (locale) => dayjs().locale(locale).add(1, 'days').toDate()
     }
   ]
@@ -290,7 +290,7 @@ ${showToTopClassName} ${showToLeftClassName}
         tabIndex="-1"
         onClick={this.handleReset}
         disabled={disabled}
-        title={getMessage(locale, 'clearValue')}
+        title={getMessage(locale, 'common.DateInput.clearValue')}
       >
         ✕
       </InputAddonButton>
