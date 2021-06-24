@@ -3994,88 +3994,82 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = getMessage;
 var translations = {
   en: {
-    selectDateRange: 'Select date range',
-    today: 'Today',
-    yesterday: 'Yesterday',
-    tomorrow: 'Tomorrow',
-    previousWeek: 'Previous week',
-    nextWeek: 'Next week',
-    thisWeek: 'This week',
-    previousMonth: 'Previous month',
-    last30Days: 'Last 30 days',
-    thisMonth: 'This month',
-    nextMonth: 'Next month',
-    clearValue: 'Clear value'
+    'common.DateInput.today': 'Today',
+    'common.DateInput.yesterday': 'Yesterday',
+    'common.DateInput.tomorrow': 'Tomorrow',
+    'common.DateRangeInput.previousWeek': 'Previous week',
+    'common.DateRangeInput.nextWeek': 'Next week',
+    'common.DateRangeInput.thisWeek': 'This week',
+    'common.DateRangeInput.previousMonth': 'Previous month',
+    'common.DateRangeInput.last30Days': 'Last 30 days',
+    'common.DateRangeInput.thisMonth': 'This month',
+    'common.DateRangeInput.nextMonth': 'Next month',
+    'common.DateInput.clearValue': 'Clear value'
   },
   de: {
-    selectDateRange: 'Datumsbereich auswählen',
-    today: 'Heute',
-    yesterday: 'Gestern',
-    tomorrow: 'Morgen',
-    previousWeek: 'Vorherige Woche',
-    nextWeek: 'Nächste Woche',
-    thisWeek: 'Diese Woche',
-    previousMonth: 'Vorheriger Monat',
-    last30Days: 'Letzte 30 Tagen',
-    thisMonth: 'Dieser Monat',
-    nextMonth: 'Nächster Monat',
-    clearValue: 'Inhalt löschen'
+    'common.DateInput.today': 'Heute',
+    'common.DateInput.yesterday': 'Gestern',
+    'common.DateInput.tomorrow': 'Morgen',
+    'common.DateRangeInput.previousWeek': 'Vorherige Woche',
+    'common.DateRangeInput.nextWeek': 'Nächste Woche',
+    'common.DateRangeInput.thisWeek': 'Diese Woche',
+    'common.DateRangeInput.previousMonth': 'Vorheriger Monat',
+    'common.DateRangeInput.last30Days': 'Letzte 30 Tagen',
+    'common.DateRangeInput.thisMonth': 'Dieser Monat',
+    'common.DateRangeInput.nextMonth': 'Nächster Monat',
+    'common.DateInput.clearValue': 'Inhalt löschen'
   },
   ru: {
-    selectDateRange: 'Выберите диапазон дат',
-    today: 'Сегодня',
-    yesterday: 'Вчера',
-    tomorrow: 'Завтра',
-    previousWeek: 'Предыдущая неделя',
-    nextWeek: 'Следующая неделя',
-    thisWeek: 'Эта неделя',
-    previousMonth: 'Предыдущий месяц',
-    last30Days: 'Последние 30 дней',
-    thisMonth: 'Этот месяц',
-    nextMonth: 'Следующий месяц',
-    clearValue: ''
+    'common.DateInput.today': 'Сегодня',
+    'common.DateInput.yesterday': 'Вчера',
+    'common.DateInput.tomorrow': 'Завтра',
+    'common.DateRangeInput.previousWeek': 'Предыдущая неделя',
+    'common.DateRangeInput.nextWeek': 'Следующая неделя',
+    'common.DateRangeInput.thisWeek': 'Эта неделя',
+    'common.DateRangeInput.previousMonth': 'Предыдущий месяц',
+    'common.DateRangeInput.last30Days': 'Последние 30 дней',
+    'common.DateRangeInput.thisMonth': 'Этот месяц',
+    'common.DateRangeInput.nextMonth': 'Следующий месяц',
+    'common.DateInput.clearValue': ''
   },
   fi: {
-    selectDateRange: 'Valitse päivämääräväli',
-    today: 'Tänään',
-    yesterday: 'Eilen',
-    tomorrow: 'Huomenna',
-    previousWeek: 'Edellinen viikko',
-    nextWeek: 'Seuraava viikko',
-    thisWeek: 'Tämä viikko',
-    previousMonth: 'Edellinen kuukausi',
-    last30Days: 'Edelliset 30 päivää',
-    thisMonth: 'Tämä kuukausi',
-    nextMonth: 'Seuraava kuukausi',
-    clearValue: ''
+    'common.DateInput.today': 'Tänään',
+    'common.DateInput.yesterday': 'Eilen',
+    'common.DateInput.tomorrow': 'Huomenna',
+    'common.DateRangeInput.previousWeek': 'Edellinen viikko',
+    'common.DateRangeInput.nextWeek': 'Seuraava viikko',
+    'common.DateRangeInput.thisWeek': 'Tämä viikko',
+    'common.DateRangeInput.previousMonth': 'Edellinen kuukausi',
+    'common.DateRangeInput.last30Days': 'Edelliset 30 päivää',
+    'common.DateRangeInput.thisMonth': 'Tämä kuukausi',
+    'common.DateRangeInput.nextMonth': 'Seuraava kuukausi',
+    'common.DateInput.clearValue': ''
   },
   no: {
-    selectDateRange: 'Velg datoområde',
-    today: 'I dag',
-    yesterday: 'I går',
-    tomorrow: 'I morgen',
-    previousWeek: 'Forrige uke',
-    nextWeek: 'Neste uke',
-    thisWeek: 'Denne uken',
-    previousMonth: 'Foregående måned',
-    last30Days: 'Siste 30 dager',
-    thisMonth: 'Denne måneden',
-    nextMonth: 'Neste måned',
-    clearValue: ''
+    'common.DateInput.today': 'I dag',
+    'common.DateInput.yesterday': 'I går',
+    'common.DateInput.tomorrow': 'I morgen',
+    'common.DateRangeInput.previousWeek': 'Forrige uke',
+    'common.DateRangeInput.nextWeek': 'Neste uke',
+    'common.DateRangeInput.thisWeek': 'Denne uken',
+    'common.DateRangeInput.previousMonth': 'Foregående måned',
+    'common.DateRangeInput.last30Days': 'Siste 30 dager',
+    'common.DateRangeInput.thisMonth': 'Denne måneden',
+    'common.DateRangeInput.nextMonth': 'Neste måned',
+    'common.DateInput.clearValue': ''
   },
   sv: {
-    selectDateRange: 'Välj datumintervall',
-    today: 'Idag',
-    yesterday: 'Igår',
-    tomorrow: 'Imorgon',
-    previousWeek: 'Föregående vecka',
-    nextWeek: 'Nästa vecka',
-    thisWeek: 'Denna vecka',
-    previousMonth: 'Föregående månad',
-    last30Days: 'SSenaste 30 dagarna',
-    thisMonth: 'Denna månad',
-    nextMonth: 'Nästa månad',
-    clearValue: ''
+    'common.DateInput.today': 'Idag',
+    'common.DateInput.yesterday': 'Igår',
+    'common.DateInput.tomorrow': 'Imorgon',
+    'common.DateRangeInput.previousWeek': 'Föregående vecka',
+    'common.DateRangeInput.nextWeek': 'Nästa vecka',
+    'common.DateRangeInput.thisWeek': 'Denna vecka',
+    'common.DateRangeInput.previousMonth': 'Föregående månad',
+    'common.DateRangeInput.last30Days': 'SSenaste 30 dagarna',
+    'common.DateRangeInput.thisMonth': 'Denna månad',
+    'common.DateRangeInput.nextMonth': 'Nästa månad',
+    'common.DateInput.clearValue': ''
   }
 };
 
@@ -6554,7 +6548,7 @@ var defaultProps = {
   className: '',
   dayPickerRef: function dayPickerRef() {},
   getTodayButtonLabel: function getTodayButtonLabel(locale) {
-    return (0, _translations2.default)(locale, 'today');
+    return (0, _translations2.default)(locale, 'common.DateInput.today');
   },
   hideTodayButton: false,
   isRange: false,
@@ -11086,7 +11080,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInput",
-    "version": "0.5.15-SNAPSHOT",
+    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
     "tags": "",
     "relatedFiles": [
       {
@@ -11101,7 +11095,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInputField",
-    "version": "0.5.15-SNAPSHOT",
+    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
     "tags": "",
     "relatedFiles": [
       {
@@ -11116,7 +11110,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DatePicker",
-    "version": "0.5.15-SNAPSHOT",
+    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
     "tags": "",
     "relatedFiles": [
       {
@@ -11131,7 +11125,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateRangeInput",
-    "version": "0.5.15-SNAPSHOT",
+    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
     "tags": "",
     "relatedFiles": [
       {
@@ -11146,7 +11140,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateVariants",
-    "version": "0.5.15-SNAPSHOT",
+    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
     "tags": "",
     "relatedFiles": [
       {
@@ -11161,7 +11155,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DayPicker",
-    "version": "0.5.15-SNAPSHOT",
+    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
     "tags": "",
     "relatedFiles": [
       {
@@ -11176,7 +11170,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "InputAddonButton",
-    "version": "0.5.15-SNAPSHOT",
+    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
     "tags": "",
     "relatedFiles": [
       {
@@ -11197,7 +11191,7 @@ module.exports = [
 module.exports = [
     {
         "name": "@opuscapita/react-dates",
-        "version": "0.5.15-SNAPSHOT",
+        "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
         "description": "Start write new project with no effort.",
         "keywords": [
             "react",
@@ -13786,21 +13780,21 @@ var defaultProps = {
   value: null,
   variants: [{
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'yesterday');
+      return (0, _translations2.default)(locale, 'common.DateInput.yesterday');
     },
     getValue: function getValue(locale) {
       return (0, _dayjs2.default)().locale(locale).subtract(1, 'days').toDate();
     }
   }, {
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'today');
+      return (0, _translations2.default)(locale, 'common.DateInput.today');
     },
     getValue: function getValue(locale) {
       return (0, _dayjs2.default)().locale(locale).toDate();
     }
   }, {
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'tomorrow');
+      return (0, _translations2.default)(locale, 'common.DateInput.tomorrow');
     },
     getValue: function getValue(locale) {
       return (0, _dayjs2.default)().locale(locale).add(1, 'days').toDate();
@@ -14041,7 +14035,7 @@ var DateInput = function (_Component) {
           tabIndex: '-1',
           onClick: this.handleReset,
           disabled: disabled,
-          title: (0, _translations2.default)(locale, 'clearValue')
+          title: (0, _translations2.default)(locale, 'common.DateInput.clearValue')
         },
         '\u2715'
       );
@@ -14801,7 +14795,7 @@ var defaultProps = {
   value: [null, null],
   variants: [{
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'previousWeek');
+      return (0, _translations2.default)(locale, 'common.DateRangeInput.previousWeek');
     },
     // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
     getValue: function getValue(locale) {
@@ -14809,7 +14803,7 @@ var defaultProps = {
     }
   }, {
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'thisWeek');
+      return (0, _translations2.default)(locale, 'common.DateRangeInput.thisWeek');
     },
     // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
     getValue: function getValue(locale) {
@@ -14817,7 +14811,7 @@ var defaultProps = {
     }
   }, {
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'nextWeek');
+      return (0, _translations2.default)(locale, 'common.DateRangeInput.nextWeek');
     },
     // TODO remove ternary operator below. Monitor this issue: https://github.com/iamkun/dayjs/issues/215
     getValue: function getValue(locale) {
@@ -14825,28 +14819,28 @@ var defaultProps = {
     }
   }, {
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'previousMonth');
+      return (0, _translations2.default)(locale, 'common.DateRangeInput.previousMonth');
     },
     getValue: function getValue(locale) {
       return [(0, _dayjs2.default)().locale(locale).subtract(1, 'month').startOf('month').toDate(), (0, _dayjs2.default)().locale(locale).subtract(1, 'month').endOf('month').toDate()];
     }
   }, {
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'last30Days');
+      return (0, _translations2.default)(locale, 'common.DateRangeInput.last30Days');
     },
     getValue: function getValue(locale) {
       return [(0, _dayjs2.default)().locale(locale).subtract(30, 'days').toDate(), (0, _dayjs2.default)().locale(locale).toDate()];
     }
   }, {
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'thisMonth');
+      return (0, _translations2.default)(locale, 'common.DateRangeInput.thisMonth');
     },
     getValue: function getValue(locale) {
       return [(0, _dayjs2.default)().locale(locale).startOf('month').toDate(), (0, _dayjs2.default)().locale(locale).endOf('month').toDate()];
     }
   }, {
     getLabel: function getLabel(locale) {
-      return (0, _translations2.default)(locale, 'nextMonth');
+      return (0, _translations2.default)(locale, 'common.DateRangeInput.nextMonth');
     },
     getValue: function getValue(locale) {
       return [(0, _dayjs2.default)().locale(locale).add(1, 'month').startOf('month').toDate(), (0, _dayjs2.default)().locale(locale).add(1, 'month').endOf('month').toDate()];
@@ -15183,7 +15177,7 @@ var DateRangeInput = function (_Component) {
           tabIndex: '-1',
           onClick: this.handleReset,
           disabled: disabled,
-          title: (0, _translations2.default)(locale, 'clearValue')
+          title: (0, _translations2.default)(locale, 'common.DateInput.clearValue')
         },
         '\u2715'
       );
