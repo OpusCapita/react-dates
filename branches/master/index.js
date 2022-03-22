@@ -537,8 +537,7 @@ function _interopRequireDefault(obj) {
   };
 }
 
-module.exports = _interopRequireDefault;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
+module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 11 */
@@ -11080,7 +11079,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInput",
-    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
+    "version": "0.5.17",
     "tags": "",
     "relatedFiles": [
       {
@@ -11095,7 +11094,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateInputField",
-    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
+    "version": "0.5.17",
     "tags": "",
     "relatedFiles": [
       {
@@ -11110,7 +11109,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DatePicker",
-    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
+    "version": "0.5.17",
     "tags": "",
     "relatedFiles": [
       {
@@ -11125,7 +11124,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateRangeInput",
-    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
+    "version": "0.5.17",
     "tags": "",
     "relatedFiles": [
       {
@@ -11140,7 +11139,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DateVariants",
-    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
+    "version": "0.5.17",
     "tags": "",
     "relatedFiles": [
       {
@@ -11155,7 +11154,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "DayPicker",
-    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
+    "version": "0.5.17",
     "tags": "",
     "relatedFiles": [
       {
@@ -11170,7 +11169,7 @@ module.exports = [
   {
     "package": "@opuscapita/react-dates",
     "name": "InputAddonButton",
-    "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
+    "version": "0.5.17",
     "tags": "",
     "relatedFiles": [
       {
@@ -11191,7 +11190,7 @@ module.exports = [
 module.exports = [
     {
         "name": "@opuscapita/react-dates",
-        "version": "0.5.16-EPROC-20549-SNAPSHOT-2",
+        "version": "0.5.17",
         "description": "Start write new project with no effort.",
         "keywords": [
             "react",
@@ -12148,14 +12147,11 @@ function _extends() {
     }
 
     return target;
-  };
-
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
   return _extends.apply(this, arguments);
 }
 
-module.exports = _extends;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
+module.exports = _extends, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 246 */
@@ -25956,6 +25952,7 @@ module.exports = function() {
   // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
   var ReactPropTypes = {
     array: shim,
+    bigint: shim,
     bool: shim,
     func: shim,
     number: shim,
@@ -30800,6 +30797,7 @@ module.exports = function() {
   // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
   var ReactPropTypes = {
     array: shim,
+    bigint: shim,
     bool: shim,
     func: shim,
     number: shim,
